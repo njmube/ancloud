@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<definition name="defaultTemplate" template="/WEB-INF/templates/default/layout.jsp">
+		<put-attribute name="page-header" value="/WEB-INF/templates/default/page-header.jsp" />
+		<put-attribute name="page-main-sidebar" value="/WEB-INF/templates/default/page-main-sidebar.jsp" />
+		<put-attribute name="page-footer" value="/WEB-INF/templates/default/page-footer.jsp" />
+		<put-attribute name="page-control-sidebar" value="/WEB-INF/templates/default/page-control-sidebar.jsp" />
+	</definition>
+</tiles-definitions>

@@ -1,0 +1,74 @@
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+	version="2.0">
+	<display-name>bb</display-name>
+	<tlib-version>1.0</tlib-version>
+	<short-name>bluebird</short-name>
+	<uri>http://bluebird.org/tags/bb</uri>
+
+	<!-- Start list all tag for project -->
+	<!-- Start list all by tag-class -->
+<!-- 	<tag> -->
+<!--     <name>date</name> -->
+<!--     <tag-class>org.terasoluna.qp.app.tags.DateTag</tag-class> -->
+<!--     <body-content>empty</body-content> -->
+<!--     <attribute> -->
+<!--       <name>id</name> -->
+<!--       <required>false</required> -->
+<!--       <rtexprvalue>false</rtexprvalue> -->
+<!--     </attribute> -->
+<!--     <attribute> -->
+<!--       <name>filter</name> -->
+<!--       <required>false</required> -->
+<!--       <rtexprvalue>true</rtexprvalue> -->
+<!--     </attribute> -->
+<!--     <attribute> -->
+<!--       <name>ignore</name> -->
+<!--       <required>false</required> -->
+<!--       <rtexprvalue>true</rtexprvalue> -->
+<!--     </attribute> -->
+<!--     <attribute> -->
+<!--       <name>name</name> -->
+<!--       <required>false</required> -->
+<!--       <rtexprvalue>true</rtexprvalue> -->
+<!--     </attribute> -->
+<!--     <attribute> -->
+<!--       <name>property</name> -->
+<!--       <required>false</required> -->
+<!--       <rtexprvalue>true</rtexprvalue> -->
+<!--     </attribute> -->
+<!--     <attribute> -->
+<!--       <name>scope</name> -->
+<!--       <required>false</required> -->
+<!--       <rtexprvalue>true</rtexprvalue> -->
+<!--     </attribute> -->
+<!--     <attribute> -->
+<!--       <name>pattern</name> -->
+<!--       <required>false</required> -->
+<!--       <rtexprvalue>true</rtexprvalue> -->
+<!--     </attribute> -->
+<!--     <attribute> -->
+<!--       <name>value</name> -->
+<!--       <required>false</required> -->
+<!--       <rtexprvalue>true</rtexprvalue> -->
+<!--     </attribute> -->
+<!--     <attribute> -->
+<!--       <name>format</name> -->
+<!--       <required>false</required> -->
+<!--       <rtexprvalue>true</rtexprvalue> -->
+<!--     </attribute> -->
+<!--     <attribute> -->
+<!--       <name>type</name> -->
+<!--       <required>true</required> -->
+<!--       <rtexprvalue>true</rtexprvalue> -->
+<!--     </attribute>     -->
+<!--   </tag> -->
+	<!-- End list all by tag-class -->
+	
+	<!-- Start list all by tag-file -->
+	<tag-file>
+		<name>message</name>
+		<path>/WEB-INF/tags/bb-message.tag</path>
+	</tag-file>
+ 
+</taglib>
