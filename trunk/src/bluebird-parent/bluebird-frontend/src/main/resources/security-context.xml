@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:sec="http://www.springframework.org/schema/security"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<sec:http auto-config="false" 
+				use-expressions="true" 
+				entry-point-ref="authenticationEntryPoint" 
+				>
+		<sec:intercept-url pattern="/login" access="permitAll" />
+		<sec:intercept-url pattern="/resources/**" access="permitAll" />
+		<sec:intercept-url pattern="/jsMsgSource*" access="permitAll" />
+		<!-- business type permission -->
+<!-- 		<sec:intercept-url pattern="/businesstype/search*" -->
+<!-- 			access="hasRole('businesstypeSearch')" /> -->
+
+
+
+		<sec:intercept-url pattern="/" access="isAuthenticated()" />
+		<!-- login configuration -->
+<!-- 		<sec:form-login login-page="/login" -->
+<!-- 						username-parameter="userName"  -->
+<!-- 						password-parameter="password"   -->
+<!-- 						authentication-failure-handler-ref="redirectErrorHandler" -->
+<!-- 						authentication-success-handler-ref="authSuccessHandlerEx" /> -->
+		<sec:logout logout-url="/logout" 
+					logout-success-url="/login" 
+					invalidate-session="true" 
+					delete-cookies="JSESSIONID" />
+
+		<sec:access-denied-handler ref="accessDeniedHandler" />
+
+		<sec:csrf />
+		<sec:custom-filter position="FORM_LOGIN_FILTER" ref="authenticationFilter" />
+		<sec:custom-filter position="CONCURRENT_SESSION_FILTER" ref="concurrencyFilter" />
+		<sec:custom-filter before="LOGOUT_FILTER" ref="csrfFilter" />
+
+		<sec:session-management session-authentication-strategy-ref="sessionAuthenticationStrategy" />
+	</sec:http>
+	
+	<bean id="authenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+		<constructor-arg value="/login" />
+	</bean>
+
+	<bean id="authenticationFilter"
+		class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
+		<property name="sessionAuthenticationStrategy" ref="sessionAuthenticationStrategy" />
+		<property name="authenticationManager" ref="authenticationManager" />
+		<property name="authenticationFailureHandler" ref="redirectErrorHandler" />
+		<property name="authenticationSuccessHandler" ref="authSuccessHandlerEx" />
+		<property name="usernameParameter" value="userName"></property>
+		<property name="passwordParameter" value="password"></property>
+	</bean>
+
+	<bean id="redirectErrorHandler"
+		class="org.springframework.security.web.authentication.ExceptionMappingAuthenticationFailureHandler">
+		<property name="defaultFailureUrl" value="/login?error" />
+		<property name="useForward" value="false" />
+		<property name="exceptionMappings">
+			<beans:map>
+			    <beans:entry key="org.springframework.security.core.userdetails.UsernameNotFoundException"
+							value="/login?error=notFound" />
+			</beans:map>
+		</property>
+	</bean>
+
+	<bean id="authSuccessHandlerEx"
+		class="org.bluebird.presentation.authentication.AuthenticationSuccessHandler">
+		<property name="defaultTargetUrl" value="/dashboard/dashboard" />
+		<property name="alwaysUseDefaultTargetUrl" value="true"></property>
+	</bean>
+	
+<!-- 	<sec:authentication-manager alias="authenticationManager"> -->
+<!-- 		<sec:authentication-provider> -->
+<!-- 			<sec:user-service> -->
+<!-- 				<sec:user name="user" password="password" authorities="ROLE_USER" /> -->
+<!-- 				<sec:user name="admin" password="password" authorities="ROLE_USER,ROLE_ADMIN" /> -->
+<!-- 			</sec:user-service> -->
+<!-- 		</sec:authentication-provider> -->
+<!-- 	</sec:authentication-manager> -->
+	<sec:authentication-manager alias="authenticationManager">
+		<sec:authentication-provider user-service-ref="userDetailsService">
+			<sec:password-encoder ref="passwordEncoder" />
+		</sec:authentication-provider>
+	</sec:authentication-manager>
+
+	<bean id="concurrencyFilter"
+		class="org.springframework.security.web.session.ConcurrentSessionFilter">
+		<constructor-arg name="sessionRegistry" ref="sessionRegistry" />
+		<constructor-arg name="expiredUrl" value="/session-expired" />
+	</bean>
+
+	<bean id="sessionAuthenticationStrategy"
+		class="org.springframework.security.web.authentication.session.CompositeSessionAuthenticationStrategy">
+		<constructor-arg>
+			<util:list>
+				<bean id="sessionAuthenticationStrategy"
+					class="org.springframework.security.web.authentication.session.ConcurrentSessionControlAuthenticationStrategy">
+					<constructor-arg name="sessionRegistry" ref="sessionRegistry" />
+					<property name="maximumSessions" value="1" />
+					<property name="exceptionIfMaximumExceeded" value="true" />
+				</bean>
+			</util:list>
+		</constructor-arg>
+	</bean>
+	<bean id="sessionRegistry" class="org.springframework.security.core.session.SessionRegistryImpl" />
+
+	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+
+	<!-- CSRF Protection -->
+	<bean id="accessDeniedHandler"
+		class="org.springframework.security.web.access.DelegatingAccessDeniedHandler">
+		<constructor-arg index="0">
+			<map>
+				<entry key="org.springframework.security.web.csrf.InvalidCsrfTokenException">
+					<bean class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
+						<property name="errorPage"
+							value="/WEB-INF/templates/error/invalidCsrfTokenError.jsp" />
+					</bean>
+				</entry>
+				<entry key="org.springframework.security.web.csrf.MissingCsrfTokenException">
+					<bean class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
+						<property name="errorPage" value="/WEB-INF/templates/error/missingCsrfTokenError.jsp" />
+					</bean>
+				</entry>
+			</map>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<bean class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
+				<property name="errorPage"
+					value="/WEB-INF/templates/error/accessDeniedError.jsp" />
+			</bean>
+		</constructor-arg>
+	</bean>
+
+	<bean id="csrfFilter" class="org.springframework.security.web.csrf.CsrfFilter">
+		<constructor-arg index="0" ref="csrfTokenRepository" />
+		<property name="accessDeniedHandler">
+			<bean class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
+				<property name="errorPage" value="/WEB-INF/template/error/csrfTokenError.jsp" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="csrfTokenRepository" class="org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository" />
+</beans>

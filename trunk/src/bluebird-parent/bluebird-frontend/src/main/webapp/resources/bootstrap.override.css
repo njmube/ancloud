@@ -1,0 +1,11 @@
+.has-feedback .form-control {
+  padding-left: 34px;
+}
+.form-control-feedback {
+	left : 0;
+}
+.has-feedback .lost-password{
+	position : absolute;
+	right : 10px;
+	top: 5.5px;
+}
