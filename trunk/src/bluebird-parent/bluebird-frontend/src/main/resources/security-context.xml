@@ -18,13 +18,12 @@
 		<sec:intercept-url pattern="/login" access="permitAll" />
 		<sec:intercept-url pattern="/resources/**" access="permitAll" />
 		<sec:intercept-url pattern="/jsMsgSource*" access="permitAll" />
-		<!-- business type permission -->
-<!-- 		<sec:intercept-url pattern="/businesstype/search*" -->
-<!-- 			access="hasRole('businesstypeSearch')" /> -->
+
+		<sec:intercept-url pattern="/dashboard/dashboard*" access="hasRole('dashboard')" />
 
 
 
-		<sec:intercept-url pattern="/" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/**" access="isAuthenticated()" />
 		<!-- login configuration -->
 <!-- 		<sec:form-login login-page="/login" -->
 <!-- 						username-parameter="userName"  -->
@@ -49,7 +48,7 @@
 	<bean id="authenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
 		<constructor-arg value="/login" />
 	</bean>
-
+	<bean id="authSuccessHandlerEx" class="org.bluebird.service.common.authentication.AuthenticationSuccessHandler" />
 	<bean id="authenticationFilter"
 		class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
 		<property name="sessionAuthenticationStrategy" ref="sessionAuthenticationStrategy" />
@@ -72,11 +71,11 @@
 		</property>
 	</bean>
 
-	<bean id="authSuccessHandlerEx"
-		class="org.bluebird.presentation.authentication.AuthenticationSuccessHandler">
-		<property name="defaultTargetUrl" value="/dashboard/dashboard" />
-		<property name="alwaysUseDefaultTargetUrl" value="true"></property>
-	</bean>
+<!-- 	<bean id="authSuccessHandlerEx" -->
+<!-- 		class="org.bluebird.service.common.authentication.AuthenticationSuccessHandler"> -->
+<!-- 		<property name="defaultTargetUrl" value="/dashboard/dashboard" /> -->
+<!-- 		<property name="alwaysUseDefaultTargetUrl" value="true"></property> -->
+<!-- 	</bean> -->
 	
 <!-- 	<sec:authentication-manager alias="authenticationManager"> -->
 <!-- 		<sec:authentication-provider> -->
@@ -98,12 +97,17 @@
 		<constructor-arg name="expiredUrl" value="/session-expired" />
 	</bean>
 
+<!-- 	<bean id="sessionAuthenticationStrategy" -->
+<!-- 					class="org.springframework.security.web.authentication.session.ConcurrentSessionControlAuthenticationStrategy"> -->
+<!-- 		<constructor-arg name="sessionRegistry" ref="sessionRegistry" /> -->
+<!-- 		<property name="maximumSessions" value="1" /> -->
+<!-- 		<property name="exceptionIfMaximumExceeded" value="true" /> -->
+<!-- 	</bean> -->
 	<bean id="sessionAuthenticationStrategy"
 		class="org.springframework.security.web.authentication.session.CompositeSessionAuthenticationStrategy">
 		<constructor-arg>
 			<util:list>
-				<bean id="sessionAuthenticationStrategy"
-					class="org.springframework.security.web.authentication.session.ConcurrentSessionControlAuthenticationStrategy">
+				<bean class="org.springframework.security.web.authentication.session.ConcurrentSessionControlAuthenticationStrategy">
 					<constructor-arg name="sessionRegistry" ref="sessionRegistry" />
 					<property name="maximumSessions" value="1" />
 					<property name="exceptionIfMaximumExceeded" value="true" />
@@ -111,6 +115,7 @@
 			</util:list>
 		</constructor-arg>
 	</bean>
+	
 	<bean id="sessionRegistry" class="org.springframework.security.core.session.SessionRegistryImpl" />
 
 	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />

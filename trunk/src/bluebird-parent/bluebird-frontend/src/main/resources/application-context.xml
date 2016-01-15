@@ -10,12 +10,16 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
 http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
  http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+	
+	
 	<context:property-placeholder location="classpath:bluebird-infra.properties" />
-
+	
+	<context:component-scan base-package="org.bluebird.service" />
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	
-	<bean class="org.bluebird.presentation.context.ApplicationContextListener"></bean>
+	<bean class="org.bluebird.presentation.common.context.ApplicationContextListener"></bean>
 	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+	
 	<jpa:repositories base-package="org.bluebird.domain.repository" />
 
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
@@ -24,9 +28,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="jpaVendorAdapter">
-			<bean id="jpaAdapter"
-				class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
-				p:showSql="${hibernate.show_sql}" />
+			<bean id="jpaAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" p:showSql="${hibernate.show_sql}" />
 		</property>
 		<property name="jpaProperties">
 			<props>
@@ -53,7 +55,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 		<property name="maxWaitMillis" value="${cp.maxWait}" />
 	</bean>
 	<bean
-		class="org.bluebird.presentation.framework.factorybean.BeanMapperFacadeFactory"></bean>
+		class="org.bluebird.presentation.factorybean.BeanMapperFacadeFactory"></bean>
 
 	<bean id="messageSource" class="org.bluebird.messagesource.InitializableMessageSource">
 		<property name="messageProvider">
@@ -63,5 +65,5 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 		</property>
 		<property name="autoInitialization" value="false"></property>
 	</bean>
-	<context:component-scan base-package="org.bluebird.service" />
+	
 </beans>

@@ -4,11 +4,10 @@
 	<artifactId>bluebird-frontend</artifactId>
 	<packaging>war</packaging>
 	<name>bluebird-frontend</name>
-	<url>http://maven.apache.org</url>
 	<parent>
 		<groupId>org.bluebird</groupId>
 		<artifactId>bluebird-parent</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.1</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<build>
@@ -30,4 +29,10 @@
 			</plugin>
 		</plugins>
 	</build>
+	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>bluebird-fw</artifactId>
+		</dependency>
+	</dependencies>
 </project>

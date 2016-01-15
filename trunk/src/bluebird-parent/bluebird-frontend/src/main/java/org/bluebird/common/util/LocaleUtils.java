@@ -18,7 +18,6 @@ public class LocaleUtils {
 	}
 
 	public static Locale toLocale(String locale) {
-
 		if (locale == null) {
 			return null;
 		}
