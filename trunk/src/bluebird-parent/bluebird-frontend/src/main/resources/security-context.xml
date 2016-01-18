@@ -19,7 +19,7 @@
 		<sec:intercept-url pattern="/resources/**" access="permitAll" />
 		<sec:intercept-url pattern="/jsMsgSource*" access="permitAll" />
 
-		<sec:intercept-url pattern="/dashboard/dashboard*" access="hasRole('dashboard')" />
+		<sec:intercept-url pattern="/dashboard/dashboard" access="hasAuthority('dashboard')" />
 
 
 
@@ -48,7 +48,6 @@
 	<bean id="authenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
 		<constructor-arg value="/login" />
 	</bean>
-	<bean id="authSuccessHandlerEx" class="org.bluebird.service.common.authentication.AuthenticationSuccessHandler" />
 	<bean id="authenticationFilter"
 		class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
 		<property name="sessionAuthenticationStrategy" ref="sessionAuthenticationStrategy" />
@@ -63,25 +62,24 @@
 		class="org.springframework.security.web.authentication.ExceptionMappingAuthenticationFailureHandler">
 		<property name="defaultFailureUrl" value="/login?error" />
 		<property name="useForward" value="false" />
-		<property name="exceptionMappings">
-			<beans:map>
-			    <beans:entry key="org.springframework.security.core.userdetails.UsernameNotFoundException"
-							value="/login?error=notFound" />
-			</beans:map>
-		</property>
+<!-- 		<property name="exceptionMappings"> -->
+<!-- 			<beans:map> -->
+<!-- 				<beans:entry key="org.springframework.security.core.userdetails.UsernameNotFoundException" value="/login?error=notFound" /> -->
+<!-- 			</beans:map> -->
+<!-- 		</property> -->
 	</bean>
 
-<!-- 	<bean id="authSuccessHandlerEx" -->
-<!-- 		class="org.bluebird.service.common.authentication.AuthenticationSuccessHandler"> -->
-<!-- 		<property name="defaultTargetUrl" value="/dashboard/dashboard" /> -->
-<!-- 		<property name="alwaysUseDefaultTargetUrl" value="true"></property> -->
-<!-- 	</bean> -->
+	<bean id="authSuccessHandlerEx"
+		class="org.bluebird.service.common.authentication.AuthenticationSuccessHandler">
+		<property name="defaultTargetUrl" value="/dashboard/dashboard" />
+		<property name="alwaysUseDefaultTargetUrl" value="true"></property>
+	</bean>
 	
 <!-- 	<sec:authentication-manager alias="authenticationManager"> -->
 <!-- 		<sec:authentication-provider> -->
 <!-- 			<sec:user-service> -->
 <!-- 				<sec:user name="user" password="password" authorities="ROLE_USER" /> -->
-<!-- 				<sec:user name="admin" password="password" authorities="ROLE_USER,ROLE_ADMIN" /> -->
+<!-- 				<sec:user name="admin" password="12345" authorities="dashboard" /> -->
 <!-- 			</sec:user-service> -->
 <!-- 		</sec:authentication-provider> -->
 <!-- 	</sec:authentication-manager> -->

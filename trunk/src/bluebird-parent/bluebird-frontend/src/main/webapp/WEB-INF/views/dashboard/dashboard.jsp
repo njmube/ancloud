@@ -12,5 +12,56 @@
 	</tiles:putAttribute>
 	<tiles:putAttribute name="content-body">
 		<spring:message code="sc.home.title" />
+		<br />
+		<spring:message code="sc.home.title" />
+		<br />
+		<spring:message code="sc.home.title" />
+		<br />
+		<spring:message code="sc.home.title" />
+		<br />
+		<spring:message code="sc.home.title" />
+		<br />
+		<spring:message code="sc.home.title" />
+		<br />
+		<spring:message code="sc.home.title" />
+		<br />
+		<spring:message code="sc.home.title" />
+		<br />
+		<spring:message code="sc.home.title" />
+		<br />
+		<spring:message code="sc.home.title" />
+		<br />
+		<spring:message code="sc.home.title" />
+		<br />
+		<spring:message code="sc.home.title" />
+		<br />
+		<spring:message code="sc.home.title" />
+		<br />
+		<spring:message code="sc.home.title" />
+		<br />
+		<spring:message code="sc.home.title" />
+		<br />
+		<spring:message code="sc.home.title" />
+		<br />
+		<spring:message code="sc.home.title" />
+		<br />
+		<spring:message code="sc.home.title" />
+		<br />
+		<spring:message code="sc.home.title" />
+		<br />
+		<spring:message code="sc.home.title" />
+		<br />
+		<spring:message code="sc.home.title" />
+		<br />
+		<spring:message code="sc.home.title" />
+		<br />
+		<spring:message code="sc.home.title" />
+		<br />
+		<spring:message code="sc.home.title" />
+		<br />
+		<spring:message code="sc.home.title" />
+		<br /><spring:message code="sc.home.title" />
+		<br />
+		
 	</tiles:putAttribute>
 </tiles:insertDefinition>

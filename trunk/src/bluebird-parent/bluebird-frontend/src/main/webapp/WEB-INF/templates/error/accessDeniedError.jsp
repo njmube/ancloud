@@ -17,6 +17,6 @@ var messageString = '<spring:message code="err.sys.0055"/>';
 <script type="text/javascript" src = "${pageContext.request.contextPath}/resources/app/common/javascript/errorPage.js"></script>
 </head>
 <body>
-<jsp:include page="../error/templateError.jsp"></jsp:include>
+access denied
 </body>
 </html>

@@ -1,9 +1,10 @@
-package org.bluebird.domain.entity;
+package org.bluebird.domain.module.account;
 
 import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -25,6 +26,7 @@ public class Account implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column(unique=true)
 	private String userName;
 
 	private String password;
@@ -38,8 +40,34 @@ public class Account implements Serializable {
 	private boolean enabled;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "bb_accountPermission", joinColumns = {@JoinColumn(name = "userName", nullable = false, updatable = false)}, inverseJoinColumns = {@JoinColumn(name = "permissionCode", nullable = false, updatable = false)})
+	@JoinTable(name = "bb_accountPermission", 
+			joinColumns = {
+							@JoinColumn(name = "userName",
+										referencedColumnName="userName",
+										nullable = false, 
+										updatable = false)}, 
+			inverseJoinColumns = {
+									@JoinColumn(referencedColumnName="permissionCode",
+												name = "permissionCode", 
+												nullable = false, 
+												updatable = false)
+								})
 	private Set<Permission> permissions;
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "bb_accountrole", 
+			joinColumns = {
+							@JoinColumn(name = "userName",
+										referencedColumnName="userName",
+										nullable = false, 
+										updatable = false)}, 
+			inverseJoinColumns = {
+									@JoinColumn(referencedColumnName="roleCode",
+												name = "roleCode", 
+												nullable = false, 
+												updatable = false)
+								})
+	private Set<Role> roles;
 
 	public Long getId() {
 		return id;
@@ -103,5 +131,13 @@ public class Account implements Serializable {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 }

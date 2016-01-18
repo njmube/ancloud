@@ -1,8 +1,9 @@
-package org.bluebird.domain.entity;
+package org.bluebird.domain.module.account;
 
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,6 +23,7 @@ public class Permission implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(unique=true)
 	private String permissionCode;
 	
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy="permissions")

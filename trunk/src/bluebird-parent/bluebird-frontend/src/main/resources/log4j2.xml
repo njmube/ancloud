@@ -17,6 +17,8 @@
 		<Logger name="org.springframework.context" level="info" />
 
 		<Logger name="org.springframework.web" level="info" />
+		
+		<Logger name="org.springframework.security" level="debug" />
 
 		<logger name="org.flyway.core.api.migration" level="info" />
 
@@ -28,6 +30,7 @@
 		
 		<logger name="org.hibernate.tool.hbm2ddl" level="info" />
 		
+		<logger name="org.hibernate" level="debug" />
 		<Root level="info">
 			<AppenderRef ref="console" />
 		</Root>

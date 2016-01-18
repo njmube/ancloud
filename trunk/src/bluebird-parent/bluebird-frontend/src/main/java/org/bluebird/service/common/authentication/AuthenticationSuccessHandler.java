@@ -10,8 +10,12 @@ import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
 
-import org.bluebird.domain.entity.Permission;
+import org.bluebird.authentication.UserDetailsImpl;
+import org.bluebird.domain.module.account.Account;
+import org.bluebird.domain.module.account.Permission;
+import org.bluebird.domain.module.account.Role;
 import org.bluebird.domain.repository.AccountRepository;
 import org.bluebird.domain.repository.PermissionRepository;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,11 +28,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
-//@Component("authSuccessHandlerEx")
+@Transactional
 public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
-	
-	@Inject
-	AccountRepository accountRepository;
 	
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
@@ -37,20 +38,7 @@ public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticatio
 	}
 
 	private Authentication intercepAuthentication(Authentication authentication) {
-		SecurityContextImpl context = new SecurityContextImpl();
-		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-		Set<Permission> permissions = accountRepository.findByUserName(userDetails.getUsername()).getPermissions();
-		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		for (Permission permission : permissions) {
-			GrantedAuthority authority = new SimpleGrantedAuthority(permission.getPermissionCode());
-			authorities.add(authority);
-		}
-		Authentication authenticationNew = new UsernamePasswordAuthenticationToken(userDetails, UUID.randomUUID(), authorities);
-		context.setAuthentication(authenticationNew);
-		SecurityContextHolder.setContext(context);
-		
-		return authenticationNew;
+		return authentication;
 	}
-	
 	
 }

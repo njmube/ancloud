@@ -16,7 +16,7 @@ CONTEXT_PATH = "<%=request.getContextPath()%>";
                 </div>
                 <div class="error-actions">
                     <a href="javascript:void(0)" class="btn btn-primary btn-lg" onclick="takeMeHome();"><span class="glyphicon glyphicon-home"></span>
-                         <spring:message code="sc.sys.js.0032" /></a>
+                         <spring:message code="sc.sys.js.0032" />tem</a>
                 </div>
             </div>
         </div>

@@ -62,7 +62,7 @@ body {
 						<a href="javascript:void(0)" class="btn btn-primary btn-lg"
 							onclick="takeMeHome();"><span
 							class="glyphicon glyphicon-home"></span> <spring:message
-								code="sc.sys.js.0032" /> </a>
+								code="sc.sys.js.0032" />bu </a>
 					</div>
 				</div>
 			</div>

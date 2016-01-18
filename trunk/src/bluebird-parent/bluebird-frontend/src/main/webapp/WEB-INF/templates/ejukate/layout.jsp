@@ -9,8 +9,7 @@
 	name="viewport">
 <link rel="stylesheet" href="${resourceBasePath}/bootstrap.css">
 <link rel="stylesheet" href="${resourceBasePath}/AdminLTE/css/AdminLTE.css">
-<link rel="stylesheet" href="${resourceBasePath}/AdminLTE/css/skins/skin-blue.min.css">
-<link rel="stylesheet" href="${resourceBasePath}/AdminLTE/css/skins/skin-red.min.css">
+<link rel="stylesheet" href="${resourceBasePath}/AdminLTE/css/skins/_all-skins.min.css">
 <link rel="stylesheet" href="${resourceBasePath}/font-awesome.css">
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,25 +39,34 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="hold-transition skin-red sidebar-mini">
+<c:if test="${not empty sessionScope.pageLayout }">
+	<c:set var="layout" value="${sessionScope.pageLayout }"></c:set>
+</c:if>
+<c:if test="${empty sessionScope.pageLayout }">
+	<c:set var="layout" value="layout-top-nav"></c:set>
+</c:if>
+<body class="hold-transition skin-purple-light ${layout}">
 	<div class="wrapper">
 		<tiles:insertAttribute name="page-header" />
 		<tiles:insertAttribute name="page-main-sidebar" />
 
 		<div class="content-wrapper">
-			<!-- Content Header (Page header) -->
-			<section class="content-header">
-				<tiles:insertAttribute name="content-header"/>
-			</section>
-			<section class="content">
-				<tiles:insertAttribute name="content-body" />
-			</section>
+			<div class="container">
+				<section class="content-header">
+					<tiles:insertAttribute name="content-header"/>
+				</section>
+				<section class="content">
+					<bb:messages name="messages"></bb:messages>
+					<tiles:insertAttribute name="content-body" />
+				</section>
+			</div>
 		</div>
 		<tiles:insertAttribute name="page-footer" />
 		<tiles:insertAttribute name="page-control-sidebar" />
 	</div>
 	<script src="${resourceBasePath}/jquery.js"></script>
 	<script src="${resourceBasePath}/bootstrap.js"></script>
+	<script src="${resourceBasePath}/jquery.slimscroll.js"></script>
 	<script src="${resourceBasePath}/AdminLTE/js/app.js"></script>
 	
 	<script type="text/javascript">

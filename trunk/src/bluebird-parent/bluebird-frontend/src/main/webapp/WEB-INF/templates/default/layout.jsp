@@ -22,6 +22,7 @@
 	<div class="wrapper none-sidebar">
 		<div class="content-wrapper">
 			<section class="content">
+				<bb:messages name="messages"></bb:messages>
 				<tiles:insertAttribute name="content-body" />
 			</section>
 		</div>
