@@ -54,4 +54,12 @@
 			<include-prelude>/WEB-INF/views/include.jsp</include-prelude>
 		</jsp-property-group>
 	</jsp-config>
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+	<listener>
+	   <listener-class>
+	       org.springframework.web.context.request.RequestContextListener
+	   </listener-class>
+	 </listener>
 </web-app>

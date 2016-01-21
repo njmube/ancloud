@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "bb_message")
-public class Message implements Serializable {
+public class Message extends BaseModel {
 
 	private static final long serialVersionUID = -8644123651815590065L;
 

@@ -43,7 +43,7 @@ desired effect
 	<c:set var="layout" value="${sessionScope.pageLayout }"></c:set>
 </c:if>
 <c:if test="${empty sessionScope.pageLayout }">
-	<c:set var="layout" value="layout-top-nav"></c:set>
+	<c:set var="layout" value="sidebar-mini fixed"></c:set>
 </c:if>
 <body class="hold-transition skin-purple-light ${layout}">
 	<div class="wrapper">

@@ -5,6 +5,8 @@ import javax.servlet.http.HttpSession;
 
 public class SessionUtil {
 	
+	
+	
 	public static Object get(String objectName) {
 		HttpServletRequest request = HttpServletRequestUtil.getRequest();
 		if (request == null)

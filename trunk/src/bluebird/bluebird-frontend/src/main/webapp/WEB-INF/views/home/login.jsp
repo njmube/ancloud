@@ -16,14 +16,14 @@
 					</form>
 				</div>
 				<p class="text-center"><spring:message code="sc.sys.00011" /></p>
-				<form:form action="${basePath}/login" method="POST">
+				<form:form action="${basePath}/login" method="POST" >
 					<div class="form-group has-feedback">
 						<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-						<input type="text" class="form-control" placeholder="Email" name="userName">
+						<input type="text" class="form-control" placeholder="Email" name="userName" value="${userName }">
 					</div>
 					<div class="form-group has-feedback">
 						<span class="glyphicon glyphicon-lock form-control-feedback"></span>
-						<input type="password" class="form-control" placeholder="Password" name="password">
+						<input type="password" class="form-control" placeholder="Password" name="password"  value="${password }">
 						<div class="lost-password">
 							<a href="#"><spring:message code="sc.sys.00005" /></a><br>
 						</div>

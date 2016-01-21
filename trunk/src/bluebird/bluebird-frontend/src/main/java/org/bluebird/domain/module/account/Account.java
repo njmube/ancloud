@@ -16,9 +16,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.bluebird.domain.entity.BaseModel;
+
 @Entity
 @Table(name = "bb_account")
-public class Account implements Serializable {
+public class Account extends BaseModel {
 
 	private static final long serialVersionUID = -3559311596801406226L;
 

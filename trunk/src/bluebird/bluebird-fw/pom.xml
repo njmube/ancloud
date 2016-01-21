@@ -4,7 +4,7 @@
 	<artifactId>bluebird-fw</artifactId>
 	<parent>
 		<groupId>org.bluebird</groupId>
-		<artifactId>bluebird-parent</artifactId>
+		<artifactId>bluebird</artifactId>
 		<version>0.0.1</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>

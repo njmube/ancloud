@@ -19,6 +19,10 @@ public class UserDetailsImpl implements UserDetails{
 	private Collection<? extends GrantedAuthority> authorities;
 	
 
+	public Account getAccount() {
+		return account;
+	}
+
 	public UserDetailsImpl(Account account,Collection<? extends GrantedAuthority> authorities) {
 		this.account = account;
 		this.authorities = authorities;

@@ -13,10 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 
 import org.bluebird.authentication.UserDetailsImpl;
+import org.bluebird.common.util.SessionUtil;
+import org.bluebird.domain.common.SessionConstant;
 import org.bluebird.domain.module.account.Account;
 import org.bluebird.domain.module.account.Permission;
 import org.bluebird.domain.module.account.Role;
 import org.bluebird.domain.repository.AccountRepository;
+import org.bluebird.domain.repository.NavigationLinkRepository;
 import org.bluebird.domain.repository.PermissionRepository;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -31,10 +34,16 @@ import org.springframework.stereotype.Component;
 @Transactional
 public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 	
+	@Inject
+	NavigationLinkRepository navigationLinkRepository;
+	
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
 			throws IOException, ServletException {
 		super.onAuthenticationSuccess(request, response, intercepAuthentication(authentication));
+		Account account = ((UserDetailsImpl)authentication.getPrincipal()).getAccount();
+		SessionUtil.set(SessionConstant.SESSION_ACCOUNT,account);
+		SessionUtil.set(SessionConstant.SESSION_NAVIGATION_LINKS, navigationLinkRepository.findByParentAndProject(null, account.getProject()));
 	}
 
 	private Authentication intercepAuthentication(Authentication authentication) {

@@ -13,9 +13,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.bluebird.domain.entity.BaseModel;
+
 @Entity
 @Table(name = "bb_permission")
-public class Permission implements Serializable{
+public class Permission extends BaseModel{
 	
 	private static final long serialVersionUID = 4396393555601831943L;
 
