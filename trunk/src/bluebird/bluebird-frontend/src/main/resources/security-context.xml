@@ -16,6 +16,7 @@
 				entry-point-ref="authenticationEntryPoint" 
 				>
 		<sec:intercept-url pattern="/login" access="permitAll" />
+		<sec:intercept-url pattern="/register" access="permitAll" />
 		<sec:intercept-url pattern="/resources/**" access="permitAll" />
 		<sec:intercept-url pattern="/jsMsgSource*" access="permitAll" />
 
@@ -53,7 +54,7 @@
 		<property name="sessionAuthenticationStrategy" ref="sessionAuthenticationStrategy" />
 		<property name="authenticationManager" ref="authenticationManager" />
 		<property name="authenticationFailureHandler" ref="redirectErrorHandler" />
-		<property name="authenticationSuccessHandler" ref="authSuccessHandlerEx" />
+		<property name="authenticationSuccessHandler" ref="authenticationSuccessHandler" />
 		<property name="usernameParameter" value="userName"></property>
 		<property name="passwordParameter" value="password"></property>
 	</bean>
@@ -69,8 +70,8 @@
 <!-- 		</property> -->
 	</bean>
 
-	<bean id="authSuccessHandlerEx"
-		class="org.bluebird.service.common.authentication.AuthenticationSuccessHandler">
+	<bean id="authenticationSuccessHandler" 
+		class="org.bluebird.service.authentication.AuthenticationSuccessHandler">
 		<property name="defaultTargetUrl" value="/dashboard/dashboard" />
 		<property name="alwaysUseDefaultTargetUrl" value="true"></property>
 	</bean>

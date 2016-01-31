@@ -2,44 +2,45 @@
 	<tiles:putAttribute name="page-script">
 	</tiles:putAttribute>
 	<tiles:putAttribute name="content-body">
-		<div class="login-box">
-			<div class="login-logo">
-				<a href="${basePath}/"><b><spring:message code="sc.sys.00001" /></b></a>
-			</div>
-			<div class="login-box-body">
-				<div class="social-auth-links text-center">
-					<form action="${basePath}/connect/facebook" method="POST">
-						<input type="hidden" name="scope" value="public_profile " />
-						<button type="submit" class="btn btn-block btn-social btn-facebook btn-flat">
-							<i class="fa fa-facebook"></i> <spring:message code="sc.sys.00009" />
-						</button>
-					</form>
-				</div>
-				<p class="text-center"><spring:message code="sc.sys.00011" /></p>
-				<form:form action="${basePath}/login" method="POST" >
-					<div class="form-group has-feedback">
-						<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-						<input type="text" class="form-control" placeholder="Email" name="userName" value="${userName }">
-					</div>
-					<div class="form-group has-feedback">
-						<span class="glyphicon glyphicon-lock form-control-feedback"></span>
-						<input type="password" class="form-control" placeholder="Password" name="password"  value="${password }">
+		<div class="signin-box">
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<div class="panel-title"><spring:message code="sc.sys.00003" />
 						<div class="lost-password">
 							<a href="#"><spring:message code="sc.sys.00005" /></a><br>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-xs-12">
-							<div class="checkbox icheck">
+					
+				</div>
+				<div class="panel-body">
+					<bb:messages name="messages"></bb:messages>
+					<form:form action="${basePath}/login" method="POST">
+						<div class="input-group has-feedback">
+							<span class="input-group-addon"><i class=" glyphicon glyphicon-user"></i></span>
+							<input type="text" class="form-control" placeholder="Username" name="userName" value="${userName }">
+						</div>
+						<div class="input-group has-feedback">
+							<span class="input-group-addon"><i class=" glyphicon glyphicon-lock"></i></span>
+							<input type="password" class="form-control" placeholder="Password" name="password"  value="${password }">
+						</div>
+						<div class="input-group">
+							<div class="checkbox">
 								<label><input type="checkbox">&nbsp;<spring:message code="sc.sys.00008" /></label>
 							</div>
 						</div>
-						<div class="col-xs-12">
-							<button type="submit" class="btn btn-primary btn-block btn-flat"><spring:message code="sc.sys.00003" /></button>
+						<div class="input-group">
+							<div>
+								<button type="submit" class="btn btn-success"><spring:message code="sc.sys.00003" /></button>
+								<button type="submit" class="btn btn-primary"><spring:message code="sc.sys.00009" /></button>
+							</div>
 						</div>
-					</div>
-				</form:form>
-				<spring:message code="sc.sys.00007" /><a href="#" class="text-center"><spring:message code="sc.sys.00006" /></a>
+						<div class="input-group">
+							<div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
+								<spring:message code="sc.sys.00007" /><a href="${basePath}/register" class="text-center"><spring:message code="sc.sys.00006" /></a>
+							</div>
+						</div>
+					</form:form>
+				</div>
 			</div>
 		</div>
 	</tiles:putAttribute>

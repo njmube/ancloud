@@ -1,8 +1,8 @@
 package org.bluebird.presentation.module.home;
 
-import org.bluebird.core.message.ResultMessage;
-import org.bluebird.core.message.ResultMessages;
 import org.bluebird.domain.common.SystemCodeConstant;
+import org.bluebird.fw.core.message.ResultMessage;
+import org.bluebird.fw.core.message.ResultMessages;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class HomeController {
 	
-	@RequestMapping(value="/", method = RequestMethod.GET)
+	@RequestMapping(value={"/","/home"}, method = RequestMethod.GET)
 	public String root(){
 		return "redirect:/dashboard/dashboard";
 	}

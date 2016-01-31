@@ -1,6 +1,7 @@
 package org.bluebird.domain.module.account;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -13,20 +14,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.bluebird.domain.entity.BaseModel;
+import org.bluebird.domain.BaseModel;
 
 @Entity
 @Table(name = "bb_account")
 public class Account extends BaseModel {
 
 	private static final long serialVersionUID = -3559311596801406226L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 
 	@Column(unique=true)
 	private String userName;
@@ -70,14 +69,9 @@ public class Account extends BaseModel {
 												updatable = false)
 								})
 	private Set<Role> roles;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
+	
+	@OneToMany(fetch=FetchType.EAGER,mappedBy="parent")
+	private List<AccountProfile> accountProfiles;
 
 	public Set<Permission> getPermissions() {
 		return permissions;
@@ -141,5 +135,13 @@ public class Account extends BaseModel {
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+
+	public List<AccountProfile>getAccountProfiles() {
+		return accountProfiles;
+	}
+
+	public void setAccountProfiles(List<AccountProfile> accountProfiles) {
+		this.accountProfiles = accountProfiles;
 	}
 }

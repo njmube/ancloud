@@ -16,17 +16,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.bluebird.domain.entity.BaseModel;
+import org.bluebird.domain.BaseModel;
 
 @Entity
 @Table(name = "bb_role")
 public class Role extends BaseModel {
 
 	private static final long serialVersionUID = 4513934956962115145L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 	
 	@Column(unique=true)
 	private String roleCode;
@@ -45,14 +41,6 @@ public class Role extends BaseModel {
 												updatable = false)
 								})
 	private Set<Permission> permissions;
-	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 	
 	public String getRoleCode() {
 		return roleCode;

@@ -17,51 +17,6 @@
 <!--       <required>false</required> -->
 <!--       <rtexprvalue>false</rtexprvalue> -->
 <!--     </attribute> -->
-<!--     <attribute> -->
-<!--       <name>filter</name> -->
-<!--       <required>false</required> -->
-<!--       <rtexprvalue>true</rtexprvalue> -->
-<!--     </attribute> -->
-<!--     <attribute> -->
-<!--       <name>ignore</name> -->
-<!--       <required>false</required> -->
-<!--       <rtexprvalue>true</rtexprvalue> -->
-<!--     </attribute> -->
-<!--     <attribute> -->
-<!--       <name>name</name> -->
-<!--       <required>false</required> -->
-<!--       <rtexprvalue>true</rtexprvalue> -->
-<!--     </attribute> -->
-<!--     <attribute> -->
-<!--       <name>property</name> -->
-<!--       <required>false</required> -->
-<!--       <rtexprvalue>true</rtexprvalue> -->
-<!--     </attribute> -->
-<!--     <attribute> -->
-<!--       <name>scope</name> -->
-<!--       <required>false</required> -->
-<!--       <rtexprvalue>true</rtexprvalue> -->
-<!--     </attribute> -->
-<!--     <attribute> -->
-<!--       <name>pattern</name> -->
-<!--       <required>false</required> -->
-<!--       <rtexprvalue>true</rtexprvalue> -->
-<!--     </attribute> -->
-<!--     <attribute> -->
-<!--       <name>value</name> -->
-<!--       <required>false</required> -->
-<!--       <rtexprvalue>true</rtexprvalue> -->
-<!--     </attribute> -->
-<!--     <attribute> -->
-<!--       <name>format</name> -->
-<!--       <required>false</required> -->
-<!--       <rtexprvalue>true</rtexprvalue> -->
-<!--     </attribute> -->
-<!--     <attribute> -->
-<!--       <name>type</name> -->
-<!--       <required>true</required> -->
-<!--       <rtexprvalue>true</rtexprvalue> -->
-<!--     </attribute>     -->
 <!--   </tag> -->
 	<!-- End list all by tag-class -->
 	
@@ -70,5 +25,16 @@
 		<name>message</name>
 		<path>/WEB-INF/tags/bb-message.tag</path>
 	</tag-file>
- 
+	<tag-file>
+		<name>navigationLink</name>
+		<path>/WEB-INF/tags/bb-navigationLink.tag</path>
+	</tag-file>
+	<tag-file>
+		<name>codelist-select</name>
+		<path>/WEB-INF/tags/bb-codelist-select.tag</path>
+	</tag-file>
+	<tag-file>
+		<name>action-bar</name>
+		<path>/WEB-INF/tags/bb-action-bar.tag</path>
+	</tag-file>
 </taglib>

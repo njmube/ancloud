@@ -7,10 +7,14 @@
 <!-- Tell the browser to be responsive to screen width -->
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
-<link rel="stylesheet" href="${resourceBasePath}/bootstrap.css">
-<link rel="stylesheet" href="${resourceBasePath}/AdminLTE/css/AdminLTE.css">
-<link rel="stylesheet" href="${resourceBasePath}/AdminLTE/css/skins/_all-skins.min.css">
-<link rel="stylesheet" href="${resourceBasePath}/font-awesome.css">
+<link rel="stylesheet" href="${resourceBasePath}/plugin/font-awesome.css">
+<link rel="stylesheet" href="${resourceBasePath}/plugin/bootstrap.css">
+<link rel="stylesheet" href="${resourceBasePath}/bluebird.css">
+<link rel="stylesheet" href="${resourceBasePath}/bluebird.purple-light.css">
+<link rel="stylesheet" href="${resourceBasePath}/bootstrap.bluebird.css">
+<link rel="stylesheet" href="${resourceBasePath}/bootstrap.override.css">
+
+
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -19,7 +23,7 @@
   <![endif]-->
 <tiles:insertAttribute name="page-stylelink" ignore="true" />
 </head>
-<!--
+<%--
 BODY TAG OPTIONS:
 =================
 Apply one or more of the following classes to get the
@@ -38,46 +42,60 @@ desired effect
 |               | sidebar-collapse                        |
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
--->
+--%>
 <c:if test="${not empty sessionScope.pageLayout }">
 	<c:set var="layout" value="${sessionScope.pageLayout }"></c:set>
 </c:if>
 <c:if test="${empty sessionScope.pageLayout }">
-	<c:set var="layout" value="sidebar-mini fixed"></c:set>
+	<c:set var="layout" value="sidebar-mini"></c:set>
 </c:if>
 <body class="hold-transition skin-purple-light ${layout}">
 	<div class="wrapper">
-		<tiles:insertAttribute name="page-header" />
-		<tiles:insertAttribute name="page-main-sidebar" />
-
-		<div class="content-wrapper">
-			<div class="container">
+		<c:if test="${!fn:contains(layout,'layout-top-nav') }">
+			<tiles:insertAttribute name="page-header" />
+			<tiles:insertAttribute name="page-main-sidebar" />
+			<div class="content-wrapper">
 				<section class="content-header">
-					<tiles:insertAttribute name="content-header"/>
+					<tiles:insertAttribute name="content-header" ignore="true"/>
 				</section>
 				<section class="content">
 					<bb:messages name="messages"></bb:messages>
-					<tiles:insertAttribute name="content-body" />
+					<tiles:insertAttribute name="content-body" ignore="true"/>
 				</section>
 			</div>
-		</div>
-		<tiles:insertAttribute name="page-footer" />
-		<tiles:insertAttribute name="page-control-sidebar" />
+			<tiles:insertAttribute name="page-footer" />
+			<tiles:insertAttribute name="page-control-sidebar" />
+		</c:if>
+		<c:if test="${fn:contains(layout,'layout-top-nav') }">
+			<tiles:insertAttribute name="page-header-top" />
+			<div class="content-wrapper">
+				<div class="container">
+					<section class="content-header">
+						<tiles:insertAttribute name="content-header" ignore="true"/>
+					</section>
+					<section class="content">
+						<bb:messages name="messages"></bb:messages>
+						<tiles:insertAttribute name="content-body" ignore="true"/>
+					</section>
+				</div>
+			</div>
+			<tiles:insertAttribute name="page-footer" />
+		</c:if>
 	</div>
-	<script src="${resourceBasePath}/jquery.js"></script>
-	<script src="${resourceBasePath}/bootstrap.js"></script>
-	<script src="${resourceBasePath}/jquery.slimscroll.js"></script>
-	<script src="${resourceBasePath}/AdminLTE/js/app.js"></script>
+	<script src="${resourceBasePath}/plugin/jquery.js"></script>
+	<script src="${resourceBasePath}/plugin/bootstrap.js"></script>
+	<script src="${resourceBasePath}/plugin/jquery.slimscroll.js"></script>
+	<script src="${resourceBasePath}/bluebird.js"></script>
 	
 	<script type="text/javascript">
-	    $(function() {
-	    });
+		$(function() {
+		});
 	</script>
 	<tiles:insertAttribute name="page-script" ignore="true" />
-	<!-- Optionally, you can add Slimscroll and FastClick plugins.
+	<%-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. Slimscroll is required when using the
-     fixed layout. -->
+     fixed layout. --%>
 </body>
 </html>
 

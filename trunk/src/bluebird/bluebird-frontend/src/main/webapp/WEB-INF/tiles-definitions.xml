@@ -5,6 +5,7 @@
 <tiles-definitions>
 	<definition name="ejukate" template="/WEB-INF/templates/ejukate/layout.jsp">
 		<put-attribute name="page-header" value="/WEB-INF/templates/ejukate/page-header.jsp" />
+		<put-attribute name="page-header-top" value="/WEB-INF/templates/ejukate/page-header-top.jsp" />
 		<put-attribute name="page-main-sidebar" value="/WEB-INF/templates/ejukate/page-main-sidebar.jsp" />
 		<put-attribute name="page-footer" value="/WEB-INF/templates/ejukate/page-footer.jsp" />
 		<put-attribute name="page-control-sidebar" value="/WEB-INF/templates/ejukate/page-control-sidebar.jsp" />

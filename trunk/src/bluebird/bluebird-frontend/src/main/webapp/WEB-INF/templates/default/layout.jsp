@@ -6,11 +6,12 @@
 <title>Ejukate</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-<link rel="stylesheet" href="${resourceBasePath}/bootstrap.css">
-<link rel="stylesheet" href="${resourceBasePath}/bootstrap.override.css">
-<link rel="stylesheet" href="${resourceBasePath}/AdminLTE/css/AdminLTE.css">
-<link rel="stylesheet" href="${resourceBasePath}/icheck/all.css">
 <link rel="stylesheet" href="${resourceBasePath}/font-awesome.css">
+<link rel="stylesheet" href="${resourceBasePath}/plugin/bootstrap.css">
+<link rel="stylesheet" href="${resourceBasePath}/bootstrap.override.css">
+<link rel="stylesheet" href="${resourceBasePath}/bluebird.css">
+<link rel="stylesheet" href="${resourceBasePath}/icheck/all.css">
+
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -22,15 +23,14 @@
 	<div class="wrapper none-sidebar">
 		<div class="content-wrapper">
 			<section class="content">
-				<bb:messages name="messages"></bb:messages>
 				<tiles:insertAttribute name="content-body" />
 			</section>
 		</div>
 		<tiles:insertAttribute name="page-footer" />
 	</div>
-	<script src="${resourceBasePath}/jquery.js"></script>
-	<script src="${resourceBasePath}/bootstrap.js"></script>
-	<script src="${resourceBasePath}/AdminLTE/js/app.js"></script>
+	<script src="${resourceBasePath}/plugin/jquery.js"></script>
+	<script src="${resourceBasePath}/plugin/bootstrap.js"></script>
+	<script src="${resourceBasePath}/bluebird.js"></script>
 	<script src="${resourceBasePath}/icheck/icheck.js"></script>
 	
 	<script>

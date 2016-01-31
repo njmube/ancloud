@@ -1,11 +1,65 @@
-.has-feedback .form-control {
-  padding-left: 34px;
+.bb-action-group-header,
+.bb-action-group-footer {
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	margin-bottom: 5px;
+	border: 1.5px solid #C4C4C4;
+	background-color: #DEE7F7;
+	padding: 5px;
 }
-.form-control-feedback {
-	left : 0;
+
+.bb-action-group-header .btn {
+	padding:5px 20px;
+	border-width: 0px;
+	background-color: #DEE7F7;
+	color: #737373;
+	transition: all 0.5s ease;
 }
-.has-feedback .lost-password{
-	position : absolute;
-	right : 10px;
-	top: 5.5px;
+
+.bb-action-group-header .btn:hover{
+	background : #E3F2FD;
+}
+
+
+.bb-action-group-header .dropdown-toggle:after {
+	content: '';
+	display: inline-block;
+	width: 0;
+	height: 0;
+	margin-left: 2px;
+	vertical-align: middle;
+	border-top: 4px dashed;
+	border-right: 4px solid transparent;
+	border-left: 4px solid transparent;
+}
+
+.bb-fa-btn:before {
+	display: inline-block;
+	font: normal normal normal 14px/1 FontAwesome;
+	font-size: inherit;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+}
+.signin-box,
+.signup-box{
+	width: 400px;
+	margin: 10px auto;
+}
+.signin-box .input-group,
+.signup-box .input-group {
+	margin-bottom : 20px;
+}
+.signin-box .lost-password,
+.signup-box .lost-password {
+	float: right;
+	font-size: 80%;
+}
+
+.content .panel {
+	padding: 5px;
+}
+
+.content .panel .panel-body {
+	padding: 5px;
 }

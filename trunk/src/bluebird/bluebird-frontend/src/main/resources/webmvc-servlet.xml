@@ -18,8 +18,10 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	<mvc:default-servlet-handler />
 	<context:component-scan base-package="org.bluebird.presentation.module" />
 	
+	
 	<mvc:annotation-driven validator="validator">
 		<mvc:argument-resolvers>
+			<bean class="org.bluebird.fw.presentation.resolver.SessionArgumentResolver"/>
 			<bean
 				class="org.springframework.data.web.PageableHandlerMethodArgumentResolver" />
 			<bean
@@ -34,7 +36,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 	<bean id="validator"
-		class="org.bluebird.messagesource.CustomLocalValidatorFactoryBean">
+		class="org.bluebird.presentation.message.CustomLocalValidatorFactoryBean">
 		<property name="validationMessageSource" ref="messageSource" />
 	</bean>
 	<bean id="xmlMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
@@ -49,7 +51,6 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 <!-- 	</bean> -->
 
 	<mvc:resources mapping="/resources/**" location="/resources/" cache-period="#{60 * 60}" />
-
 	<mvc:view-resolvers>
 		<mvc:bean-name />
 		<mvc:tiles />
@@ -65,7 +66,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 			<mvc:mapping path="/**" />
 			<mvc:exclude-mapping path="/resources/**" />
 			<mvc:exclude-mapping path="/**/*.html" />
-			<bean class="org.bluebird.presentation.intercepter.TraceLoggingInterceptor" />
+			<bean class="org.bluebird.fw.presentation.intercepter.TraceLoggingInterceptor" />
 		</mvc:interceptor>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />

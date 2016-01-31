@@ -26,7 +26,6 @@
 		<tiles.version>3.0.3</tiles.version>
 		<log4j.version>2.5</log4j.version>
 		<slf4j.version>1.7.7</slf4j.version>
-		<flyway.version>3.2.1</flyway.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -44,27 +43,11 @@
 	</dependencyManagement>
 	<dependencies>
 		<dependency>
-			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-core</artifactId>
-			<version>${flyway.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-core</artifactId>
-			<version>${flyway.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-maven-plugin</artifactId>
-			<version>${flyway.version}</version>
-		</dependency>
-
 		<dependency>
 			<groupId>javax.inject</groupId>
 			<artifactId>javax.inject</artifactId>
@@ -161,6 +144,12 @@
 			<version>3.4</version>
 		</dependency>
 		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.9.2</version>
+		</dependency>
+
+		<dependency>
 			<groupId>ma.glasnost.orika</groupId>
 			<artifactId>orika-core</artifactId>
 			<version>1.4.6</version>
@@ -242,6 +231,23 @@
 						<source>${java.version}</source>
 						<target>${java.version}</target>
 					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>nl.geodienstencentrum.maven</groupId>
+					<artifactId>sass-maven-plugin</artifactId>
+					<executions>
+						<execution>
+							<id>generate-css</id>
+							<phase>generate-resources</phase>
+							<goals>
+								<goal>update-stylesheets</goal>
+							</goals>
+							<configuration>
+								<sassSourceDirectory>${basedir}/sass</sassSourceDirectory>
+								<destination>${project.build.directory}/resources</destination>
+							</configuration>
+						</execution>
+					</executions>
 				</plugin>
 			</plugins>
 		</pluginManagement>
