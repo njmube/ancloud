@@ -9,8 +9,8 @@
 	name="viewport">
 <link rel="stylesheet" href="${resourceBasePath}/plugin/font-awesome.css">
 <link rel="stylesheet" href="${resourceBasePath}/plugin/bootstrap.css">
-<link rel="stylesheet" href="${resourceBasePath}/bluebird.css">
-<link rel="stylesheet" href="${resourceBasePath}/bluebird.purple-light.css">
+<link rel="stylesheet" href="${resourceBasePath}/core/bluebird.css">
+<link rel="stylesheet" href="${resourceBasePath}/core/bluebird.purple-light.css">
 <link rel="stylesheet" href="${resourceBasePath}/bootstrap.bluebird.css">
 <link rel="stylesheet" href="${resourceBasePath}/bootstrap.override.css">
 
@@ -62,8 +62,8 @@ desired effect
 					<bb:messages name="messages"></bb:messages>
 					<tiles:insertAttribute name="content-body" ignore="true"/>
 				</section>
+				<tiles:insertAttribute name="content-footer" />
 			</div>
-			<tiles:insertAttribute name="page-footer" />
 			<tiles:insertAttribute name="page-control-sidebar" />
 		</c:if>
 		<c:if test="${fn:contains(layout,'layout-top-nav') }">
@@ -77,15 +77,15 @@ desired effect
 						<bb:messages name="messages"></bb:messages>
 						<tiles:insertAttribute name="content-body" ignore="true"/>
 					</section>
+					<tiles:insertAttribute name="content-footer" />
 				</div>
 			</div>
-			<tiles:insertAttribute name="page-footer" />
 		</c:if>
 	</div>
 	<script src="${resourceBasePath}/plugin/jquery.js"></script>
 	<script src="${resourceBasePath}/plugin/bootstrap.js"></script>
 	<script src="${resourceBasePath}/plugin/jquery.slimscroll.js"></script>
-	<script src="${resourceBasePath}/bluebird.js"></script>
+	<script src="${resourceBasePath}/core/bluebird.js"></script>
 	
 	<script type="text/javascript">
 		$(function() {

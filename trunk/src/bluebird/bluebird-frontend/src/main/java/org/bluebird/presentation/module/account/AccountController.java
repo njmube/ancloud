@@ -60,7 +60,7 @@ public class AccountController {
 		criteria.setProject(project);
 		Page<Account> page = accountService.findAllAccountByCriteria(criteria, pageable);
 		model.addAttribute("page",page);
-		return "account/accountSearchForm";
+		return "account/accountSearchResult";
 	}
 	
 	@RequestMapping(value="search", method = {RequestMethod.POST})

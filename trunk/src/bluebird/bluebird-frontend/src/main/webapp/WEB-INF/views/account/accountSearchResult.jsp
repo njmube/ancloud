@@ -5,13 +5,14 @@
 		<h3><spring:message code="sc.account.00001"></spring:message></h3>
 	</tiles:putAttribute>
 	<tiles:putAttribute name="content-body">
-		<div class="panel panel-primary col-md-12">
+		<bb-ex:action-bar modulePath="account" basePath="${basePath}"></bb-ex:action-bar>
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h4><spring:message code="sc.common.00006"></spring:message>&nbsp;<span class="badge">${page.totalElements}</span></h4>
+			</div>
 			<div class="panel-body">
-				<bb-ex:action-bar modulePath="account" basePath="${basePath}"></bb-ex:action-bar>
-				<h3><spring:message code="sc.account.00012"></spring:message></h3>
 				<div class="table-responsive">
-					<table
-						class="table table-bordered bb-table-list">
+					<table class="table table-bordered table-condensed  bb-table-list">
 						<colgroup>
 							<col >
 							<col >

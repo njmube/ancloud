@@ -1,5 +1,5 @@
 <header class="main-header">
-	<a href="${basePath}/dashboard" class="logo"> 
+	<a href="${basePath}/" class="logo"> 
 		<span class="logo-mini"><spring:message code="sc.sys.00002" /></span> 
 		<span class="logo-lg"><b><spring:message code="sc.sys.00001" /></b></span>
 	</a>

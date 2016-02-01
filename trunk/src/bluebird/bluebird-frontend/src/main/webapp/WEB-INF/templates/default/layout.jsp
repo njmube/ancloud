@@ -6,11 +6,13 @@
 <title>Ejukate</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-<link rel="stylesheet" href="${resourceBasePath}/font-awesome.css">
+<link rel="stylesheet" href="${resourceBasePath}/plugin/font-awesome.css">
 <link rel="stylesheet" href="${resourceBasePath}/plugin/bootstrap.css">
+<link rel="stylesheet" href="${resourceBasePath}/plugin/icheck/all.css">
+<link rel="stylesheet" href="${resourceBasePath}/core/bluebird.css">
 <link rel="stylesheet" href="${resourceBasePath}/bootstrap.override.css">
-<link rel="stylesheet" href="${resourceBasePath}/bluebird.css">
-<link rel="stylesheet" href="${resourceBasePath}/icheck/all.css">
+<link rel="stylesheet" href="${resourceBasePath}/bootstrap.bluebird.css">
+
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -25,13 +27,13 @@
 			<section class="content">
 				<tiles:insertAttribute name="content-body" />
 			</section>
+			<tiles:insertAttribute name="content-footer" />
 		</div>
-		<tiles:insertAttribute name="page-footer" />
 	</div>
 	<script src="${resourceBasePath}/plugin/jquery.js"></script>
+	<script src="${resourceBasePath}/plugin/icheck/icheck.js"></script>
 	<script src="${resourceBasePath}/plugin/bootstrap.js"></script>
-	<script src="${resourceBasePath}/bluebird.js"></script>
-	<script src="${resourceBasePath}/icheck/icheck.js"></script>
+	<script src="${resourceBasePath}/core/bluebird.js"></script>
 	
 	<script>
 		$(function() {

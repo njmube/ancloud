@@ -150,8 +150,6 @@ INSERT INTO bb_resource(category, key,messageKey, value, resourceGroup) VALUES('
 INSERT INTO bb_resource(category, key,messageKey, value, resourceGroup) VALUES('language','vi-VN','','Vietnamese - Vietnam','');
 # Messages
 
-
-
 INSERT INTO bb_message(key, basename, language, country, variant, message) VALUES('sc.sys.00001','sc','en','US','','Hello!');
 INSERT INTO bb_message(key, basename, language, country, variant, message) VALUES('sc.sys.00001','sc','vi','VN','','Xin chào!');
 INSERT INTO bb_message(key, basename, language, country, variant, message) VALUES('mod.sys','mod','en','US','','System');
@@ -186,6 +184,7 @@ INSERT INTO bb_message(key, basename, language, country, variant, message) VALUE
 INSERT INTO bb_message(key, basename, language, country, variant, message) VALUES('sc.common.00005','sc','en','US','','List all');
 INSERT INTO bb_message(key, basename, language, country, variant, message) VALUES('sc.common.00006','sc','en','US','','Search result');
 INSERT INTO bb_message(key, basename, language, country, variant, message) VALUES('sc.common.00007','sc','en','US','','No.');
+INSERT INTO bb_message(key, basename, language, country, variant, message) VALUES('sc.common.00008','sc','en','US','','Search info');
 INSERT INTO bb_message(key, basename, language, country, variant, message) VALUES('sc.navigationlink.00001','sc','en','US','','Navigation link');
 INSERT INTO bb_message(key, basename, language, country, variant, message) VALUES('sc.navigationlink.00001','sc','vi','VN','','Xin chào!');
 INSERT INTO bb_message(key, basename, language, country, variant, message) VALUES('sc.message.00001','sc','en','US','','Message');
