@@ -1,3 +1,3 @@
 <section class="content-footer">
-	<b>Copyright &copy; 2015 Bluebird.</b> All rights reserved.
+	Copyright &copy; 2015 Bluebird. All rights reserved.
 </section>

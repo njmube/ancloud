@@ -1,0 +1,3 @@
+$(function(){
+	$.bluebird.initialize();
+});

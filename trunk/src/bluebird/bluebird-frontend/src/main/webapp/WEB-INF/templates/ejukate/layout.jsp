@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="${resourceBasePath}/plugin/font-awesome.css">
 <link rel="stylesheet" href="${resourceBasePath}/plugin/bootstrap.css">
 <link rel="stylesheet" href="${resourceBasePath}/core/bluebird.css">
+<link rel="stylesheet" href="${resourceBasePath}/core/bluebird.miscellaneous.css">
 <link rel="stylesheet" href="${resourceBasePath}/core/bluebird.purple-light.css">
 <link rel="stylesheet" href="${resourceBasePath}/bootstrap.bluebird.css">
 <link rel="stylesheet" href="${resourceBasePath}/bootstrap.override.css">
@@ -47,7 +48,7 @@ desired effect
 	<c:set var="layout" value="${sessionScope.pageLayout }"></c:set>
 </c:if>
 <c:if test="${empty sessionScope.pageLayout }">
-	<c:set var="layout" value="sidebar-mini"></c:set>
+	<c:set var="layout" value="sidebar-mini fixed"></c:set>
 </c:if>
 <body class="hold-transition skin-purple-light ${layout}">
 	<div class="wrapper">
@@ -86,6 +87,7 @@ desired effect
 	<script src="${resourceBasePath}/plugin/bootstrap.js"></script>
 	<script src="${resourceBasePath}/plugin/jquery.slimscroll.js"></script>
 	<script src="${resourceBasePath}/core/bluebird.js"></script>
+	<script src="${resourceBasePath}/core/bluebird.init.js"></script>
 	
 	<script type="text/javascript">
 		$(function() {

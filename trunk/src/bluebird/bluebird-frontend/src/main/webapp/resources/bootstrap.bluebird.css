@@ -7,6 +7,7 @@
 	border: 1.5px solid #C4C4C4;
 	background-color: #DEE7F7;
 	padding: 5px;
+	border-radius: 3px;
 }
 
 .bb-action-group-header .btn {

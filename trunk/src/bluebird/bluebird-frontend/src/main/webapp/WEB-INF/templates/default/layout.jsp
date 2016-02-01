@@ -34,6 +34,7 @@
 	<script src="${resourceBasePath}/plugin/icheck/icheck.js"></script>
 	<script src="${resourceBasePath}/plugin/bootstrap.js"></script>
 	<script src="${resourceBasePath}/core/bluebird.js"></script>
+	<script src="${resourceBasePath}/core/bluebird.init.js"></script>
 	
 	<script>
 		$(function() {
