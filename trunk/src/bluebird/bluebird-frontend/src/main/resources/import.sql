@@ -7,8 +7,9 @@ INSERT INTO bb_accountrole(userName,roleCode) VALUES('admin','administrator');
 INSERT INTO bb_accountpermission(userName,permissionCode) VALUES('admin','dashboard');
 
 # Navigation Links
-INSERT INTO bb_navigationlink(displayMessageCode,icon,path,project_id,parent_path) VALUES('sc.message.00001','fa fa-database','/message',null,null);
-INSERT INTO bb_navigationlink(displayMessageCode,icon,path,project_id,parent_path) VALUES('sc.account.00001','fa fa-user','/account',null,null);
+INSERT INTO bb_navigationlink(messageCode,icon,path,project_id,parent_path) VALUES('sc.message.00001','fa fa-database','/message',null,null);
+INSERT INTO bb_navigationlink(messageCode,icon,path,project_id,parent_path) VALUES('sc.account.00001','fa fa-user','/account',null,null);
+INSERT INTO bb_navigationlink(messageCode,icon,path,project_id,parent_path) VALUES('sc.navigationlink.00001','fa fa-link','/navigation-link',null,null);
 
 #resources
 
@@ -150,6 +151,8 @@ INSERT INTO bb_resource(category, key,messageKey, value, resourceGroup) VALUES('
 INSERT INTO bb_resource(category, key,messageKey, value, resourceGroup) VALUES('language','vi-VN','','Vietnamese - Vietnam','');
 # Messages
 
+
+
 INSERT INTO bb_message(key, basename, language, country, variant, message) VALUES('sc.sys.00001','sc','en','US','','Hello!');
 INSERT INTO bb_message(key, basename, language, country, variant, message) VALUES('sc.sys.00001','sc','vi','VN','','Xin chào!');
 INSERT INTO bb_message(key, basename, language, country, variant, message) VALUES('mod.sys','mod','en','US','','System');
@@ -184,12 +187,17 @@ INSERT INTO bb_message(key, basename, language, country, variant, message) VALUE
 INSERT INTO bb_message(key, basename, language, country, variant, message) VALUES('sc.common.00005','sc','en','US','','List all');
 INSERT INTO bb_message(key, basename, language, country, variant, message) VALUES('sc.common.00006','sc','en','US','','Search result');
 INSERT INTO bb_message(key, basename, language, country, variant, message) VALUES('sc.common.00007','sc','en','US','','No.');
-INSERT INTO bb_message(key, basename, language, country, variant, message) VALUES('sc.common.00008','sc','en','US','','Search info');
+INSERT INTO bb_message(key, basename, language, country, variant, message) VALUES('sc.common.00008','sc','en','US','','Search information');
+INSERT INTO bb_message(key, basename, language, country, variant, message) VALUES('sc.common.00009','sc','en','US','','Save');
+INSERT INTO bb_message(key, basename, language, country, variant, message) VALUES('sc.common.00010','sc','en','US','','Edit form');
 INSERT INTO bb_message(key, basename, language, country, variant, message) VALUES('sc.navigationlink.00001','sc','en','US','','Navigation link');
 INSERT INTO bb_message(key, basename, language, country, variant, message) VALUES('sc.navigationlink.00001','sc','vi','VN','','Xin chào!');
+INSERT INTO bb_message(key, basename, language, country, variant, message) VALUES('sc.navigationlink.00002','sc','en','US','','Path');
 INSERT INTO bb_message(key, basename, language, country, variant, message) VALUES('sc.message.00001','sc','en','US','','Message');
 INSERT INTO bb_message(key, basename, language, country, variant, message) VALUES('sc.message.00001','sc','vi','VN','','Xin chào!');
 INSERT INTO bb_message(key, basename, language, country, variant, message) VALUES('sc.message.00002','sc','en','US','','Search message');
+INSERT INTO bb_message(key, basename, language, country, variant, message) VALUES('sc.message.00003','sc','en','US','','Message code');
+INSERT INTO bb_message(key, basename, language, country, variant, message) VALUES('sc.message.00004','sc','en','US','','Message text');
 INSERT INTO bb_message(key, basename, language, country, variant, message) VALUES('sc.account.00001','sc','en','US','','Account management');
 INSERT INTO bb_message(key, basename, language, country, variant, message) VALUES('sc.account.00001','sc','vi','VN','','Xin chào!');
 INSERT INTO bb_message(key, basename, language, country, variant, message) VALUES('sc.account.00002','sc','en','US','','Search account');

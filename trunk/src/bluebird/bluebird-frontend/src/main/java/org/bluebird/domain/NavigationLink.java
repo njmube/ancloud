@@ -20,7 +20,7 @@ public class NavigationLink extends BaseModel{
 	
 	private static final long serialVersionUID = 2460630851669244383L;
 
-	private String displayMessageCode;
+	private String messageCode;
 	
 	private String icon;
 	
@@ -34,12 +34,16 @@ public class NavigationLink extends BaseModel{
 	@OneToMany(fetch=FetchType.EAGER,mappedBy="parent")
 	private Set<NavigationLink> children;
 
-	public String getDisplayMessageCode() {
-		return displayMessageCode;
+	private String groupId;
+	
+	private String groupIndex;
+	
+	public String getMessageCode() {
+		return messageCode;
 	}
 
-	public void setDisplayMessageCode(String displayMessageCode) {
-		this.displayMessageCode = displayMessageCode;
+	public void setMessageCode(String messageCode) {
+		this.messageCode = messageCode;
 	}
 
 	public String getIcon() {
@@ -72,6 +76,22 @@ public class NavigationLink extends BaseModel{
 
 	public void setChildren(Set<NavigationLink> children) {
 		this.children = children;
+	}
+
+	public String getGroupId() {
+		return groupId;
+	}
+
+	public void setGroupId(String groupId) {
+		this.groupId = groupId;
+	}
+
+	public String getGroupIndex() {
+		return groupIndex;
+	}
+
+	public void setGroupIndex(String groupIndex) {
+		this.groupIndex = groupIndex;
 	}
 	
 }

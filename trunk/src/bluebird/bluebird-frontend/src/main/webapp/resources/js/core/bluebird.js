@@ -1,8 +1,39 @@
-$.bluebird = {};
+	$.namespace = function() {
+		var a = arguments, o = null, i, j, d;
+		for (i = 0; i < a.length; i = i + 1) {
+			if (a[i]) {
+				d = a[i].split(".");
+				o = window;
+				for (j = 0; j < d.length; j = j + 1) {
+					o[d[j]] = o[d[j]] || {};
+					o = o[d[j]];
+				}
+			}
+		}
+		return o;
+	};
 
-(function($$module){
+$.bb = {};
+
+(function($){
 	"use strict";
-	$$module.options = {
+	$.namespace = function() {
+		var a = arguments, o = null, i, j, d;
+		for (i = 0; i < a.length; i = i + 1) {
+			if (a[i]) {
+				d = a[i].split(".");
+				o = window;
+				for (j = 0; j < d.length; j = j + 1) {
+					o[d[j]] = o[d[j]] || {};
+					o = o[d[j]];
+				}
+			}
+		}
+		return o;
+	};
+	$.namespace("$.bb");
+	
+	$.bb.options = {
 			// Add slimscroll to navbar menus
 			// This requires you to load the slimscroll plugin
 			// in every page before app.js
@@ -75,7 +106,7 @@ $.bluebird = {};
 				lg : 1200
 			}
 		};
-	$$module.layout = {
+	$.bb.layout = {
 		activate : function() {
 			var _this = this;
 			_this.fix();
@@ -108,7 +139,7 @@ $.bluebird = {};
 				}
 
 				// Fix for the control sidebar height
-				var controlSidebar = $($.bluebird.options.controlSidebarOptions.selector);
+				var controlSidebar = $($.bb.options.controlSidebarOptions.selector);
 				if (typeof controlSidebar !== "undefined") {
 					if (controlSidebar.height() > postSetWidth){
 						$(".content-wrapper, .right-side").css('min-height', controlSidebar.height());
@@ -130,7 +161,7 @@ $.bluebird = {};
 				window.console.error("Error: the fixed layout requires the slimscroll plugin!");
 			}
 			// Enable slimscroll for fixed layout
-			if ($.bluebird.options.sidebarSlimScroll) {
+			if ($.bb.options.sidebarSlimScroll) {
 				if (typeof $.fn.slimScroll != 'undefined') {
 					// Destroy if it exists
 					$(".sidebar").slimScroll({
@@ -150,12 +181,12 @@ $.bluebird = {};
 	/*
 	 * PushMenu() ========== Adds the push menu functionality to the sidebar.
 	 * 
-	 * @type Function @usage: $.bluebird.pushMenu("[data-toggle='offcanvas']")
+	 * @type Function @usage: $.bb.pushMenu("[data-toggle='offcanvas']")
 	 */
-	$$module.pushMenu = {
+	$.bb.pushMenu = {
 		activate : function(toggleBtn) {
 			// Get the screen sizes
-			var screenSizes = $.bluebird.options.screenSizes;
+			var screenSizes = $.bb.options.screenSizes;
 
 			// Enable sidebar toggle
 			$(document).on(
@@ -198,7 +229,7 @@ $.bluebird = {};
 					});
 
 			// Enable expand on hover for sidebar mini
-			if ($.bluebird.options.sidebarExpandOnHover
+			if ($.bb.options.sidebarExpandOnHover
 					|| ($('body').hasClass('fixed') && $('body').hasClass(
 							'sidebar-mini'))) {
 				this.expandOnHover();
@@ -206,7 +237,7 @@ $.bluebird = {};
 		},
 		expandOnHover : function() {
 			var _this = this;
-			var screenWidth = $.bluebird.options.screenSizes.sm - 1;
+			var screenWidth = $.bb.options.screenSizes.sm - 1;
 			// Expand sidebar on hover
 			$('.main-sidebar').hover(
 					function() {
@@ -239,11 +270,11 @@ $.bluebird = {};
 	/*
 	 * Tree() ====== Converts the sidebar into a multilevel tree view menu.
 	 * 
-	 * @type Function @Usage: $.bluebird.tree('.sidebar')
+	 * @type Function @Usage: $.bb.tree('.sidebar')
 	 */
-	$$module.tree = function(menu) {
+	$.bb.tree = function(menu) {
 		var _this = this;
-		var animationSpeed = $.bluebird.options.animationSpeed;
+		var animationSpeed = $.bb.options.animationSpeed;
 		$(menu).on(
 			'click',
 			'li a',
@@ -301,15 +332,15 @@ $.bluebird = {};
 	/*
 	 * ControlSidebar ============== Adds functionality to the right sidebar
 	 * 
-	 * @type Object @usage $.bluebird.controlSidebar.activate(options)
+	 * @type Object @usage $.bb.controlSidebar.activate(options)
 	 */
-	$$module.controlSidebar = {
+	$.bb.controlSidebar = {
 		// instantiate the object
 		activate : function() {
 			// Get the object
 			var _this = this;
 			// Update options
-			var o = $.bluebird.options.controlSidebarOptions;
+			var o = $.bb.options.controlSidebarOptions;
 			// Get the sidebar
 			var sidebar = $(o.selector);
 			// The toggle button
@@ -390,27 +421,27 @@ $.bluebird = {};
 			$(".content-wrapper .content").css('min-height',sidebar.height() - $(".content-wrapper .content-header").outerHeight() - $(".content-wrapper .content-footer").outerHeight());
 		}
 	};
-	$$module.initialize = function(){
+	$.bb.initialize = function(){
 		// Fix for IE page transitions
 		$("body").removeClass("hold-transition");
 
 		// Extend options if external options exist
 		if (typeof bluebirdOptions !== "undefined") {
-			$.extend(true, $.bluebird.options, bluebirdOptions);
+			$.extend(true, $.bb.options, bluebirdOptions);
 		}
 
 		// Easy access to options
-		var o = $.bluebird.options;
+		var o = $.bb.options;
 
 		// Activate the layout maker
-		$$module.layout.activate();
+		$.bb.layout.activate();
 
 		// Enable sidebar tree view controls
-		$$module.tree('.sidebar');
+		$.bb.tree('.sidebar');
 
 		// Enable control sidebar
 		if (o.enableControlSidebar) {
-			$$module.controlSidebar.activate();
+			$.bb.controlSidebar.activate();
 		}
 
 		// Add slimscroll to navbar dropdown
@@ -424,7 +455,7 @@ $.bluebird = {};
 
 		// Activate sidebar push menu
 		if (o.sidebarPushMenu) {
-			$$module.pushMenu.activate(o.sidebarToggleSelector);
+			$.bb.pushMenu.activate(o.sidebarToggleSelector);
 		}
 
 		// Activate Bootstrap tooltip
@@ -438,5 +469,12 @@ $.bluebird = {};
 		if (o.enableFastclick && typeof FastClick != 'undefined') {
 			FastClick.attach(document.body);
 		}
+		
+		// modules init
+		for(var propertyName in $.bb){
+			if(typeof $.bb[propertyName] == 'object' && typeof $.bb[propertyName]['initialize'] == 'function'){
+				$.bb[propertyName]['initialize']();
+			}
+		}
 	};
-})($.bluebird);
+})(jQuery);

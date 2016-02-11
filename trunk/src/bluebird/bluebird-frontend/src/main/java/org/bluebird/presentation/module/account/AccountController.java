@@ -51,7 +51,7 @@ public class AccountController {
 		criteria.setProject(project);
 		Page<Account> page = accountService.findAllAccountByCriteria(criteria, pageable);
 		model.addAttribute("page",page);
-		return "account/accountSearchForm";
+		return "account/FsAccount";
 	}
 	
 	@RequestMapping(value="search", method = {RequestMethod.GET},params={"all"})
@@ -60,7 +60,7 @@ public class AccountController {
 		criteria.setProject(project);
 		Page<Account> page = accountService.findAllAccountByCriteria(criteria, pageable);
 		model.addAttribute("page",page);
-		return "account/accountSearchResult";
+		return "account/FrAccount";
 	}
 	
 	@RequestMapping(value="search", method = {RequestMethod.POST})
@@ -69,6 +69,6 @@ public class AccountController {
 		criteria.setProject(project);
 		Page<Account> page = accountService.findAllAccountByCriteria(criteria, pageable);
 		model.addAttribute("page",page);
-		return "account/accountSearchResult";
+		return "account/FrAccount";
 	} 
 }

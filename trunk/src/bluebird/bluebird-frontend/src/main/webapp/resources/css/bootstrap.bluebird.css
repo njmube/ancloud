@@ -6,7 +6,6 @@
 	margin-bottom: 5px;
 	border: 1.5px solid #C4C4C4;
 	background-color: #DEE7F7;
-	padding: 5px;
 	border-radius: 3px;
 }
 
@@ -21,7 +20,6 @@
 .bb-action-group-header .btn:hover{
 	background : #E3F2FD;
 }
-
 
 .bb-action-group-header .dropdown-toggle:after {
 	content: '';
@@ -48,7 +46,10 @@
 	font-size: inherit;
 	text-rendering: auto;
 	-webkit-font-smoothing: antialiased;
+	padding-left: 1px;
 }
+
+
 .signin-box,
 .signup-box{
 	width: 400px;
@@ -56,7 +57,8 @@
 }
 .signin-box .input-group,
 .signup-box .input-group {
-	margin-bottom : 20px;
+	margin-top : 10px;
+	margin-bottom : 10px;
 }
 .signin-box .lost-password,
 .signup-box .lost-password {
@@ -76,4 +78,31 @@
 	.panel .bb-form .form-group {
 		padding : 5px 60px;
 	}
+}
+.bb-button {
+	width: 100%;
+}
+
+.bb-table {
+	table-layout: fixed;
+}
+
+.bb-table-list > thead > tr:first-child > th:first-child,
+.bb-table-action > thead > tr:first-child > th:last-child {
+	width: 40px;
+}
+
+.bb-table-action .btn,
+.bb-table-action + .bb-table-action-plus .btn {
+	width: 28px;
+	height: 28px;
+	padding:0px
+}
+
+.bb-table input {
+	height: 28px;
+}
+
+.bb-table-list > tbody > tr > td:first-child {
+	text-align: center;
 }

@@ -193,7 +193,7 @@ a:hover, a:active, a:focus {
 	float: right;
 }
 
-@media ( max-width : 991px) {
+@media (max-width : 991px) {
 	.main-header .navbar-custom-menu a, 
 	.main-header .navbar-right a {
 		color: inherit;
@@ -201,7 +201,7 @@ a:hover, a:active, a:focus {
 	}
 }
 
-@media ( max-width : 767px) {
+@media (max-width : 767px) {
 	.main-header .navbar-right {
 		float: none;
 	}
@@ -316,7 +316,7 @@ a:hover, a:active, a:focus {
 	padding: 15px 15px;
 }
 
-@media ( max-width : 991px) {
+@media (max-width : 991px) {
 	.navbar-custom-menu .navbar-nav>li {
 		float: left;
 	}
@@ -331,7 +331,7 @@ a:hover, a:active, a:focus {
 	}
 }
 
-@media ( max-width : 767px) {
+@media (max-width : 767px) {
 	.main-header {
 		position: relative;
 	}
@@ -347,7 +347,7 @@ a:hover, a:active, a:focus {
 	}
 }
 
-@media ( max-width : 991px) {
+@media (max-width : 991px) {
 	.navbar-collapse.pull-left {
 		float: none !important;
 	}
@@ -526,7 +526,7 @@ a:hover, a:active, a:focus {
 	.sidebar-mini.sidebar-collapse .sidebar-menu>li>a>span {
 		border-top-right-radius: 4px;
 	}
-	.sidebar-mini.sidebar-collapse .sidebar-menu>li:not (.treeview ) >a>span
+	.sidebar-mini.sidebar-collapse .sidebar-menu>li:not(.treeview )>a>span
 		{
 		border-bottom-right-radius: 4px;
 	}
@@ -535,9 +535,8 @@ a:hover, a:active, a:focus {
 		padding-bottom: 5px;
 		border-bottom-right-radius: 4px;
 	}
-	.sidebar-mini.sidebar-collapse .sidebar-menu>li:hover>a>span:not (.pull-right
-		), .sidebar-mini.sidebar-collapse .sidebar-menu>li:hover>.treeview-menu
-		{
+	.sidebar-mini.sidebar-collapse .sidebar-menu>li:hover>a>span:not(.pull-right),
+	.sidebar-mini.sidebar-collapse .sidebar-menu>li:hover>.treeview-menu {
 		display: block !important;
 		position: absolute;
 		width: 180px;
@@ -554,7 +553,8 @@ a:hover, a:active, a:focus {
 		margin-left: 0;
 	}
 	.sidebar-mini.sidebar-collapse .main-sidebar .user-panel>.info,
-		.sidebar-mini.sidebar-collapse .sidebar-form, .sidebar-mini.sidebar-collapse .sidebar-menu>li>a>span,
+		.sidebar-mini.sidebar-collapse .sidebar-form,
+		.sidebar-mini.sidebar-collapse .sidebar-menu>li>a>span,
 		.sidebar-mini.sidebar-collapse .sidebar-menu>li>.treeview-menu,
 		.sidebar-mini.sidebar-collapse .sidebar-menu>li>a>.pull-right,
 		.sidebar-mini.sidebar-collapse .sidebar-menu li.header {
@@ -1173,15 +1173,15 @@ a:hover, a:active, a:focus {
 		opacity: 0;
 	}
 	40% {
-		transform: perspective(400px) rotate3d (1, 0, 0, -20 deg);
+		transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
 		transition-timing-function: ease-in;
 	}
 	60% {
-		transform: perspective(400px) rotate3d (1, 0, 0, 10 deg);
+		transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
 		opacity: 1;
 	}
 	80% {
-		transform: perspective(400px) rotate3d (1, 0, 0, -5 deg);
+		transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
 	}
 	100% {
 		transform: perspective(400px);
@@ -1194,15 +1194,15 @@ a:hover, a:active, a:focus {
 		opacity: 0;
 	}
 	40% {
-		-webkit-transform: perspective(400px) rotate3d (1, 0, 0, -20 deg);
+		-webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
 		-webkit-transition-timing-function: ease-in;
 	}
 	60% {
-		-webkit-transform: perspective(400px) rotate3d (1, 0, 0, 10 deg);
+		-webkit-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
 		opacity: 1;
 	}
 	80% {
-		-webkit-transform: perspective(400px) rotate3d (1, 0, 0, -5 deg);
+		-webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
 	}
 	100% {
 		-webkit-transform: perspective(400px);
@@ -1234,7 +1234,6 @@ a:hover, a:active, a:focus {
 		background: #fff;
 	}
 }
-
 
 /*
  * Component: Nav
@@ -1275,7 +1274,8 @@ a:hover, a:active, a:focus {
 	color: #999;
 }
 
-.nav-tabs-custom>.nav-tabs>li>a, .nav-tabs-custom>.nav-tabs>li>a:hover {
+.nav-tabs-custom>.nav-tabs>li>a,
+.nav-tabs-custom>.nav-tabs>li>a:hover {
 	background: transparent;
 	margin: 0;
 }
@@ -1284,8 +1284,9 @@ a:hover, a:active, a:focus {
 	color: #999;
 }
 
-.nav-tabs-custom>.nav-tabs>li:not (.active ) >a:hover, .nav-tabs-custom>.nav-tabs>li:not
-	(.active ) >a:focus, .nav-tabs-custom>.nav-tabs>li:not (.active ) >a:active
+.nav-tabs-custom>.nav-tabs>li:not(.active)>a:hover,
+.nav-tabs-custom>.nav-tabs>li:not(.active)>a:focus,
+.nav-tabs-custom>.nav-tabs>li:not(.active)>a:active
 	{
 	border-color: transparent;
 }
@@ -1294,7 +1295,8 @@ a:hover, a:active, a:focus {
 	border-top-color: #3c8dbc;
 }
 
-.nav-tabs-custom>.nav-tabs>li.active>a, .nav-tabs-custom>.nav-tabs>li.active:hover>a
+.nav-tabs-custom>.nav-tabs>li.active>a,
+.nav-tabs-custom>.nav-tabs>li.active:hover>a
 	{
 	background-color: #fff;
 	color: #444;

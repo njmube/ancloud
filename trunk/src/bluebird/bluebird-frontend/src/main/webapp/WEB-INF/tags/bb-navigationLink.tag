@@ -15,7 +15,7 @@
 				<li class="${not empty navigationLink.children?'treeview':'active'}">
 					<a href="${basePath }${navigationLink.path}">
 						<i class="${navigationLink.icon}"></i>
-						<span><spring:message code="${navigationLink.displayMessageCode}"></spring:message></span>
+						<span><spring:message code="${navigationLink.messageCode}"></spring:message></span>
 					</a>
 					<c:if test="${not empty navigationLink.children}">
 						<ul class="treeview-menu">

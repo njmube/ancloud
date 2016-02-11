@@ -72,7 +72,7 @@
 
 	<bean id="authenticationSuccessHandler" 
 		class="org.bluebird.service.authentication.AuthenticationSuccessHandler">
-		<property name="defaultTargetUrl" value="/dashboard/dashboard" />
+		<property name="defaultTargetUrl" value="/" />
 		<property name="alwaysUseDefaultTargetUrl" value="true"></property>
 	</bean>
 	

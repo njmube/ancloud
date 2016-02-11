@@ -9,9 +9,10 @@
 <link rel="stylesheet" href="${resourceBasePath}/plugin/font-awesome.css">
 <link rel="stylesheet" href="${resourceBasePath}/plugin/bootstrap.css">
 <link rel="stylesheet" href="${resourceBasePath}/plugin/icheck/all.css">
-<link rel="stylesheet" href="${resourceBasePath}/core/bluebird.css">
-<link rel="stylesheet" href="${resourceBasePath}/bootstrap.override.css">
-<link rel="stylesheet" href="${resourceBasePath}/bootstrap.bluebird.css">
+<link rel="stylesheet" href="${resourceBasePath}/css/core/bluebird.css">
+<link rel="stylesheet" href="${resourceBasePath}/css/core/bluebird.purple-light.css">
+<link rel="stylesheet" href="${resourceBasePath}/css/bootstrap.override.css">
+<link rel="stylesheet" href="${resourceBasePath}/css/bootstrap.bluebird.css">
 
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -33,8 +34,9 @@
 	<script src="${resourceBasePath}/plugin/jquery.js"></script>
 	<script src="${resourceBasePath}/plugin/icheck/icheck.js"></script>
 	<script src="${resourceBasePath}/plugin/bootstrap.js"></script>
-	<script src="${resourceBasePath}/core/bluebird.js"></script>
-	<script src="${resourceBasePath}/core/bluebird.init.js"></script>
+	<script src="${resourceBasePath}/js/core/bluebird.js"></script>
+	<script src="${resourceBasePath}/js/core/bluebird.ar.js"></script>
+	<script src="${resourceBasePath}/js/bluebird.init.js"></script>
 	
 	<script>
 		$(function() {

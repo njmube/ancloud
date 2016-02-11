@@ -8,10 +8,10 @@
 		<bb-ex:action-bar modulePath="account" basePath="${basePath}"></bb-ex:action-bar>
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h4><spring:message code="sc.common.00008"></spring:message></h4>
+				<i class="fa fa-search"></i>
+				<span><spring:message code="sc.common.00008"></spring:message></span>
 			</div>
 			<div class="panel-body">
-				
 				<form:form modelAttribute="accountSearchForm" cssClass="form-horizontal bb-form" action="${basePath }/account/search" method="POST">
 					<div class="bb-form-group">
 						<div class="col-md-2 bb-form-group-label">

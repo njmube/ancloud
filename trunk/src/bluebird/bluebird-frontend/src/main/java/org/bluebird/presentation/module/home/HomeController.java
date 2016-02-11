@@ -14,7 +14,7 @@ public class HomeController {
 	
 	@RequestMapping(value={"/","/home"}, method = RequestMethod.GET)
 	public String root(){
-		return "redirect:/dashboard/dashboard";
+		return "redirect:/navigation-link/modify";
 	}
 	
 	@RequestMapping(value="/login", method = RequestMethod.GET)
