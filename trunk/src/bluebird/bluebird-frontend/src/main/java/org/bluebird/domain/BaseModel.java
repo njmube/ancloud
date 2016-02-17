@@ -1,9 +1,9 @@
 package org.bluebird.domain;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.sql.Timestamp;
 
+import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,6 +21,9 @@ public abstract class BaseModel implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(unique=true)
+	private String code;
+	
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Account createdBy;
 	
@@ -33,6 +36,22 @@ public abstract class BaseModel implements Serializable{
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Project project;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
 
 	public Account getCreatedBy() {
 		return createdBy;

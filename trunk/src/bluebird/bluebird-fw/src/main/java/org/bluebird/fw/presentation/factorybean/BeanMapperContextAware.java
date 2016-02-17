@@ -7,6 +7,7 @@ import ma.glasnost.orika.Converter;
 import ma.glasnost.orika.Filter;
 import ma.glasnost.orika.Mapper;
 import ma.glasnost.orika.MapperFactory;
+import ma.glasnost.orika.ObjectFactory;
 import ma.glasnost.orika.impl.ConfigurableMapper;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
 
@@ -57,6 +58,7 @@ public class BeanMapperContextAware extends ConfigurableMapper implements Applic
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	public void addMapper(final Mapper<?, ?> mapper) {
 		factory.classMap(mapper.getAType(), mapper.getBType())
+				.mapNulls(true)
 				.byDefault()
 				.customize((Mapper) mapper)
 				.register();

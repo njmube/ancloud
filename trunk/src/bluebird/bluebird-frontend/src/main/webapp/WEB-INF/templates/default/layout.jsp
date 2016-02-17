@@ -11,8 +11,8 @@
 <link rel="stylesheet" href="${resourceBasePath}/plugin/icheck/all.css">
 <link rel="stylesheet" href="${resourceBasePath}/css/core/bluebird.css">
 <link rel="stylesheet" href="${resourceBasePath}/css/core/bluebird.purple-light.css">
-<link rel="stylesheet" href="${resourceBasePath}/css/bootstrap.override.css">
-<link rel="stylesheet" href="${resourceBasePath}/css/bootstrap.bluebird.css">
+<link rel="stylesheet" href="${resourceBasePath}/css/app/bootstrap.override.css">
+<link rel="stylesheet" href="${resourceBasePath}/css/app/bootstrap.bluebird.css">
 
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -36,10 +36,9 @@
 	<script src="${resourceBasePath}/plugin/bootstrap.js"></script>
 	<script src="${resourceBasePath}/js/core/bluebird.js"></script>
 	<script src="${resourceBasePath}/js/core/bluebird.ar.js"></script>
-	<script src="${resourceBasePath}/js/bluebird.init.js"></script>
-	
 	<script>
 		$(function() {
+			$.bb.initialize();
 			$('.checkbox input').iCheck({
 				checkboxClass : 'icheckbox_square-blue',
 				radioClass : 'iradio_square-blue',

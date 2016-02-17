@@ -3,8 +3,11 @@ package org.bluebird.presentation.module.navigation;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 public class FmNavigationLink {
 	
+	@Valid
 	private List<FmiNavigationLink> navigationLinks = new ArrayList<FmiNavigationLink>();
 
 	public List<FmiNavigationLink> getNavigationLinks() {

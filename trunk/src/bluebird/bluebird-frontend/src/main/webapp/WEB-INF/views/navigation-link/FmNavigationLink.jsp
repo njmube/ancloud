@@ -4,6 +4,30 @@
 	<tiles:putAttribute name="content-header" >
 		<h3><spring:message code="sc.navigationlink.00001"></spring:message></h3>
 	</tiles:putAttribute>
+	<tiles:putAttribute name="page-template">
+		<jsp:include page="templateNavigationLink.jsp"></jsp:include>
+	</tiles:putAttribute>
+	<tiles:putAttribute name="page-style">
+		<link rel="stylesheet" href="${resourceBasePath}/css/app/navigationLink.css">
+	</tiles:putAttribute>
+	<tiles:putAttribute name="page-script">
+		<script src="${resourceBasePath}/js/app/navigationLink.js"></script>
+		<script type="text/javascript" >
+			var navigationLinks = [
+			<c:if test="${not empty fmNavigationLink.navigationLinks}">
+			<c:forEach items="${fmNavigationLink.navigationLinks}"  var="navigationLink">
+				{
+					messageCode: '${navigationLink.messageCode}',
+					icon: '${navigationLink.icon}',
+					path: '${navigationLink.path}',
+					groupId: '${navigationLink.groupId}',
+					groupIndex: '${navigationLink.groupIndex}',
+				},
+			</c:forEach>
+			</c:if>
+			];
+		</script>
+	</tiles:putAttribute>
 	<tiles:putAttribute name="content-body">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
@@ -12,13 +36,8 @@
 			</div>
 			<div class="panel-body">
 				<form:form modelAttribute="fmNavigationLink" cssClass="form-horizontal bb-form" action="${basePath }/navigation-link/modify" method="POST">
-					<table class="table table-bordered table-condensed bb-table bb-table-list bb-table-action">
-						<colgroup>
-							<col >
-							<col >
-							<col width="20%">
-							<col>
-						</colgroup>
+					<form:errors path="*" cssClass="alert alert-error" delimiter="<br/>" element="div" cssStyle="" />
+					<table class="table table-bordered table-condensed bb-table bb-table-action" id="navigationLinkTable">
 						<thead>
 							<tr>
 								<th><spring:message code="sc.common.00007" /></th>
@@ -28,31 +47,37 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>
-								</td>
-								<td>
-									<div class="input-group">
-										<span class="input-group-btn">
-											<button class="btn btn-default bb-fa-btn fa-angle-double-down" type="button"></button>
-										</span>
-										<bb-ex:autocomplete name="navigationLinks[0].messageCode" cssClass="form-control"/>
-										<span class="input-group-btn">
-											<button class="btn btn-default bb-fa-btn fa-angle-double-right" type="button" onclick="$.bb.ar.addItem({container:$(this).closest('tbody')});"></button>
-										</span>
-									</div>
-								</td>
-								<td>
-									<form:input path="navigationLinks[0].path" class="form-control"/>
-								</td>
-								<td>
-									<button class="btn btn-default bb-fa-btn fa-minus-square"></button>
-								</td>
-							</tr>
+							<c:forEach items="${fmNavigationLink.navigationLinks}"  var="navigationLink" varStatus="status">
+								<tr class="ar-item ar-dataItem" data-ar-groupid="${navigationLink.groupId }" data-ar-groupindex="${navigationLink.groupIndex }">
+									<td class="ar-groupIndex">
+										${navigationLink.groupIndex }
+									</td>
+									<td>
+										<form:hidden path="navigationLinks[${status.index }].id"/>
+										<form:hidden path="navigationLinks[${status.index }].groupId" cssClass="ar-groupId"/>
+										<form:hidden path="navigationLinks[${status.index }].groupIndex" cssClass="ar-groupIndex"/>
+										<div class="input-group">
+											<span class="input-group-btn">
+												<button class="btn btn-default bb-fa-btn fa-angle-double-down bb-navigationLink-addLinkButton" type="button"></button>
+											</span>
+											<bb-ex:autocomplete name="navigationLinks[${status.index }].messageCode" cssClass="form-control" value="${navigationLink.messageCode }"/>
+											<span class="input-group-btn">
+												<button class="btn btn-default bb-fa-btn fa-angle-double-right bb-navigationLink-addNestedLinkButton" type="button"></button>
+											</span>
+										</div>
+									</td>
+									<td>
+										<form:input path="navigationLinks[${status.index }].path" class="form-control"/>
+									</td>
+									<td>
+										<button class="btn btn-default bb-fa-btn fa-minus-square bb-navigationLink-removeLinkButton" type="button"></button>
+									</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 					<div class="bb-table-action-plus">
-						<button class="btn btn-default bb-fa-btn fa-plus-square"></button>
+						<button class="btn btn-default bb-fa-btn fa-plus-square bb-navigationLink-addLinkButton" type="button"></button>
 					</div>
 				</form:form>
 			</div>

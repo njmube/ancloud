@@ -2,6 +2,7 @@ package org.bluebird.domain;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,11 +25,10 @@ public class NavigationLink extends BaseModel{
 	
 	private String icon;
 	
-	@Column(unique=true)
 	private String path;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(referencedColumnName="path")
+	@JoinColumn(referencedColumnName="code")
 	private NavigationLink parent;
 	
 	@OneToMany(fetch=FetchType.EAGER,mappedBy="parent")

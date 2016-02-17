@@ -1,7 +1,13 @@
 package org.bluebird.presentation.module.navigation;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 
 public class FmiNavigationLink {
+	
+	private Long id;
+	
+	@NotEmpty
 	private String messageCode;
 
 	private String icon;
@@ -14,6 +20,14 @@ public class FmiNavigationLink {
 
 	public String getMessageCode() {
 		return messageCode;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public void setMessageCode(String messageCode) {

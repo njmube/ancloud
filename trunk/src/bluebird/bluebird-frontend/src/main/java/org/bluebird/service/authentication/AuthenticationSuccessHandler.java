@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.bluebird.domain.NavigationLink;
 import org.bluebird.domain.Project;
 import org.bluebird.domain.common.SessionConstant;
 import org.bluebird.domain.module.account.Account;
@@ -36,7 +37,7 @@ public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticatio
 		Account account = ((UserDetailsImpl)authentication.getPrincipal()).getAccount();
 		sessionService.put(SessionConstant.SESSION_CURRENT_PROJECT,new Project());
 		sessionService.put(SessionConstant.SESSION_ACCOUNT,account);
-		sessionService.put(SessionConstant.SESSION_NAVIGATION_LINKS, navigationLinkRepository.findByParentAndProject(null, account.getProject()));
+		sessionService.put(SessionConstant.SESSION_NAVIGATION_LINKS, navigationLinkRepository.findByParentAndProject(null,account.getProject()));
 		if(CollectionUtils.isNotEmpty(account.getAccountProfiles())){
 			sessionService.put(SessionConstant.SESSION_CURRENT_ACCOUNT_PROFILE,account.getAccountProfiles().get(0));;
 		} else {

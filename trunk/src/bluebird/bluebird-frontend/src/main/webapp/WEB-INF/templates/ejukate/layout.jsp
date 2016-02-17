@@ -11,9 +11,9 @@
 <link rel="stylesheet" href="${resourceBasePath}/plugin/bootstrap.css">
 <link rel="stylesheet" href="${resourceBasePath}/css/core/bluebird.css">
 <link rel="stylesheet" href="${resourceBasePath}/css/core/bluebird.purple-light.css">
-<link rel="stylesheet" href="${resourceBasePath}/css/bootstrap.bluebird.css">
-<link rel="stylesheet" href="${resourceBasePath}/css/bootstrap.override.css">
-
+<link rel="stylesheet" href="${resourceBasePath}/css/app/bootstrap.bluebird.css">
+<link rel="stylesheet" href="${resourceBasePath}/css/app/bootstrap.override.css">
+<tiles:insertAttribute name="page-style" ignore="true" />
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -85,14 +85,21 @@ desired effect
 	<script src="${resourceBasePath}/plugin/jquery.js"></script>
 	<script src="${resourceBasePath}/plugin/bootstrap.js"></script>
 	<script src="${resourceBasePath}/plugin/jquery.slimscroll.js"></script>
+	<script src="${resourceBasePath}/plugin/handlebars.js"></script>
 	<script src="${resourceBasePath}/js/core/bluebird.js"></script>
 	<script src="${resourceBasePath}/js/core/bluebird.ar.js"></script>
-	<script src="${resourceBasePath}/js/bluebird.init.js"></script>
+	<script src="${resourceBasePath}/plugin/angular.js" type="text/javascript"></script>
+	<script src="${resourceBasePath}/plugin/angular-router.js" type="text/javascript"></script>
 	
 	<script type="text/javascript">
 		$(function() {
+			$.bb.initialize();
+			$.bb.ar.setTemplateFunction(function(template,data){
+				return Handlebars.compile(template)(data);
+			});
 		});
 	</script>
+	<tiles:insertAttribute name="page-template" ignore="true" />
 	<tiles:insertAttribute name="page-script" ignore="true" />
 	<%-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

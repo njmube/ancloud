@@ -75,8 +75,7 @@ public class AccountSearchCriteria extends Criteria implements Specification<Acc
 	@Override
 	public Predicate toPredicate(Root<Account> root,CriteriaQuery<?> criteriaquery, CriteriaBuilder criteriabuilder) {
 		String containsLikePattern = getContainsLikePattern(userName);
-		return criteriabuilder.and(criteriabuilder.like(criteriabuilder.lower(root.<String> get("userName")),containsLikePattern));
-	
+		return criteriabuilder.and(criteriabuilder.like(criteriabuilder.lower(root.<String>get("userName")),containsLikePattern));
 	}
-	 
+	
 }

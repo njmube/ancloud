@@ -13,11 +13,17 @@
 		<c:if test="${not empty items}">
 			<c:forEach items="${items}" var="navigationLink">
 				<li class="${not empty navigationLink.children?'treeview':'active'}">
-					<a href="${basePath }${navigationLink.path}">
-						<i class="${navigationLink.icon}"></i>
-						<span><spring:message code="${navigationLink.messageCode}"></spring:message></span>
-					</a>
+					<c:if test="${empty navigationLink.children}">
+						<a href="${basePath }${navigationLink.path}">
+							<i class="${navigationLink.icon}"></i>
+							<span><spring:message code="${navigationLink.messageCode}"></spring:message></span>
+						</a>
+					</c:if>
 					<c:if test="${not empty navigationLink.children}">
+						<a href="javascript:void();">
+							<i class="${navigationLink.icon}"></i>
+							<span><spring:message code="${navigationLink.messageCode}"></spring:message></span>
+						</a>
 						<ul class="treeview-menu">
 							<bb-ex:navigationLink items="${navigationLink.children}" type="sidebar"/>
 						</ul>
