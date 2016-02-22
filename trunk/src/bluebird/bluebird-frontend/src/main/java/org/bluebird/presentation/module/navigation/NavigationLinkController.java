@@ -52,7 +52,7 @@ public class NavigationLinkController extends BaseController {
 		if(bindingResult.hasErrors()){
 			dest = "navigation-link/FmNavigationLink";
 		} else {
-			navigationLinkService.modifyList(this.mapper.mapAsList(fmNavigationLink.getNavigationLinks(), NavigationLink.class));
+			navigationLinkService.modifyList(this.mapper.mapAsList(fmNavigationLink.getNavigationLinks(), NavigationLink.class),project);
 			dest = "redirect:/navigation-link/modify";
 		}
 		

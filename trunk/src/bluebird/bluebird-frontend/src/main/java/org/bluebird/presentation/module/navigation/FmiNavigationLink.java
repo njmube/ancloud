@@ -17,6 +17,8 @@ public class FmiNavigationLink {
 	private String groupId;
 	
 	private String groupIndex;
+	
+	private String itemIndex;
 
 	public String getMessageCode() {
 		return messageCode;
@@ -64,5 +66,13 @@ public class FmiNavigationLink {
 
 	public void setGroupIndex(String groupIndex) {
 		this.groupIndex = groupIndex;
+	}
+
+	public String getItemIndex() {
+		return itemIndex;
+	}
+
+	public void setItemIndex(String itemIndex) {
+		this.itemIndex = itemIndex;
 	}
 }

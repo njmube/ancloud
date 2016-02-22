@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Version;
 
 import org.bluebird.domain.module.account.Account;
 
@@ -21,7 +22,6 @@ public abstract class BaseModel implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(unique=true)
 	private String code;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
@@ -36,6 +36,9 @@ public abstract class BaseModel implements Serializable{
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Project project;
+	
+	@Version
+	private Long version;
 
 	public Long getId() {
 		return id;
@@ -91,5 +94,13 @@ public abstract class BaseModel implements Serializable{
 
 	public void setProject(Project project) {
 		this.project = project;
+	}
+
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
 	}
 }

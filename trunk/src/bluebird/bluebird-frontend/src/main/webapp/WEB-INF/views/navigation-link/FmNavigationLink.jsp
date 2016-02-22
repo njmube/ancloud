@@ -46,7 +46,7 @@
 								<th></th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody class="ar-dataContainer">
 							<c:forEach items="${fmNavigationLink.navigationLinks}"  var="navigationLink" varStatus="status">
 								<tr class="ar-item ar-dataItem" data-ar-groupid="${navigationLink.groupId }" data-ar-groupindex="${navigationLink.groupIndex }">
 									<td class="ar-groupIndex">
@@ -56,11 +56,12 @@
 										<form:hidden path="navigationLinks[${status.index }].id"/>
 										<form:hidden path="navigationLinks[${status.index }].groupId" cssClass="ar-groupId"/>
 										<form:hidden path="navigationLinks[${status.index }].groupIndex" cssClass="ar-groupIndex"/>
+										<form:hidden path="navigationLinks[${status.index }].itemIndex" cssClass="ar-itemIndex"/>
 										<div class="input-group">
 											<span class="input-group-btn">
 												<button class="btn btn-default bb-fa-btn fa-angle-double-down bb-navigationLink-addLinkButton" type="button"></button>
 											</span>
-											<bb-ex:autocomplete name="navigationLinks[${status.index }].messageCode" cssClass="form-control" value="${navigationLink.messageCode }"/>
+											<bb-ex:autocomplete name="navigationLinks[${status.index }].messageCode" cssClass="form-control" value="${navigationLink.messageCode }" parameters="{\"hell\":\"hell\"}" queryStringName="message" sourcePath="/message/ajaxGetAllMessage" displayProperties="message,key,language"/>
 											<span class="input-group-btn">
 												<button class="btn btn-default bb-fa-btn fa-angle-double-right bb-navigationLink-addNestedLinkButton" type="button"></button>
 											</span>

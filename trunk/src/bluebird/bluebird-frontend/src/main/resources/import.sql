@@ -8,10 +8,10 @@ INSERT INTO bb_accountpermission(userName,permissionCode) VALUES('admin','dashbo
 
 # Navigation Links
 
-INSERT INTO bb_navigationlink(messageCode,code,icon,path,project_id,parent_code,groupid,groupindex) VALUES('sc.common.00011','sc.common.00011','fa fa-gears','',null,null,'','1');
-INSERT INTO bb_navigationlink(messageCode,code,icon,path,project_id,parent_code,groupid,groupindex) VALUES('sc.navigationlink.00001','sc.navigationlink.00001','fa fa-link','/navigation-link',null,'sc.common.00011','1','1.1');
-INSERT INTO bb_navigationlink(messageCode,code,icon,path,project_id,parent_code,groupid,groupindex) VALUES('sc.message.00001','sc.message.00001','fa fa-database','/message',null,'sc.common.00011','1','1.2');
-INSERT INTO bb_navigationlink(messageCode,code,icon,path,project_id,parent_code,groupid,groupindex) VALUES('sc.account.00001','sc.account.00001','fa fa-user','/account',null,'sc.common.00011','1','1.3');
+INSERT INTO bb_navigationlink(messageCode,code,icon,path,project_id,parent_code,groupid,groupindex,itemindex,version) VALUES('sc.common.00011','sc.common.00011','fa fa-gears','',null,null,'','1',1,0);
+INSERT INTO bb_navigationlink(messageCode,code,icon,path,project_id,parent_code,groupid,groupindex,itemindex,version) VALUES('sc.navigationlink.00001','sc.navigationlink.00001','fa fa-link','/navigation-link',null,'sc.common.00011','1','1.1',2,0);
+INSERT INTO bb_navigationlink(messageCode,code,icon,path,project_id,parent_code,groupid,groupindex,itemindex,version) VALUES('sc.message.00001','sc.message.00001','fa fa-database','/message',null,'sc.common.00011','1','1.2',3,0);
+INSERT INTO bb_navigationlink(messageCode,code,icon,path,project_id,parent_code,groupid,groupindex,itemindex,version) VALUES('sc.account.00001','sc.account.00001','fa fa-user','/account',null,'sc.common.00011','1','1.3',4,0);
 
 #resources
 

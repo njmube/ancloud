@@ -1,5 +1,6 @@
 package org.bluebird.domain;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -10,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -27,16 +29,20 @@ public class NavigationLink extends BaseModel{
 	
 	private String path;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(referencedColumnName="code")
+	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.REMOVE)
+	@JoinColumns({
+		@JoinColumn(referencedColumnName = "code")
+	})
 	private NavigationLink parent;
 	
-	@OneToMany(fetch=FetchType.EAGER,mappedBy="parent")
-	private Set<NavigationLink> children;
+	@OneToMany(fetch=FetchType.EAGER,mappedBy="parent",cascade=CascadeType.REMOVE)
+	private Set<NavigationLink> children = new HashSet<NavigationLink>();
 
 	private String groupId;
 	
 	private String groupIndex;
+	
+	private Integer itemIndex;
 	
 	public String getMessageCode() {
 		return messageCode;
@@ -92,6 +98,14 @@ public class NavigationLink extends BaseModel{
 
 	public void setGroupIndex(String groupIndex) {
 		this.groupIndex = groupIndex;
+	}
+
+	public Integer getItemIndex() {
+		return itemIndex;
+	}
+
+	public void setItemIndex(Integer itemIndex) {
+		this.itemIndex = itemIndex;
 	}
 	
 }

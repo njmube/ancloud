@@ -1,13 +1,9 @@
 package org.bluebird.fw.presentation.resolver;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 
 import org.bluebird.fw.core.service.SessionService;
 import org.springframework.core.MethodParameter;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.web.bind.support.WebArgumentResolver;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;

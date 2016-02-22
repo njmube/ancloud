@@ -7,8 +7,13 @@
 <!-- Tell the browser to be responsive to screen width -->
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
+<script type="text/javascript">
+		var CONTEXT_PATH = "${pageContext.request.contextPath}";
+		var CURRENT_PROJECT_ID = "${sessionScope.CURRENT_PROJECT.id}";
+</script>
 <link rel="stylesheet" href="${resourceBasePath}/plugin/font-awesome.css">
 <link rel="stylesheet" href="${resourceBasePath}/plugin/bootstrap.css">
+<link rel="stylesheet" href="${resourceBasePath}/plugin/typeahead.css">
 <link rel="stylesheet" href="${resourceBasePath}/css/core/bluebird.css">
 <link rel="stylesheet" href="${resourceBasePath}/css/core/bluebird.purple-light.css">
 <link rel="stylesheet" href="${resourceBasePath}/css/app/bootstrap.bluebird.css">
@@ -47,7 +52,7 @@ desired effect
 	<c:set var="layout" value="${sessionScope.pageLayout }"></c:set>
 </c:if>
 <c:if test="${empty sessionScope.pageLayout }">
-	<c:set var="layout" value="sidebar-mini fixed"></c:set>
+	<c:set var="layout" value="sidebar-mini"></c:set>
 </c:if>
 <body class="hold-transition skin-purple-light ${layout}">
 	<div class="wrapper">
@@ -86,7 +91,9 @@ desired effect
 	<script src="${resourceBasePath}/plugin/bootstrap.js"></script>
 	<script src="${resourceBasePath}/plugin/jquery.slimscroll.js"></script>
 	<script src="${resourceBasePath}/plugin/handlebars.js"></script>
+	<script src="${resourceBasePath}/plugin/typeahead.bundle.js"></script>
 	<script src="${resourceBasePath}/js/core/bluebird.js"></script>
+	<script src="${resourceBasePath}/js/core/bluebird.common.js"></script>
 	<script src="${resourceBasePath}/js/core/bluebird.ar.js"></script>
 	<script src="${resourceBasePath}/plugin/angular.js" type="text/javascript"></script>
 	<script src="${resourceBasePath}/plugin/angular-router.js" type="text/javascript"></script>

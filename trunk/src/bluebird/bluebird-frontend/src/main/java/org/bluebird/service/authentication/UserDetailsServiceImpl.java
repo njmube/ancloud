@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Set;
 
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 
 import org.bluebird.domain.common.SystemCodeConstant;
 import org.bluebird.domain.module.account.Account;
@@ -20,6 +19,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component("userDetailsService")
 @Transactional
