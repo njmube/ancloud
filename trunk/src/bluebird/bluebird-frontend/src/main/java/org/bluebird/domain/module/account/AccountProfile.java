@@ -16,6 +16,8 @@ public class AccountProfile extends BaseModel {
 
 	private String dateFormat = "dd/MM/YYYY";
 
+	private String locale = "en_US";
+	
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Account parent;
 	
@@ -33,5 +35,13 @@ public class AccountProfile extends BaseModel {
 
 	public void setParent(Account parent) {
 		this.parent = parent;
+	}
+
+	public void setLocale(String locale) {
+		this.locale = locale;
+	}
+	
+	public String getLocale() {
+		return this.locale;
 	}
 }

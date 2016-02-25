@@ -43,6 +43,7 @@ public class DataTypeUtil {
 	}
 	
 	public static<T> T toObject(String  objJson,final Class<T> clazz){
+		if(objJson==null) return null;
 		JsonFactory json = new JsonFactory();
 		ObjectMapper mapper = new ObjectMapper(json);
 		ObjectReader reader = mapper.reader()

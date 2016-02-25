@@ -9,6 +9,7 @@
 <%@ attribute name="cssClass" rtexprvalue="true" required="false"%>
 <%@ attribute name="sourcePath" rtexprvalue="true" required="true"%>
 <%@ attribute name="displayProperties" rtexprvalue="true" required="true"%>
+<%@ attribute name="submitProperty" rtexprvalue="true" required="true"%>
 <%@ attribute name="sourceType" rtexprvalue="true"%>
 <%@ attribute name="parameters" rtexprvalue="true"%>
 
@@ -20,5 +21,6 @@
 		data-source-type="${not empty sourcePath? sourcePath:'0'  }" 
 		data-parameter='${parameters }'
 		data-query-string-name="${queryStringName }"
-		data-display-properties="${displayProperties }" ></input>
+		data-display-properties="${displayProperties }"
+		data-submit-property="${submitProperty }" ></input>
 <input name="${name }" value="${value}" type="hidden"></input>

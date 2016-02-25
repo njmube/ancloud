@@ -1,7 +1,9 @@
 package org.bluebird.presentation.context;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -17,15 +19,15 @@ public class CodelistFactory implements FactoryBean<Codelist> {
 	public Codelist getObject() throws Exception {
 		Iterable<Resource> resources = resourceRepository.findAll();
 		Codelist codelist = new CodelistImpl();
-		List<Resource> resourceList = null;
+		Map<String,Resource> resourceList = null;
 		for(Resource resource:resources){
 			if(codelist.containsKey(resource.getCategory())){
 				resourceList = codelist.get(resource.getCategory());
 			} else {
-				resourceList = new ArrayList<Resource>();
+				resourceList = new HashMap<String,Resource>();
 				codelist.put(resource.getCategory(),resourceList);
 			}
-			resourceList.add(resource);
+			resourceList.put(resource.getKey(),resource);
 		}
 		return codelist ;
 	}

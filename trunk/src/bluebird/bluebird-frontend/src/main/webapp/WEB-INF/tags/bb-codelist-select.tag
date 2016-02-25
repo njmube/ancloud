@@ -7,7 +7,7 @@
 <%@ attribute name="codelistName" rtexprvalue="true" required="true" %>
 
 <form:select path="${path}">
-	<c:forEach items="${codelist[codelistName] }" var="item">
+	<c:forEach items="${codelist[codelistName].values }" var="item">
 		<form:option value="${item.key}">
 			<c:if test="${not empty item.value}">
 				<c:out value="${item.value}" escapeXml="true"/>

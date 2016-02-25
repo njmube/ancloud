@@ -27,7 +27,7 @@ public abstract class BaseModel implements Serializable{
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Account createdBy;
 	
-	private Timestamp createDate;
+	private Timestamp createdDate;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Account updatedBy;
@@ -64,12 +64,12 @@ public abstract class BaseModel implements Serializable{
 		this.createdBy = createdBy;
 	}
 
-	public Timestamp getCreateDate() {
-		return createDate;
+	public Timestamp getCreatedDate() {
+		return createdDate;
 	}
 
-	public void setCreateDate(Timestamp createDate) {
-		this.createDate = createDate;
+	public void setCreatedDate(Timestamp createDate) {
+		this.createdDate = createDate;
 	}
 
 	public Account getUpdatedBy() {

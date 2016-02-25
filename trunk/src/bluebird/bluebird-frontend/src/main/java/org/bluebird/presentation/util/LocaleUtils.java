@@ -6,6 +6,7 @@ import java.util.Locale;
 
 import org.springframework.beans.propertyeditors.LocaleEditor;
 import org.springframework.util.StringUtils;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 public class LocaleUtils {
 
@@ -130,6 +131,10 @@ public class LocaleUtils {
 		path.add(null);
 
 		return path;
+	}
+
+	public static String getRequestLocale() {
+		return fromLocale(RequestContextUtils.getLocale(HttpServletRequestUtil.getRequest()));
 	}
 
 }

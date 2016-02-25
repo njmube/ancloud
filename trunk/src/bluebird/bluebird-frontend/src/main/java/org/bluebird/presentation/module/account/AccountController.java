@@ -9,6 +9,7 @@ import org.bluebird.domain.common.SessionConstant;
 import org.bluebird.domain.module.account.Account;
 import org.bluebird.domain.module.account.AccountSearchCriteria;
 import org.bluebird.fw.core.service.SessionService;
+import org.bluebird.fw.presentation.BaseController;
 import org.bluebird.fw.presentation.resolver.Session;
 import org.bluebird.service.module.account.AccountService;
 import org.springframework.data.domain.Page;
@@ -24,16 +25,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping(value="account")
-public class AccountController {
+public class AccountController extends BaseController {
 	
 	@Inject
 	AccountService accountService;
 	
 	@Inject
 	SessionService sessionService;
-	
-	@Inject
-	MapperFacade mapper;
 	
 	@InitBinder(value="accountSearchForm")
 	public void initSearchForm(WebDataBinder binder){

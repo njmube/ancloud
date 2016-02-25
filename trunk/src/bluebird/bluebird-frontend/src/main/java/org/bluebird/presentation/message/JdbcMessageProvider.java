@@ -23,7 +23,7 @@ public class JdbcMessageProvider implements MessageProvider {
 	protected static final String QUERY_INSERT_MESSAGE = "INSERT INTO %s (%s, %s, %s, %s, %s) VALUES (?, ?, ?, ?, ?, ?)";
 	protected static final String QUERY_DELETE_MESSAGES = "DELETE FROM %s WHERE %s = ?";
 	protected static final String QUERY_SELECT_BASENAMES = "SELECT DISTINCT %s from %s";
-	protected static final String QUERY_SELECT_MESSAGES = "SELECT %s,%s,%s,%s,%s FROM %s WHERE (COALESCE(%s, '')|| '_' || COALESCE(%s, '')) = ?";
+	protected static final String QUERY_SELECT_MESSAGES = "SELECT %s,%s,%s,%s,%s FROM %s";// WHERE (COALESCE(%s, '')|| '_' || COALESCE(%s, '')) = ?";
 
 	private JdbcTemplate template;
 
@@ -46,7 +46,7 @@ public class JdbcMessageProvider implements MessageProvider {
 				addDelimiter(messageColumn), addDelimiter(tableName),
 				addDelimiter(languageColumn), addDelimiter(countryColumn));
 
-		return template.query(query, new Object[] {"en_US"}, extractor);
+		return template.query(query, new Object[] {}, extractor);
 	}
 
 	public void setMessages(String basename, Messages messages) {

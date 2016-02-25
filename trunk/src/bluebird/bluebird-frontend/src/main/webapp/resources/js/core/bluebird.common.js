@@ -5,40 +5,7 @@
 	$.fn.initializeAutocomplete = function() {
 		return this.each(function(){
 			var $this = $(this);
-			var substringMatcher = function(strs) {
-				return function findMatches(q, cb) {
-					var matches, substringRegex, substrRegex;
 
-					// an array that will be populated with substring matches
-					matches = [];
-
-					// regex used to determine if a string contains the substring
-					// `q`
-					substrRegex = new RegExp(q, 'i');
-
-					// iterate through the pool of strings and for any string that
-					// contains the substring `q`, add it to the `matches` array
-					$.each(strs, function(i, str) {
-						if (substrRegex.test(str)) {
-							matches.push(str);
-						}
-					});
-
-					cb(matches);
-				};
-			};
-
-			var states = [ 'Alabama', 'Alaska', 'Arizona', 'Arkansas',
-					'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida',
-					'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa',
-					'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland',
-					'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',
-					'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-					'New Jersey', 'New Mexico', 'New York', 'North Carolina',
-					'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania',
-					'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee',
-					'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington',
-					'West Virginia', 'Wisconsin', 'Wyoming' ];
 			var dataSource = new Bloodhound({
 				datumTokenizer : Bloodhound.tokenizers.obj.whitespace('value'),
 				queryTokenizer : Bloodhound.tokenizers.whitespace,
@@ -46,13 +13,29 @@
 					url : CONTEXT_PATH + $this.data("sourcePath"),
 					wildcard : '%QUERY',
 					prepare : function(query, settings) {
-						settings.type = "GET";
-						settings.contentType = "application/json; charset=UTF-8";
-						settings.headers = {"X-CSRF-TOKEN":""};
+//						settings.type = "POST";
+//						settings.contentType = "application/json; charset=UTF-8";
+//						settings.headers = {"X-CSRF-TOKEN":""};
 						var parameters = $this.data("parameter");
 						parameters[$this.data("queryStringName")] = query;
 						settings.data = "parameter="+encodeURIComponent(JSON.stringify(parameters));
 						return settings;
+					},
+					transform : function(response){
+						return response.content;
+					}
+				},
+				prefetch : {
+					url : CONTEXT_PATH + $this.data("sourcePath"),
+					wildcard : '%QUERY',
+					prepare : function(query, settings) {
+						var parameters = $this.data("parameter");
+						parameters[$this.data("queryStringName")] = query;
+						settings.data = "parameter="+encodeURIComponent(JSON.stringify(parameters));
+						return settings;
+					},
+					transform : function(response){
+						return response.content;
 					}
 				}
 			});
@@ -66,10 +49,9 @@
 				//display: function(item){ return item.message;},
 				limit : 100,//default : 5
 				templates : {
-					empty : [
-							'<div class="empty-message">',
-							'Nothing found!',
-							'</div>' ].join('\n'),
+					empty : ['<div class="empty-message">',
+								'Nothing found!',
+							'</div>' ].join('\r\n'),
 					suggestion : function(data){
 						var displayProperties = $this.data("displayProperties").split(",");
 						if(displayProperties){
@@ -86,14 +68,27 @@
 						}
 					}
 				},
-				mustSelectItem : true
-			}).on('typeahead:selected', 
-				function(e, item) {
+				mustSelectItem : true 
+			}).on('typeahead:initialized', function(e, item) {
+				var $input = $(e.target);
+				var $submitInput = $input.closest(".twitter-typeahead").next("input[type=hidden]");
+				
+			}).on('typeahead:selected', function(e, item) {
 					var $input = $(e.target);
-					$input.closest(".twitter-typeahead").next("input[type=hidden]").val(JSON.stringify(item));
+					var $submitInput = $input.closest(".twitter-typeahead").next("input[type=hidden]");
+					var submitProperty = $input.data("submitProperty");
+					if(submitProperty) {
+						if(typeof item[submitProperty] != "object" && typeof item[submitProperty] != "function"){
+							$submitInput.val(item[submitProperty]);
+						} else {
+							$submitInput.val(JSON.stringify(item[submitProperty]));
+						}
+					} else {
+						$submitInput.val(JSON.stringify(item));
+					}
 					$input.data("selectedItem",item);
-				}
-			).blur(function(e) {
+					
+			}).blur(function(e) {
 				var selectedItem = $(e.target).data("selectedItem");
 				var queryStringName = $this.data("queryStringName");
 				var $input = $(e.target);

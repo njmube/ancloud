@@ -2,10 +2,9 @@
 	<nav class="navbar navbar-static-top">
 		<div class="container">
 			<div class="navbar-header">
-				<a
-					href="${basePath}/dashboard"
-					class="navbar-brand"> <span class="logo-lg"><b><spring:message
-								code="sc.sys.00001" /></b></span>
+				<a href="${basePath}/dashboard"
+					class="navbar-brand"> 
+					<span class="logo-lg"><b><spring:message code="sc.sys.00001" /></b></span>
 				</a>
 				<button
 					type="button"
@@ -97,12 +96,12 @@
 					</li>
 					<!-- Tasks Menu -->
 					<li class="dropdown tasks-menu">
-						<!-- Menu Toggle Button --> <a
-						href="#"
-						class="dropdown-toggle"
-						data-toggle="dropdown"> <i class="fa fa-flag-o"></i> <span
-							class="label label-danger">9</span>
-					</a>
+						<!-- Menu Toggle Button -->
+						<a href="#"
+							class="dropdown-toggle"
+							data-toggle="dropdown"> 
+							<i class="fa fa-flag-o"></i><span class="label label-danger">9</span>
+						</a>
 						<ul class="dropdown-menu">
 							<li class="header">You have 9 tasks</li>
 							<li>
@@ -133,6 +132,23 @@
 							<li class="footer"><a href="#">View all tasks</a></li>
 						</ul>
 					</li>
+					<li class="dropdown languages-menu">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
+							<i class="fa fa-flag-o"></i>
+							<span class="label label-danger">Languages</span>
+						</a>
+						<ul class="dropdown-menu">
+							<c:forEach items="${codelist['language']}" var="item">
+								<li>
+									<a href="?lanuage=${item.key }">
+										<span class="flag flag-icon-background ${item.group }"></span>
+										${item.value }
+									</a>
+								</li>
+							</c:forEach>
+						</ul>
+					</li>
+					
 					<!-- User Account Menu -->
 					<li class="dropdown user user-menu">
 						<!-- Menu Toggle Button --> <a
@@ -157,13 +173,13 @@
 							<li class="user-body">
 								<div class="row">
 									<div class="col-xs-4 text-center">
-										<a href="#">Followers</a>
+										<a href="#"></a>
 									</div>
 									<div class="col-xs-4 text-center">
-										<a href="#">Sales</a>
+										<a href="#"></a>
 									</div>
 									<div class="col-xs-4 text-center">
-										<a href="#">Friends</a>
+										<a href="#"></a>
 									</div>
 								</div> <!-- /.row -->
 							</li>

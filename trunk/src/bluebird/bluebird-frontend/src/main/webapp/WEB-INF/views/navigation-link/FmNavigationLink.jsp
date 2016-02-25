@@ -61,7 +61,15 @@
 											<span class="input-group-btn">
 												<button class="btn btn-default bb-fa-btn fa-angle-double-down bb-navigationLink-addLinkButton" type="button"></button>
 											</span>
-											<bb-ex:autocomplete name="navigationLinks[${status.index }].messageCode" cssClass="form-control" value="${navigationLink.messageCode }" parameters="{\"hell\":\"hell\"}" queryStringName="message" sourcePath="/message/ajaxGetAllMessage" displayProperties="message,key,language"/>
+											<bb-ex:autocomplete
+												name="navigationLinks[${status.index }].messageCode"
+												cssClass="form-control"
+												value="${navigationLink.messageCode }"
+												parameters="{\"hell\":\"hell\"}"
+												queryStringName="message"
+												sourcePath="/message/ajaxGetAllMessage"
+												displayProperties="message,key,language"
+												submitProperty="key" />
 											<span class="input-group-btn">
 												<button class="btn btn-default bb-fa-btn fa-angle-double-right bb-navigationLink-addNestedLinkButton" type="button"></button>
 											</span>

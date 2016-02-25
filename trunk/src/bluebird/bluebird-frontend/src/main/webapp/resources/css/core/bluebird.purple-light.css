@@ -38,18 +38,6 @@
 	background-color: #555299;
 }
 
-@media ( max-width : 767px) {
-	.skin-purple-light .main-header .navbar .dropdown-menu li.divider {
-		background-color: rgba(255, 255, 255, 0.1);
-	}
-	.skin-purple-light .main-header .navbar .dropdown-menu li a {
-		color: #fff;
-	}
-	.skin-purple-light .main-header .navbar .dropdown-menu li a:hover {
-		background: #555299;
-	}
-}
-
 .skin-purple-light .main-header .logo {
 	background-color: #605ca8;
 	color: #ffffff;
@@ -180,11 +168,4 @@
 	border-top-right-radius: 2px;
 	border-bottom-right-radius: 2px;
 	border-bottom-left-radius: 0;
-}
-
-@media ( min-width : 768px) {
-	.skin-purple-light.sidebar-mini.sidebar-collapse .sidebar-menu>li>.treeview-menu
-		{
-		border-left: 1px solid #d2d6de;
-	}
 }

@@ -8,16 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.LocaleUtils;
 import org.bluebird.domain.NavigationLink;
 import org.bluebird.domain.Project;
 import org.bluebird.domain.common.SessionConstant;
 import org.bluebird.domain.module.account.Account;
 import org.bluebird.domain.module.account.AccountProfile;
 import org.bluebird.fw.core.service.SessionService;
+import org.bluebird.presentation.util.HttpServletRequestUtil;
 import org.bluebird.repository.AccountRepository;
 import org.bluebird.repository.NavigationLinkRepository;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 	
@@ -30,19 +34,23 @@ public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticatio
 	@Inject
 	AccountRepository accountRepository;
 	
+	@Inject
+	LocaleResolver localeResolver;
+	
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
 			throws IOException, ServletException {
 		super.onAuthenticationSuccess(request, response, intercepAuthentication(authentication));
 		Account account = ((UserDetailsImpl)authentication.getPrincipal()).getAccount();
-		sessionService.put(SessionConstant.SESSION_CURRENT_PROJECT,new Project());
+		AccountProfile accountProfile = new AccountProfile();
+		sessionService.put(SessionConstant.SESSION_CURRENT_PROJECT,new Project(){{setId(100L);}});
 		sessionService.put(SessionConstant.SESSION_ACCOUNT,account);
 		sessionService.put(SessionConstant.SESSION_NAVIGATION_LINKS, navigationLinkRepository.findByParentAndProject(null,account.getProject()));
 		if(CollectionUtils.isNotEmpty(account.getAccountProfiles())){
-			sessionService.put(SessionConstant.SESSION_CURRENT_ACCOUNT_PROFILE,account.getAccountProfiles().get(0));;
-		} else {
-			sessionService.put(SessionConstant.SESSION_CURRENT_ACCOUNT_PROFILE,new AccountProfile());
+			accountProfile = account.getAccountProfiles().get(0);
 		}
+		sessionService.put(SessionConstant.SESSION_CURRENT_ACCOUNT_PROFILE,accountProfile);
+		localeResolver.setLocale(HttpServletRequestUtil.getRequest(), null, LocaleUtils.toLocale(accountProfile.getLocale()));
 	}
 
 	private Authentication intercepAuthentication(Authentication authentication) {

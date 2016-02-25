@@ -23,6 +23,8 @@ public class Account extends BaseModel {
 
 	@Column(unique=true)
 	private String userName;
+	
+	private String title;
 
 	private String password;
 
@@ -137,5 +139,13 @@ public class Account extends BaseModel {
 
 	public void setAccountProfiles(List<AccountProfile> accountProfiles) {
 		this.accountProfiles = accountProfiles;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 }

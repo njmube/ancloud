@@ -1,10 +1,11 @@
 package org.bluebird.service.module.message;
 
-import java.util.List;
-
-import org.bluebird.domain.Message;
 import org.bluebird.domain.Project;
+import org.bluebird.domain.module.message.Message;
+import org.bluebird.domain.module.message.MessageSearchCriteria;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface MessageService {
-	public List<Message> findAll(Project project,String message);
+	public Page<Message> findAll(Project project,MessageSearchCriteria message,Pageable pageable);
 }

@@ -13,6 +13,7 @@
 </script>
 <link rel="stylesheet" href="${resourceBasePath}/plugin/font-awesome.css">
 <link rel="stylesheet" href="${resourceBasePath}/plugin/bootstrap.css">
+<link rel="stylesheet" href="${resourceBasePath}/plugin/flag/flag-icon.css">
 <link rel="stylesheet" href="${resourceBasePath}/plugin/typeahead.css">
 <link rel="stylesheet" href="${resourceBasePath}/css/core/bluebird.css">
 <link rel="stylesheet" href="${resourceBasePath}/css/core/bluebird.purple-light.css">

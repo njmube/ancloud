@@ -19,7 +19,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	<context:component-scan base-package="org.bluebird.presentation.module" />
 	
 	
-	<mvc:annotation-driven validator="validator">
+	<mvc:annotation-driven validator="validator" ignore-default-model-on-redirect="true">
 		<mvc:argument-resolvers>
 			<bean class="org.bluebird.fw.presentation.resolver.SessionArgumentResolver"/>
 			<bean class="org.bluebird.fw.presentation.resolver.JsonParamArgumentResolver"/>
@@ -75,6 +75,12 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 			<mvc:exclude-mapping path="/**/*.html" />
 			<bean class="org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor" />
 		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/resources/**" />
+			<mvc:exclude-mapping path="/**/*.html" />
+			<ref bean="localeChangeInterceptor" />
+		</mvc:interceptor>
 	</mvc:interceptors>
 	
 <!-- 	<mvc:interceptors> -->
@@ -101,13 +107,14 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 <!-- 		</mvc:interceptor> -->
 <!-- 	</mvc:interceptors> -->
 	
-	<bean id="localeResolver"
-		class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
-		<property name="defaultLocale" value="en_US" />
-		<property name="cookieName" value="bluebird"></property>
-		<property name="cookieMaxAge" value="3600"></property>
+
+
+	<bean id="localeChangeInterceptor"
+		class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+		<property name="paramName" value="language" />
 	</bean>
 	
+
 	<bean id="connectionFactoryLocator"
 		class="org.springframework.social.connect.support.ConnectionFactoryRegistry">
 		<property name="connectionFactories">

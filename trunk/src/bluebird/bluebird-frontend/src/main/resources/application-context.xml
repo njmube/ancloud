@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
-	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa" 
+	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
 http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
 http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
- http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+ http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+ http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 	
 	
 	<context:property-placeholder location="classpath:bluebird-infra.properties" />
@@ -29,19 +34,21 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="jpaVendorAdapter">
-			<bean id="jpaAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" p:showSql="${hibernate.show_sql}" />
+			<bean id="jpaAdapter" 
+					class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
+					p:showSql="${hibernate.show_sql}" />
 		</property>
 		<property name="jpaProperties">
 			<props>
-			    <prop key="hibernate.dialect">${hibernate.dialect}</prop>
-				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="javax.persistence.schema-generation.database.action">${jpa.schema-generation}</prop>
 			</props>
 		</property>
 		<property name="packagesToScan" value="org.bluebird.domain" />
 		<property name="loadTimeWeaver">
-			<bean
-				class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver" />
+			<bean class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver" />
 		</property>
+		
 	</bean>
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
 		destroy-method="close">
@@ -55,6 +62,9 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 		<property name="minIdle" value="${cp.minIdle}" />
 		<property name="maxWaitMillis" value="${cp.maxWait}" />
 	</bean>
+	<jdbc:initialize-database data-source="dataSource" enabled="${spring.initDb}">
+		<jdbc:script location="classpath:/initDB.sql" encoding="UTF-8" />
+	</jdbc:initialize-database>
 	<bean class="org.bluebird.fw.presentation.factorybean.BeanMapperContextAware"></bean>
 	<bean class="org.bluebird.presentation.context.CodelistFactory"></bean>
 	<bean id="messageSource" class="org.bluebird.presentation.message.InitializableMessageSource">
@@ -66,4 +76,14 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 		<property name="autoInitialization" value="false"></property>
 	</bean>
 	
+	<!-- 	<bean id="localeResolver" -->
+<!-- 		class="org.springframework.web.servlet.i18n.CookieLocaleResolver"> -->
+<!-- 		<property name="defaultLocale" value="en_US" /> -->
+<!-- 		<property name="cookieName" value="bluebird"></property> -->
+<!-- 		<property name="cookieMaxAge" value="3600"></property> -->
+<!-- 	</bean> -->
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<property name="defaultLocale" value="en_US" />
+	</bean>
 </beans>
