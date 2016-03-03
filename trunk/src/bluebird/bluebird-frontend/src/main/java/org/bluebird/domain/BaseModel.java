@@ -13,6 +13,10 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
 
 import org.bluebird.domain.module.account.Account;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 
 @SuppressWarnings("serial")
 @MappedSuperclass
@@ -25,14 +29,18 @@ public abstract class BaseModel implements Serializable{
 	private String code;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
+	@CreatedBy
 	private Account createdBy;
 	
+	@CreatedDate
 	private Timestamp createdDate;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
-	private Account updatedBy;
+	@LastModifiedBy
+	private Account lastUpdatedBy;
 	
-	private Timestamp updatedDate;
+	@LastModifiedDate
+	private Timestamp lastUpdatedDate;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Project project;
@@ -72,20 +80,20 @@ public abstract class BaseModel implements Serializable{
 		this.createdDate = createDate;
 	}
 
-	public Account getUpdatedBy() {
-		return updatedBy;
+	public Account getLastUpdatedBy() {
+		return lastUpdatedBy;
 	}
 
-	public void setUpdatedBy(Account updatedBy) {
-		this.updatedBy = updatedBy;
+	public void setLastUpdatedBy(Account updatedBy) {
+		this.lastUpdatedBy = updatedBy;
 	}
 
-	public Timestamp getUpdatedDate() {
-		return updatedDate;
+	public Timestamp getLastUpdatedDate() {
+		return lastUpdatedDate;
 	}
 
-	public void setUpdatedDate(Timestamp updatedDate) {
-		this.updatedDate = updatedDate;
+	public void setLastUpdatedDate(Timestamp updatedDate) {
+		this.lastUpdatedDate = updatedDate;
 	}
 
 	public Project getProject() {

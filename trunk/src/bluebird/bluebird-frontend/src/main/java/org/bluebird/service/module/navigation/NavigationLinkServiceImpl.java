@@ -2,6 +2,7 @@ package org.bluebird.service.module.navigation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -21,13 +22,13 @@ public class NavigationLinkServiceImpl implements NavigationLinkService{
 	NavigationLinkRepository navigationLinkRepository;
 	
 	@Override
-	public List<NavigationLink> findAllNavigationLinkByProject(Project project){
-		return navigationLinkRepository.findByProjectOrderByItemIndex(project);
+	public List<NavigationLink> findAllNavigationLinkByProject(Project project,Locale locale){
+		return navigationLinkRepository.findByProjectAndLocaleOrderByItemIndex(project.getId(),locale.getLanguage(),locale.getCountry());
 	}
 
 	@Override
 	public void modifyList(List<NavigationLink> navigationLinks,Project project) {
-		List<NavigationLink> currentNavigationLinks = this.findAllNavigationLinkByProject(project); 
+		List<NavigationLink> currentNavigationLinks = navigationLinkRepository.findByProjectOrderByItemIndex(project); 
 		NavigationLink editingNavigationLink = null;
 		List<Long> ids = new ArrayList<Long>();
 		List<NavigationLink> newNavigationLinks = new ArrayList<NavigationLink>();
@@ -35,7 +36,7 @@ public class NavigationLinkServiceImpl implements NavigationLinkService{
 			if(navigationLink.getId()!=null){
 				ids.add(navigationLink.getId());
 				editingNavigationLink = this.findEditingNavigationLink(navigationLink.getId(),currentNavigationLinks);
-				editingNavigationLink.setMessageCode(navigationLink.getMessageCode());
+				editingNavigationLink.setMessageKey(navigationLink.getMessageKey());
 				editingNavigationLink.setPath(navigationLink.getPath());
 				editingNavigationLink.setGroupId(navigationLink.getGroupId());
 				editingNavigationLink.setGroupIndex(navigationLink.getGroupIndex());
@@ -45,7 +46,7 @@ public class NavigationLinkServiceImpl implements NavigationLinkService{
 			}
 		}
 		for(NavigationLink navigationLink : newNavigationLinks){
-			navigationLink.setCode(navigationLink.getMessageCode());
+			navigationLink.setCode(navigationLink.getMessageKey());
 			navigationLink.setParent(this.findParentNavigationLink(navigationLink.getGroupId(),newNavigationLinks,currentNavigationLinks));
 		}
 		navigationLinkRepository.deleteByIdNotIn(ids);

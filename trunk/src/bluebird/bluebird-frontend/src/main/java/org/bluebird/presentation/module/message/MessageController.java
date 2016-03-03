@@ -1,5 +1,7 @@
 package org.bluebird.presentation.module.message;
 
+import java.util.Locale;
+
 import javax.inject.Inject;
 
 import org.apache.commons.lang3.StringUtils;
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 
 @Controller
@@ -43,7 +46,15 @@ public class MessageController {
 	
 	@RequestMapping(value="ajaxGetAllMessage", method = {RequestMethod.GET})
 	@ResponseBody
-	public Page<Message> ajaxGetAllMessage(@JsonParam("parameter") MessageSearchCriteria message,@Session(key=SessionConstant.SESSION_CURRENT_PROJECT) Project project,@PageableDefault Pageable pageable){
-		return messageService.findAll(project, message ,pageable);
+	public Page<Message> ajaxGetAllMessage(@JsonParam("parameter") MessageSearchCriteria message,
+											@Session(key=SessionConstant.SESSION_CURRENT_PROJECT) Project project,
+											@Session(key=SessionConstant.SESSION_CURRENT_LOCALE) Locale locale,
+											@PageableDefault Pageable pageable){
+		if(message != null){
+			message.setProject(project);
+			message.setCountry(locale.getCountry());
+			message.setLanguage(locale.getLanguage());
+		}
+		return messageService.findAll(message ,pageable);
 	}
 }

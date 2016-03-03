@@ -7,7 +7,7 @@
 	</Appenders>
 	<Loggers>
 		<!-- Application Loggers -->
-		<Logger name="org.bluebird" level="All" />
+		<Logger name="org.bluebird" level="debug"/>
 		
 		<!-- 3rdparty Loggers -->
 		<Logger name="org.springframework.core" level="info" />
@@ -18,15 +18,11 @@
 
 		<Logger name="org.springframework.web" level="info" />
 		
-		<Logger name="org.springframework.security" level="debug" />
+		<Logger name="org.springframework.security" level="info" />
 
-		<Logger name="org.springframework" level="debug" />
-		
-		<logger name="org.hibernate" level="debug" />
-		
 		<logger name="org.hibernate.tool.hbm2ddl" level="info" />
 		
-		<Root level="All">
+		<Root level="info">
 			<AppenderRef ref="console" />
 		</Root>
 	</Loggers>

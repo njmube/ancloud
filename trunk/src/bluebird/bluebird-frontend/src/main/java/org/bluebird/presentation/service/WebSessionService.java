@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.bluebird.fw.core.service.SessionService;
+import org.bluebird.fw.core.util.DataTypeUtil;
 import org.bluebird.presentation.util.HttpServletRequestUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,8 +22,12 @@ public class WebSessionService implements SessionService {
 		HttpSession session = request.getSession(true);
 		if (session == null)
 			return null;
-		logger.info(String.format("Get %s from session succesfully!", objectName));
-		return session.getAttribute(objectName);
+		Object result = session.getAttribute(objectName);
+		if(logger.isDebugEnabled()){
+			logger.debug(String.format("Get %s from session succesfully!", objectName));
+			logger.debug(DataTypeUtil.toJson(result));
+		}
+		return result;
 	}
 	
 	@Override
@@ -30,7 +35,10 @@ public class WebSessionService implements SessionService {
 		HttpSession session = HttpServletRequestUtil.getRequest().getSession(true);
 		if (session != null){
 			session.setAttribute(objectName, object);
-			logger.info(String.format("Set %s to session succesfully!", objectName));
+			if(logger.isDebugEnabled()){
+				logger.info(String.format("Set %s to session succesfully!", objectName));
+				logger.debug(DataTypeUtil.toJson(object));
+			}
 		}
 		return object;
 	}

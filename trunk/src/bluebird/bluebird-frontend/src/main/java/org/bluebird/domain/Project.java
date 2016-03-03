@@ -31,9 +31,6 @@ public class Project {
 	
 	private Timestamp updatedDate;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	private Project project;
-
 	public Account getCreatedBy() {
 		return createdBy;
 	}

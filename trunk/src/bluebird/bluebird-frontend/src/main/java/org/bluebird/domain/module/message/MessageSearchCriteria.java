@@ -15,7 +15,11 @@ public class MessageSearchCriteria extends Message implements Specification<Mess
 	@Override
 	public Predicate toPredicate(Root<Message> root,CriteriaQuery<?> criteriaquery, CriteriaBuilder criteriabuilder) {
 		String containsLikePattern = CriteriaUtil.getContainsLikePattern(this.getMessage());
-		return criteriabuilder.and(criteriabuilder.like(criteriabuilder.lower(root.<String>get("message")),containsLikePattern));
+		
+		return criteriabuilder.and(criteriabuilder.like(criteriabuilder.lower(root.<String>get("message")),containsLikePattern),
+								(this.getProject()==null?criteriabuilder.isNull(root.<String>get("project")):criteriabuilder.equal(root.<String>get("project"), this.getProject())),
+								criteriabuilder.equal(root.<String>get("country"), this.getCountry()),
+								criteriabuilder.equal(root.<String>get("language"), this.getLanguage()));
 	}
 	
 }

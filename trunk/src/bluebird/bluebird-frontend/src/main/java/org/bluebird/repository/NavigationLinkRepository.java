@@ -2,20 +2,20 @@ package org.bluebird.repository;
 
 
 import java.util.List;
+import java.util.Locale;
 
 import org.bluebird.domain.NavigationLink;
 import org.bluebird.domain.Project;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
-public interface NavigationLinkRepository extends JpaRepository<NavigationLink, Long> {
+public interface NavigationLinkRepository extends BluebirdCommonRepository<NavigationLink> {
 	
 	public List<NavigationLink> findByParentAndProject(NavigationLink parent,Project project);
 
 	public List<NavigationLink> findByProjectOrderByItemIndex(Project project);
+	
+	@Query(nativeQuery=true)
+	public List<NavigationLink> findByProjectAndLocaleOrderByItemIndex(Long projectId,String language,String country);
 
-	@Modifying
-	@Query("DELETE FROM #{#entityName} A WHERE A.id NOT IN ?1")
-	public Integer deleteByIdNotIn(Iterable<Long> navigationLinkIds);
 }

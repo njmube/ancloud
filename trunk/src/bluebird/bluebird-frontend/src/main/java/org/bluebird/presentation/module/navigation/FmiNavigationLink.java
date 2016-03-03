@@ -8,7 +8,9 @@ public class FmiNavigationLink {
 	private Long id;
 	
 	@NotEmpty
-	private String messageCode;
+	private String messageKey;
+	
+	private String message;
 
 	private String icon;
 
@@ -20,8 +22,8 @@ public class FmiNavigationLink {
 	
 	private String itemIndex;
 
-	public String getMessageCode() {
-		return messageCode;
+	public String getMessageKey() {
+		return messageKey;
 	}
 
 	public Long getId() {
@@ -32,8 +34,16 @@ public class FmiNavigationLink {
 		this.id = id;
 	}
 
-	public void setMessageCode(String messageCode) {
-		this.messageCode = messageCode;
+	public void setMessageKey(String messageKey) {
+		this.messageKey = messageKey;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 	public String getIcon() {

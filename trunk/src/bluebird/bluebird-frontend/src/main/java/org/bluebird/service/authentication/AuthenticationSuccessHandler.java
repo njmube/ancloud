@@ -43,9 +43,11 @@ public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticatio
 		super.onAuthenticationSuccess(request, response, intercepAuthentication(authentication));
 		Account account = ((UserDetailsImpl)authentication.getPrincipal()).getAccount();
 		AccountProfile accountProfile = new AccountProfile();
-		sessionService.put(SessionConstant.SESSION_CURRENT_PROJECT,new Project(){{setId(100L);}});
+		Project project = new Project();
+		project.setId(0L);
+		sessionService.put(SessionConstant.SESSION_CURRENT_PROJECT,project);
 		sessionService.put(SessionConstant.SESSION_ACCOUNT,account);
-		sessionService.put(SessionConstant.SESSION_NAVIGATION_LINKS, navigationLinkRepository.findByParentAndProject(null,account.getProject()));
+		sessionService.put(SessionConstant.SESSION_NAVIGATION_LINKS, navigationLinkRepository.findByParentAndProject(null,project));
 		if(CollectionUtils.isNotEmpty(account.getAccountProfiles())){
 			accountProfile = account.getAccountProfiles().get(0);
 		}

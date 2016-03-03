@@ -1,10 +1,13 @@
 package org.bluebird.presentation.module.navigation;
 
+import java.util.Locale;
+
 import javax.inject.Inject;
 import javax.validation.Valid;
 
 import org.bluebird.domain.NavigationLink;
 import org.bluebird.domain.Project;
+import org.bluebird.domain.common.SessionConstant;
 import org.bluebird.fw.presentation.BaseController;
 import org.bluebird.fw.presentation.resolver.Session;
 import org.bluebird.service.module.navigation.NavigationLinkService;
@@ -39,14 +42,14 @@ public class NavigationLinkController extends BaseController {
 	}
 
 	@RequestMapping(value = {"","/modify"}, method = RequestMethod.GET)
-	public String displayModify(FmNavigationLink fmNavigationLink, Model model,@Session(key="project") Project project) {
-		fmNavigationLink.setNavigationLinks(this.mapper.mapAsList(navigationLinkService.findAllNavigationLinkByProject(project), FmiNavigationLink.class));
+	public String displayModify(FmNavigationLink fmNavigationLink, Model model,@Session(key=SessionConstant.SESSION_CURRENT_PROJECT) Project project,@Session(key=SessionConstant.SESSION_CURRENT_LOCALE) Locale locale) {
+		fmNavigationLink.setNavigationLinks(this.mapper.mapAsList(navigationLinkService.findAllNavigationLinkByProject(project,locale), FmiNavigationLink.class));
 		
 		return "navigation-link/FmNavigationLink";
 	}
 	
 	@RequestMapping(value = {"/modify"}, method = RequestMethod.POST)
-	public String processModify(@Valid FmNavigationLink fmNavigationLink,BindingResult bindingResult, Model model,@Session(key="project") Project project) {
+	public String processModify(@Valid FmNavigationLink fmNavigationLink,BindingResult bindingResult, Model model,@Session(key=SessionConstant.SESSION_CURRENT_PROJECT) Project project) {
 		String dest = null;
 		
 		if(bindingResult.hasErrors()){

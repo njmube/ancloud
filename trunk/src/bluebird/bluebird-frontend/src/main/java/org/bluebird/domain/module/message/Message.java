@@ -1,15 +1,20 @@
 package org.bluebird.domain.module.message;
 
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.bluebird.domain.BaseModel;
 
 @Entity
-@Table(name = "bb_message")
+@Table(name = "bb_message",
+		uniqueConstraints=@UniqueConstraint(columnNames={"key","language","country"})
+)
+@Embeddable
 public class Message extends BaseModel {
 
 	private static final long serialVersionUID = -8644123651815590065L;

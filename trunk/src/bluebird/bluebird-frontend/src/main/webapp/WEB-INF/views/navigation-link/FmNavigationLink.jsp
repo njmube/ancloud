@@ -17,7 +17,7 @@
 			<c:if test="${not empty fmNavigationLink.navigationLinks}">
 			<c:forEach items="${fmNavigationLink.navigationLinks}"  var="navigationLink">
 				{
-					messageCode: '${navigationLink.messageCode}',
+					messageKey: '${navigationLink.messageKey}',
 					icon: '${navigationLink.icon}',
 					path: '${navigationLink.path}',
 					groupId: '${navigationLink.groupId}',
@@ -62,14 +62,15 @@
 												<button class="btn btn-default bb-fa-btn fa-angle-double-down bb-navigationLink-addLinkButton" type="button"></button>
 											</span>
 											<bb-ex:autocomplete
-												name="navigationLinks[${status.index }].messageCode"
+												name="navigationLinks[${status.index }].messageKey"
 												cssClass="form-control"
-												value="${navigationLink.messageCode }"
+												value="${navigationLink.messageKey }"
 												parameters="{\"hell\":\"hell\"}"
 												queryStringName="message"
 												sourcePath="/message/ajaxGetAllMessage"
 												displayProperties="message,key,language"
-												submitProperty="key" />
+												submitProperty="key"
+												displayText="${navigationLink.message }" />
 											<span class="input-group-btn">
 												<button class="btn btn-default bb-fa-btn fa-angle-double-right bb-navigationLink-addNestedLinkButton" type="button"></button>
 											</span>

@@ -7,15 +7,13 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
 
 @Entity
 @Table(name = "bb_navigationLink")
@@ -23,7 +21,9 @@ public class NavigationLink extends BaseModel{
 	
 	private static final long serialVersionUID = 2460630851669244383L;
 
-	private String messageCode;
+	private String messageKey;
+	
+	private String message;
 	
 	private String icon;
 	
@@ -44,12 +44,12 @@ public class NavigationLink extends BaseModel{
 	
 	private Integer itemIndex;
 	
-	public String getMessageCode() {
-		return messageCode;
+	public String getMessageKey() {
+		return messageKey;
 	}
 
-	public void setMessageCode(String messageCode) {
-		this.messageCode = messageCode;
+	public void setMessageKey(String messageKey) {
+		this.messageKey = messageKey;
 	}
 
 	public String getIcon() {
@@ -106,6 +106,14 @@ public class NavigationLink extends BaseModel{
 
 	public void setItemIndex(Integer itemIndex) {
 		this.itemIndex = itemIndex;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 	
 }

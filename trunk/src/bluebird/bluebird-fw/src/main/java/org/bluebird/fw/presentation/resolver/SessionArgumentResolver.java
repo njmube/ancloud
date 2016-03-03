@@ -20,7 +20,10 @@ public class SessionArgumentResolver implements HandlerMethodArgumentResolver  {
 			NativeWebRequest nativeWebRequest,
 			WebDataBinderFactory webdatabinderfactory) throws Exception {
 		Session sessionAnnotation = methodParameter.getParameterAnnotation(Session.class);
-		Object resolvedObject = sessionService.get(sessionAnnotation.key(),methodParameter.getDeclaringClass());
+		Object resolvedObject = null;
+		if(sessionService != null){
+			resolvedObject = sessionService.get(sessionAnnotation.key(),methodParameter.getParameterType());
+		}
 		return resolvedObject;
 	}
 
