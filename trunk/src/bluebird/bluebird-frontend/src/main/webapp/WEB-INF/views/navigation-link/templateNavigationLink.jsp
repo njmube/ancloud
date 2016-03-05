@@ -14,7 +14,7 @@
 				<bb-ex:autocomplete name="navigationLinks[0].messageCode" 
 									cssClass="form-control" 
 									sourcePath="/message/ajaxGetAllMessage" 
-									queryStringName="message" 
+									queryStringProperty="message" 
 									displayProperties="message,key,language"
 									submitProperty="key"/>
 				<span class="input-group-btn">

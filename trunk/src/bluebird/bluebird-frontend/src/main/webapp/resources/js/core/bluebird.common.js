@@ -16,11 +16,9 @@
 					url : CONTEXT_PATH + $this.data("sourcePath"),
 					wildcard : '%QUERY',
 					prepare : function(query, settings) {
-//						settings.type = "POST";
-//						settings.contentType = "application/json; charset=UTF-8";
-//						settings.headers = {"X-CSRF-TOKEN":""};
+//						settings.type = "POST"; // JQuery ajax settings
 						var parameters = $this.data("parameter");
-						parameters[$this.data("queryStringName")] = query;
+						parameters[$this.data("queryStringProperty")] = query;
 						parameters['r'] = Math.random();
 						settings.data = "parameter="+encodeURIComponent(JSON.stringify(parameters));
 						return settings;
@@ -31,10 +29,9 @@
 				},
 				prefetch : {
 					url : CONTEXT_PATH + $this.data("sourcePath"),
-					
 					prepare : function(settings) {
 						var parameters = $this.data("parameter");
-						parameters[$this.data("queryStringName")] = "";
+						parameters[$this.data("queryStringProperty")] = "";
 						settings.url += "?parameter="+encodeURIComponent(JSON.stringify(parameters))+"&r="+encodeURIComponent(Math.random())+"&size=1000";
 						return settings;
 					},
@@ -47,12 +44,12 @@
 			dataSource.initialize();
 			
 			$this.typeahead({
-				hint : true,
+				hint : false,
 				highlight : true,
 				minLength : 0,
 			}, {
 				source : dataSource,
-				displayKey : $this.data("queryStringName"),
+				displayKey : $this.data("queryStringProperty"),
 				//display: function(item){ return item.message;},
 				limit : 100,//default : 5
 				templates : {
@@ -75,6 +72,8 @@
 						}
 					}
 				}
+			}).on('typeahead:render', function(e, suggestions,b,c) {
+				$this.data("suggestions",arguments);
 			}).on('typeahead:selected', function(e, item) {
 					var $input = $(e.target);
 					var $submitInput = $input.closest(".twitter-typeahead").next("input[type=hidden]");
@@ -91,14 +90,17 @@
 					$input.data("selectedItem",item);
 					
 			}).on('typeahead:idle', function(e, item) {
-				var dataSource = dataSource;
-				var selectedItem = $(e.target).data("selectedItem");
-				var queryStringName = $this.data("queryStringName");
 				var $input = $(e.target);
+				var dataSource = dataSource;
+				var selectedItem = $input.data("selectedItem");
+				var queryStringProperty = $input.data("queryStringProperty");
+				var submitProperty = $input.data("submitProperty");
+				var mustMatch = $input.data("mustMatch") || true;
+				
 				var $submitInput = $input.closest(".twitter-typeahead").next("input[type=hidden]");
 				if(selectedItem){
-					if(queryStringName){
-						if(selectedItem[queryStringName] != $(e.target).val()){
+					if(queryStringProperty){
+						if(selectedItem[queryStringProperty] != $(e.target).val()){
 							$input.typeahead('val', '');
 							$submitInput.val("");
 							$input.data("selectedItem",null);
@@ -111,10 +113,35 @@
 						}
 					}
 				} else {
-					if(!$input.val() || $submitInput()){
+					if(!$input.val() || !$submitInput.val() &&
+							mustMatch == "true"){
 						$input.typeahead('val', '');
 						$submitInput.val("");
 					}
+				}
+			}).on('typeahead:change', function(e, item) {
+				var $input = $(e.target);
+				var dataSource = dataSource;
+				var selectedItem = $(e.target).data("selectedItem");
+				var queryStringProperty = $input.data("queryStringProperty");
+				var submitProperty = $input.data("submitProperty");
+				var mustMatch = $input.data("mustMatch") || true;
+				var suggestions = $this.data("suggestions");
+				var $submitInput = $input.closest(".twitter-typeahead").next("input[type=hidden]");
+				if(!(!suggestions || suggestions.length <= 0)){
+					for(var i=1;i<suggestions.length;i++){
+						if(!selectedItem && suggestions[i][queryStringProperty] == $input.val()){
+							$input.data("selectedItem",suggestions[i]);
+							selectedItem = suggestions[i];
+							$submitInput.val(suggestions[i][submitProperty]);
+							break;
+						}
+					}
+				}
+				if((!selectedItem || selectedItem[submitProperty] != $submitInput.val()) &&
+						mustMatch){
+					$input.typeahead('val', '');
+					$submitInput.val("");
 				}
 			});
 			
@@ -122,7 +149,7 @@
 //			var $submitInput = $input.closest(".twitter-typeahead").next("input[type=hidden]");
 //			var item = dataSource.index.get([$submitInput.val()]);
 //			if(item.length > 0) {
-//				$input.val(item[0][$input.data("queryStringName")]);
+//				$input.val(item[0][$input.data("queryStringProperty")]);
 //			}
 			return $this;
 		});

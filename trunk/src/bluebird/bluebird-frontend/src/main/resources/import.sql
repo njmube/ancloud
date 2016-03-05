@@ -25,10 +25,10 @@ INSERT INTO bb_resource(category, key,messageKey, value, resourceGroup) VALUES('
 INSERT INTO bb_message(project_id,key, basename, language, country, variant, message) VALUES('mod.sys','mod','en','US','','System');
 INSERT INTO bb_message(project_id,key, basename, language, country, variant, message) VALUES('mod.sys','mod','vi','VN','','Hệ thống');
 INSERT INTO bb_message(project_id,key, basename, language, country, variant, message) VALUES(0,'err.sys.00001','err','en','US','','Invalid username, email or password');
-INSERT INTO bb_message(project_id,key, basename, language, country, variant, message) VALUES(0,'sc.sys.00001','sc','en','US','','Ejukate');
-INSERT INTO bb_message(project_id,key, basename, language, country, variant, message) VALUES(0,'sc.sys.00001','sc','vi','VN','','Ejukate');
-INSERT INTO bb_message(project_id,key, basename, language, country, variant, message) VALUES(0,'sc.sys.00002','sc','en','US','','Eju');
-INSERT INTO bb_message(project_id,key, basename, language, country, variant, message) VALUES(0,'sc.sys.00002','sc','vi','VN','','Eju');
+INSERT INTO bb_message(project_id,key, basename, language, country, variant, message) VALUES(0,'sc.sys.00001','sc','en','US','','Ejk');
+INSERT INTO bb_message(project_id,key, basename, language, country, variant, message) VALUES(0,'sc.sys.00001','sc','vi','VN','','Ejk');
+INSERT INTO bb_message(project_id,key, basename, language, country, variant, message) VALUES(0,'sc.sys.00002','sc','en','US','','Ejk');
+INSERT INTO bb_message(project_id,key, basename, language, country, variant, message) VALUES(0,'sc.sys.00002','sc','vi','VN','','Ejk');
 INSERT INTO bb_message(project_id,key, basename, language, country, variant, message) VALUES(0,'sc.sys.00003','sc','en','US','','Sign in');
 INSERT INTO bb_message(project_id,key, basename, language, country, variant, message) VALUES(0,'sc.sys.00004','sc','en','US','','Sign out');
 INSERT INTO bb_message(project_id,key, basename, language, country, variant, message) VALUES(0,'sc.sys.00005','sc','en','US','','Forgot password?');
