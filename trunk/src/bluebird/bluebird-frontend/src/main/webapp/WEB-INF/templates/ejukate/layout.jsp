@@ -55,6 +55,7 @@ desired effect
 <c:if test="${empty sessionScope.pageLayout }">
 	<c:set var="layout" value="sidebar-mini"></c:set>
 </c:if>
+<c:set var="layout" value="layout-top-nav"></c:set>
 <body class="hold-transition skin-purple-light ${layout}">
 	<div class="wrapper">
 		<c:if test="${!fn:contains(layout,'layout-top-nav') }">

@@ -108,7 +108,7 @@
 				}
 				$.bb.ar.recalculateItemIndex($container,param.indexClass,templateData.groupId);
 				$.bb.ar.renameAttributes($container);
-				$.bb.ar.callbackDefault($container,CONST.DIRECTION_ADD,$newItem,param);
+				$.bb.ar.defaultCallback($container,CONST.DIRECTION_ADD,$newItem,param);
 
 				if(typeof param.callback=="function"){
 					param.callback($container,CONST.DIRECTION_ADD,$newItem,param);
@@ -161,7 +161,7 @@
 					$container.append($newItem);
 				}
 			}
-			$.bb.ar.callbackDefault($container,CONST.DIRECTION_REMOVE,$removeItem);
+			$.bb.ar.defaultCallback($container,CONST.DIRECTION_REMOVE,$removeItem);
 
 			if(typeof param.callback=="function"){
 				param.callback($container,CONST.DIRECTION_REMOVE,$removeItem,param);
@@ -170,7 +170,7 @@
 			$.bb.ar.renameAttributes($container);
 			if (param.isReserved) {
 				if ($newItem) {
-					$.bb.ar.callbackDefault($container,CONST.DIRECTION_ADD,$newItem,param);
+					$.bb.ar.defaultCallback($container,CONST.DIRECTION_ADD,$newItem,param);
 					if(typeof $.namespace(callback)=="function"){
 						$.namespace(callback)($container,CONST.DIRECTION_ADD,$newItem,param);
 					}
@@ -286,7 +286,7 @@
 							}
 					});
 	};
-	$.bb.ar.callbackDefault = function(){};
+	$.bb.ar.defaultCallback = function(){};
 	$.bb.ar.setTemplateFunction = function(templateFunc){
 		$.bb.ar.template = function(template,data){
 			return templateFunc(template,data);

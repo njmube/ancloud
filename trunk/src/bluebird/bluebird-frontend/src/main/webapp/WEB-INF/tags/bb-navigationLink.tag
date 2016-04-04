@@ -38,11 +38,17 @@
 		<c:if test="${not empty items}">
 			<c:forEach items="${items}" var="navigationLink">
 				<li class="${not empty navigationLink.children?(deep gt 0?'dropdown-submenu':'dropdown'):''}">
-					<a href="${basePath }${navigationLink.path}">
-						<i class="${navigationLink.icon}"></i>
-						<span><spring:message code="${navigationLink.displaymessageKey}"></spring:message></span>
-					</a>
+					<c:if test="${empty navigationLink.children}">
+						<a href="${basePath }${navigationLink.path}">
+							<i class="${navigationLink.icon}"></i>
+							<span><spring:message code="${navigationLink.messageKey}"></spring:message></span>
+						</a>
+					</c:if>
 					<c:if test="${not empty navigationLink.children}">
+						<a href="javascript:void()">
+							<i class="${navigationLink.icon}"></i>
+							<span><spring:message code="${navigationLink.messageKey}"></spring:message></span>
+						</a>
 						<ul class="dropdown-menu">
 							<bb-ex:navigationLink items="${navigationLink.children}" deep="${deep+1}" type="top"/>
 						</ul>
