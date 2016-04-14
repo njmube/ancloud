@@ -4,7 +4,9 @@
 			<div class="navbar-header">
 				<a href="${basePath}/dashboard"
 					class="navbar-brand"> 
-					<span class="logo-lg"><b><spring:message code="sc.sys.00001" /></b></span>
+					<span class="logo-lg">
+						<b><spring:message code="sc.sys.00001" /></b>
+					</span>
 				</a>
 				<button
 					type="button"
@@ -14,7 +16,6 @@
 					<i class="fa fa-bars"></i>
 				</button>
 			</div>
-			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div
 				class="collapse navbar-collapse pull-left"
 				id="navbar-collapse">
@@ -36,19 +37,19 @@
 			<div class="navbar-custom-menu">
 				<ul class="nav navbar-nav">
 					<li class="dropdown messages-menu">
-						<!-- Menu toggle button --> <a
-						href="#"
-						class="dropdown-toggle"
-						data-toggle="dropdown"> <i class="fa fa-envelope-o"></i> <span
-							class="label label-success">4</span>
-					</a>
+						<a
+							href="#"
+							class="dropdown-toggle"
+							data-toggle="dropdown"> 
+							<i class="fa fa-envelope-o"></i>
+							<span class="label label-success">4</span>
+						</a>
 						<ul class="dropdown-menu">
 							<li class="header">You have 4 messages</li>
 							<li>
-								<!-- inner menu: contains the messages -->
 								<ul class="menu">
 									<li>
-										<!-- start message --> <a href="#">
+										<a href="#">
 											<div class="pull-left">
 												<!-- User Image -->
 												<img
@@ -61,59 +62,52 @@
 													mins</small>
 											</h4> <!-- The message -->
 											<p>Why not buy a new awesome theme?</p>
-									</a>
+										</a>
 									</li>
-									<!-- end message -->
-								</ul> <!-- /.menu -->
+								</ul>
 							</li>
 							<li class="footer"><a href="#">See All Messages</a></li>
 						</ul>
 					</li>
-					<!-- /.messages-menu -->
-					<!-- Notifications Menu -->
 					<li class="dropdown notifications-menu">
-						<!-- Menu toggle button --> <a
-						href="#"
-						class="dropdown-toggle"
-						data-toggle="dropdown"> <i class="fa fa-bell-o"></i> <span
-							class="label label-warning">10</span>
-					</a>
+						<a href="#"
+							class="dropdown-toggle"
+							data-toggle="dropdown">
+							<i class="fa fa-bell-o"></i> 
+							<span class="label label-warning">10</span>
+						</a>
 						<ul class="dropdown-menu">
 							<li class="header">You have 10 notifications</li>
 							<li>
-								<!-- Inner Menu: contains the notifications -->
 								<ul class="menu">
 									<li>
-										<!-- start notification --> <a href="#"> <i
-											class="fa fa-users text-aqua"></i> 5 new members joined today
-									</a>
+										<a href="#"> 
+											<i class="fa fa-users text-aqua"></i> 
+											5 new members joined today
+										</a>
 									</li>
-									<!-- end notification -->
 								</ul>
 							</li>
 							<li class="footer"><a href="#">View all</a></li>
 						</ul>
 					</li>
-					<!-- Tasks Menu -->
 					<li class="dropdown tasks-menu">
-						<!-- Menu Toggle Button -->
 						<a href="#"
 							class="dropdown-toggle"
 							data-toggle="dropdown"> 
-							<i class="fa fa-flag-o"></i><span class="label label-danger">9</span>
+							<i class="fa fa-flag-o"></i>
+							<span class="label label-danger">9</span>
 						</a>
 						<ul class="dropdown-menu">
 							<li class="header">You have 9 tasks</li>
 							<li>
-								<!-- Inner menu: contains the tasks -->
 								<ul class="menu">
 									<li>
-										<!-- Task item --> <a href="#"> <!-- Task title and progress text -->
+										<a href="#">
 											<h3>
 												Design some buttons <small class="pull-right">20%</small>
-											</h3> <!-- The progress bar -->
+											</h3>
 											<div class="progress xs">
-												<!-- Change the css width attribute to simulate progress -->
 												<div
 													class="progress-bar progress-bar-aqua"
 													style="width: 20%"
@@ -124,9 +118,8 @@
 													<span class="sr-only">20% Complete</span>
 												</div>
 											</div>
-									</a>
+										</a>
 									</li>
-									<!-- end task item -->
 								</ul>
 							</li>
 							<li class="footer"><a href="#">View all tasks</a></li>
@@ -134,69 +127,52 @@
 					</li>
 					<li class="dropdown languages-menu">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
-							<i class="fa fa-flag-o"></i>
-							<span class="label label-danger">Languages</span>
+							<span class="flag-icon ${codelist['language'][currentLocale].resourceGroup }"></span>
 						</a>
 						<ul class="dropdown-menu">
-							<c:forEach items="${codelist['language']}" var="item">
+							<c:forEach items="${codelist['language'].values()}" var="item">
 								<li>
-									<a href="?lanuage=${item.key }">
-										<span class="flag flag-icon-background ${item.group }"></span>
-										${item.value }
+									<a href="?language=${item.key}">
+										<span class="flag-icon ${item.resourceGroup }"></span>
+										<span>${item.value }</span>
 									</a>
 								</li>
 							</c:forEach>
 						</ul>
 					</li>
-					
-					<!-- User Account Menu -->
 					<li class="dropdown user user-menu">
-						<!-- Menu Toggle Button --> <a
-						href="#"
-						class="dropdown-toggle"
-						data-toggle="dropdown"> <!-- The user image in the navbar--> <img
-							src="${resourceBasePath}/img/avatar.png"
-							class="user-image"
-							alt="User Image"> <!-- hidden-xs hides the username on small devices so only the image appears. -->
-							<span class="hidden-xs">Anonymous</span>
-					</a>
+						<a href="#"
+							class="dropdown-toggle"
+							data-toggle="dropdown">
+							<img src="${resourceBasePath}/img/avatar.png"
+								class="user-image"
+								alt="User Image">
+							<span class="hidden-xs">${currentAccount.userName }</span>
+						</a>
 						<ul class="dropdown-menu">
-							<!-- The user image in the menu -->
 							<li class="user-header"><img
 								src="${resourceBasePath}/img/avatar.png"
 								class="img-circle"
 								alt="User Image">
 								<p>
-									Anonymous - Web Developer <small>Member since Nov. 2012</small>
-								</p></li>
-							<!-- Menu Body -->
+									${currentAccount.userName } - ${currentAccount.title } <small><spring:message code="sc.sys.00020"></spring:message> <fmt:formatDate value="${currentAccount.createdDate}" pattern="MMM. yyyy"/></small>
+								</p>
+							</li>
 							<li class="user-body">
 								<div class="row">
-									<div class="col-xs-4 text-center">
-										<a href="#"></a>
-									</div>
-									<div class="col-xs-4 text-center">
-										<a href="#"></a>
-									</div>
-									<div class="col-xs-4 text-center">
-										<a href="#"></a>
-									</div>
-								</div> <!-- /.row -->
+								</div>
 							</li>
-							<!-- Menu Footer-->
 							<li class="user-footer">
 								<div class="pull-left">
-									<a
-										href="#"
-										class="btn btn-default btn-flat">Profile</a>
+									<a href="#" class="btn btn-default btn-flat">
+										<spring:message code="sc.account.00013"></spring:message>
+									</a>
 								</div>
 								<div class="pull-right">
-									<form:form
-										action="${pageContext.request.contextPath}/logout"
-										method="POST">
-										<button
-											type="submit"
-											class="btn btn-default btn-flat">Sign out</button>
+									<form:form action="${pageContext.request.contextPath}/logout" method="POST">
+										<button type="submit" class="btn btn-default btn-flat">
+											<spring:message code="sc.sys.00004"></spring:message>
+										</button>
 									</form:form>
 								</div>
 							</li>

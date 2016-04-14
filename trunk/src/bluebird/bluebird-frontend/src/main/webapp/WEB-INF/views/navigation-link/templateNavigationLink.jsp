@@ -14,9 +14,11 @@
 				<bb-ex:autocomplete name="navigationLinks[0].messageCode" 
 									cssClass="form-control" 
 									sourcePath="/message/ajaxGetAllMessage" 
+									parameters="{\"baseName\":\"sc\"}"
 									queryStringProperty="message" 
 									displayProperties="message,key,language"
 									submitProperty="key"/>
+
 				<span class="input-group-btn">
 					<button class="btn btn-default bb-fa-btn fa-angle-double-right bb-navigationLink-addNestedLinkButton" type="button"></button>
 				</span>

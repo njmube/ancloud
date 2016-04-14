@@ -33,7 +33,7 @@ INSERT INTO bb_message(project_id,key, basename, language, country, variant, mes
 INSERT INTO bb_message(project_id,key, basename, language, country, variant, message) VALUES(0,'sc.sys.00004','sc','en','US','','Sign out');
 INSERT INTO bb_message(project_id,key, basename, language, country, variant, message) VALUES(0,'sc.sys.00005','sc','en','US','','Forgot password?');
 INSERT INTO bb_message(project_id,key, basename, language, country, variant, message) VALUES(0,'sc.sys.00006','sc','en','US','','Register now');
-INSERT INTO bb_message(project_id,key, basename, language, country, variant, message) VALUES(0,'sc.sys.00007','sc','en','US','','Don't have a membership yet?');
+INSERT INTO bb_message(project_id,key, basename, language, country, variant, message) VALUES(0,'sc.sys.00007','sc','en','US','','Don''t have a membership yet?');
 INSERT INTO bb_message(project_id,key, basename, language, country, variant, message) VALUES(0,'sc.sys.00008','sc','en','US','','Remember me');
 INSERT INTO bb_message(project_id,key, basename, language, country, variant, message) VALUES(0,'sc.sys.00009','sc','en','US','','Sign in using Facebook');
 INSERT INTO bb_message(project_id,key, basename, language, country, variant, message) VALUES(0,'sc.sys.00010','sc','en','US','','Sign up using Facebook');

@@ -158,6 +158,11 @@
 	
 	$.bb.common.initialize = function(param) {
 		$(".bb-autocomplete").initializeAutocomplete();
+		$.bb.ar.defaultCallback = function(container,direction,item){
+			if(direction == $.bb.ar.CONST.DIRECTION_ADD){
+				$(item).find(".bb-autocomplete").initializeAutocomplete();
+			}
+		}
 	};
 
 })(jQuery);
