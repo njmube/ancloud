@@ -90,18 +90,18 @@
 		};
 	$.bb.layout = {
 		activate : function() {
-			var _this = this;
-			_this.fix();
-			_this.fixSidebar();
+			var thiz = this;
+			thiz.fix();
+			thiz.fixSidebar();
 			$(window, ".wrapper").resize(function() {
-				_this.fix();
-				_this.fixSidebar();
+				thiz.fix();
+				thiz.fixSidebar();
 			});
 		},
 		fix : function() {
 			// Get window height and the wrapper height
 			var neg = $('.main-header').outerHeight();
-			var window_height = $(window).height();
+			var window_height = $(document).outerHeight();
 			var sidebar_height = $(".sidebar").height();
 			// Set the min-height of the content and sidebar based on the
 			// the height of the document.
@@ -140,7 +140,7 @@
 				}
 				return;
 			} else if (typeof $.fn.slimScroll == 'undefined' && window.console) {
-				window.console.error("Error: the fixed layout requires the slimscroll plugin!");
+				console.error("Error: the fixed layout requires the slimscroll plugin!");
 			}
 			// Enable slimscroll for fixed layout
 			if ($.bb.options.sidebarSlimScroll) {
@@ -218,7 +218,7 @@
 			}
 		},
 		expandOnHover : function() {
-			var _this = this;
+			var thiz = this;
 			var screenWidth = $.bb.options.screenSizes.sm - 1;
 			// Expand sidebar on hover
 			$('.main-sidebar').hover(
@@ -226,7 +226,7 @@
 						if ($('body').hasClass('sidebar-mini')
 								&& $("body").hasClass('sidebar-collapse')
 								&& $(window).width() > screenWidth) {
-							_this.expand();
+							thiz.expand();
 						}
 					},
 					function() {
@@ -234,7 +234,7 @@
 								&& $('body').hasClass(
 										'sidebar-expanded-on-hover')
 								&& $(window).width() > screenWidth) {
-							_this.collapse();
+							thiz.collapse();
 						}
 					});
 		},
@@ -255,7 +255,7 @@
 	 * @type Function @Usage: $.bb.tree('.sidebar')
 	 */
 	$.bb.tree = function(menu) {
-		var _this = this;
+		var thiz = this;
 		var animationSpeed = $.bb.options.animationSpeed;
 		$(menu).on(
 			'click',
@@ -274,7 +274,7 @@
 						checkElement.removeClass('menu-open');
 						// Fix the layout in case the sidebar stretches over
 						// the height of the window
-						// _this.layout.fix();
+						// thiz.layout.fix();
 					});
 					checkElement.parent("li").removeClass("active");
 				}
@@ -299,7 +299,7 @@
 						parent_li.addClass('active');
 						// Fix the layout in case the sidebar stretches over
 						// the height of the window
-						_this.layout.fix();
+						thiz.layout.fix();
 					});
 				}
 				// if this isn't a link, prevent the page from being
@@ -320,7 +320,7 @@
 		// instantiate the object
 		activate : function() {
 			// Get the object
-			var _this = this;
+			var thiz = this;
 			// Update options
 			var o = $.bb.options.controlSidebarOptions;
 			// Get the sidebar
@@ -335,24 +335,24 @@
 				if (!sidebar.hasClass('control-sidebar-open')
 						&& !$('body').hasClass('control-sidebar-open')) {
 					// Open the sidebar
-					_this.open(sidebar, o.slide);
+					thiz.open(sidebar, o.slide);
 				} else {
-					_this.close(sidebar, o.slide);
+					thiz.close(sidebar, o.slide);
 				}
 			});
 
 			// If the body has a boxed layout, fix the sidebar bg position
 			var bg = $(".control-sidebar-bg");
-			_this._fix(bg);
+			thiz._fix(bg);
 
 			// If the body has a fixed layout, make the control sidebar fixed
 			if ($('body').hasClass('fixed')) {
-				_this._fixForFixed(sidebar);
+				thiz._fixForFixed(sidebar);
 			} else {
 				// If the content height is less than the sidebar's height,
 				// force max height
 				if ($('.content-wrapper, .right-side').height() < sidebar.height()) {
-					_this._fixForContent(sidebar);
+					thiz._fixForContent(sidebar);
 				}
 			}
 		},
@@ -376,12 +376,12 @@
 			}
 		},
 		_fix : function(sidebar) {
-			var _this = this;
+			var thiz = this;
 			if ($("body").hasClass('layout-boxed')) {
 				sidebar.css('position', 'absolute');
 				sidebar.height($(".wrapper").height());
 				$(window).resize(function() {
-					_this._fix(sidebar);
+					thiz._fix(sidebar);
 				});
 			} else {
 				sidebar.css({

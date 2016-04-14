@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.bluebird.domain.NavigationLink;
 import org.bluebird.domain.Project;
 import org.bluebird.domain.common.SessionConstant;
+import org.bluebird.fw.core.service.SessionService;
 import org.bluebird.fw.presentation.BaseController;
 import org.bluebird.fw.presentation.resolver.Session;
 import org.bluebird.service.module.navigation.NavigationLinkService;
@@ -33,6 +34,9 @@ public class NavigationLinkController extends BaseController {
 	}
 	
 	@Inject
+	SessionService sessionService;
+	
+	@Inject
 	NavigationLinkService navigationLinkService;
 	
 	
@@ -56,6 +60,7 @@ public class NavigationLinkController extends BaseController {
 			dest = "navigation-link/FmNavigationLink";
 		} else {
 			navigationLinkService.modifyList(this.mapper.mapAsList(fmNavigationLink.getNavigationLinks(), NavigationLink.class),project);
+			sessionService.put(SessionConstant.SESSION_NAVIGATION_LINKS, navigationLinkService.findAllNavigationLinkByProject(project, null));
 			dest = "redirect:/navigation-link/modify";
 		}
 		

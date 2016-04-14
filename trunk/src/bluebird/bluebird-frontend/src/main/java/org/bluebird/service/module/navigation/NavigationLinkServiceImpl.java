@@ -23,7 +23,10 @@ public class NavigationLinkServiceImpl implements NavigationLinkService{
 	
 	@Override
 	public List<NavigationLink> findAllNavigationLinkByProject(Project project,Locale locale){
-		return navigationLinkRepository.findByProjectAndLocaleOrderByItemIndex(project.getId(),locale.getLanguage(),locale.getCountry());
+		if(locale!=null){
+			return navigationLinkRepository.findByProjectAndLocaleOrderByItemIndex(project.getId(),locale.getLanguage(),locale.getCountry());
+		} 
+		return navigationLinkRepository.findByParentAndProject(null, project);
 	}
 
 	@Override

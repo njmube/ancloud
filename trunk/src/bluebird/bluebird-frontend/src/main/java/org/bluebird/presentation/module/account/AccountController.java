@@ -38,12 +38,8 @@ public class AccountController extends BaseController {
 		
 	}
 	
-	@RequestMapping(method = {RequestMethod.GET})
-	public String display(){
-		return "forward:/account/search";
-	}
 	
-	@RequestMapping(value="search", method = {RequestMethod.GET})
+	@RequestMapping(value={"","search"}, method = {RequestMethod.GET})
 	public String displaySearch(AccountSearchForm accountSearchForm, Model model,@Session(key="project") Project project, @PageableDefault Pageable pageable){
 		AccountSearchCriteria criteria = mapper.map(accountSearchForm, AccountSearchCriteria.class);
 		criteria.setProject(project);
