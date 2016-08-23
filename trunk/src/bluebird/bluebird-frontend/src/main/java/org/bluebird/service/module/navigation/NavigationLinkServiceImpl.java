@@ -49,6 +49,7 @@ public class NavigationLinkServiceImpl implements NavigationLinkService{
 			}
 		}
 		for(NavigationLink navigationLink : newNavigationLinks){
+			navigationLink.setProject(project);
 			navigationLink.setCode(navigationLink.getMessageKey());
 			navigationLink.setParent(this.findParentNavigationLink(navigationLink.getGroupId(),newNavigationLinks,currentNavigationLinks));
 		}

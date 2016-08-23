@@ -11,7 +11,7 @@
 </c:if>
 
 <c:if test="${type eq 'sidebar'}">
-	<ul class="${deep gt 0?'treeview-menu':'sidebar-menu'}">
+	<ul class="${deep gt 0?'treeview-menu':'sidebar-menu'} animated-dropdown-menu">
 		<c:if test="${not empty items}">
 			<c:forEach items="${items}" var="navigationLink">
 				<li class="${not empty navigationLink.children?'treeview ':''} ${fn:startsWith(requestScope['javax.servlet.forward.request_uri'],basePath.concat(navigationLink.path))?'active':''}">
@@ -34,7 +34,7 @@
 	</ul>
 </c:if>
 <c:if test="${type eq 'top'}">
-	<ul class="nav navbar-nav">
+	<ul class="${deep gt 0?'dropdown-menu':'nav navbar-nav'} animated-dropdown-menu">
 		<c:if test="${not empty items}">
 			<c:forEach items="${items}" var="navigationLink">
 				<li class="${not empty navigationLink.children?(deep gt 0?'dropdown-submenu':'dropdown'):''}">
@@ -45,13 +45,14 @@
 						</a>
 					</c:if>
 					<c:if test="${not empty navigationLink.children}">
-						<a href="javascript:void()">
+						<a href="#"
+							${deep gt 0?'':'data-submenu'}
+							class="dropdown-toggle"
+							data-toggle="dropdown">
 							<i class="${navigationLink.icon}"></i>
 							<span><spring:message code="${navigationLink.messageKey}"></spring:message></span>
 						</a>
-						<ul class="dropdown-menu">
-							<bb-ex:navigationLink items="${navigationLink.children}" deep="${deep+1}" type="top"/>
-						</ul>
+						<bb-ex:navigationLink items="${navigationLink.children}" deep="${deep+1}" type="top"/>
 					</c:if>
 				</li>
 			</c:forEach>

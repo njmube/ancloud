@@ -13,6 +13,7 @@
 </script>
 <link rel="stylesheet" href="${resourceBasePath}/plugin/font-awesome.css">
 <link rel="stylesheet" href="${resourceBasePath}/plugin/bootstrap.css">
+<link rel="stylesheet" href="${resourceBasePath}/plugin/bootstrap.submenu.css">
 <link rel="stylesheet" href="${resourceBasePath}/plugin/flag/flag-icon.css">
 <link rel="stylesheet" href="${resourceBasePath}/plugin/typeahead.css">
 <link rel="stylesheet" href="${resourceBasePath}/css/core/bluebird.css">
@@ -55,7 +56,7 @@ desired effect
 <c:if test="${empty sessionScope.pageLayout }">
 	<c:set var="layout" value="sidebar-mini"></c:set>
 </c:if>
-<c:set var="layout" value="layout-top-nav"></c:set>
+<%-- <c:set var="layout" value="layout-top-nav"></c:set> --%>
 <body class="hold-transition skin-purple-light ${layout}">
 	<div class="wrapper">
 		<c:if test="${!fn:contains(layout,'layout-top-nav') }">
@@ -91,6 +92,7 @@ desired effect
 	</div>
 	<script src="${resourceBasePath}/plugin/jquery.js"></script>
 	<script src="${resourceBasePath}/plugin/bootstrap.js"></script>
+	<script src="${resourceBasePath}/plugin/bootstrap.submenu.js"></script>
 	<script src="${resourceBasePath}/plugin/jquery.slimscroll.js"></script>
 	<script src="${resourceBasePath}/plugin/handlebars.js"></script>
 	<script src="${resourceBasePath}/plugin/typeahead.bundle.js"></script>

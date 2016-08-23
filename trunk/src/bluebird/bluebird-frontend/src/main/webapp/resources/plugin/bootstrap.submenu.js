@@ -84,7 +84,7 @@ $(function($) {
     }
   });
 
-  function Submenupicker(element) {
+  function Submenu(element) {
     this.$element = $(element);
     this.$main = this.$element.parent();
     this.$menu = this.$main.children('.dropdown-menu');
@@ -93,7 +93,7 @@ $(function($) {
     this.init();
   }
 
-  Submenupicker.prototype = {
+  Submenu.prototype = {
     init: function() {
       this.$menu.off('keydown.bs.dropdown.data-api');
       this.$menu.on('keydown', $.proxy(this, 'itemKeydown'));
@@ -137,14 +137,14 @@ $(function($) {
     }
   };
 
-  return $.fn.submenupicker = function(elements) {
+  return $.fn.submenu = function(elements) {
     
     var $elements = this instanceof $ ? this : $(elements);
     return $elements.each(function() {
       var data = $.data(this, 'bs.submenu');
 
       if (!data) {
-        data = new Submenupicker(this);
+        data = new Submenu(this);
         $.data(this, 'bs.submenu', data);
       }
     });

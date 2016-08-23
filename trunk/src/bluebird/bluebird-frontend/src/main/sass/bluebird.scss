@@ -1,4 +1,4 @@
-@import 'modules/variables';
+@import 'modules/colors';
 @import 'modules/bluebird.miscellaneous';
 
 .wrapper {
@@ -471,9 +471,11 @@ a {
 		padding: 0;
 		margin: 0;
 		padding-left: 20px;
+		
 		.treeview-menu {
 			padding-left: 20px;
 		}
+		
 		> li {
 			margin: 0;
 			> a {
@@ -883,7 +885,6 @@ a {
  * Component: Dropdown menus
  * -------------------------
  */
-/*Dropdowns in general*/
 
 .dropdown-menu {
 	box-shadow: none;
@@ -893,7 +894,7 @@ a {
 			color: $color_tapa_approx;
 			> {
 				.glyphicon, .fa, .ion {
-					margin-right: 10px;
+					width: 20px;
 				}
 			}
 			&:hover {

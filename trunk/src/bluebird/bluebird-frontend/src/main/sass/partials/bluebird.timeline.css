@@ -65,8 +65,7 @@
 	font-weight: 600;
 }
 
-.timeline>li>.timeline-item>.timeline-body, .timeline>li>.timeline-item>.timeline-footer
-	{
+.timeline>li>.timeline-item>.timeline-body, .timeline>li>.timeline-item>.timeline-footer {
 	padding: 10px;
 }
 

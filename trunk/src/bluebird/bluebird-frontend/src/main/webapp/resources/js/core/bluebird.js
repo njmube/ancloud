@@ -452,6 +452,11 @@
 			FastClick.attach(document.body);
 		}
 		
+		
+		if(typeof $().submenu != 'undefined'){
+			$("[data-submenu]").submenu();
+		}
+		
 		// modules init
 		for(var propertyName in $.bb){
 			if(typeof $.bb[propertyName] == 'object' && typeof $.bb[propertyName]['initialize'] == 'function'){

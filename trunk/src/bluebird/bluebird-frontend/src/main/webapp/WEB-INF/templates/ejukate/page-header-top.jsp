@@ -2,7 +2,7 @@
 	<nav class="navbar navbar-static-top">
 		<div class="container">
 			<div class="navbar-header">
-				<a href="${basePath}/dashboard"
+				<a href="${basePath}/dashboard/dashboard"
 					class="navbar-brand"> 
 					<span class="logo-lg">
 						<b><spring:message code="sc.sys.00001" /></b>
@@ -16,9 +16,9 @@
 					<i class="fa fa-bars"></i>
 				</button>
 			</div>
-			<div
-				class="collapse navbar-collapse pull-left"
+			<div class="collapse navbar-collapse pull-left"
 				id="navbar-collapse">
+				
 				<bb-ex:navigationLink
 					items="${sessionScope.NAVIGATION_LINKS}"
 					type="top"></bb-ex:navigationLink>

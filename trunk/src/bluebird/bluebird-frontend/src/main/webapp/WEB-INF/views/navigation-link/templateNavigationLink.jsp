@@ -11,7 +11,7 @@
 				<span class="input-group-btn">
 					<button class="btn btn-default bb-fa-btn fa-angle-double-down bb-navigationLink-addLinkButton" type="button"></button>
 				</span>
-				<bb-ex:autocomplete name="navigationLinks[0].messageCode" 
+				<bb-ex:autocomplete name="navigationLinks[0].messageKey" 
 									cssClass="form-control" 
 									sourcePath="/message/ajaxGetAllMessage" 
 									parameters="{\"baseName\":\"sc\"}"
