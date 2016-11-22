@@ -13,8 +13,7 @@
 
 	<sec:http auto-config="false" 
 				use-expressions="true" 
-				entry-point-ref="authenticationEntryPoint" 
-				>
+				entry-point-ref="authenticationEntryPoint"  >
 		<sec:intercept-url pattern="/login" access="permitAll" />
 		<sec:intercept-url pattern="/register" access="permitAll" />
 		<sec:intercept-url pattern="/resources/**" access="permitAll" />
@@ -29,7 +28,7 @@
 <!-- 		<sec:form-login login-page="/login" -->
 <!-- 						username-parameter="userName"  -->
 <!-- 						password-parameter="password"   -->
-<!-- 						authentication-failure-handler-ref="redirectErrorHandler" -->
+<!-- 						authentication-failure-handler-ref="authenticationFailureHandler" -->
 <!-- 						authentication-success-handler-ref="authSuccessHandlerEx" /> -->
 		<sec:logout logout-url="/logout" 
 					logout-success-url="/login" 
@@ -37,11 +36,10 @@
 					delete-cookies="JSESSIONID" />
 
 		<sec:access-denied-handler ref="accessDeniedHandler" />
-
+		
 		<sec:csrf />
 		<sec:custom-filter position="FORM_LOGIN_FILTER" ref="authenticationFilter" />
 		<sec:custom-filter position="CONCURRENT_SESSION_FILTER" ref="concurrencyFilter" />
-		<sec:custom-filter before="LOGOUT_FILTER" ref="csrfFilter" />
 
 		<sec:session-management session-authentication-strategy-ref="sessionAuthenticationStrategy" />
 	</sec:http>
@@ -53,21 +51,21 @@
 		class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
 		<property name="sessionAuthenticationStrategy" ref="sessionAuthenticationStrategy" />
 		<property name="authenticationManager" ref="authenticationManager" />
-		<property name="authenticationFailureHandler" ref="redirectErrorHandler" />
+		<property name="authenticationFailureHandler" ref="authenticationFailureHandler" />
 		<property name="authenticationSuccessHandler" ref="authenticationSuccessHandler" />
 		<property name="usernameParameter" value="userName"></property>
 		<property name="passwordParameter" value="password"></property>
 	</bean>
 
-	<bean id="redirectErrorHandler"
+	<bean id="authenticationFailureHandler"
 		class="org.springframework.security.web.authentication.ExceptionMappingAuthenticationFailureHandler">
 		<property name="defaultFailureUrl" value="/login?error" />
 		<property name="useForward" value="false" />
-<!-- 		<property name="exceptionMappings"> -->
-<!-- 			<beans:map> -->
-<!-- 				<beans:entry key="org.springframework.security.core.userdetails.UsernameNotFoundException" value="/login?error=notFound" /> -->
-<!-- 			</beans:map> -->
-<!-- 		</property> -->
+		<property name="exceptionMappings">
+			<beans:map>
+				<beans:entry key="org.springframework.security.core.userdetails.UsernameNotFoundException" value="/login?error=notFound" />
+			</beans:map>
+		</property>
 	</bean>
 
 	<bean id="authenticationSuccessHandler" 
@@ -155,4 +153,11 @@
 	</bean>
 
 	<bean id="csrfTokenRepository" class="org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository" />
+	 
+<!-- 	<sec:global-method-security> -->
+<!-- 		<sec:protect-pointcut expression="execution(* *..service.UserManager.getUsers(..))" -->
+<!-- 			access="ROLE_ADMIN" /> -->
+<!-- 		<sec:protect-pointcut expression="execution(* *..service.UserManager.removeUser(..))" -->
+<!-- 			access="ROLE_ADMIN" /> -->
+<!-- 	</sec:global-method-security> -->
 </beans>

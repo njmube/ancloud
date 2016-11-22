@@ -81,7 +81,7 @@ desired effect
 					<section class="content-header">
 						<tiles:insertAttribute name="content-header" ignore="true"/>
 					</section>
-					<section class="content">
+					<section class="content clearfix">
 						<bb:messages name="messages"></bb:messages>
 						<tiles:insertAttribute name="content-body" ignore="true"/>
 					</section>

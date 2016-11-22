@@ -10,10 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.bluebird.domain.module.account.Account;
+import org.bluebird.domain.modules.account.Account;
 
 @Entity
-@Table(name = "bb_project")
+@Table(name = "project")
 public class Project {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

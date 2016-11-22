@@ -17,7 +17,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
  http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 	
 	
-	<context:property-placeholder location="classpath:bluebird-infra.properties" />
+	<context:property-placeholder location="classpath:infra.properties" />
 	<context:component-scan base-package="org.bluebird.service" />
 	<context:component-scan base-package="org.bluebird.presentation.service" />
 	<context:component-scan base-package="org.bluebird.presentation.mapper" />
@@ -26,7 +26,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	<bean class="org.bluebird.presentation.context.ApplicationContextListener"></bean>
 	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
 	
-	<jpa:repositories base-package="org.bluebird.repository" />
+	<jpa:repositories base-package="org.bluebird.repository.modules" />
 
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
 		p:entityManagerFactory-ref="entityManagerFactory" />

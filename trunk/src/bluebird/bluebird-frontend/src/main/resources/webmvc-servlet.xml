@@ -13,10 +13,10 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
  http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
  http://www.springframework.org/schema/mvc
      http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-	<context:property-placeholder location="classpath:bluebird-infra.properties" />
+	<context:property-placeholder location="classpath:infra.properties" />
 	<context:annotation-config />
 	<mvc:default-servlet-handler />
-	<context:component-scan base-package="org.bluebird.presentation.module" />
+	<context:component-scan base-package="org.bluebird.presentation.modules" />
 	
 	
 	<mvc:annotation-driven validator="validator" ignore-default-model-on-redirect="true">
@@ -34,6 +34,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 				<property name="marshaller" ref="xmlMarshaller" />
 				<property name="unmarshaller" ref="xmlMarshaller" />
 			</bean>
+			<bean class="org.trek2k.fw.presentation.converters.CustomMappingJackson2HttpMessageConverter">			</bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 	<bean id="validator"

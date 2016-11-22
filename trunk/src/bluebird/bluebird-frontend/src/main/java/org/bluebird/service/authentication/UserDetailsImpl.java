@@ -2,7 +2,7 @@ package org.bluebird.service.authentication;
 
 import java.util.Collection;
 
-import org.bluebird.domain.module.account.Account;
+import org.bluebird.domain.modules.account.Account;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

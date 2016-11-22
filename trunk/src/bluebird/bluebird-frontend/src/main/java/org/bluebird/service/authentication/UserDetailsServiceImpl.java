@@ -7,10 +7,10 @@ import java.util.Set;
 import javax.inject.Inject;
 
 import org.bluebird.domain.common.SystemCodeConstant;
-import org.bluebird.domain.module.account.Account;
-import org.bluebird.domain.module.account.Permission;
-import org.bluebird.domain.module.account.Role;
-import org.bluebird.repository.AccountRepository;
+import org.bluebird.domain.modules.account.Account;
+import org.bluebird.domain.modules.account.Permission;
+import org.bluebird.domain.modules.account.Role;
+import org.bluebird.repository.modules.AccountRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;

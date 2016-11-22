@@ -8,7 +8,7 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import org.bluebird.domain.Resource;
-import org.bluebird.repository.ResourceRepository;
+import org.bluebird.repository.modules.ResourceRepository;
 import org.springframework.beans.factory.FactoryBean;
 
 public class CodelistFactory implements FactoryBean<Codelist> {

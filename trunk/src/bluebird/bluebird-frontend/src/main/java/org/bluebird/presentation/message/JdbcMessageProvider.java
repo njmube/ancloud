@@ -11,7 +11,7 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
-import org.bluebird.presentation.util.LocaleUtils;
+import org.bluebird.fw.core.util.LocaleUtils;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -32,7 +32,7 @@ public class JdbcMessageProvider implements MessageProvider {
 	private String variantColumn = "variant";
 	private String keyColumn = "key";
 	private String messageColumn = "message";
-	private String tableName = "bb_message";
+	private String tableName = "message";
 	private String basenameColumn = "basename";
 	private String delimiter = "";
 
