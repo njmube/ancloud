@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+ http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+ http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+ http://www.springframework.org/schema/mvc
+     http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	<context:property-placeholder location="classpath:infra.properties" />
+	<context:annotation-config />
+	<mvc:default-servlet-handler />
+	<context:component-scan base-package="org.bluebird.presentation.modules" />
+	
+	
+	<mvc:annotation-driven validator="validator" ignore-default-model-on-redirect="true">
+		<mvc:argument-resolvers>
+			<bean class="org.bluebird.fw.presentation.resolver.SessionArgumentResolver"/>
+			<bean class="org.bluebird.fw.presentation.resolver.JsonParamArgumentResolver"/>
+			<bean
+				class="org.springframework.data.web.PageableHandlerMethodArgumentResolver" />
+			<bean
+				class="org.springframework.security.web.bind.support.AuthenticationPrincipalArgumentResolver" />
+		</mvc:argument-resolvers>
+		<mvc:message-converters>
+			<bean
+				class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+				<property name="marshaller" ref="xmlMarshaller" />
+				<property name="unmarshaller" ref="xmlMarshaller" />
+			</bean>
+			<bean class="org.trek2k.fw.presentation.converters.CustomMappingJackson2HttpMessageConverter">			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	<bean id="validator"
+		class="org.bluebird.presentation.message.CustomLocalValidatorFactoryBean">
+		<property name="validationMessageSource" ref="messageSource" />
+	</bean>
+	<bean id="xmlMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<property name="packagesToScan" value="org.bluebird.presentation.*.ajax" />
+	</bean>
+
+<!-- 	<bean id="messageSource" -->
+<!-- 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource"> -->
+<!-- 		<property name="fallbackToSystemLocale" value="false" /> -->
+<!-- 		<property name="basename" value="classpath:application-messages" /> -->
+<!-- 		<property name="defaultEncoding" value="UTF-16" /> -->
+<!-- 	</bean> -->
+
+	<mvc:resources mapping="/resources/**" location="/resources/" cache-period="#{60 * 60}" />
+	<mvc:view-resolvers>
+		<mvc:bean-name />
+		<mvc:tiles />
+		<mvc:jsp prefix="/WEB-INF/views/" />
+	</mvc:view-resolvers>
+
+	<mvc:tiles-configurer>
+		<mvc:definitions location="/WEB-INF/tiles-definitions.xml" />
+	</mvc:tiles-configurer>
+<!-- 	<mvc:view-controller path="/test" view-name="test" /> -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/resources/**" />
+			<mvc:exclude-mapping path="/**/*.html" />
+			<bean class="org.bluebird.fw.presentation.intercepter.TraceLoggingInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/resources/**" />
+			<mvc:exclude-mapping path="/**/*.html" />
+			<bean class="org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/resources/**" />
+			<mvc:exclude-mapping path="/**/*.html" />
+			<ref bean="localeChangeInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+<!-- 	<mvc:interceptors> -->
+<!-- 		<mvc:interceptor> -->
+<!-- 			<mvc:mapping path="/**" /> -->
+<!-- 			<mvc:exclude-mapping path="/resources/**" /> -->
+<!-- 			<mvc:exclude-mapping path="/**/*.html" /> -->
+<!-- 			<bean class="org.terasoluna.gfw.web.logging.TraceLoggingInterceptor" /> -->
+<!-- 		</mvc:interceptor> -->
+<!-- 		<mvc:interceptor> -->
+<!-- 			<mvc:mapping path="/**" /> -->
+<!-- 			<mvc:exclude-mapping path="/resources/**" /> -->
+<!-- 			<mvc:exclude-mapping path="/**/*.html" /> -->
+<!-- 			<bean -->
+<!-- 				class="org.terasoluna.gfw.web.token.transaction.TransactionTokenInterceptor" /> -->
+<!-- 		</mvc:interceptor> -->
+<!-- 		<mvc:interceptor> -->
+<!-- 			<mvc:mapping path="/**" /> -->
+<!-- 			<mvc:exclude-mapping path="/resources/**" /> -->
+<!-- 			<mvc:exclude-mapping path="/**/*.html" /> -->
+<!-- 			<bean class="org.terasoluna.gfw.web.codelist.CodeListInterceptor"> -->
+<!-- 				<property name="codeListIdPattern" value="CL_.+" /> -->
+<!-- 			</bean> -->
+<!-- 		</mvc:interceptor> -->
+<!-- 	</mvc:interceptors> -->
+	
+
+
+	<bean id="localeChangeInterceptor"
+		class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+		<property name="paramName" value="language" />
+	</bean>
+	
+
+	<bean id="connectionFactoryLocator"
+		class="org.springframework.social.connect.support.ConnectionFactoryRegistry">
+		<property name="connectionFactories">
+			<list>
+				<bean
+					class="org.springframework.social.facebook.connect.FacebookConnectionFactory">
+					<constructor-arg value="${facebook.clientId}" />
+					<constructor-arg value="${facebook.clientSecret}" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="usersConnectionRepository"
+		class="org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository">
+		<constructor-arg ref="dataSource" />
+		<constructor-arg ref="connectionFactoryLocator" />
+		<constructor-arg ref="textEncryptor" />
+	</bean>
+	<bean id="connectionRepository" factory-method="createConnectionRepository"
+		factory-bean="usersConnectionRepository" scope="request">
+		<constructor-arg value="#{authenticationService.getAuthenticatedUsername()}" />
+		<aop:scoped-proxy proxy-target-class="false" />
+	</bean>
+	<bean class="org.springframework.social.connect.web.ConnectController">
+		<constructor-arg ref="connectionFactoryLocator" />
+		<constructor-arg ref="connectionRepository" />
+	</bean>
+	<bean id="textEncryptor" class="org.springframework.security.crypto.encrypt.Encryptors"
+		factory-method="noOpText" />
+</beans>
