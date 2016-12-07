@@ -4,7 +4,7 @@
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. -->
-<project basedir="." default="compile" name="bluebird-frontend">
+<project basedir="." default="compile" name="ancloud-frontend">
 	<property file="./ant/build.properties" />
 	<property name="lib.classpath" value="
   			${lib.dir}/aopalliance-1.0.jar;

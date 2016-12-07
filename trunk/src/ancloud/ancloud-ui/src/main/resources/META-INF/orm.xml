@@ -3,8 +3,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/persistence/orm_2_1.xsd"
 	version="2.1">
-	<description>Bluebird XML Mapping file</description>
-	<named-native-query name="NavigationLink.findByProjectAndLocaleOrderByItemIndex"  result-class="org.bluebird.domain.NavigationLink">
+	<description>ancloud XML Mapping file</description>
+	<named-native-query name="NavigationLink.findByProjectAndLocaleOrderByItemIndex"  result-class="org.ancloud.domain.NavigationLink">
 		<query>
 			<![CDATA[
 			SELECT B.message,
@@ -27,7 +27,7 @@
 	</named-native-query>
 	
 	<sql-result-set-mapping name="navigationLinkResultMap">
-		<entity-result entity-class="org.bluebird.domain.NavigationLink">
+		<entity-result entity-class="org.ancloud.domain.NavigationLink">
 			<field-result name="id" column="id" />
 			<field-result name="messageKey" column="messageKey" />
 			<field-result name="icon" column="icon" />

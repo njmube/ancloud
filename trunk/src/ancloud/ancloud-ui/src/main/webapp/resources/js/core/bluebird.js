@@ -47,7 +47,7 @@
 			// Enable Fast Click. Fastclick.js creates a more
 			// native touch experience with touch devices. If you
 			// choose to enable the plugin, make sure you load the script
-			// before bluebird's app.js
+			// before ancloud's app.js
 			enableFastclick : true,
 			// Control Sidebar Options
 			enableControlSidebar : true,
@@ -408,8 +408,8 @@
 		$("body").removeClass("hold-transition");
 
 		// Extend options if external options exist
-		if (typeof bluebirdOptions !== "undefined") {
-			$.extend(true, $.bb.options, bluebirdOptions);
+		if (typeof ancloudOptions !== "undefined") {
+			$.extend(true, $.bb.options, ancloudOptions);
 		}
 
 		// Easy access to options

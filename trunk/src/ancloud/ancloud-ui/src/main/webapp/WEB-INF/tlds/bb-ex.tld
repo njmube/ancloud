@@ -3,8 +3,8 @@
 	version="2.0">
 	<display-name>bb-ex</display-name>
 	<tlib-version>1.0</tlib-version>
-	<short-name>bluebird</short-name>
-	<uri>http://bluebird.org/tags/ex</uri>
+	<short-name>ancloud</short-name>
+	<uri>http://ancloud.org/tags/ex</uri>
 
 	<!-- Start list all tag for project -->
 	<!-- Start list all by tag-class -->

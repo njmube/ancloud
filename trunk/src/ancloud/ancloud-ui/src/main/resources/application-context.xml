@@ -18,15 +18,15 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	
 	
 	<context:property-placeholder location="classpath:infra.properties" />
-	<context:component-scan base-package="org.bluebird.service" />
-	<context:component-scan base-package="org.bluebird.presentation.service" />
-	<context:component-scan base-package="org.bluebird.presentation.mapper" />
+	<context:component-scan base-package="org.ancloud.service" />
+	<context:component-scan base-package="org.ancloud.presentation.service" />
+	<context:component-scan base-package="org.ancloud.presentation.mapper" />
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	
-	<bean class="org.bluebird.presentation.context.ApplicationContextListener"></bean>
+	<bean class="org.ancloud.presentation.context.ApplicationContextListener"></bean>
 	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
 	
-	<jpa:repositories base-package="org.bluebird.repository.modules" />
+	<jpa:repositories base-package="org.ancloud.repository.modules" />
 
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
 		p:entityManagerFactory-ref="entityManagerFactory" />
@@ -44,7 +44,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 				<prop key="javax.persistence.schema-generation.database.action">${jpa.schema-generation}</prop>
 			</props>
 		</property>
-		<property name="packagesToScan" value="org.bluebird.domain" />
+		<property name="packagesToScan" value="org.ancloud.domain" />
 		<property name="loadTimeWeaver">
 			<bean class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver" />
 		</property>
@@ -65,11 +65,11 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	<jdbc:initialize-database data-source="dataSource" enabled="${spring.initDb}">
 		<jdbc:script location="classpath:/initDB.sql" encoding="UTF-8" />
 	</jdbc:initialize-database>
-	<bean class="org.bluebird.fw.presentation.factorybean.BeanMapperContextAware"></bean>
-	<bean class="org.bluebird.presentation.context.CodelistFactory"></bean>
-	<bean id="messageSource" class="org.bluebird.presentation.message.InitializableMessageSource">
+	<bean class="org.ancloud.fw.presentation.factorybean.BeanMapperContextAware"></bean>
+	<bean class="org.ancloud.presentation.context.CodelistFactory"></bean>
+	<bean id="messageSource" class="org.ancloud.presentation.message.InitializableMessageSource">
 		<property name="messageProvider">
-			<bean id="jdbcMessageProvider" class="org.bluebird.presentation.message.JdbcMessageProvider">
+			<bean id="jdbcMessageProvider" class="org.ancloud.presentation.message.JdbcMessageProvider">
 				<property name="dataSource" ref="dataSource" />
 			</bean>
 		</property>
@@ -79,7 +79,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	<!-- 	<bean id="localeResolver" -->
 <!-- 		class="org.springframework.web.servlet.i18n.CookieLocaleResolver"> -->
 <!-- 		<property name="defaultLocale" value="en_US" /> -->
-<!-- 		<property name="cookieName" value="bluebird"></property> -->
+<!-- 		<property name="cookieName" value="ancloud"></property> -->
 <!-- 		<property name="cookieMaxAge" value="3600"></property> -->
 <!-- 	</bean> -->
 	<bean id="localeResolver"

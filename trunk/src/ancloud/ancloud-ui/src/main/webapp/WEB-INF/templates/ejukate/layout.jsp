@@ -16,9 +16,9 @@
 <link rel="stylesheet" href="${resourceBasePath}/plugin/bootstrap.submenu.css">
 <link rel="stylesheet" href="${resourceBasePath}/plugin/flag/flag-icon.css">
 <link rel="stylesheet" href="${resourceBasePath}/plugin/typeahead.css">
-<link rel="stylesheet" href="${resourceBasePath}/css/core/bluebird.css">
-<link rel="stylesheet" href="${resourceBasePath}/css/core/bluebird.purple-light.css">
-<link rel="stylesheet" href="${resourceBasePath}/css/app/bootstrap.bluebird.css">
+<link rel="stylesheet" href="${resourceBasePath}/css/core/ancloud.css">
+<link rel="stylesheet" href="${resourceBasePath}/css/core/ancloud.purple-light.css">
+<link rel="stylesheet" href="${resourceBasePath}/css/app/bootstrap.ancloud.css">
 <link rel="stylesheet" href="${resourceBasePath}/css/app/bootstrap.override.css">
 <tiles:insertAttribute name="page-style" ignore="true" />
 
@@ -96,9 +96,9 @@ desired effect
 	<script src="${resourceBasePath}/plugin/jquery.slimscroll.js"></script>
 	<script src="${resourceBasePath}/plugin/handlebars.js"></script>
 	<script src="${resourceBasePath}/plugin/typeahead.bundle.js"></script>
-	<script src="${resourceBasePath}/js/core/bluebird.js"></script>
-	<script src="${resourceBasePath}/js/core/bluebird.common.js"></script>
-	<script src="${resourceBasePath}/js/core/bluebird.ar.js"></script>
+	<script src="${resourceBasePath}/js/core/ancloud.js"></script>
+	<script src="${resourceBasePath}/js/core/ancloud.common.js"></script>
+	<script src="${resourceBasePath}/js/core/ancloud.ar.js"></script>
 	<script src="${resourceBasePath}/plugin/angular.js" type="text/javascript"></script>
 	<script src="${resourceBasePath}/plugin/angular-router.js" type="text/javascript"></script>
 	

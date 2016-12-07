@@ -69,7 +69,7 @@
 	</bean>
 
 	<bean id="authenticationSuccessHandler" 
-		class="org.bluebird.service.authentication.AuthenticationSuccessHandler">
+		class="org.ancloud.service.authentication.AuthenticationSuccessHandler">
 		<property name="defaultTargetUrl" value="/" />
 		<property name="alwaysUseDefaultTargetUrl" value="true"></property>
 	</bean>

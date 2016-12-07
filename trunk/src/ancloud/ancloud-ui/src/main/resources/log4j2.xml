@@ -7,7 +7,7 @@
 	</Appenders>
 	<Loggers>
 		<!-- Application Loggers -->
-		<Logger name="org.bluebird" level="debug"/>
+		<Logger name="org.ancloud" level="debug"/>
 		
 		<!-- 3rdparty Loggers -->
 		<Logger name="org.springframework.core" level="info" />

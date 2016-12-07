@@ -1,7 +1,7 @@
 <%@ tag language="java" pageEncoding="ISO-8859-1" trimDirectiveWhitespaces="true"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ taglib uri="http://bluebird.org/tags/ex" prefix="bb-ex"%>
+<%@ taglib uri="http://ancloud.org/tags/ex" prefix="bb-ex"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <%@ attribute name="items" rtexprvalue="true" required="true" type="java.lang.Iterable"%>
 <%@ attribute name="type" rtexprvalue="true" required="true" type="String"%>
