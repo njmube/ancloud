@@ -4,6 +4,55 @@
 		<Console name="console" target="SYSTEM_OUT">
 			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
 		</Console>
+		<RollingFile name="appFileAppender" fileName="logs/app.log" 
+			filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="250 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+		<Async name="asyncAppFileAppender">
+			<AppenderRef ref="appFileAppender" />
+		</Async>
+<!-- 		<JDBC name="jdbcAppender" tableName="dbo.application_log"> -->
+<!-- 			<DataSource jndiName="java:/comp/env/jdbc/LoggingDataSource" /> -->
+<!-- 		or	<ConnectionFactory class="net.example.db.ConnectionFactory" method="getDatabaseConnection" /> -->
+<!-- 			<Column name="eventDate" isEventTimestamp="true" /> -->
+<!-- 			<Column name="level" pattern="%level" /> -->
+<!-- 			<Column name="logger" pattern="%logger" /> -->
+<!-- 			<Column name="message" pattern="%message" /> -->
+<!-- 			<Column name="exception" pattern="%ex{full}" /> -->
+<!-- 		</JDBC> -->
+<!-- 		<NoSql name="noSqlAppender"> -->
+<!-- 			<MongoDb databaseName="applicationDb" collectionName="applicationLog" -->
+<!-- 				server="mongo.example.org" username="loggingUser" password="abc123" /> -->
+<!-- 		</NoSql> -->
+		<Routing name="Routing">
+			<Routes>
+				<Script name="RoutingInit" language="JavaScript"><![CDATA[
+			          if (logEvent.getMarker() != null && logEvent.getMarker().isInstanceOf("AUDIT")) {
+			                return "AUDIT";
+			            } else if (logEvent.getContextMap().containsKey("UserId")) {
+			                return logEvent.getContextMap().get("UserId");
+			            }
+			            return "STDOUT";]]>
+				</Script>
+				<Route>
+					<RollingFile name="Rolling-${mdc:UserId}" fileName="${mdc:UserId}.log"
+						filePattern="${mdc:UserId}.%i.log.gz">
+						<PatternLayout>
+							<pattern>%d %p %c{1.} [%t] %m%n</pattern>
+						</PatternLayout>
+						<SizeBasedTriggeringPolicy size="500" />
+					</RollingFile>
+				</Route>
+<!-- 				<Route ref="AuditLogger" key="AUDIT" /> -->
+<!-- 				<Route ref="console" key="STDOUT" /> -->
+			</Routes>
+			<IdlePurgePolicy timeToLive="15" timeUnit="minutes" />
+	    </Routing>
 	</Appenders>
 	<Loggers>
 		<!-- Application Loggers -->

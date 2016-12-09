@@ -2,8 +2,11 @@ package org.ancloud.fs;
 
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
+@Component
 @ConfigurationProperties("storage")
+//@PropertySource("application.properties")
 public class StorageProperties {
 
     /**

@@ -29,12 +29,14 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 				class="org.springframework.security.web.bind.support.AuthenticationPrincipalArgumentResolver" />
 		</mvc:argument-resolvers>
 		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="prettyPrint" value="true" />
+			</bean>
 			<bean
 				class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
 				<property name="marshaller" ref="xmlMarshaller" />
 				<property name="unmarshaller" ref="xmlMarshaller" />
 			</bean>
-			<bean class="org.trek2k.fw.presentation.converters.CustomMappingJackson2HttpMessageConverter">			</bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 	<bean id="validator"

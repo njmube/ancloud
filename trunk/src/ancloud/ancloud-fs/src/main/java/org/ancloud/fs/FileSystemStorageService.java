@@ -15,6 +15,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 @Service
@@ -42,8 +44,19 @@ public class FileSystemStorageService implements StorageService {
 	@Override
 	public Stream<Path> loadAll() {
 		try {
-			return Files.walk(this.rootLocation, 1).filter(path -> !path.equals(this.rootLocation))
-					.map(path -> this.rootLocation.relativize(path));
+			return Files.walk(this.rootLocation, 1)
+						.filter(new Predicate<Path>() {
+
+							@Override
+							public boolean test(Path path) {
+								return !path.equals(rootLocation);
+							}
+						})
+						.map(new Function<Path,Path>(){
+							@Override
+							public Path apply(Path path) {
+								return rootLocation.relativize(path);
+							}});
 		} catch (IOException e) {
 			throw new StorageException("Failed to read stored files", e);
 		}

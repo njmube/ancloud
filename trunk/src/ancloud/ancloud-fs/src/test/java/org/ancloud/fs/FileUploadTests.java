@@ -8,7 +8,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.stream.Stream;
 
 import org.ancloud.fs.StorageFileNotFoundException;
@@ -38,7 +40,7 @@ public class FileUploadTests {
     @Test
     public void shouldListAllFiles() throws Exception {
         given(this.storageService.loadAll())
-                .willReturn(Stream.of(Paths.get("first.txt"), Paths.get("second.txt")));
+                .willReturn(Arrays.stream(new Path[]{Paths.get("first.txt"), Paths.get("second.txt")}));
 
         this.mvc.perform(get("/"))
                 .andExpect(status().isOk())

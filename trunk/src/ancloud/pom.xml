@@ -12,14 +12,15 @@
 		<module>ancloud-ui</module>
 		<module>ancloud-fw</module>
 		<module>ancloud-fs</module>
+		<module>ancloud-services</module>
 	</modules>
 
 	<properties>
-		<spring.version>4.2.2.RELEASE</spring.version>
+		<spring.version>4.3.2.RELEASE</spring.version>
 		<spring-data.version>1.8.0.RELEASE</spring-data.version>
 		<spring-security.version>4.0.3.RELEASE</spring-security.version>
 		<junit.version>4.12</junit.version>
-		<java.version>1.7</java.version>
+		<java.version>1.6</java.version>
 		<jpa.version>2.1</jpa.version>
 		<hibernate.version>5.1.0.Final</hibernate.version>
 		<servlet.version>3.1.0</servlet.version>
@@ -44,6 +45,11 @@
 			<dependency>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>ancloud-fs</artifactId>
+				<version>0.0.1</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>ancloud-services</artifactId>
 				<version>0.0.1</version>
 			</dependency>
 		</dependencies>

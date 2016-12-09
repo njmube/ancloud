@@ -37,10 +37,11 @@
 
 		<sec:access-denied-handler ref="accessDeniedHandler" />
 		
-		<sec:csrf />
+		<sec:http-basic />
+		<sec:access-denied-handler ref="accessDeniedHandler" />
+		<sec:csrf disabled="false" token-repository-ref="csrfTokenRepository" request-matcher-ref="csrfSecurityRequestMatcher"/>
 		<sec:custom-filter position="FORM_LOGIN_FILTER" ref="authenticationFilter" />
 		<sec:custom-filter position="CONCURRENT_SESSION_FILTER" ref="concurrencyFilter" />
-
 		<sec:session-management session-authentication-strategy-ref="sessionAuthenticationStrategy" />
 	</sec:http>
 	
@@ -153,7 +154,10 @@
 	</bean>
 
 	<bean id="csrfTokenRepository" class="org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository" />
-	 
+	<bean id="csrfSecurityRequestMatcher" class="org.ancloud.presentation.context.CsrfSecurityRequestMatcher">
+		<property name="ignoredUrlPattern" value="/api/.*" />
+	</bean>
+	
 <!-- 	<sec:global-method-security> -->
 <!-- 		<sec:protect-pointcut expression="execution(* *..service.UserManager.getUsers(..))" -->
 <!-- 			access="ROLE_ADMIN" /> -->

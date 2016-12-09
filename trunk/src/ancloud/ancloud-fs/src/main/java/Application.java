@@ -9,14 +9,14 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 @SpringBootApplication(exclude = { DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class,
 									SecurityAutoConfiguration.class }, 
 						scanBasePackages = { "org.ancloud.fs" })
-@EnableConfigurationProperties(StorageProperties.class)
-public class Application {
+public class Application extends SpringBootServletInitializer{
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
@@ -35,10 +35,13 @@ public class Application {
 //	}
 
 	@Bean
-	CommandLineRunner init(StorageService storageService) {
-		return (args) -> {
-			//storageService.deleteAll();
-			storageService.init();
-		};
+	CommandLineRunner init(final StorageService storageService) {
+		return new CommandLineRunner(){
+			@Override
+			public void run(String... args) throws Exception {
+				//storageService.deleteAll();
+				storageService.init();
+			}};
+		
 	}
 }
