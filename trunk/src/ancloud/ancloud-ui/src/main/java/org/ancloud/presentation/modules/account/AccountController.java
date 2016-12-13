@@ -52,7 +52,7 @@ public class AccountController extends BaseController {
 		AccountSearchCriteria criteria = mapper.map(accountSearchForm, AccountSearchCriteria.class);
 		Page<Account> page = accountService.findAllAccountByCriteria(criteria, pageable);
 		model.addAttribute("page",page);
-		return "account/FrAccount";
+		return "account/FsAccount";
 	}
 	
 	@RequestMapping(value="search", method = {RequestMethod.POST})
@@ -60,6 +60,6 @@ public class AccountController extends BaseController {
 		AccountSearchCriteria criteria = mapper.map(accountSearchForm, AccountSearchCriteria.class);
 		Page<Account> page = accountService.findAllAccountByCriteria(criteria, pageable);
 		model.addAttribute("page",page);
-		return "account/FrAccount";
+		return "account/FsAccount";
 	} 
 }

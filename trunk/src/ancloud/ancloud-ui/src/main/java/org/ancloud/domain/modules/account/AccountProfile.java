@@ -8,6 +8,8 @@ import javax.persistence.Table;
 
 import org.ancloud.domain.ProjectBaseModel;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "accountProfile")
 public class AccountProfile extends ProjectBaseModel {
@@ -18,6 +20,7 @@ public class AccountProfile extends ProjectBaseModel {
 
 	private String locale = "en_US";
 	
+	@JsonIgnore
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Account parent;
 	

@@ -72,7 +72,7 @@ desired effect
 				</section>
 				<tiles:insertAttribute name="content-footer" />
 			</div>
-			<tiles:insertAttribute name="page-control-sidebar" />
+<%-- 			<tiles:insertAttribute name="page-control-sidebar" /> --%>
 		</c:if>
 		<c:if test="${fn:contains(layout,'layout-top-nav') }">
 			<tiles:insertAttribute name="page-header-top" />

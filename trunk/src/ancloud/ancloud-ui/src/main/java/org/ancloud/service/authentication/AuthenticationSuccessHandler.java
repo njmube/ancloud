@@ -44,7 +44,7 @@ public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticatio
 		Account account = ((UserDetailsImpl)authentication.getPrincipal()).getAccount();
 		AccountProfile accountProfile = new AccountProfile();
 		Project project = new Project();
-		project.setId(0L);
+		project.setId(1L);
 		sessionService.put(SessionConstant.SESSION_CURRENT_PROJECT,project);
 		sessionService.put(SessionConstant.SESSION_ACCOUNT,account);
 		sessionService.put(SessionConstant.SESSION_NAVIGATION_LINKS, navigationLinkRepository.findByParentAndProject(null,project));
