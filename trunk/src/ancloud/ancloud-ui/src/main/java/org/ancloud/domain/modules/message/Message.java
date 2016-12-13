@@ -8,14 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import org.ancloud.domain.BaseModel;
+import org.ancloud.domain.ProjectBaseModel;
 
 @Entity
 @Table(name = "message",
 		uniqueConstraints=@UniqueConstraint(columnNames={"_key","language","country"})
 )
 @Embeddable
-public class Message extends BaseModel {
+public class Message extends ProjectBaseModel {
 
 	private static final long serialVersionUID = -8644123651815590065L;
 

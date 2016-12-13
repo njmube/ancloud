@@ -16,11 +16,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.ancloud.domain.BaseModel;
+import org.ancloud.domain.ProjectBaseModel;
 
 @Entity
 @Table(name = "role")
-public class Role extends BaseModel {
+public class Role extends ProjectBaseModel {
 
 	private static final long serialVersionUID = 4513934956962115145L;
 	

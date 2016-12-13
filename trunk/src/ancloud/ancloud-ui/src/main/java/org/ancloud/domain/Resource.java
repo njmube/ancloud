@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "resource")
+@Table(name = "_resource")
 public class Resource implements Serializable{
 	
 	private static final long serialVersionUID = -4768881665669079490L;
@@ -19,7 +19,7 @@ public class Resource implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(unique=true)
+	@Column(unique=true,name="_key")
 	private String key;
 	
 	private String messageKey;

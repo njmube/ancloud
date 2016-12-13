@@ -6,11 +6,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.ancloud.domain.BaseModel;
+import org.ancloud.domain.ProjectBaseModel;
 
 @Entity
 @Table(name = "accountProfile")
-public class AccountProfile extends BaseModel {
+public class AccountProfile extends ProjectBaseModel {
 
 	private static final long serialVersionUID = -3559311596801406226L;
 

@@ -3,18 +3,18 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/persistence/orm_2_1.xsd"
 	version="2.1">
-	<description>ancloud XML Mapping file</description>
+	<description>Ancloud XML Mapping file</description>
 	<named-native-query name="NavigationLink.findByProjectAndLocaleOrderByItemIndex"  result-class="org.ancloud.domain.NavigationLink">
 		<query>
 			<![CDATA[
 			SELECT B.message,
 					A.*
 					
-			FROM bb_navigationLink A 
+			FROM navigationLink A 
 				LEFT JOIN
-				bb_message B
+				message B
 				ON (
-					A.messageKey = B.key
+					A.messageKey = B._key
 					AND
 					B.language = ?2
 					AND 

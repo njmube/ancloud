@@ -2,7 +2,7 @@ package org.ancloud.presentation.mapper;
 
 import javax.inject.Inject;
 
-import org.ancloud.domain.BaseModel;
+import org.ancloud.domain.ProjectBaseModel;
 import org.ancloud.domain.Project;
 import org.ancloud.domain.common.SessionConstant;
 import org.ancloud.fw.core.service.SessionService;
@@ -13,7 +13,7 @@ import ma.glasnost.orika.NullFilter;
 import ma.glasnost.orika.metadata.Property;
 import ma.glasnost.orika.metadata.Type;
 
-public class CommonFilter extends NullFilter<Object, BaseModel> {
+public class CommonFilter extends NullFilter<Object, ProjectBaseModel> {
 
 	@Inject
 	SessionService sessionService;
@@ -29,12 +29,12 @@ public class CommonFilter extends NullFilter<Object, BaseModel> {
 	}
 	
 	@Override
-	public <D extends BaseModel> D filterDestination(D destinationValue,
+	public <D extends ProjectBaseModel> D filterDestination(D destinationValue,
 			final Type<?> sourceType, final String sourceName,
 			final Type<D> destType, final String destName,
 			final MappingContext mappingContext) {
 		
-		((BaseModel) destinationValue).setProject(sessionService.get(
+		((ProjectBaseModel) destinationValue).setProject(sessionService.get(
 				SessionConstant.SESSION_CURRENT_PROJECT, Project.class));
 
 		return destinationValue;

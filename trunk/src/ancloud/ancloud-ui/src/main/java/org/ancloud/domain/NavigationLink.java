@@ -17,7 +17,7 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name = "navigationLink")
-public class NavigationLink extends BaseModel{
+public class NavigationLink extends ProjectBaseModel{
 	
 	private static final long serialVersionUID = 2460630851669244383L;
 

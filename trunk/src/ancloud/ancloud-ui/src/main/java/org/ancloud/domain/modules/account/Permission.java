@@ -13,17 +13,20 @@ import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.ancloud.domain.BaseModel;
+import org.ancloud.domain.ProjectBaseModel;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "permission")
-public class Permission extends BaseModel{
+public class Permission extends ProjectBaseModel{
 	
 	private static final long serialVersionUID = 4396393555601831943L;
 
 	@Column(unique=true)
 	private String permissionCode;
 	
+	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy="permissions")
 	private Set<Account> accounts;
 

@@ -42,7 +42,6 @@ public class AccountController extends BaseController {
 	@RequestMapping(value={"","search"}, method = {RequestMethod.GET})
 	public String displaySearch(AccountSearchForm accountSearchForm, Model model,@Session(key="project") Project project, @PageableDefault Pageable pageable){
 		AccountSearchCriteria criteria = mapper.map(accountSearchForm, AccountSearchCriteria.class);
-		criteria.setProject(project);
 		Page<Account> page = accountService.findAllAccountByCriteria(criteria, pageable);
 		model.addAttribute("page",page);
 		return "account/FsAccount";
@@ -51,7 +50,6 @@ public class AccountController extends BaseController {
 	@RequestMapping(value="search", method = {RequestMethod.GET},params={"all"})
 	public String displaySearchAll(AccountSearchForm accountSearchForm, Model model,@Session(key="project") Project project, @PageableDefault Pageable pageable){
 		AccountSearchCriteria criteria = mapper.map(accountSearchForm, AccountSearchCriteria.class);
-		criteria.setProject(project);
 		Page<Account> page = accountService.findAllAccountByCriteria(criteria, pageable);
 		model.addAttribute("page",page);
 		return "account/FrAccount";
@@ -60,7 +58,6 @@ public class AccountController extends BaseController {
 	@RequestMapping(value="search", method = {RequestMethod.POST})
 	public String processSearch(AccountSearchForm accountSearchForm, Model model,@Session(key="project") Project project, @PageableDefault Pageable pageable){
 		AccountSearchCriteria criteria = mapper.map(accountSearchForm, AccountSearchCriteria.class);
-		criteria.setProject(project);
 		Page<Account> page = accountService.findAllAccountByCriteria(criteria, pageable);
 		model.addAttribute("page",page);
 		return "account/FrAccount";

@@ -91,12 +91,6 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 <!-- 			<mvc:mapping path="/**" /> -->
 <!-- 			<mvc:exclude-mapping path="/resources/**" /> -->
 <!-- 			<mvc:exclude-mapping path="/**/*.html" /> -->
-<!-- 			<bean class="org.terasoluna.gfw.web.logging.TraceLoggingInterceptor" /> -->
-<!-- 		</mvc:interceptor> -->
-<!-- 		<mvc:interceptor> -->
-<!-- 			<mvc:mapping path="/**" /> -->
-<!-- 			<mvc:exclude-mapping path="/resources/**" /> -->
-<!-- 			<mvc:exclude-mapping path="/**/*.html" /> -->
 <!-- 			<bean -->
 <!-- 				class="org.terasoluna.gfw.web.token.transaction.TransactionTokenInterceptor" /> -->
 <!-- 		</mvc:interceptor> -->
@@ -109,41 +103,10 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 <!-- 			</bean> -->
 <!-- 		</mvc:interceptor> -->
 <!-- 	</mvc:interceptors> -->
-	
-
 
 	<bean id="localeChangeInterceptor"
 		class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
 		<property name="paramName" value="language" />
-	</bean>
-	
-
-	<bean id="connectionFactoryLocator"
-		class="org.springframework.social.connect.support.ConnectionFactoryRegistry">
-		<property name="connectionFactories">
-			<list>
-				<bean
-					class="org.springframework.social.facebook.connect.FacebookConnectionFactory">
-					<constructor-arg value="${facebook.clientId}" />
-					<constructor-arg value="${facebook.clientSecret}" />
-				</bean>
-			</list>
-		</property>
-	</bean>
-	<bean id="usersConnectionRepository"
-		class="org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository">
-		<constructor-arg ref="dataSource" />
-		<constructor-arg ref="connectionFactoryLocator" />
-		<constructor-arg ref="textEncryptor" />
-	</bean>
-	<bean id="connectionRepository" factory-method="createConnectionRepository"
-		factory-bean="usersConnectionRepository" scope="request">
-		<constructor-arg value="#{authenticationService.getAuthenticatedUsername()}" />
-		<aop:scoped-proxy proxy-target-class="false" />
-	</bean>
-	<bean class="org.springframework.social.connect.web.ConnectController">
-		<constructor-arg ref="connectionFactoryLocator" />
-		<constructor-arg ref="connectionRepository" />
 	</bean>
 	<bean id="textEncryptor" class="org.springframework.security.crypto.encrypt.Encryptors"
 		factory-method="noOpText" />

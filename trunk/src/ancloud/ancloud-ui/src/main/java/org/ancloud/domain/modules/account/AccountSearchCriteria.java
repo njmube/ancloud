@@ -12,7 +12,6 @@ public class AccountSearchCriteria extends Account implements Specification<Acco
 
 	private static final long serialVersionUID = -6019784132716027681L;
 
-
 	@Override
 	public Predicate toPredicate(Root<Account> root,CriteriaQuery<?> criteriaquery, CriteriaBuilder criteriabuilder) {
 		String containsLikePattern = CriteriaUtil.getContainsLikePattern(this.getUserName());
