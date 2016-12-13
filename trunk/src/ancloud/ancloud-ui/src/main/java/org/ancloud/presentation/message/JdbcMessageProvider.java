@@ -30,7 +30,7 @@ public class JdbcMessageProvider implements MessageProvider {
 	private String languageColumn = "language";
 	private String countryColumn = "country";
 	private String variantColumn = "variant";
-	private String keyColumn = "key";
+	private String keyColumn = "_key";
 	private String messageColumn = "message";
 	private String tableName = "message";
 	private String basenameColumn = "basename";

@@ -73,7 +73,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			
 		</plugins>
 	</build>
 	<dependencies>
@@ -183,6 +182,11 @@
 			<artifactId>hibernate-envers</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.1-api</artifactId>
+			<version>1.0.0.Final</version>
+		</dependency>
 		<!-- <dependency> -->
 		<!-- <groupId>net.sourceforge.htmlunit</groupId> -->
 		<!-- <artifactId>htmlunit</artifactId> -->
@@ -217,11 +221,6 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.39</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-solr</artifactId>
-			<version>1.5.4.RELEASE</version>
 		</dependency>
 	</dependencies>
 </project>

@@ -3,22 +3,27 @@ package org.ancloud.domain;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
+import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Version;
 
-import org.ancloud.domain.modules.account.Account;
 import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.ancloud.domain.modules.account.Account;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @SuppressWarnings("serial")
+@EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
 public abstract class BaseModel implements Serializable{
 	
@@ -28,26 +33,40 @@ public abstract class BaseModel implements Serializable{
 	
 	private String code;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	private String name;
+	
+	@JsonIgnore
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	@CreatedBy
 	private Account createdBy;
 	
-	@CreatedDate
+	@JsonIgnore
+//	@CreatedDate
 	private Timestamp createdDate;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@JsonIgnore
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	@LastModifiedBy
 	private Account lastUpdatedBy;
 	
-	@LastModifiedDate
+	@JsonIgnore
+//	@LastModifiedDate
 	private Timestamp lastUpdatedDate;
 	
+	@Version
+	private Long version = 0L;
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Project project;
 	
-	@Version
-	private Long version;
-
+	@PrePersist
+	private void prePersist(){
+		this.createdDate = new Timestamp(System.currentTimeMillis());
+	}
+	@PreUpdate
+	private void preUpdate(){
+		this.lastUpdatedDate = new Timestamp(System.currentTimeMillis());
+	}
 	public Long getId() {
 		return id;
 	}
@@ -96,19 +115,23 @@ public abstract class BaseModel implements Serializable{
 		this.lastUpdatedDate = updatedDate;
 	}
 
-	public Project getProject() {
-		return project;
-	}
-
-	public void setProject(Project project) {
-		this.project = project;
-	}
-
 	public Long getVersion() {
 		return version;
 	}
 
 	public void setVersion(Long version) {
 		this.version = version;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Project getProject() {
+		return project;
+	}
+	public void setProject(Project project) {
+		this.project = project;
 	}
 }

@@ -10,13 +10,15 @@
 
 	<modules>
 		<module>ancloud-ui</module>
+		<module>ancloud-wapi</module>
+		<module>ancloud-auth</module>
 		<module>ancloud-fw</module>
 		<module>ancloud-fs</module>
 		<module>ancloud-services</module>
 	</modules>
 
 	<properties>
-		<spring.version>4.3.2.RELEASE</spring.version>
+		<spring.version>4.2.2.RELEASE</spring.version>
 		<spring-data.version>1.8.0.RELEASE</spring-data.version>
 		<spring-security.version>4.0.3.RELEASE</spring-security.version>
 		<junit.version>4.12</junit.version>

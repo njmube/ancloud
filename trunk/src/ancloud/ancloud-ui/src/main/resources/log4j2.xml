@@ -71,7 +71,7 @@
 
 		<logger name="org.hibernate.tool.hbm2ddl" level="info" />
 		
-		<Root level="info">
+		<Root level="ALL">
 			<AppenderRef ref="console" />
 		</Root>
 	</Loggers>

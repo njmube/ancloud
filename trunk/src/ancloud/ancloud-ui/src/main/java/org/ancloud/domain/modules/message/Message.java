@@ -12,14 +12,14 @@ import org.ancloud.domain.BaseModel;
 
 @Entity
 @Table(name = "message",
-		uniqueConstraints=@UniqueConstraint(columnNames={"key","language","country"})
+		uniqueConstraints=@UniqueConstraint(columnNames={"_key","language","country"})
 )
 @Embeddable
 public class Message extends BaseModel {
 
 	private static final long serialVersionUID = -8644123651815590065L;
 
-	private String key;
+	private String _key;
 
 	private String language;
 
@@ -35,11 +35,11 @@ public class Message extends BaseModel {
 	}
 
 	public String getKey() {
-		return key;
+		return _key;
 	}
 
 	public void setKey(String key) {
-		this.key = key;
+		this._key = key;
 	}
 
 	public String getLanguage() {
