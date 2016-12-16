@@ -21,6 +21,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	<context:component-scan base-package="org.ancloud.service" />
 	<context:component-scan base-package="org.ancloud.presentation.service" />
 	<context:component-scan base-package="org.ancloud.presentation.mapper" />
+	<context:component-scan base-package="org.ancloud.repository" />
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	
 	<bean class="org.ancloud.presentation.context.ApplicationContextListener"></bean>

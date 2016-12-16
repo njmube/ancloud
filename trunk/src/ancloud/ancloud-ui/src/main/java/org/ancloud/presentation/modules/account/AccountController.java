@@ -22,9 +22,12 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
 @RequestMapping(value="account")
+@SessionAttributes(types=AccountSearchForm.class)
 public class AccountController extends BaseController {
 	
 	@Inject
@@ -48,7 +51,9 @@ public class AccountController extends BaseController {
 	}
 	
 	@RequestMapping(value="search", method = {RequestMethod.GET},params={"all"})
-	public String displaySearchAll(AccountSearchForm accountSearchForm, Model model,@Session(key="project") Project project, @PageableDefault Pageable pageable){
+	public String displaySearchAll(AccountSearchForm accountSearchForm, Model model,@Session(key="project") Project project, @PageableDefault Pageable pageable, SessionStatus status){
+		status.isComplete();
+		accountSearchForm=new AccountSearchForm();
 		AccountSearchCriteria criteria = mapper.map(accountSearchForm, AccountSearchCriteria.class);
 		Page<Account> page = accountService.findAllAccountByCriteria(criteria, pageable);
 		model.addAttribute("page",page);

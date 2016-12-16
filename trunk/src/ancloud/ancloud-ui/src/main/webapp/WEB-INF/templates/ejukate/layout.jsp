@@ -17,7 +17,8 @@
 <link rel="stylesheet" href="${resourceBasePath}/plugin/flag/flag-icon.css">
 <link rel="stylesheet" href="${resourceBasePath}/plugin/typeahead.css">
 <link rel="stylesheet" href="${resourceBasePath}/css/core/ancloud.css">
-<link rel="stylesheet" href="${resourceBasePath}/css/core/ancloud.purple-light.css">
+<link rel="stylesheet" href="${resourceBasePath}/css/core/skin-red.css">
+<link rel="stylesheet" href="${resourceBasePath}/css/core/skin-red-light.css">
 <link rel="stylesheet" href="${resourceBasePath}/css/app/bootstrap.ancloud.css">
 <link rel="stylesheet" href="${resourceBasePath}/css/app/bootstrap.override.css">
 <tiles:insertAttribute name="page-style" ignore="true" />
@@ -57,7 +58,7 @@ desired effect
 	<c:set var="layout" value="sidebar-mini"></c:set>
 </c:if>
 <%-- <c:set var="layout" value="layout-top-nav"></c:set> --%>
-<body class="hold-transition skin-purple-light ${layout}">
+<body class="hold-transition skin-red fixed ${layout}">
 	<div class="wrapper">
 		<c:if test="${!fn:contains(layout,'layout-top-nav') }">
 			<tiles:insertAttribute name="page-header" />
@@ -66,7 +67,7 @@ desired effect
 				<section class="content-header">
 					<tiles:insertAttribute name="content-header" ignore="true"/>
 				</section>
-				<section class="content">
+				<section class="content" style="height:">
 					<bb:messages name="messages"></bb:messages>
 					<tiles:insertAttribute name="content-body" ignore="true"/>
 				</section>
@@ -81,11 +82,11 @@ desired effect
 					<section class="content-header">
 						<tiles:insertAttribute name="content-header" ignore="true"/>
 					</section>
-					<section class="content clearfix">
+					<section class="content">
 						<bb:messages name="messages"></bb:messages>
 						<tiles:insertAttribute name="content-body" ignore="true"/>
 					</section>
-					<tiles:insertAttribute name="content-footer" />
+					<tiles:insertAttribute name="content-footer" ignore="true"/>
 				</div>
 			</div>
 		</c:if>

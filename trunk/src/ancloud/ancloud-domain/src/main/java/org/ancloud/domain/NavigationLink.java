@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name = "navigationLink")
@@ -29,6 +31,7 @@ public class NavigationLink extends ProjectBaseModel{
 	
 	private String path;
 	
+	@JsonIgnore
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.REMOVE)
 	@JoinColumns({
 		@JoinColumn(referencedColumnName = "code")

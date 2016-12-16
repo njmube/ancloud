@@ -1,6 +1,4 @@
 <tiles:insertDefinition name="default">
-	<tiles:putAttribute name="page-script">
-	</tiles:putAttribute>
 	<tiles:putAttribute name="content-body">
 		<div class="signin-box">
 			<div class="panel panel-info">

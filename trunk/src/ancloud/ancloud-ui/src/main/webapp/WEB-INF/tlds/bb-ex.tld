@@ -53,4 +53,12 @@
 		<name>sort</name>
 		<path>/WEB-INF/tags/bb-sort.tag</path>
 	</tag-file>
+	<tag-file>
+		<name>iSearchPanel</name>
+		<path>/WEB-INF/tags/bb-isearchpanel.tag</path>
+	</tag-file>
+	<tag-file>
+		<name>rSearchPanel</name>
+		<path>/WEB-INF/tags/bb-rsearchpanel.tag</path>
+	</tag-file>
 </taglib>

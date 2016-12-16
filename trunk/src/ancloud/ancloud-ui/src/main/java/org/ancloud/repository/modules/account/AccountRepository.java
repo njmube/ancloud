@@ -1,4 +1,4 @@
-package org.ancloud.repository.modules;
+package org.ancloud.repository.modules.account;
 
 import org.ancloud.domain.modules.account.Account;
 import org.springframework.data.domain.Page;

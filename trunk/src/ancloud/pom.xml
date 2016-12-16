@@ -10,21 +10,24 @@
 
 	<modules>
 		<module>ancloud-ui</module>
+		<module>ancloud-domain</module>
 		<module>ancloud-wapi</module>
 		<module>ancloud-auth</module>
 		<module>ancloud-fw</module>
 		<module>ancloud-fs</module>
 		<module>ancloud-services</module>
+		<module>ancloud-boot</module>
 	</modules>
 
 	<properties>
-		<spring.version>4.2.2.RELEASE</spring.version>
+		<spring.version>4.3.2.RELEASE</spring.version>
 		<spring-data.version>1.8.0.RELEASE</spring-data.version>
 		<spring-security.version>4.0.3.RELEASE</spring-security.version>
+		<spring.boot.version>1.4.0.RELEASE</spring.boot.version>
 		<junit.version>4.12</junit.version>
 		<java.version>1.6</java.version>
 		<jpa.version>2.1</jpa.version>
-		<hibernate.version>5.1.0.Final</hibernate.version>
+		<hibernate.version>5.1.3.Final</hibernate.version>
 		<servlet.version>3.1.0</servlet.version>
 		<servlet-jsp.version>2.2</servlet-jsp.version>
 		<servlet-jstl.version>1.2</servlet-jstl.version>
@@ -42,6 +45,11 @@
 			<dependency>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>ancloud-ui</artifactId>
+				<version>0.0.1</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>ancloud-domain</artifactId>
 				<version>0.0.1</version>
 			</dependency>
 			<dependency>
@@ -72,6 +80,11 @@
 			<groupId>javax.inject</groupId>
 			<artifactId>javax.inject</artifactId>
 			<version>${javax.inject.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.1-api</artifactId>
+			<version>${javax.persistence.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>

@@ -12,7 +12,9 @@
 					
 			FROM navigationLink A 
 				LEFT JOIN
-				message B
+				(SELECT _key,language,country,MIN(message) as message 
+				FROM message
+				GROUP BY _key,language,country) B
 				ON (
 					A.messageKey = B._key
 					AND

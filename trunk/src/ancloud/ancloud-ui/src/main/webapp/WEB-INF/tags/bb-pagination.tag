@@ -8,7 +8,21 @@
 <%@ attribute name="formName" rtexprvalue="true" required="true"%>
 <%@ attribute name="page" rtexprvalue="true" required="true" type="org.springframework.data.domain.Page" %>
 <c:if test="${page.totalPages>1 }">
-<div class="pull-right">
+<div>
+	<ul class="pagination">
+		<li>
+			<span>Page ${page.number+1} / ${page.totalPages}</span>
+		</li>
+		<li>
+			<span><input  type="text" style="padding:0;border:0;width:48px;max-width:200px"/></span>
+		</li>
+		<li>
+			<a href="#" onclick="var $input=$(this).parents('.pagination').find('input');var number=(parseInt($input.val()));if(number>0&number!=NaN){window.location.href='?sort=${fn:replace(fn:replace(page.sort,' ',''),':',',')}&page='+(number>${page.totalPages}?${page.totalPages}-1:(number<1?0:number-1));}else{$input.focus();return false;}">
+				<span class="glyphicon glyphicon-chevron-right"></span>
+			</a>
+		</li>
+		
+	</ul>
 	<ul class="pagination">
 		<li class="${page.number le 0?'disabled':'' }">
 			<a href="?page=${page.number-1 }&sort=${fn:replace(fn:replace(page.sort,' ',''),':',',')}" style="${page.number <=0 ?'pointer-events: none;':'' }">
@@ -27,27 +41,11 @@
 		</li>
 	</ul>
 </div>
-<div class="pull-right">
-	<ul class="pagination">
-		<li>
-			<span>Page ${page.number+1} of ${page.totalPages}</span>
-		</li>
-		<li>
-			<input  type="text" style="width:48px"/>
-		</li>
-		<li>
-			<a class="input-group-addon" href="#" onclick="var number=(parseInt($(this).parents('.pagination').find('input').val()));window.location.href='?sort=${fn:replace(fn:replace(page.sort,' ',''),':',',')}&page='+(number>${page.totalPages}?${page.totalPages}-1:(number<1?0:number-1));">
-				<span class="glyphicon glyphicon-chevron-right"></span>
-			</a>
-		</li>
-		
-	</ul>
-</div>
-<div class="input-group pull-right" style="width:100px;margin-right:10px;">
-	<span class="input-group-addon">Page ${page.number+1} of ${page.totalPages}</span>
-	<input type="text" class="form-control" style="width:48px"/>
-	<a class="input-group-addon" href="#" onclick="var number=(parseInt($(this).prev('input').val()));window.location.href='?sort=${fn:replace(fn:replace(page.sort,' ',''),':',',')}&page='+(number>${page.totalPages}?${page.totalPages}-1:(number<1?0:number-1));">
-			Go
-	</a>
-</div>
+<!-- <div class="input-group pull-right" style="width:100px;margin-right:10px;"> -->
+<%-- 	<span class="input-group-addon">Page ${page.number+1} of ${page.totalPages}</span> --%>
+<!-- 	<input type="text" class="form-control" style="width:48px"/> -->
+<%-- 	<a class="input-group-addon" href="#" onclick="var number=(parseInt($(this).prev('input').val()));window.location.href='?sort=${fn:replace(fn:replace(page.sort,' ',''),':',',')}&page='+(number>${page.totalPages}?${page.totalPages}-1:(number<1?0:number-1));"> --%>
+<!-- 			Go -->
+<!-- 	</a> -->
+<!-- </div> -->
 </c:if>

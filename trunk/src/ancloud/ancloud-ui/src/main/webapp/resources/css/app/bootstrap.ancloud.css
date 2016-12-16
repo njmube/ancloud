@@ -1,27 +1,31 @@
 .pagination{
 	margin:0;
 }
+table th a {
+	color:inherit;
+}
 .bb-action-group-header {
 	position: relative;
 	display: inline-block;
 	vertical-align: middle;
 	margin-bottom: 5px;
-	border: 1.5px solid #C4C4C4;
-	background-color: #DEE7F7;
 	border-radius: 3px;
 }
+.bb-action-group-header .dropdown-menu{
+	border: 1px solid #C4C4C4;
+}
 
-.bb-action-group-header .btn {
-	padding:5px 20px;
-	border-width: 0px;
-	background-color: #DEE7F7;
-	color: #737373;
+.bb-action-group-header .btn,
+.bb-action-group-header li {
+	border: 0;
+	color: #fff;
 	transition: all 0.5s ease;
 }
 
-.bb-action-group-header .btn:hover{
-	background : #E3F2FD;
-}
+.bb-action-group-header .btn:hover,
+.bb-action-group-header li:hover {
+	background: rgba(0, 0, 0, 0.1);
+	color: #f6f6f6;}
 
 .bb-action-group-header .dropdown-toggle:after {
 	content: '';
@@ -103,4 +107,10 @@
 
 .bb-table-list > tbody > tr > td:first-child {
 	text-align: center;
+}
+
+.content-wrapper .content .panel {
+	margin-bottom:5px;
+	margin-top:5px;
+	
 }

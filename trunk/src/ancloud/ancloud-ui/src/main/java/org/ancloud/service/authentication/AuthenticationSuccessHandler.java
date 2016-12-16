@@ -16,8 +16,8 @@ import org.ancloud.domain.modules.account.Account;
 import org.ancloud.domain.modules.account.AccountProfile;
 import org.ancloud.fw.core.service.SessionService;
 import org.ancloud.fw.core.util.HttpServletRequestUtil;
-import org.ancloud.repository.modules.AccountRepository;
 import org.ancloud.repository.modules.NavigationLinkRepository;
+import org.ancloud.repository.modules.account.AccountRepository;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.web.servlet.LocaleResolver;
@@ -58,5 +58,10 @@ public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticatio
 	private Authentication intercepAuthentication(Authentication authentication) {
 		return authentication;
 	}
-	
+	public void setDefaultTargetUrl(String defaultTargetUrl){
+		super.setDefaultTargetUrl(defaultTargetUrl);
+	}
+	public void setAlwaysUseDefaultTargetUrl(Boolean alwaysUseDefaultTargetUrl){
+		super.setAlwaysUseDefaultTargetUrl(alwaysUseDefaultTargetUrl);
+	}
 }

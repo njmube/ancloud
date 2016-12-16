@@ -1629,9 +1629,6 @@ a:hover, a:active, a:focus {
   display: table;
   clear: both;
 }
-.navbar-nav > .user-menu > .dropdown-menu > .user-footer .btn-default {
-  color: #666666;
-}
 .navbar-nav > .user-menu .user-image {
   float: left;
   width: 25px;

@@ -66,7 +66,7 @@ INSERT INTO message(project_id,_key, basename, language, country, variant, messa
 INSERT INTO message(project_id,_key, basename, language, country, variant, message) VALUES(1,'sc.message.00001','sc','vi','VN','','Xin chào!');
 INSERT INTO message(project_id,_key, basename, language, country, variant, message) VALUES(1,'sc.message.00002','sc','en','US','','Search message');
 INSERT INTO message(project_id,_key, basename, language, country, variant, message) VALUES(1,'sc.message.00003','sc','en','US','','Message code');
-INSERT INTO message(project_id,_key, basename, language, country, variant, message) VALUES(1,'sc.account.00001','sc','en','US','','Account management');
+INSERT INTO message(project_id,_key, basename, language, country, variant, message) VALUES(1,'sc.account.00001','sc','en','US','','Account');
 INSERT INTO message(project_id,_key, basename, language, country, variant, message) VALUES(1,'sc.account.00001','sc','vi','VN','','Xin chào!');
 INSERT INTO message(project_id,_key, basename, language, country, variant, message) VALUES(1,'sc.account.00002','sc','en','US','','Search account');
 INSERT INTO message(project_id,_key, basename, language, country, variant, message) VALUES(1,'sc.account.00003','sc','en','US','','Modify account');

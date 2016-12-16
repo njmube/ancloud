@@ -80,7 +80,10 @@
 			<groupId>${project.groupId}</groupId>
 			<artifactId>ancloud-fw</artifactId>
 		</dependency>
-		
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>ancloud-domain</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -127,15 +130,16 @@
 			<version>${spring-security.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-jpa</artifactId>
-			<version>${spring-data.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-oxm</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+				<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>${spring-data.version}</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
@@ -156,6 +160,11 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-search-orm</artifactId>
+			<version>5.5.5.Final</version>
+		</dependency>
 		
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -167,11 +176,7 @@
 			<artifactId>jboss-logging</artifactId>
 			<version>3.3.0.Final</version>
 		</dependency>
-		<dependency>
-			<groupId>org.hibernate.javax.persistence</groupId>
-			<artifactId>hibernate-jpa-2.1-api</artifactId>
-			<version>${javax.persistence.version}</version>
-		</dependency>
+		
 		<!-- <dependency> -->
 		<!-- <groupId>net.sourceforge.htmlunit</groupId> -->
 		<!-- <artifactId>htmlunit</artifactId> -->

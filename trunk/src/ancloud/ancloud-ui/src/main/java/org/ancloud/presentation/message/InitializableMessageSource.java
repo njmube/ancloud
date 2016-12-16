@@ -8,19 +8,23 @@ import java.util.Locale;
 import java.util.Map;
 
 import org.ancloud.fw.core.util.LocaleUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.support.AbstractMessageSource;
 import org.springframework.util.Assert;
 
 public class InitializableMessageSource extends AbstractMessageSource implements InitializingBean {
+	
+	private Logger logger = LoggerFactory.getLogger(InitializableMessageSource.class);
 	protected Map<Locale, List<String>> resolvingPath;
 	protected Map<String, Map<String, MessageFormat>> messages = new HashMap<String, Map<String, MessageFormat>>();
 	protected Locale defaultLocale;
-	protected MessageProvider messageProvider;
 	protected boolean autoInitialization;
 	private ArrayList<String> basenames;
 	private boolean basenameRestriction;
 	private Boolean returnUnresolvedCode = true;
+	protected MessageProvider messageProvider;
 
 	public InitializableMessageSource() {
 		this.resolvingPath = new HashMap<Locale, List<String>>();
@@ -104,24 +108,19 @@ public class InitializableMessageSource extends AbstractMessageSource implements
 
 	public void initialize(String basename) {
 		Messages messagesForBasename = messageProvider.getMessages(basename);
-
+		if(!messages.isEmpty()){
+			messages.clear();
+		}
 		for (Locale locale : messagesForBasename.getLocales()) {
 			Map<String, String> codeToMessage = messagesForBasename
 					.getMessages(locale);
 
 			for (String code : codeToMessage.keySet()) {
-				try {
-					addMessage(
-							basename,
-							locale,
-							code,
-							createMessageFormat(codeToMessage.get(code), locale));
-				} catch (RuntimeException e) {
-					throw new RuntimeException(
-							String.format(
-									"Error processing Message code=%s locale=%s basename=%s, %s",
-									code, locale, basename, e.getMessage()), e);
-				}
+				addMessage(
+						basename,
+						locale,
+						code,
+						createMessageFormat(codeToMessage.get(code), locale));
 			}
 		}
 

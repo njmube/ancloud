@@ -13,6 +13,7 @@ import org.ancloud.fw.core.util.LocaleUtils;
 import org.ancloud.presentation.context.Codelist;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -36,7 +37,7 @@ public class GlobalBindingInitializer {
 //		binder.registerCustomEditor(Long.class, null, new CustomNumberEditor( Long.class, null, true));
 //		binder.registerCustomEditor(Boolean.class, null, new CustomBooleanEditor(true));
 //		binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
-//		binder.registerCustomEditor(String.class, new StringTrimmerEditor(false));
+		binder.registerCustomEditor(String.class, new StringTrimmerEditor(false));
 		if(accountProfile != null){
 			binder.registerCustomEditor(Date.class, new CustomDateEditor(
 														new SimpleDateFormat(accountProfile.getDateFormat()),

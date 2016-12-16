@@ -10,7 +10,7 @@ import org.ancloud.domain.common.SystemCodeConstant;
 import org.ancloud.domain.modules.account.Account;
 import org.ancloud.domain.modules.account.Permission;
 import org.ancloud.domain.modules.account.Role;
-import org.ancloud.repository.modules.AccountRepository;
+import org.ancloud.repository.modules.account.AccountRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;

@@ -36,7 +36,7 @@ public class WebSessionService implements SessionService {
 		if (session != null){
 			session.setAttribute(objectName, object);
 			if(logger.isDebugEnabled()){
-				logger.info(String.format("Set %s to session succesfully!", objectName));
+				logger.debug(String.format("Set %s to session succesfully!", objectName));
 				logger.debug(DataTypeUtil.toJson(object));
 			}
 		}

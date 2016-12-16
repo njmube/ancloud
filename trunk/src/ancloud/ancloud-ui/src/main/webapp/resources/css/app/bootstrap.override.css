@@ -5,8 +5,7 @@
 .btn {
 	padding: 5px 10px;
 	border: 0 none;
-	font-weight: 700;
-	letter-spacing: 1px;
+	font-weight: 300;
 	text-transform: uppercase;
 }
 
@@ -19,9 +18,7 @@
 ******************************************************/
 
 .btn-default {
-	border: 2px solid #C4C4C4;
 	color: #737373;
-	padding: 12px 22px;
 }
 .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default {
 	background: #FFFFFF;
@@ -402,10 +399,6 @@
 /******************************************************
 	Form
 ******************************************************/
-
-.form-control {
-	height: 28px;
-}
 
 .input-group-addon {
 	font-size: 12px;
