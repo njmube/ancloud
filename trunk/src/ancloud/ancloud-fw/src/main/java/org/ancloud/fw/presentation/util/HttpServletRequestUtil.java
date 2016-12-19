@@ -1,4 +1,4 @@
-package org.ancloud.fw.core.util;
+package org.ancloud.fw.presentation.util;
 
 import javax.servlet.http.HttpServletRequest;
 

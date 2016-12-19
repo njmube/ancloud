@@ -4,7 +4,7 @@ import java.util.Locale;
 
 import javax.validation.MessageInterpolator;
 
-import org.ancloud.fw.core.util.LocaleUtils;
+import org.ancloud.fw.presentation.util.LocaleUtils;
 import org.hibernate.validator.spi.resourceloading.ResourceBundleLocator;
 
 

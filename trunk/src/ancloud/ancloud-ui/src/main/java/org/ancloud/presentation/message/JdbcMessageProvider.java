@@ -10,7 +10,7 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
-import org.ancloud.fw.core.util.LocaleUtils;
+import org.ancloud.fw.presentation.util.LocaleUtils;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;

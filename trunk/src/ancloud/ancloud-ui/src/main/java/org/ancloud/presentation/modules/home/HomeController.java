@@ -1,8 +1,8 @@
 package org.ancloud.presentation.modules.home;
 
 import org.ancloud.domain.common.SystemCodeConstant;
-import org.ancloud.fw.core.message.ResultMessage;
-import org.ancloud.fw.core.message.ResultMessages;
+import org.ancloud.fw.presentation.message.ResultMessage;
+import org.ancloud.fw.presentation.message.ResultMessages;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -10,6 +10,10 @@
 	</parent>
 	<dependencies>
 		<dependency>
+			<groupId>org.ancloud</groupId>
+			<artifactId>ancloud-domain</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>${servlet.version}</version>
@@ -34,6 +38,6 @@
 			<artifactId>orika-core</artifactId>
 			<version>1.4.6</version>
 		</dependency>
-		
+
 	</dependencies>
 </project>

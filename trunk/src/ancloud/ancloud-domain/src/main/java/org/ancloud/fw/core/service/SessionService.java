@@ -1,7 +1,5 @@
 package org.ancloud.fw.core.service;
 
-
-
 public interface SessionService{
 	
 	public Object get(String objectName);

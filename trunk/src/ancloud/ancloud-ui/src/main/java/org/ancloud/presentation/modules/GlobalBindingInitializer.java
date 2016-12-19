@@ -8,8 +8,7 @@ import javax.inject.Inject;
 import org.ancloud.domain.common.SessionConstant;
 import org.ancloud.domain.modules.account.AccountProfile;
 import org.ancloud.fw.core.service.SessionService;
-import org.ancloud.fw.core.util.HttpServletRequestUtil;
-import org.ancloud.fw.core.util.LocaleUtils;
+import org.ancloud.fw.presentation.util.LocaleUtils;
 import org.ancloud.presentation.context.Codelist;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.servlet.support.RequestContextUtils;
 
 @ControllerAdvice
 public class GlobalBindingInitializer {

@@ -1,4 +1,4 @@
-package org.ancloud.fw.core.message;
+package org.ancloud.fw.presentation.message;
 
 import java.lang.reflect.Array;
 import java.util.Iterator;
@@ -8,7 +8,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.PageContext;
 
-import org.ancloud.fw.core.message.ResultMessages.ResultMessageType;
+import org.ancloud.fw.presentation.message.ResultMessages.ResultMessageType;
 import org.springframework.context.MessageSource;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.support.RequestContext;

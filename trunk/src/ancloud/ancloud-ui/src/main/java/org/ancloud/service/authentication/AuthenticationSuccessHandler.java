@@ -15,7 +15,7 @@ import org.ancloud.domain.common.SessionConstant;
 import org.ancloud.domain.modules.account.Account;
 import org.ancloud.domain.modules.account.AccountProfile;
 import org.ancloud.fw.core.service.SessionService;
-import org.ancloud.fw.core.util.HttpServletRequestUtil;
+import org.ancloud.fw.presentation.util.HttpServletRequestUtil;
 import org.ancloud.repository.modules.NavigationLinkRepository;
 import org.ancloud.repository.modules.account.AccountRepository;
 import org.springframework.security.core.Authentication;

@@ -1,4 +1,4 @@
-package org.ancloud.fw.core.message;
+package org.ancloud.fw.presentation.message;
 
 import org.springframework.util.Assert;
 
