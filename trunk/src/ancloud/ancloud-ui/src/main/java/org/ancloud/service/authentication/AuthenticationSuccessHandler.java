@@ -7,21 +7,20 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.LocaleUtils;
-import org.ancloud.domain.NavigationLink;
 import org.ancloud.domain.Project;
 import org.ancloud.domain.common.SessionConstant;
 import org.ancloud.domain.modules.account.Account;
 import org.ancloud.domain.modules.account.AccountProfile;
 import org.ancloud.fw.core.service.SessionService;
+import org.ancloud.fw.core.serviceimpl.UserDetailsImpl;
 import org.ancloud.fw.presentation.util.HttpServletRequestUtil;
 import org.ancloud.repository.modules.NavigationLinkRepository;
 import org.ancloud.repository.modules.account.AccountRepository;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.LocaleUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.support.RequestContextUtils;
 
 public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 	

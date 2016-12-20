@@ -4,7 +4,7 @@ import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.ancloud.domain.modules.account.Account;
-import org.ancloud.service.authentication.UserDetailsImpl;
+import org.ancloud.fw.core.serviceimpl.UserDetailsImpl;
 
 public class AccountAuditorAware implements AuditorAware<Account> {
 

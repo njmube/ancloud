@@ -1,4 +1,4 @@
-package org.ancloud.service.authentication;
+package org.ancloud.fw.core.serviceimpl;
 
 import java.util.Collection;
 

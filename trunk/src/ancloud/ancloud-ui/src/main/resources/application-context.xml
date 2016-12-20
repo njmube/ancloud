@@ -5,19 +5,19 @@
 	xmlns:aop="http://www.springframework.org/schema/aop" 
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:jpa="http://www.springframework.org/schema/data/jpa" 
-	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:prop="http://www.springframework.org/schema/p"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
-http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd
-http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
-http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
- http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
- http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-4.3.xsd
- http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd">
-	
-	
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
 	<context:property-placeholder location="classpath:infra.properties" />
+	<context:component-scan base-package="org.ancloud.fw.core" />
 	<context:component-scan base-package="org.ancloud.service" />
 	<context:component-scan base-package="org.ancloud.presentation.service" />
 	<context:component-scan base-package="org.ancloud.presentation.mapper" />
@@ -34,14 +34,14 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	<jpa:repositories base-package="org.ancloud.repository.modules" />
 
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
-		p:entityManagerFactory-ref="entityManagerFactory" />
+		prop:entityManagerFactory-ref="entityManagerFactory" />
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="jpaVendorAdapter">
 			<bean id="jpaAdapter" 
 					class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
-					p:showSql="${hibernate.show_sql}" />
+					prop:showSql="${hibernate.show_sql}" />
 		</property>
 		<property name="jpaProperties">
 			<props>

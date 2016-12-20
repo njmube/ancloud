@@ -2,12 +2,10 @@ package org.ancloud.repository.modules;
 
 
 import java.util.List;
-import java.util.Locale;
 
 import org.ancloud.domain.NavigationLink;
 import org.ancloud.domain.Project;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 public interface NavigationLinkRepository extends CommonRepository<NavigationLink> {
 	
