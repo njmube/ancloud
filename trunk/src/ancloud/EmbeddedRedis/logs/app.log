@@ -1,316 +1,49 @@
-2016-12-20 15:14:54.864 [main] INFO  EmbeddedRedis - Redis starting ...
-2016-12-20 15:18:08.140 [main] DEBUG org.springframework.boot.logging.ClasspathLoggingApplicationListener - Application started with classpath: [file:/D:/Downloads/sources/ancloud/trunk/src/ancloud/EmbeddedRedis/target/classes/, file:/D:/m2/.m2/repository/com/github/kstyrc/embedded-redis/0.6/embedded-redis-0.6.jar, file:/D:/m2/.m2/repository/com/google/guava/guava/18.0/guava-18.0.jar, file:/D:/m2/.m2/repository/commons-io/commons-io/2.4/commons-io-2.4.jar, file:/D:/m2/.m2/repository/org/springframework/boot/spring-boot/1.4.0.RELEASE/spring-boot-1.4.0.RELEASE.jar, file:/D:/m2/.m2/repository/org/springframework/spring-core/4.3.2.RELEASE/spring-core-4.3.2.RELEASE.jar, file:/D:/m2/.m2/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar, file:/D:/m2/.m2/repository/org/springframework/spring-context/4.3.2.RELEASE/spring-context-4.3.2.RELEASE.jar, file:/D:/m2/.m2/repository/org/springframework/spring-aop/4.3.2.RELEASE/spring-aop-4.3.2.RELEASE.jar, file:/D:/m2/.m2/repository/org/springframework/spring-beans/4.3.2.RELEASE/spring-beans-4.3.2.RELEASE.jar, file:/D:/m2/.m2/repository/org/springframework/spring-expression/4.3.2.RELEASE/spring-expression-4.3.2.RELEASE.jar, file:/D:/m2/.m2/repository/org/slf4j/slf4j-api/1.7.7/slf4j-api-1.7.7.jar, file:/D:/m2/.m2/repository/org/apache/logging/log4j/log4j-core/2.5/log4j-core-2.5.jar, file:/D:/m2/.m2/repository/org/apache/logging/log4j/log4j-api/2.5/log4j-api-2.5.jar, file:/D:/m2/.m2/repository/org/slf4j/jcl-over-slf4j/1.7.7/jcl-over-slf4j-1.7.7.jar, file:/D:/m2/.m2/repository/org/apache/logging/log4j/log4j-slf4j-impl/2.5/log4j-slf4j-impl-2.5.jar]
-2016-12-20 15:18:08.143 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'context.listener.classes' in [systemProperties]
-2016-12-20 15:18:08.143 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'context.listener.classes' in [systemEnvironment]
-2016-12-20 15:18:08.143 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'context.listener.classes' in [random]
-2016-12-20 15:18:08.143 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'context.listener.classes' in [applicationConfigurationProperties]
-2016-12-20 15:18:08.143 [main] DEBUG org.springframework.core.env.PropertySourcesPropertyResolver - Could not find key 'context.listener.classes' in any property source
-2016-12-20 15:18:08.148 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'banner.image.location' in [systemProperties]
-2016-12-20 15:18:08.148 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'banner.image.location' in [systemEnvironment]
-2016-12-20 15:18:08.148 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'banner.image.location' in [random]
-2016-12-20 15:18:08.148 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'banner.image.location' in [applicationConfigurationProperties]
-2016-12-20 15:18:08.149 [main] DEBUG org.springframework.core.env.PropertySourcesPropertyResolver - Could not find key 'banner.image.location' in any property source
-2016-12-20 15:18:08.154 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'banner.location' in [systemProperties]
-2016-12-20 15:18:08.154 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'banner.location' in [systemEnvironment]
-2016-12-20 15:18:08.154 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'banner.location' in [random]
-2016-12-20 15:18:08.154 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'banner.location' in [applicationConfigurationProperties]
-2016-12-20 15:18:08.155 [main] DEBUG org.springframework.core.env.PropertySourcesPropertyResolver - Could not find key 'banner.location' in any property source
-2016-12-20 15:18:08.202 [main] DEBUG org.springframework.core.env.StandardEnvironment - Adding [systemProperties] PropertySource with lowest search precedence
-2016-12-20 15:18:08.202 [main] DEBUG org.springframework.core.env.StandardEnvironment - Adding [systemEnvironment] PropertySource with lowest search precedence
-2016-12-20 15:18:08.202 [main] DEBUG org.springframework.core.env.StandardEnvironment - Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
-2016-12-20 15:18:08.227 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'context.initializer.classes' in [systemProperties]
-2016-12-20 15:18:08.227 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'context.initializer.classes' in [systemEnvironment]
-2016-12-20 15:18:08.227 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'context.initializer.classes' in [random]
-2016-12-20 15:18:08.227 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'context.initializer.classes' in [applicationConfigurationProperties]
-2016-12-20 15:18:08.227 [main] DEBUG org.springframework.core.env.PropertySourcesPropertyResolver - Could not find key 'context.initializer.classes' in any property source
-2016-12-20 15:18:08.228 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.config.name:application' in [systemProperties]
-2016-12-20 15:18:08.228 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.config.name:application' in [systemEnvironment]
-2016-12-20 15:18:08.228 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.config.name:application' in [random]
-2016-12-20 15:18:08.228 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.config.name:application' in [applicationConfigurationProperties]
-2016-12-20 15:18:08.228 [main] DEBUG org.springframework.core.env.PropertySourcesPropertyResolver - Could not find key 'spring.config.name:application' in any property source
-2016-12-20 15:18:08.229 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.config.name' in [systemProperties]
-2016-12-20 15:18:08.229 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.config.name' in [systemEnvironment]
-2016-12-20 15:18:08.229 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.config.name' in [random]
-2016-12-20 15:18:08.229 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.config.name' in [applicationConfigurationProperties]
-2016-12-20 15:18:08.229 [main] DEBUG org.springframework.core.env.PropertySourcesPropertyResolver - Could not find key 'spring.config.name' in any property source
-2016-12-20 15:18:08.229 [main] TRACE org.springframework.util.PropertyPlaceholderHelper - Resolved placeholder 'spring.config.name:application'
-2016-12-20 15:18:08.229 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'vcap.application.name:application' in [systemProperties]
-2016-12-20 15:18:08.229 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'vcap.application.name:application' in [systemEnvironment]
-2016-12-20 15:18:08.230 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'vcap.application.name:application' in [random]
-2016-12-20 15:18:08.230 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'vcap.application.name:application' in [applicationConfigurationProperties]
-2016-12-20 15:18:08.230 [main] DEBUG org.springframework.core.env.PropertySourcesPropertyResolver - Could not find key 'vcap.application.name:application' in any property source
-2016-12-20 15:18:08.232 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'vcap.application.name' in [systemProperties]
-2016-12-20 15:18:08.232 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'vcap.application.name' in [systemEnvironment]
-2016-12-20 15:18:08.233 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'vcap.application.name' in [random]
-2016-12-20 15:18:08.233 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'vcap.application.name' in [applicationConfigurationProperties]
-2016-12-20 15:18:08.235 [main] DEBUG org.springframework.core.env.PropertySourcesPropertyResolver - Could not find key 'vcap.application.name' in any property source
-2016-12-20 15:18:08.235 [main] TRACE org.springframework.util.PropertyPlaceholderHelper - Resolved placeholder 'vcap.application.name:application'
-2016-12-20 15:18:08.235 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.application.name:application' in [systemProperties]
-2016-12-20 15:18:08.235 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.application.name:application' in [systemEnvironment]
-2016-12-20 15:18:08.235 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.application.name:application' in [random]
-2016-12-20 15:18:08.238 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.application.name:application' in [applicationConfigurationProperties]
-2016-12-20 15:18:08.238 [main] DEBUG org.springframework.core.env.PropertySourcesPropertyResolver - Could not find key 'spring.application.name:application' in any property source
-2016-12-20 15:18:08.238 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.application.name' in [systemProperties]
-2016-12-20 15:18:08.238 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.application.name' in [systemEnvironment]
-2016-12-20 15:18:08.239 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.application.name' in [random]
-2016-12-20 15:18:08.239 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.application.name' in [applicationConfigurationProperties]
-2016-12-20 15:18:08.239 [main] DEBUG org.springframework.core.env.PropertySourcesPropertyResolver - Could not find key 'spring.application.name' in any property source
-2016-12-20 15:18:08.239 [main] TRACE org.springframework.util.PropertyPlaceholderHelper - Resolved placeholder 'spring.application.name:application'
-2016-12-20 15:18:08.239 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'PORT:null' in [systemProperties]
-2016-12-20 15:18:08.239 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'PORT:null' in [systemEnvironment]
-2016-12-20 15:18:08.240 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'PORT:null' in [random]
-2016-12-20 15:18:08.240 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'PORT:null' in [applicationConfigurationProperties]
-2016-12-20 15:18:08.240 [main] DEBUG org.springframework.core.env.PropertySourcesPropertyResolver - Could not find key 'PORT:null' in any property source
-2016-12-20 15:18:08.240 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'PORT' in [systemProperties]
-2016-12-20 15:18:08.240 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'PORT' in [systemEnvironment]
-2016-12-20 15:18:08.240 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'PORT' in [random]
-2016-12-20 15:18:08.240 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'PORT' in [applicationConfigurationProperties]
-2016-12-20 15:18:08.240 [main] DEBUG org.springframework.core.env.PropertySourcesPropertyResolver - Could not find key 'PORT' in any property source
-2016-12-20 15:18:08.241 [main] TRACE org.springframework.util.PropertyPlaceholderHelper - Resolved placeholder 'PORT:null'
-2016-12-20 15:18:08.241 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'server.port:null' in [systemProperties]
-2016-12-20 15:18:08.241 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'server.port:null' in [systemEnvironment]
-2016-12-20 15:18:08.241 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'server.port:null' in [random]
-2016-12-20 15:18:08.241 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'server.port:null' in [applicationConfigurationProperties]
-2016-12-20 15:18:08.241 [main] DEBUG org.springframework.core.env.PropertySourcesPropertyResolver - Could not find key 'server.port:null' in any property source
-2016-12-20 15:18:08.242 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'server.port' in [systemProperties]
-2016-12-20 15:18:08.242 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'server.port' in [systemEnvironment]
-2016-12-20 15:18:08.242 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'server.port' in [random]
-2016-12-20 15:18:08.242 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'server.port' in [applicationConfigurationProperties]
-2016-12-20 15:18:08.242 [main] DEBUG org.springframework.core.env.PropertySourcesPropertyResolver - Could not find key 'server.port' in any property source
-2016-12-20 15:18:08.242 [main] TRACE org.springframework.util.PropertyPlaceholderHelper - Resolved placeholder 'server.port:null'
-2016-12-20 15:18:08.242 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.application.index:null' in [systemProperties]
-2016-12-20 15:18:08.242 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.application.index:null' in [systemEnvironment]
-2016-12-20 15:18:08.242 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.application.index:null' in [random]
-2016-12-20 15:18:08.242 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.application.index:null' in [applicationConfigurationProperties]
-2016-12-20 15:18:08.243 [main] DEBUG org.springframework.core.env.PropertySourcesPropertyResolver - Could not find key 'spring.application.index:null' in any property source
-2016-12-20 15:18:08.244 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.application.index' in [systemProperties]
-2016-12-20 15:18:08.244 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.application.index' in [systemEnvironment]
-2016-12-20 15:18:08.245 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.application.index' in [random]
-2016-12-20 15:18:08.245 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.application.index' in [applicationConfigurationProperties]
-2016-12-20 15:18:08.245 [main] DEBUG org.springframework.core.env.PropertySourcesPropertyResolver - Could not find key 'spring.application.index' in any property source
-2016-12-20 15:18:08.245 [main] TRACE org.springframework.util.PropertyPlaceholderHelper - Resolved placeholder 'spring.application.index:null'
-2016-12-20 15:18:08.245 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'vcap.application.instance_index:null' in [systemProperties]
-2016-12-20 15:18:08.245 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'vcap.application.instance_index:null' in [systemEnvironment]
-2016-12-20 15:18:08.245 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'vcap.application.instance_index:null' in [random]
-2016-12-20 15:18:08.245 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'vcap.application.instance_index:null' in [applicationConfigurationProperties]
-2016-12-20 15:18:08.245 [main] DEBUG org.springframework.core.env.PropertySourcesPropertyResolver - Could not find key 'vcap.application.instance_index:null' in any property source
-2016-12-20 15:18:08.245 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'vcap.application.instance_index' in [systemProperties]
-2016-12-20 15:18:08.246 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'vcap.application.instance_index' in [systemEnvironment]
-2016-12-20 15:18:08.246 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'vcap.application.instance_index' in [random]
-2016-12-20 15:18:08.246 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'vcap.application.instance_index' in [applicationConfigurationProperties]
-2016-12-20 15:18:08.246 [main] DEBUG org.springframework.core.env.PropertySourcesPropertyResolver - Could not find key 'vcap.application.instance_index' in any property source
-2016-12-20 15:18:08.246 [main] TRACE org.springframework.util.PropertyPlaceholderHelper - Resolved placeholder 'vcap.application.instance_index:null'
-2016-12-20 15:18:08.246 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.profiles.active' in [systemProperties]
-2016-12-20 15:18:08.246 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.profiles.active' in [systemEnvironment]
-2016-12-20 15:18:08.246 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.profiles.active' in [random]
-2016-12-20 15:18:08.246 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.profiles.active' in [applicationConfigurationProperties]
-2016-12-20 15:18:08.246 [main] DEBUG org.springframework.core.env.PropertySourcesPropertyResolver - Could not find key 'spring.profiles.active' in any property source
-2016-12-20 15:18:08.253 [main] INFO  EmbeddedRedis - Starting EmbeddedRedis on henn-PC with PID 11544 (D:\Downloads\sources\ancloud\trunk\src\ancloud\EmbeddedRedis\target\classes started by henn in D:\Downloads\sources\ancloud\trunk\src\ancloud\EmbeddedRedis)
-2016-12-20 15:18:08.254 [main] DEBUG EmbeddedRedis - Running with Spring Boot v1.4.0.RELEASE, Spring v4.3.2.RELEASE
-2016-12-20 15:18:08.254 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.profiles.active' in [systemProperties]
-2016-12-20 15:18:08.254 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.profiles.active' in [systemEnvironment]
-2016-12-20 15:18:08.254 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.profiles.active' in [random]
-2016-12-20 15:18:08.254 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.profiles.active' in [applicationConfigurationProperties]
-2016-12-20 15:18:08.254 [main] DEBUG org.springframework.core.env.PropertySourcesPropertyResolver - Could not find key 'spring.profiles.active' in any property source
-2016-12-20 15:18:08.254 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.profiles.default' in [systemProperties]
-2016-12-20 15:18:08.255 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.profiles.default' in [systemEnvironment]
-2016-12-20 15:18:08.255 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.profiles.default' in [random]
-2016-12-20 15:18:08.255 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.profiles.default' in [applicationConfigurationProperties]
-2016-12-20 15:18:08.255 [main] DEBUG org.springframework.core.env.PropertySourcesPropertyResolver - Could not find key 'spring.profiles.default' in any property source
-2016-12-20 15:18:08.255 [main] INFO  EmbeddedRedis - No active profile set, falling back to default profiles: default
-2016-12-20 15:18:08.255 [main] DEBUG org.springframework.boot.SpringApplication - Loading source class EmbeddedRedis
-2016-12-20 15:18:08.291 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'file:./config/application.properties' (file:./config/application.properties) resource not found
-2016-12-20 15:18:08.292 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'file:./config/application.xml' (file:./config/application.xml) resource not found
-2016-12-20 15:18:08.292 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'file:./config/application.yml' (file:./config/application.yml) resource not found
-2016-12-20 15:18:08.292 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'file:./config/application.yaml' (file:./config/application.yaml) resource not found
-2016-12-20 15:18:08.292 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'file:./application.properties' (file:./application.properties) resource not found
-2016-12-20 15:18:08.292 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'file:./application.xml' (file:./application.xml) resource not found
-2016-12-20 15:18:08.292 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'file:./application.yml' (file:./application.yml) resource not found
-2016-12-20 15:18:08.292 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'file:./application.yaml' (file:./application.yaml) resource not found
-2016-12-20 15:18:08.292 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'classpath:/config/application.properties' resource not found
-2016-12-20 15:18:08.293 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'classpath:/config/application.xml' resource not found
-2016-12-20 15:18:08.293 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'classpath:/config/application.yml' resource not found
-2016-12-20 15:18:08.293 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'classpath:/config/application.yaml' resource not found
-2016-12-20 15:18:08.293 [main] DEBUG org.springframework.boot.context.config.ConfigFileApplicationListener - Loaded config file 'file:/D:/Downloads/sources/ancloud/trunk/src/ancloud/EmbeddedRedis/target/classes/application.properties' (classpath:/application.properties)
-2016-12-20 15:18:08.293 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'classpath:/application.xml' resource not found
-2016-12-20 15:18:08.293 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'classpath:/application.yml' resource not found
-2016-12-20 15:18:08.293 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'classpath:/application.yaml' resource not found
-2016-12-20 15:18:08.293 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'file:./config/application-default.properties' (file:./config/application-default.properties) resource not found
-2016-12-20 15:18:08.293 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'file:./config/application-default.properties' (file:./config/application-default.properties) for profile default resource not found
-2016-12-20 15:18:08.293 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'file:./config/application.properties' (file:./config/application.properties) for profile default resource not found
-2016-12-20 15:18:08.293 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'file:./config/application-default.xml' (file:./config/application-default.xml) resource not found
-2016-12-20 15:18:08.293 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'file:./config/application-default.xml' (file:./config/application-default.xml) for profile default resource not found
-2016-12-20 15:18:08.294 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'file:./config/application.xml' (file:./config/application.xml) for profile default resource not found
-2016-12-20 15:18:08.294 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'file:./config/application-default.yml' (file:./config/application-default.yml) resource not found
-2016-12-20 15:18:08.294 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'file:./config/application-default.yml' (file:./config/application-default.yml) for profile default resource not found
-2016-12-20 15:18:08.294 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'file:./config/application.yml' (file:./config/application.yml) for profile default resource not found
-2016-12-20 15:18:08.294 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'file:./config/application-default.yaml' (file:./config/application-default.yaml) resource not found
-2016-12-20 15:18:08.294 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'file:./config/application-default.yaml' (file:./config/application-default.yaml) for profile default resource not found
-2016-12-20 15:18:08.294 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'file:./config/application.yaml' (file:./config/application.yaml) for profile default resource not found
-2016-12-20 15:18:08.294 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'file:./application-default.properties' (file:./application-default.properties) resource not found
-2016-12-20 15:18:08.294 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'file:./application-default.properties' (file:./application-default.properties) for profile default resource not found
-2016-12-20 15:18:08.294 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'file:./application.properties' (file:./application.properties) for profile default resource not found
-2016-12-20 15:18:08.294 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'file:./application-default.xml' (file:./application-default.xml) resource not found
-2016-12-20 15:18:08.294 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'file:./application-default.xml' (file:./application-default.xml) for profile default resource not found
-2016-12-20 15:18:08.295 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'file:./application.xml' (file:./application.xml) for profile default resource not found
-2016-12-20 15:18:08.295 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'file:./application-default.yml' (file:./application-default.yml) resource not found
-2016-12-20 15:18:08.295 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'file:./application-default.yml' (file:./application-default.yml) for profile default resource not found
-2016-12-20 15:18:08.295 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'file:./application.yml' (file:./application.yml) for profile default resource not found
-2016-12-20 15:18:08.295 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'file:./application-default.yaml' (file:./application-default.yaml) resource not found
-2016-12-20 15:18:08.295 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'file:./application-default.yaml' (file:./application-default.yaml) for profile default resource not found
-2016-12-20 15:18:08.295 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'file:./application.yaml' (file:./application.yaml) for profile default resource not found
-2016-12-20 15:18:08.295 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'classpath:/config/application-default.properties' resource not found
-2016-12-20 15:18:08.295 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'classpath:/config/application-default.properties' for profile default resource not found
-2016-12-20 15:18:08.295 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'classpath:/config/application.properties' for profile default resource not found
-2016-12-20 15:18:08.295 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'classpath:/config/application-default.xml' resource not found
-2016-12-20 15:18:08.295 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'classpath:/config/application-default.xml' for profile default resource not found
-2016-12-20 15:18:08.296 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'classpath:/config/application.xml' for profile default resource not found
-2016-12-20 15:18:08.296 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'classpath:/config/application-default.yml' resource not found
-2016-12-20 15:18:08.296 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'classpath:/config/application-default.yml' for profile default resource not found
-2016-12-20 15:18:08.296 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'classpath:/config/application.yml' for profile default resource not found
-2016-12-20 15:18:08.296 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'classpath:/config/application-default.yaml' resource not found
-2016-12-20 15:18:08.296 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'classpath:/config/application-default.yaml' for profile default resource not found
-2016-12-20 15:18:08.296 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'classpath:/config/application.yaml' for profile default resource not found
-2016-12-20 15:18:08.296 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'classpath:/application-default.properties' resource not found
-2016-12-20 15:18:08.296 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'classpath:/application-default.properties' for profile default resource not found
-2016-12-20 15:18:08.296 [main] DEBUG org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped (empty) config file 'file:/D:/Downloads/sources/ancloud/trunk/src/ancloud/EmbeddedRedis/target/classes/application.properties' (classpath:/application.properties) for profile default
-2016-12-20 15:18:08.296 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'classpath:/application-default.xml' resource not found
-2016-12-20 15:18:08.296 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'classpath:/application-default.xml' for profile default resource not found
-2016-12-20 15:18:08.297 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'classpath:/application.xml' for profile default resource not found
-2016-12-20 15:18:08.297 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'classpath:/application-default.yml' resource not found
-2016-12-20 15:18:08.297 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'classpath:/application-default.yml' for profile default resource not found
-2016-12-20 15:18:08.297 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'classpath:/application.yml' for profile default resource not found
-2016-12-20 15:18:08.297 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'classpath:/application-default.yaml' resource not found
-2016-12-20 15:18:08.297 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'classpath:/application-default.yaml' for profile default resource not found
-2016-12-20 15:18:08.297 [main] TRACE org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped config file 'classpath:/application.yaml' for profile default resource not found
-2016-12-20 15:18:08.304 [main] INFO  org.springframework.context.annotation.AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@5a755cc1: startup date [Tue Dec 20 15:18:08 ICT 2016]; root of context hierarchy
-2016-12-20 15:18:08.304 [main] DEBUG org.springframework.context.annotation.AnnotationConfigApplicationContext - Bean factory for org.springframework.context.annotation.AnnotationConfigApplicationContext@5a755cc1: org.springframework.beans.factory.support.DefaultListableBeanFactory@1477089c: defining beans [org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.event.internalEventListenerProcessor,org.springframework.context.event.internalEventListenerFactory,embeddedRedis]; root of factory hierarchy
-2016-12-20 15:18:08.317 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
-2016-12-20 15:18:08.317 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating instance of bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
-2016-12-20 15:18:08.325 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Eagerly caching bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor' to allow for resolving potential circular references
-2016-12-20 15:18:08.327 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Finished creating instance of bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
-2016-12-20 15:18:08.360 [main] DEBUG org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader - Registered bean definition for imported class 'EmbeddedRedis$EmbeddedRedisEngine'
-2016-12-20 15:18:08.364 [main] DEBUG org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader - Registering bean definition for @Bean method EmbeddedRedis.init()
-2016-12-20 15:18:08.459 [main] DEBUG org.springframework.context.annotation.ConfigurationClassEnhancer - Successfully enhanced EmbeddedRedis; enhanced class name is: EmbeddedRedis$$EnhancerBySpringCGLIB$$c92f7607
-2016-12-20 15:18:08.459 [main] DEBUG org.springframework.context.annotation.ConfigurationClassPostProcessor - Replacing bean definition 'embeddedRedis' existing class 'EmbeddedRedis' with enhanced class 'EmbeddedRedis$$EnhancerBySpringCGLIB$$c92f7607'
-2016-12-20 15:18:08.459 [main] DEBUG org.springframework.core.env.StandardEnvironment - Adding [applicationConfig: [classpath:/application.properties]] PropertySource with search precedence immediately lower than [applicationConfigurationProperties]
-2016-12-20 15:18:08.459 [main] DEBUG org.springframework.core.env.StandardEnvironment - Removing [applicationConfigurationProperties] PropertySource
-2016-12-20 15:18:08.459 [main] DEBUG org.springframework.core.env.StandardEnvironment - Removing [defaultProperties] PropertySource
-2016-12-20 15:18:08.461 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
-2016-12-20 15:18:08.461 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating instance of bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
-2016-12-20 15:18:08.462 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Eagerly caching bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor' to allow for resolving potential circular references
-2016-12-20 15:18:08.462 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Finished creating instance of bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
-2016-12-20 15:18:08.462 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalRequiredAnnotationProcessor'
-2016-12-20 15:18:08.462 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating instance of bean 'org.springframework.context.annotation.internalRequiredAnnotationProcessor'
-2016-12-20 15:18:08.463 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Eagerly caching bean 'org.springframework.context.annotation.internalRequiredAnnotationProcessor' to allow for resolving potential circular references
-2016-12-20 15:18:08.463 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Finished creating instance of bean 'org.springframework.context.annotation.internalRequiredAnnotationProcessor'
-2016-12-20 15:18:08.463 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
-2016-12-20 15:18:08.463 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating instance of bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
-2016-12-20 15:18:08.469 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Eagerly caching bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor' to allow for resolving potential circular references
-2016-12-20 15:18:08.469 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Finished creating instance of bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
-2016-12-20 15:18:08.469 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor'
-2016-12-20 15:18:08.469 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating instance of bean 'org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor'
-2016-12-20 15:18:08.469 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Eagerly caching bean 'org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor' to allow for resolving potential circular references
-2016-12-20 15:18:08.469 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Finished creating instance of bean 'org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor'
-2016-12-20 15:18:08.469 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.ConfigurationClassPostProcessor.enhancedConfigurationProcessor'
-2016-12-20 15:18:08.470 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating instance of bean 'org.springframework.context.annotation.ConfigurationClassPostProcessor.enhancedConfigurationProcessor'
-2016-12-20 15:18:08.470 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Eagerly caching bean 'org.springframework.context.annotation.ConfigurationClassPostProcessor.enhancedConfigurationProcessor' to allow for resolving potential circular references
-2016-12-20 15:18:08.470 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Finished creating instance of bean 'org.springframework.context.annotation.ConfigurationClassPostProcessor.enhancedConfigurationProcessor'
-2016-12-20 15:18:08.474 [main] DEBUG org.springframework.context.annotation.AnnotationConfigApplicationContext - Unable to locate MessageSource with name 'messageSource': using default [org.springframework.context.support.DelegatingMessageSource@2bef51f2]
-2016-12-20 15:18:08.475 [main] DEBUG org.springframework.context.annotation.AnnotationConfigApplicationContext - Unable to locate ApplicationEventMulticaster with name 'applicationEventMulticaster': using default [org.springframework.context.event.SimpleApplicationEventMulticaster@650eab8]
-2016-12-20 15:18:08.476 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@1477089c: defining beans [org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.event.internalEventListenerProcessor,org.springframework.context.event.internalEventListenerFactory,embeddedRedis,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor,org.springframework.context.annotation.ConfigurationClassPostProcessor.enhancedConfigurationProcessor,EmbeddedRedis$EmbeddedRedisEngine,init]; root of factory hierarchy
-2016-12-20 15:18:08.476 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Returning cached instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
-2016-12-20 15:18:08.476 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Returning cached instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
-2016-12-20 15:18:08.476 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Returning cached instance of singleton bean 'org.springframework.context.annotation.internalRequiredAnnotationProcessor'
-2016-12-20 15:18:08.476 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Returning cached instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
-2016-12-20 15:18:08.476 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
-2016-12-20 15:18:08.477 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating instance of bean 'org.springframework.context.event.internalEventListenerProcessor'
-2016-12-20 15:18:08.482 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Eagerly caching bean 'org.springframework.context.event.internalEventListenerProcessor' to allow for resolving potential circular references
-2016-12-20 15:18:08.483 [main] TRACE org.springframework.beans.CachedIntrospectionResults - Getting BeanInfo for class [org.springframework.context.event.EventListenerMethodProcessor]
-2016-12-20 15:18:08.484 [main] TRACE org.springframework.beans.CachedIntrospectionResults - Caching PropertyDescriptors for class [org.springframework.context.event.EventListenerMethodProcessor]
-2016-12-20 15:18:08.484 [main] TRACE org.springframework.beans.CachedIntrospectionResults - Found bean property 'applicationContext' of type [org.springframework.context.ApplicationContext]
-2016-12-20 15:18:08.485 [main] TRACE org.springframework.beans.CachedIntrospectionResults - Found bean property 'class' of type [java.lang.Class]
-2016-12-20 15:18:08.488 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Finished creating instance of bean 'org.springframework.context.event.internalEventListenerProcessor'
-2016-12-20 15:18:08.488 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
-2016-12-20 15:18:08.488 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating instance of bean 'org.springframework.context.event.internalEventListenerFactory'
-2016-12-20 15:18:08.489 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Eagerly caching bean 'org.springframework.context.event.internalEventListenerFactory' to allow for resolving potential circular references
-2016-12-20 15:18:08.489 [main] TRACE org.springframework.beans.CachedIntrospectionResults - Getting BeanInfo for class [org.springframework.context.event.DefaultEventListenerFactory]
-2016-12-20 15:18:08.491 [main] TRACE org.springframework.beans.CachedIntrospectionResults - Caching PropertyDescriptors for class [org.springframework.context.event.DefaultEventListenerFactory]
-2016-12-20 15:18:08.491 [main] TRACE org.springframework.beans.CachedIntrospectionResults - Found bean property 'class' of type [java.lang.Class]
-2016-12-20 15:18:08.491 [main] TRACE org.springframework.beans.CachedIntrospectionResults - Found bean property 'order' of type [int]
-2016-12-20 15:18:08.493 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Finished creating instance of bean 'org.springframework.context.event.internalEventListenerFactory'
-2016-12-20 15:18:08.493 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'embeddedRedis'
-2016-12-20 15:18:08.493 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating instance of bean 'embeddedRedis'
-2016-12-20 15:18:08.494 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Eagerly caching bean 'embeddedRedis' to allow for resolving potential circular references
-2016-12-20 15:18:08.494 [main] TRACE org.springframework.beans.CachedIntrospectionResults - Getting BeanInfo for class [EmbeddedRedis$$EnhancerBySpringCGLIB$$c92f7607]
-2016-12-20 15:18:08.496 [main] TRACE org.springframework.beans.CachedIntrospectionResults - Caching PropertyDescriptors for class [EmbeddedRedis$$EnhancerBySpringCGLIB$$c92f7607]
-2016-12-20 15:18:08.496 [main] TRACE org.springframework.beans.CachedIntrospectionResults - Found bean property 'beanFactory' of type [org.springframework.beans.factory.BeanFactory]
-2016-12-20 15:18:08.496 [main] TRACE org.springframework.beans.CachedIntrospectionResults - Found bean property 'class' of type [java.lang.Class]
-2016-12-20 15:18:08.497 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Finished creating instance of bean 'embeddedRedis'
-2016-12-20 15:18:08.497 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Returning cached instance of singleton bean 'org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor'
-2016-12-20 15:18:08.497 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Returning cached instance of singleton bean 'org.springframework.context.annotation.ConfigurationClassPostProcessor.enhancedConfigurationProcessor'
-2016-12-20 15:18:08.498 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'EmbeddedRedis$EmbeddedRedisEngine'
-2016-12-20 15:18:08.498 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating instance of bean 'EmbeddedRedis$EmbeddedRedisEngine'
-2016-12-20 15:18:08.505 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Returning cached instance of singleton bean 'embeddedRedis'
-2016-12-20 15:18:08.505 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'EmbeddedRedis$EmbeddedRedisEngine' via constructor to bean named 'embeddedRedis'
-2016-12-20 15:18:08.506 [main] DEBUG org.springframework.context.annotation.CommonAnnotationBeanPostProcessor - Found destroy method on class [EmbeddedRedis$EmbeddedRedisEngine]: public void EmbeddedRedis$EmbeddedRedisEngine.stopRedis()
-2016-12-20 15:18:08.507 [main] DEBUG org.springframework.context.annotation.CommonAnnotationBeanPostProcessor - Registered destroy method on class [EmbeddedRedis$EmbeddedRedisEngine]: org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement@606b9e99
-2016-12-20 15:18:08.512 [main] DEBUG org.springframework.beans.factory.annotation.InjectionMetadata - Registered injected element on class [EmbeddedRedis$EmbeddedRedisEngine]: AutowiredFieldElement for private int EmbeddedRedis$EmbeddedRedisEngine.redisPort
-2016-12-20 15:18:08.512 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Eagerly caching bean 'EmbeddedRedis$EmbeddedRedisEngine' to allow for resolving potential circular references
-2016-12-20 15:18:08.513 [main] TRACE org.springframework.beans.CachedIntrospectionResults - Getting BeanInfo for class [EmbeddedRedis$EmbeddedRedisEngine]
-2016-12-20 15:18:08.514 [main] TRACE org.springframework.beans.CachedIntrospectionResults - Caching PropertyDescriptors for class [EmbeddedRedis$EmbeddedRedisEngine]
-2016-12-20 15:18:08.514 [main] TRACE org.springframework.beans.CachedIntrospectionResults - Found bean property 'class' of type [java.lang.Class]
-2016-12-20 15:18:08.515 [main] DEBUG org.springframework.beans.factory.annotation.InjectionMetadata - Processing injected element of bean 'EmbeddedRedis$EmbeddedRedisEngine': AutowiredFieldElement for private int EmbeddedRedis$EmbeddedRedisEngine.redisPort
-2016-12-20 15:18:08.516 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.redis.port' in [systemProperties]
-2016-12-20 15:18:08.516 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.redis.port' in [systemEnvironment]
-2016-12-20 15:18:08.516 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.redis.port' in [random]
-2016-12-20 15:18:08.516 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.redis.port' in [applicationConfig: [classpath:/application.properties]]
-2016-12-20 15:18:08.516 [main] DEBUG org.springframework.core.env.PropertySourcesPropertyResolver - Found key 'spring.redis.port' in [applicationConfig: [classpath:/application.properties]] with type [String] and value '6379'
-2016-12-20 15:18:08.518 [main] TRACE org.springframework.util.PropertyPlaceholderHelper - Resolved placeholder 'spring.redis.port'
-2016-12-20 15:18:08.532 [main] TRACE org.springframework.beans.TypeConverterDelegate - Converting String to [int] using property editor [org.springframework.beans.propertyeditors.CustomNumberEditor@18245eb0]
-2016-12-20 15:18:08.534 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Finished creating instance of bean 'EmbeddedRedis$EmbeddedRedisEngine'
-2016-12-20 15:18:08.534 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'init'
-2016-12-20 15:18:08.534 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating instance of bean 'init'
-2016-12-20 15:18:08.534 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Returning cached instance of singleton bean 'embeddedRedis'
-2016-12-20 15:18:08.536 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Returning cached instance of singleton bean 'embeddedRedis'
-2016-12-20 15:18:08.536 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'init' via factory method to bean named 'embeddedRedis'
-2016-12-20 15:18:08.552 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Eagerly caching bean 'init' to allow for resolving potential circular references
-2016-12-20 15:18:08.552 [main] TRACE org.springframework.beans.CachedIntrospectionResults - Getting BeanInfo for class [EmbeddedRedis$1]
-2016-12-20 15:18:08.554 [main] TRACE org.springframework.beans.CachedIntrospectionResults - Caching PropertyDescriptors for class [EmbeddedRedis$1]
-2016-12-20 15:18:08.554 [main] TRACE org.springframework.beans.CachedIntrospectionResults - Found bean property 'class' of type [java.lang.Class]
-2016-12-20 15:18:08.555 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Finished creating instance of bean 'init'
-2016-12-20 15:18:08.555 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Returning cached instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
-2016-12-20 15:18:08.558 [main] TRACE org.springframework.context.event.EventListenerMethodProcessor - No @EventListener annotations found on bean class: class org.springframework.context.annotation.ConfigurationClassPostProcessor
-2016-12-20 15:18:08.559 [main] TRACE org.springframework.context.event.EventListenerMethodProcessor - No @EventListener annotations found on bean class: class org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
-2016-12-20 15:18:08.560 [main] TRACE org.springframework.context.event.EventListenerMethodProcessor - No @EventListener annotations found on bean class: class org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor
-2016-12-20 15:18:08.562 [main] TRACE org.springframework.context.event.EventListenerMethodProcessor - No @EventListener annotations found on bean class: class org.springframework.context.annotation.CommonAnnotationBeanPostProcessor
-2016-12-20 15:18:08.562 [main] TRACE org.springframework.context.event.EventListenerMethodProcessor - No @EventListener annotations found on bean class: class org.springframework.context.event.EventListenerMethodProcessor
-2016-12-20 15:18:08.562 [main] TRACE org.springframework.context.event.EventListenerMethodProcessor - No @EventListener annotations found on bean class: class org.springframework.context.event.DefaultEventListenerFactory
-2016-12-20 15:18:08.563 [main] TRACE org.springframework.context.event.EventListenerMethodProcessor - No @EventListener annotations found on bean class: class EmbeddedRedis$$EnhancerBySpringCGLIB$$c92f7607
-2016-12-20 15:18:08.563 [main] TRACE org.springframework.context.event.EventListenerMethodProcessor - No @EventListener annotations found on bean class: class org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor
-2016-12-20 15:18:08.563 [main] TRACE org.springframework.context.event.EventListenerMethodProcessor - No @EventListener annotations found on bean class: class org.springframework.context.annotation.ConfigurationClassPostProcessor$EnhancedConfigurationBeanPostProcessor
-2016-12-20 15:18:08.563 [main] TRACE org.springframework.context.event.EventListenerMethodProcessor - No @EventListener annotations found on bean class: class EmbeddedRedis$EmbeddedRedisEngine
-2016-12-20 15:18:08.563 [main] TRACE org.springframework.context.event.EventListenerMethodProcessor - No @EventListener annotations found on bean class: class EmbeddedRedis$1
-2016-12-20 15:18:08.563 [main] TRACE org.springframework.context.event.EventListenerMethodProcessor - No @EventListener annotations found on bean class: class org.springframework.boot.DefaultApplicationArguments
-2016-12-20 15:18:08.564 [main] TRACE org.springframework.context.event.EventListenerMethodProcessor - No @EventListener annotations found on bean class: class org.springframework.boot.SpringApplicationBannerPrinter$PrintedBanner
-2016-12-20 15:18:08.566 [main] TRACE org.springframework.context.event.EventListenerMethodProcessor - No @EventListener annotations found on bean class: class org.springframework.boot.logging.log4j2.Log4J2LoggingSystem
-2016-12-20 15:18:08.567 [main] TRACE org.springframework.context.event.EventListenerMethodProcessor - No @EventListener annotations found on bean class: class org.springframework.core.env.StandardEnvironment
-2016-12-20 15:18:08.574 [main] TRACE org.springframework.context.event.EventListenerMethodProcessor - No @EventListener annotations found on bean class: class java.util.Properties
-2016-12-20 15:18:08.574 [main] TRACE org.springframework.context.event.EventListenerMethodProcessor - No @EventListener annotations found on bean class: class java.util.Collections$UnmodifiableMap
-2016-12-20 15:18:08.578 [main] TRACE org.springframework.context.event.EventListenerMethodProcessor - No @EventListener annotations found on bean class: class org.springframework.context.annotation.ConfigurationClassParser$ImportStack
-2016-12-20 15:18:08.579 [main] TRACE org.springframework.context.event.EventListenerMethodProcessor - No @EventListener annotations found on bean class: class org.springframework.context.support.DelegatingMessageSource
-2016-12-20 15:18:08.580 [main] TRACE org.springframework.context.event.EventListenerMethodProcessor - No @EventListener annotations found on bean class: class org.springframework.context.event.SimpleApplicationEventMulticaster
-2016-12-20 15:18:08.581 [main] DEBUG org.springframework.context.annotation.AnnotationConfigApplicationContext - Unable to locate LifecycleProcessor with name 'lifecycleProcessor': using default [org.springframework.context.support.DefaultLifecycleProcessor@649725e3]
-2016-12-20 15:18:08.581 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Returning cached instance of singleton bean 'lifecycleProcessor'
-2016-12-20 15:18:08.581 [main] TRACE org.springframework.context.annotation.AnnotationConfigApplicationContext - Publishing event in org.springframework.context.annotation.AnnotationConfigApplicationContext@5a755cc1: org.springframework.context.event.ContextRefreshedEvent[source=org.springframework.context.annotation.AnnotationConfigApplicationContext@5a755cc1: startup date [Tue Dec 20 15:18:08 ICT 2016]; root of context hierarchy]
-2016-12-20 15:18:08.583 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.liveBeansView.mbeanDomain' in [systemProperties]
-2016-12-20 15:18:08.583 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.liveBeansView.mbeanDomain' in [systemEnvironment]
-2016-12-20 15:18:08.583 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.liveBeansView.mbeanDomain' in [random]
-2016-12-20 15:18:08.584 [main] TRACE org.springframework.core.env.PropertySourcesPropertyResolver - Searching for key 'spring.liveBeansView.mbeanDomain' in [applicationConfig: [classpath:/application.properties]]
-2016-12-20 15:18:08.584 [main] DEBUG org.springframework.core.env.PropertySourcesPropertyResolver - Could not find key 'spring.liveBeansView.mbeanDomain' in any property source
-2016-12-20 15:18:08.586 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Returning cached instance of singleton bean 'init'
-2016-12-20 15:18:08.586 [main] INFO  EmbeddedRedis - Redis starting ...
-2016-12-20 15:18:08.586 [main] TRACE org.springframework.context.annotation.AnnotationConfigApplicationContext - Publishing event in org.springframework.context.annotation.AnnotationConfigApplicationContext@5a755cc1: org.springframework.boot.context.event.ApplicationReadyEvent[source=org.springframework.boot.SpringApplication@119f1f2a]
-2016-12-20 15:18:08.587 [main] INFO  EmbeddedRedis - Started EmbeddedRedis in 0.629 seconds (JVM running for 1.384)
-2016-12-20 15:18:08.599 [Thread-3] INFO  org.springframework.context.annotation.AnnotationConfigApplicationContext - Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@5a755cc1: startup date [Tue Dec 20 15:18:08 ICT 2016]; root of context hierarchy
-2016-12-20 15:18:08.599 [Thread-3] TRACE org.springframework.context.annotation.AnnotationConfigApplicationContext - Publishing event in org.springframework.context.annotation.AnnotationConfigApplicationContext@5a755cc1: org.springframework.context.event.ContextClosedEvent[source=org.springframework.context.annotation.AnnotationConfigApplicationContext@5a755cc1: startup date [Tue Dec 20 15:18:08 ICT 2016]; root of context hierarchy]
+2016-12-21 09:44:36.009 [main] INFO  EmbeddedRedis - Starting EmbeddedRedis on henn-PC with PID 10384 (D:\Downloads\sources\ancloud\trunk\src\ancloud\EmbeddedRedis\target\classes started by henn in D:\Downloads\sources\ancloud\trunk\src\ancloud\EmbeddedRedis)
+2016-12-21 09:44:36.022 [main] INFO  EmbeddedRedis - No active profile set, falling back to default profiles: default
+2016-12-21 09:44:36.087 [main] INFO  org.springframework.context.annotation.AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@a3d9978: startup date [Wed Dec 21 09:44:36 ICT 2016]; root of context hierarchy
+2016-12-21 09:44:36.449 [main] INFO  EmbeddedRedis - Redis starting ...
+2016-12-21 09:44:41.727 [main] ERROR org.springframework.boot.SpringApplication - Application startup failed
+java.lang.IllegalStateException: Failed to execute CommandLineRunner
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:801) ~[spring-boot-1.4.0.RELEASE.jar:1.4.0.RELEASE]
+	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:782) [spring-boot-1.4.0.RELEASE.jar:1.4.0.RELEASE]
+	at org.springframework.boot.SpringApplication.afterRefresh(SpringApplication.java:769) [spring-boot-1.4.0.RELEASE.jar:1.4.0.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:314) [spring-boot-1.4.0.RELEASE.jar:1.4.0.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1185) [spring-boot-1.4.0.RELEASE.jar:1.4.0.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1174) [spring-boot-1.4.0.RELEASE.jar:1.4.0.RELEASE]
+	at EmbeddedRedis.main(EmbeddedRedis.java:22) [classes/:?]
+Caused by: java.lang.RuntimeException: Can't start redis server. Check logs for details.
+	at redis.embedded.AbstractRedisInstance.awaitRedisServerReady(AbstractRedisInstance.java:61) ~[embedded-redis-0.6.jar:?]
+	at redis.embedded.AbstractRedisInstance.start(AbstractRedisInstance.java:39) ~[embedded-redis-0.6.jar:?]
+	at redis.embedded.RedisServer.start(RedisServer.java:9) ~[embedded-redis-0.6.jar:?]
+	at EmbeddedRedis$EmbeddedRedisEngine.startRedis(EmbeddedRedis.java:47) ~[classes/:?]
+	at EmbeddedRedis$1.run(EmbeddedRedis.java:31) ~[classes/:?]
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:798) ~[spring-boot-1.4.0.RELEASE.jar:1.4.0.RELEASE]
+	... 6 more
+2016-12-21 09:44:41.773 [main] INFO  org.springframework.context.annotation.AnnotationConfigApplicationContext - Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@a3d9978: startup date [Wed Dec 21 09:44:36 ICT 2016]; root of context hierarchy
+2016-12-21 09:45:44.597 [main] INFO  EmbeddedRedis - Starting EmbeddedRedis on henn-PC with PID 6408 (D:\Downloads\sources\ancloud\trunk\src\ancloud\EmbeddedRedis\target\classes started by henn in D:\Downloads\sources\ancloud\trunk\src\ancloud\EmbeddedRedis)
+2016-12-21 09:45:44.599 [main] INFO  EmbeddedRedis - No active profile set, falling back to default profiles: default
+2016-12-21 09:45:44.633 [main] INFO  org.springframework.context.annotation.AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@a3d9978: startup date [Wed Dec 21 09:45:44 ICT 2016]; root of context hierarchy
+2016-12-21 09:45:44.894 [main] INFO  EmbeddedRedis - Redis starting ...
+2016-12-21 09:47:56.385 [main] ERROR org.springframework.boot.SpringApplication - Application startup failed
+java.lang.IllegalStateException: Failed to execute CommandLineRunner
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:801) ~[spring-boot-1.4.0.RELEASE.jar:1.4.0.RELEASE]
+	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:782) [spring-boot-1.4.0.RELEASE.jar:1.4.0.RELEASE]
+	at org.springframework.boot.SpringApplication.afterRefresh(SpringApplication.java:769) [spring-boot-1.4.0.RELEASE.jar:1.4.0.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:314) [spring-boot-1.4.0.RELEASE.jar:1.4.0.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1185) [spring-boot-1.4.0.RELEASE.jar:1.4.0.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1174) [spring-boot-1.4.0.RELEASE.jar:1.4.0.RELEASE]
+	at EmbeddedRedis.main(EmbeddedRedis.java:22) [classes/:?]
+Caused by: java.lang.RuntimeException: Can't start redis server. Check logs for details.
+	at redis.embedded.AbstractRedisInstance.awaitRedisServerReady(AbstractRedisInstance.java:61) ~[embedded-redis-0.6.jar:?]
+	at redis.embedded.AbstractRedisInstance.start(AbstractRedisInstance.java:39) ~[embedded-redis-0.6.jar:?]
+	at redis.embedded.RedisServer.start(RedisServer.java:9) ~[embedded-redis-0.6.jar:?]
+	at EmbeddedRedis$EmbeddedRedisEngine.startRedis(EmbeddedRedis.java:47) ~[classes/:?]
+	at EmbeddedRedis$1.run(EmbeddedRedis.java:31) ~[classes/:?]
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:798) ~[spring-boot-1.4.0.RELEASE.jar:1.4.0.RELEASE]
+	... 6 more
+2016-12-21 09:47:56.395 [main] INFO  org.springframework.context.annotation.AnnotationConfigApplicationContext - Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@a3d9978: startup date [Wed Dec 21 09:45:44 ICT 2016]; root of context hierarchy
+2016-12-21 09:55:10.491 [main] INFO  EmbeddedRedis - Starting EmbeddedRedis on henn-PC with PID 12024 (D:\Downloads\sources\ancloud\trunk\src\ancloud\EmbeddedRedis\target\classes started by henn in D:\Downloads\sources\ancloud\trunk\src\ancloud\EmbeddedRedis)
+2016-12-21 09:55:10.491 [main] INFO  EmbeddedRedis - No active profile set, falling back to default profiles: default
+2016-12-21 09:55:10.543 [main] INFO  org.springframework.context.annotation.AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@a3d9978: startup date [Wed Dec 21 09:55:10 ICT 2016]; root of context hierarchy
+2016-12-21 09:55:11.175 [main] INFO  EmbeddedRedis - Redis starting ...
+2016-12-21 09:55:13.733 [main] INFO  EmbeddedRedis - Started EmbeddedRedis in 3.626 seconds (JVM running for 6.215)

@@ -54,7 +54,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 <!-- 		<property name="defaultEncoding" value="UTF-16" /> -->
 <!-- 	</bean> -->
 
-	<mvc:resources mapping="/resources/**" location="/resources/" cache-period="#{60 * 60}" />
+	<mvc:resources mapping="/resources/**" location="/resources/" cache-period="0" /> <!-- cache-period="#{60 * 60}" -->
 	<mvc:view-resolvers>
 		<mvc:bean-name />
 		<mvc:tiles />

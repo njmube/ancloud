@@ -18,8 +18,8 @@ INSERT INTO navigationlink(messageKey,code,icon,path,project_id,parent_code,grou
 /*resources */
 
 
-INSERT INTO _resource(category,_key,messageKey, value, resourceGroup) VALUES('language','en_US','','English','flag-icon-us');
-INSERT INTO _resource(category,_key,messageKey, value, resourceGroup) VALUES('language','vi_VN','','Vietnamese','flag-icon-vn');
+INSERT INTO resource(category,_key,messageKey, value, resourceGroup) VALUES('language','en_US','','English','flag-icon-us');
+INSERT INTO resource(category,_key,messageKey, value, resourceGroup) VALUES('language','vi_VN','','Vietnamese','flag-icon-vn');
 /* Messages */
 
 INSERT INTO message(project_id,_key, basename, language, country, variant, message) VALUES(1,'mod.sys','mod','en','US','','System');

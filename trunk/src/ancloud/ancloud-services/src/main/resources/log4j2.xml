@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" xmlns="http://logging.apache.org/log4j/2.0/config"  schema="Log4J-V2.0.xsd">
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</Console>
+		<RollingFile name="appFileAppender" fileName="logs/app.log" 
+			filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="250 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+		<Async name="asyncAppFileAppender">
+			<AppenderRef ref="appFileAppender" />
+		</Async>
+	</Appenders>
+	<Loggers>
+
+		<Logger name="org.springframework.core" level="INFO" />
+
+		<Logger name="org.springframework.beans" level="INFO" />
+
+		<Logger name="org.springframework.context" level="INFO" />
+		
+		<Logger name="org.hibernate" level="INFO" />
+
+
+		<Root level="DEBUG">
+			<AppenderRef ref="console" />
+			<AppenderRef ref="asyncAppFileAppender" />
+		</Root>
+	</Loggers>
+</Configuration>

@@ -6,6 +6,8 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -34,7 +36,8 @@ public class Account extends BaseModel {
 
 	private boolean credentialsNonExpired;
 
-	private boolean enabled;
+	@Enumerated(EnumType.ORDINAL)
+	private AccountStatus accountStatus;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "accountPermission", 
@@ -117,14 +120,6 @@ public class Account extends BaseModel {
 		this.credentialsNonExpired = credentialsNonExpired;
 	}
 
-	public boolean isEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
-
 	public Set<Role> getRoles() {
 		return roles;
 	}
@@ -147,5 +142,13 @@ public class Account extends BaseModel {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public AccountStatus getAccountStatus() {
+		return accountStatus;
+	}
+
+	public void setAccountStatus(AccountStatus accountStatus) {
+		this.accountStatus = accountStatus;
 	}
 }

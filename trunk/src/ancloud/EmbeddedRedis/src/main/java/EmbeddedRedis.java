@@ -24,11 +24,11 @@ public class EmbeddedRedis {
 
 	@Bean
 	@Autowired
-	CommandLineRunner init(final EmbeddedRedisEngine c) {
+	CommandLineRunner init(final EmbeddedRedisEngine embeddedRedisEngine) {
 		return new CommandLineRunner() {
 			public void run(String... args) throws Exception {
 				logger.info("Redis starting ...");
-				embeddedRedis.startRedis();
+				embeddedRedisEngine.startRedis();
 			}
 		};
 
@@ -37,8 +37,6 @@ public class EmbeddedRedis {
 	@Component
 	public class EmbeddedRedisEngine {
 
-		private Logger logger = LoggerFactory.getLogger(EmbeddedRedisEngine.class);
-		
 		@Value("${spring.redis.port}")
 		private int redisPort;
 
