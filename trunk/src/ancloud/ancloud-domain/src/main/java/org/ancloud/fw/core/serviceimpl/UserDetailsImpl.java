@@ -3,7 +3,7 @@ package org.ancloud.fw.core.serviceimpl;
 import java.util.Collection;
 
 import org.ancloud.domain.modules.account.Account;
-import org.ancloud.domain.modules.account.AccountStatus;
+import org.ancloud.domain.modules.account.enums.AccountStatus;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

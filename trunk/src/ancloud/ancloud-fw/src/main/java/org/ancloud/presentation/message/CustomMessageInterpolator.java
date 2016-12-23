@@ -5,13 +5,12 @@ import java.util.Locale;
 import javax.validation.MessageInterpolator;
 
 import org.ancloud.fw.presentation.util.LocaleUtils;
-import org.hibernate.validator.spi.resourceloading.ResourceBundleLocator;
 
 
 public class CustomMessageInterpolator implements MessageInterpolator{
 
 	
-	public CustomMessageInterpolator(ResourceBundleLocator userResourceBundleLocator){
+	public CustomMessageInterpolator(){
 	}
 	
 	public String interpolate(String message, Context context) {

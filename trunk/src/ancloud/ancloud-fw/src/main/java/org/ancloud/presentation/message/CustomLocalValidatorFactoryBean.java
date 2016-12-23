@@ -6,8 +6,8 @@ import org.springframework.validation.beanvalidation.MessageSourceResourceBundle
 
 public class CustomLocalValidatorFactoryBean extends LocalValidatorFactoryBean {
 
-	@Override
-	public void setValidationMessageSource(MessageSource messageSource) {
-		super.setMessageInterpolator(new CustomMessageInterpolator(new MessageSourceResourceBundleLocator(messageSource)));
-	}
+//	@Override
+//	public void setValidationMessageSource(MessageSource messageSource) {
+//		super.setMessageInterpolator(new CustomMessageInterpolator(new MessageSourceResourceBundleLocator(messageSource)));
+//	}
 }
