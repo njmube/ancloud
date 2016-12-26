@@ -1,4 +1,4 @@
-package org.ancloud.services;
+package org.ancloud.wapi;
 
 import java.util.HashMap;
 import java.util.Map;

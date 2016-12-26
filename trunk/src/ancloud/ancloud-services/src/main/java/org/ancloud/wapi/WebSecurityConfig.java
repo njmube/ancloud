@@ -1,4 +1,4 @@
-package org.ancloud.services;
+package org.ancloud.wapi;
 
 
 import javax.inject.Inject;

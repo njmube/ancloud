@@ -15,7 +15,6 @@
 		<module>ancloud-auth</module>
 		<module>ancloud-fw</module>
 		<module>ancloud-fs</module>
-		<module>ancloud-services</module>
 		<module>ancloud-boot</module>
 	</modules>
 
