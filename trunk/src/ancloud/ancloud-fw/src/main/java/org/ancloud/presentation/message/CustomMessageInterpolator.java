@@ -5,12 +5,19 @@ import java.util.Locale;
 import javax.validation.MessageInterpolator;
 
 import org.ancloud.fw.presentation.util.LocaleUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.MessageSource;
 
 
 public class CustomMessageInterpolator implements MessageInterpolator{
 
+	private Logger log = LoggerFactory.getLogger(CustomMessageInterpolator.class); 
+
+	private MessageSource mesageSource;
 	
-	public CustomMessageInterpolator(){
+	public CustomMessageInterpolator(MessageSource messageSource){
+		this.mesageSource = messageSource;
 	}
 	
 	public String interpolate(String message, Context context) {
@@ -26,7 +33,12 @@ public class CustomMessageInterpolator implements MessageInterpolator{
 	}
 	
 	private String interpolateMessage(String message, Context context,Locale locale) {
-		String resolveMessage = message;
-		return resolveMessage;
+		String resolvedMessage = message ;
+		try {
+			resolvedMessage = mesageSource.getMessage(message, null, locale);
+		} catch(Exception ex){
+			log.error(ex.getMessage());
+		}
+		return resolvedMessage;
 	}
 }

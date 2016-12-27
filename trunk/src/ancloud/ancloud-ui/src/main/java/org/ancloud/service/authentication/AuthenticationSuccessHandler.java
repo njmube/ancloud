@@ -18,8 +18,10 @@ import org.ancloud.repository.modules.NavigationLinkRepository;
 import org.ancloud.repository.modules.account.AccountRepository;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.LocaleUtils;
+import org.ancloud.domain.modules.account.Role;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.LocaleResolver;
 
 public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
@@ -53,7 +55,54 @@ public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticatio
 		sessionService.put(SessionConstant.SESSION_CURRENT_ACCOUNT_PROFILE,accountProfile);
 		localeResolver.setLocale(HttpServletRequestUtil.getRequest(), null, LocaleUtils.toLocale(accountProfile.getLocale()));
 	}
+	@Override
+	protected String determineTargetUrl(HttpServletRequest request,HttpServletResponse response) {
+		if (isAlwaysUseDefaultTargetUrl()) {
+			return this.getDefaultTargetUrl();
+		}
 
+		String targetUrl = null;
+		
+		Account account = sessionService.get(SessionConstant.SESSION_ACCOUNT,Account.class);
+		if(account !=null){
+			for(Role role :account.getRoles()){
+//				switch(role.getRoleCode()){
+//				case "administrator":
+//					targetUrl = "/account/search";
+//					break;
+//				case "doctor":
+//					targetUrl = "/med/patient/search";
+//					break;
+//				case "nurse":
+//					targetUrl = "/med/patient/search";
+//					break;
+//				case "patient":
+//					targetUrl = "/med/patient/show-vital?patientId="+account.getId();
+//					break;
+//				}
+//				if (StringUtils.hasText(targetUrl)) {
+//					return targetUrl;
+//				}
+			}
+		}
+		if (this.getTargetUrlParameter() != null) {
+			targetUrl = request.getParameter(this.getTargetUrlParameter());
+
+			if (StringUtils.hasText(targetUrl)) {
+				this.logger.debug("Found targetUrlParameter in request: "
+						+ targetUrl);
+
+				return targetUrl;
+			}
+		}
+
+		if (!(StringUtils.hasText(targetUrl))) {
+			targetUrl = this.getDefaultTargetUrl();
+			this.logger.debug("Using default Url: " + targetUrl);
+		}
+
+		return targetUrl;
+	}
 	private Authentication intercepAuthentication(Authentication authentication) {
 		return authentication;
 	}

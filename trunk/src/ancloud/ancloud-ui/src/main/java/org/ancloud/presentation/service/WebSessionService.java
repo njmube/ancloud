@@ -23,9 +23,9 @@ public class WebSessionService implements SessionService {
 		if (session == null)
 			return null;
 		Object result = session.getAttribute(objectName);
-		if(logger.isDebugEnabled()){
-			logger.debug(String.format("Get %s from session succesfully!", objectName));
-			logger.debug(DataTypeUtil.toJson(result));
+		if(logger.isTraceEnabled()){
+			logger.trace(String.format("Get %s from session succesfully!", objectName));
+			logger.trace(DataTypeUtil.toJson(result));
 		}
 		return result;
 	}
@@ -35,9 +35,9 @@ public class WebSessionService implements SessionService {
 		HttpSession session = HttpServletRequestUtil.getRequest().getSession(true);
 		if (session != null){
 			session.setAttribute(objectName, object);
-			if(logger.isDebugEnabled()){
-				logger.debug(String.format("Set %s to session succesfully!", objectName));
-				logger.debug(DataTypeUtil.toJson(object));
+			if(logger.isTraceEnabled()){
+				logger.trace(String.format("Set %s to session succesfully!", objectName));
+				logger.trace(DataTypeUtil.toJson(object));
 			}
 		}
 		return object;

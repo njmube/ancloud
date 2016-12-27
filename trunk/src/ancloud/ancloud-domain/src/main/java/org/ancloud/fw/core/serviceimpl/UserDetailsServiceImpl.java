@@ -51,7 +51,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		}
 		
 		for (Permission permission : permissions) {
-			GrantedAuthority authority = new SimpleGrantedAuthority(permission.getPermissionCode());
+			GrantedAuthority authority = new SimpleGrantedAuthority(permission.getCode());
 			authorities.add(authority);
 		}
 		userDetails = new UserDetailsImpl(userAccount,authorities);

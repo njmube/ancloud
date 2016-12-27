@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,32 +29,33 @@ public abstract class BaseModel implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	protected Long id;
 	
-	private String code;
+	@Column(unique=true)
+	protected String code;
 	
-	private String name;
+	protected String name;
 	
 	@JsonIgnore
 	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	@CreatedBy
-	private Account createdBy;
+	protected Account createdBy;
 	
 	@JsonIgnore
 //	@CreatedDate
-	private Timestamp createdDate;
+	protected Timestamp createdDate;
 	
 	@JsonIgnore
 	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	@LastModifiedBy
-	private Account lastUpdatedBy;
+	protected Account lastUpdatedBy;
 	
 	@JsonIgnore
 //	@LastModifiedDate
-	private Timestamp lastUpdatedDate;
+	protected Timestamp lastUpdatedDate;
 	
 	@Version
-	private Long version = 0L;
+	protected Long version = 0L;
 
 	@PrePersist
 	private void prePersist(){

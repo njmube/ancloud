@@ -7,7 +7,7 @@ import org.ancloud.domain.NavigationLink;
 import org.ancloud.domain.Project;
 import org.springframework.data.jpa.repository.Query;
 
-public interface NavigationLinkRepository extends CommonRepository<NavigationLink> {
+public interface NavigationLinkRepository extends BaseRepository<NavigationLink> {
 	
 	public List<NavigationLink> findByParentAndProject(NavigationLink parent,Project project);
 

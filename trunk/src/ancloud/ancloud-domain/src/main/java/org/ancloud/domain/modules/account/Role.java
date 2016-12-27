@@ -24,32 +24,21 @@ public class Role extends ProjectBaseModel {
 
 	private static final long serialVersionUID = 4513934956962115145L;
 	
-	@Column(unique=true)
-	private String roleCode;
-
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "rolePermission", 
 			joinColumns = {
 							@JoinColumn(name = "roleCode",
 										nullable = false, 
 										updatable = false,
-										referencedColumnName="roleCode")}, 
+										referencedColumnName="code")}, 
 			inverseJoinColumns = {
-									@JoinColumn(referencedColumnName="permissionCode",
+									@JoinColumn(referencedColumnName="code",
 												name = "permissionCode", 
 												nullable = false, 
 												updatable = false)
 								})
 	private Set<Permission> permissions;
 	
-	public String getRoleCode() {
-		return roleCode;
-	}
-
-	public void setRoleCode(String permissionCode) {
-		this.roleCode = permissionCode;
-	}
-
 	public Set<Permission> getPermissions() {
 		return permissions;
 	}

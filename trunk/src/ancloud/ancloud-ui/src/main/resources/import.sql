@@ -2,8 +2,8 @@
 INSERT INTO project(id,name) VALUES(1,'Root project');
 INSERT INTO account(id,userName,title,password,accountNonExpired,accountNonLocked,credentialsNonExpired,enabled,createddate,lastupdateddate) VALUES(1,'admin','Administrator','$2a$04$FQyfe75OhZGlwnm7w/R76.9xtKmLu0MZYn22oRGVMShzFKu5N0PKS',true,true,true,true,'2016-01-01 00:00:00','2016-01-01 00:00:00');
 
-INSERT INTO role(roleCode) VALUES('administrator');
-INSERT INTO permission(permissionCode) VALUES('dashboard');
+INSERT INTO role(code) VALUES('administrator');
+INSERT INTO permission(code) VALUES('dashboard');
 INSERT INTO rolePermission(roleCode,permissionCode) VALUES('administrator','dashboard');
 INSERT INTO accountrole(userName,roleCode) VALUES('admin','administrator');
 INSERT INTO accountpermission(userName,permissionCode) VALUES('admin','dashboard');
