@@ -28,7 +28,7 @@ public class MessageSearchCriteria extends Message implements Specification<Mess
 		}
 		return criteriabuilder.and(
 				criteriabuilder.like(criteriabuilder.lower(root.<String>get("message")),CriteriaUtil.getContainsLikePattern(this.getMessage()))
-								,criteriabuilder.like(criteriabuilder.lower(root.<String>get("_key")),CriteriaUtil.getContainsLikePattern(this.getKey()))
+								,criteriabuilder.like(criteriabuilder.lower(root.<String>get("messageKey")),CriteriaUtil.getContainsLikePattern(this.getKey()))
 								,criteriabuilder.like(criteriabuilder.lower(root.<String>get("basename")),CriteriaUtil.getContainsLikePattern(this.getBasename()))
 								,(this.getProject()==null?criteriabuilder.isNull(root.<String>get("project")):criteriabuilder.equal(root.<String>get("project"), this.getProject()))
 								,criteriabuilder.equal(root.<String>get("country"), this.getCountry())

@@ -87,7 +87,7 @@ public class Account extends BaseModel {
 										nullable = false, 
 										updatable = false)}, 
 			inverseJoinColumns = {
-									@JoinColumn(referencedColumnName="permissionCode",
+									@JoinColumn(referencedColumnName="code",
 												name = "permissionCode", 
 												nullable = false, 
 												updatable = false)
@@ -103,7 +103,7 @@ public class Account extends BaseModel {
 										nullable = false, 
 										updatable = false)}, 
 			inverseJoinColumns = {
-									@JoinColumn(referencedColumnName="roleCode",
+									@JoinColumn(referencedColumnName="code",
 												name = "roleCode", 
 												nullable = false, 
 												updatable = false)

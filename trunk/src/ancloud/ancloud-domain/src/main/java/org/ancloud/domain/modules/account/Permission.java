@@ -23,9 +23,6 @@ public class Permission extends ProjectBaseModel{
 	
 	private static final long serialVersionUID = 4396393555601831943L;
 
-	@Column(unique=true)
-	private String permissionCode;
-	
 	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy="permissions")
 	private Set<Account> accounts;
@@ -36,13 +33,5 @@ public class Permission extends ProjectBaseModel{
 
 	public void setAccounts(Set<Account> accounts) {
 		this.accounts = accounts;
-	}
-
-	public String getPermissionCode() {
-		return permissionCode;
-	}
-
-	public void setPermissionCode(String permissionCode) {
-		this.permissionCode = permissionCode;
 	}
 }

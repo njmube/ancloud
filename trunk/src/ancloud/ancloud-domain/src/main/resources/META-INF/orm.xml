@@ -12,11 +12,11 @@
 					
 			FROM navigationLink A 
 				LEFT JOIN
-				(SELECT _key,language,country,MIN(message) as message 
+				(SELECT messageKey,language,country,MIN(message) as message 
 				FROM message
-				GROUP BY _key,language,country) B
+				GROUP BY messageKey,language,country) B
 				ON (
-					A.messageKey = B._key
+					A.messageKey = B.messageKey
 					AND
 					B.language = ?2
 					AND 

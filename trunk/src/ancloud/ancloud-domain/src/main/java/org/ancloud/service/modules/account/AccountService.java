@@ -7,4 +7,6 @@ import org.springframework.data.domain.Pageable;
 
 public interface AccountService {
 	public Page<Account> findAllAccountByCriteria(AccountSearchCriteria criteria,Pageable pageable);
+
+	Account registerNewAccount(Account account);
 }

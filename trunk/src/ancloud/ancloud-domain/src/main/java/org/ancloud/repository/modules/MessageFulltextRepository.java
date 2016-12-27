@@ -30,7 +30,7 @@ public class MessageFulltextRepository {
 									.forEntity(Message.class).get();
 
 		Query query = queryBuilder.keyword()
-							.onFields("message","_key","basename","language","country")
+							.onFields("message","messageKey","basename","language","country")
 							.matching(text)
 							.createQuery();
 

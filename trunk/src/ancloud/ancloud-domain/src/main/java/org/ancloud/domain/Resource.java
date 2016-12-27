@@ -19,7 +19,7 @@ public class Resource implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(unique=true,name="_key")
+	@Column(unique=true,name="messageKey")
 	private String key;
 	
 	private String messageKey;

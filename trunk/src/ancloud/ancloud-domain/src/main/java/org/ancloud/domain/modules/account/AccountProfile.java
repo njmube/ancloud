@@ -14,9 +14,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "accountProfile")
 public class AccountProfile extends ProjectBaseModel {
 
-	private static final long serialVersionUID = -3559311596801406226L;
+	private static final long serialVersionUID = 2388675280757662749L;
 
 	private String dateFormat = "dd/MM/YYYY";
+	
+	private String dateTimeFormat = "yyyy-MM-dd HH:mm:ss";
 
 	private String locale = "en_US";
 	
@@ -46,5 +48,13 @@ public class AccountProfile extends ProjectBaseModel {
 	
 	public String getLocale() {
 		return this.locale;
+	}
+
+	public String getDateTimeFormat() {
+		return dateTimeFormat;
+	}
+
+	public void setDateTimeFormat(String dateTimeFormat) {
+		this.dateTimeFormat = dateTimeFormat;
 	}
 }

@@ -138,7 +138,6 @@ public class FileUploadController {
 				iterator = upload.getItemIterator(request);
 				while (iterator.hasNext()) {
 					FileItemStream fileItem = iterator.next();
-					String name = fileItem.getFieldName();
 					if(!fileItem.isFormField()){
 						storageService.store(fileItem.openStream(),fileItem.getName());
 					}
@@ -151,8 +150,7 @@ public class FileUploadController {
 	}
 
 	@ExceptionHandler(StorageFileNotFoundException.class)
-	public ResponseEntity handleStorageFileNotFound(
-			StorageFileNotFoundException exc) {
+	public ResponseEntity<?> handleStorageFileNotFound(StorageFileNotFoundException exc) {
 		return ResponseEntity.notFound().build();
 	}
 

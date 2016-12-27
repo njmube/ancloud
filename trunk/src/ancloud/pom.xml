@@ -17,16 +17,15 @@
 		<module>ancloud-fs</module>
 		<module>ancloud-boot</module>
 	</modules>
-
 	<properties>
 		<spring.version>4.3.2.RELEASE</spring.version>
 		<spring-data.version>1.10.2.RELEASE</spring-data.version>
 		<spring-security.version>4.1.1.RELEASE</spring-security.version>
 		<spring.boot.version>1.4.0.RELEASE</spring.boot.version>
 		<junit.version>4.12</junit.version>
-		<java.version>1.6</java.version>
+		<java.version>1.7</java.version>
 		<jpa.version>2.1</jpa.version>
-		<hibernate.version>5.0.11.Final</hibernate.version>
+		<hibernate.version>5.2.1.Final</hibernate.version>
 		<hibernate-validator.version>5.3.1.Final</hibernate-validator.version>
 		<servlet.version>3.1.0</servlet.version>
 		<servlet-jsp.version>2.2</servlet-jsp.version>
@@ -155,6 +154,11 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
 			<version>${spring-security.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>${spring.version}</version>
 		</dependency>
 	</dependencies>
 	<build>

@@ -16,7 +16,7 @@ public class MesageSearchCriteria extends Message implements Specification<Messa
 	public Predicate toPredicate(Root<Message> root,CriteriaQuery<?> criteriaquery, CriteriaBuilder criteriabuilder) {
 		return criteriabuilder.and(
 				criteriabuilder.like(criteriabuilder.lower(root.<String>get("message")),CriteriaUtil.getContainsLikePattern(this.getMessage())),
-				criteriabuilder.like(criteriabuilder.lower(root.<String>get("_key")),CriteriaUtil.getContainsLikePattern(this.getKey())));
+				criteriabuilder.like(criteriabuilder.lower(root.<String>get("messageKey")),CriteriaUtil.getContainsLikePattern(this.getKey())));
 	}
 	
 }

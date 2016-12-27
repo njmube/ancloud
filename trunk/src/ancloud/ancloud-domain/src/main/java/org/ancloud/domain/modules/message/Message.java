@@ -14,7 +14,7 @@ import org.hibernate.search.annotations.Store;
 
 @Entity
 @Table(name = "message",
-		uniqueConstraints=@UniqueConstraint(columnNames={"_key","language","country"})
+		uniqueConstraints=@UniqueConstraint(columnNames={"messageKey","language","country"})
 )
 @Embeddable
 @Indexed()
@@ -23,7 +23,7 @@ public class Message extends ProjectBaseModel {
 	private static final long serialVersionUID = -8644123651815590065L;
 	
 	@Field
-	private String _key;
+	private String messageKey;
 
 	@Field
 	private String language;
@@ -43,11 +43,11 @@ public class Message extends ProjectBaseModel {
 	}
 
 	public String getKey() {
-		return _key;
+		return messageKey;
 	}
 
 	public void setKey(String key) {
-		this._key = key;
+		this.messageKey = key;
 	}
 
 	public String getLanguage() {
