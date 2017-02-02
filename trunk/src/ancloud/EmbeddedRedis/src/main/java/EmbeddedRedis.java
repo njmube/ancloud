@@ -43,7 +43,10 @@ public class EmbeddedRedis {
 		private RedisServer redisServer;
 
 		public void startRedis() throws IOException {
-			redisServer = new RedisServer(redisPort);
+			redisServer = RedisServer.builder()
+							.port(redisPort)
+							.setting("appendonly yes")
+							.build();
 			redisServer.start();
 		}
 

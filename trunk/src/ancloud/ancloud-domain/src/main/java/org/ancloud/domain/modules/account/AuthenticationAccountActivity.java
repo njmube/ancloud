@@ -27,6 +27,9 @@ public class AuthenticationAccountActivity extends AccountActivity{
 	}
 
 	public enum AuthenticationType{
-		LogInSuccess,LogInFailed,LogOut,SessionTimeOut
+		LogInSuccess,
+		LogInFailed,
+		LogOut,
+		SessionTimeOut
 	}
 }

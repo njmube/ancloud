@@ -11,7 +11,7 @@ public class GenerationUtil {
 		if(prefix!=null){
 			return prefix.concat(System.currentTimeMillis() + "." + RandomUtils.nextLong(0, endExclusive));
 		} else {
-			return System.currentTimeMillis() + "." + RandomUtils.nextLong(0, 10000);
+			return System.currentTimeMillis() + "." + RandomUtils.nextLong(0, endExclusive);
 		}
 	}
 }
