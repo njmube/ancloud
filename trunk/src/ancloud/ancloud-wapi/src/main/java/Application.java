@@ -1,5 +1,4 @@
-package org.ancloud.wapi;
-
+import org.ancloud.wapi.KickStartConfiguration;
 import org.springframework.boot.SpringApplication;
 
 public class Application {

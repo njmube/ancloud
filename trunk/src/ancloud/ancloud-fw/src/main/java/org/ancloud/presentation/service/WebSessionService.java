@@ -1,22 +1,25 @@
 package org.ancloud.presentation.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.ancloud.fw.core.service.SessionService;
-import org.ancloud.fw.core.util.DataTypeUtil;
 import org.ancloud.fw.presentation.util.HttpServletRequestUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
+import org.springframework.security.core.session.SessionRegistry;
 
-@Service
 public class WebSessionService implements SessionService {
 	
-	Logger logger = LoggerFactory.getLogger(SessionService.class);
+	Logger logger = LoggerFactory.getLogger(WebSessionService.class);
+	
+	@Inject
+	SessionRegistry sessionRegistry;
 	
 	public Object get(String objectName) {
 		HttpServletRequest request = HttpServletRequestUtil.getRequest();
@@ -28,7 +31,6 @@ public class WebSessionService implements SessionService {
 		Object result = session.getAttribute(objectName);
 		if(logger.isTraceEnabled()){
 			logger.trace(String.format("Get %s from session succesfully!", objectName));
-			logger.trace(DataTypeUtil.toJson(result));
 		}
 		return result;
 	}
@@ -40,7 +42,6 @@ public class WebSessionService implements SessionService {
 			session.setAttribute(objectName, object);
 			if(logger.isTraceEnabled()){
 				logger.trace(String.format("Set %s to session succesfully!", objectName));
-				logger.trace(DataTypeUtil.toJson(object));
 			}
 		}
 		return object;
@@ -59,7 +60,10 @@ public class WebSessionService implements SessionService {
 
 	@Override
 	public Map<Object, List<Object>> getAllSessions() {
-		// TODO Auto-generated method stub
-		return null;
+		Map<Object,  List<Object>> sessionMap = new HashMap<Object, List<Object>>();
+		for(Object principal:sessionRegistry.getAllPrincipals()){
+			sessionMap.put(principal, (List<Object>)(List<?>) sessionRegistry.getAllSessions(principal, true));
+		}
+		return sessionMap;
 	}
 }

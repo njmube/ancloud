@@ -16,33 +16,25 @@ import org.ancloud.fw.core.exception.ErrorMessage;
 
 public class ErrorHandlingUtils {
 
-	private ErrorHandlingUtils() {
-
-	}
-
-	public static ErrorMessage logException(Logger logger, Exception ex) {
-		String stackTrace = ExceptionUtils.getStackTrace(ex);
-		String errorCode = DigestUtils.md5DigestAsHex(stackTrace.getBytes());
-		// String errorCode = "0x".concat(RandomStringUtils.randomNumeric(5));
-		logger.error(errorCode, stackTrace);
-		return new ErrorMessage(errorCode, ex.getMessage());
-	}
-
-	public static ErrorMessage logValidationError(Logger logger, List<ObjectError> allErrors) {
-		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		try {
-			ObjectOutputStream oos = new ObjectOutputStream(bos);
-			oos.writeObject(allErrors);
-		} catch (IOException ex) {
-			if(logger.isDebugEnabled()){
-				logger.debug("Cannot deserilaize List<ObjectError> to bytes array.",ExceptionUtils.getStackTrace(ex));
+	public static ErrorMessage logException(Logger logger, Throwable throwable) {
+		StringBuilder errorCodeBuilder = new StringBuilder("0x");
+		String errorCode;
+		ErrorMessage errorMessage = null;
+		errorCodeBuilder.append(RandomStringUtils.randomNumeric(10));
+		if(throwable !=null){
+			String stackTrace = ExceptionUtils.getStackTrace(throwable);
+			errorCodeBuilder.append("-");
+			errorCodeBuilder.append(DigestUtils.md5DigestAsHex(stackTrace.getBytes()));
+			errorCode = errorCodeBuilder.toString();
+			if(!(logger ==null || !logger.isDebugEnabled())){
+				logger.debug(errorCode);
 			}
+			errorMessage = new ErrorMessage(errorCode, throwable.getMessage());
+			return errorMessage;
 		}
-		String errorCode = DigestUtils.md5DigestAsHex(bos.toByteArray());
-		String message = StringUtils.collectionToDelimitedString(allErrors, "\r\n");
-		
-		logger.error(errorCode, message);
-		return new ErrorMessage(errorCode, message);
+		errorCode = errorCodeBuilder.toString();
+		errorMessage = new ErrorMessage();
+		errorMessage.setErrorCode(errorCode);
+		return errorMessage;
 	}
-
 }

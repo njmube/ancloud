@@ -4,26 +4,16 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.TimeZone;
 
-import javax.annotation.Priority;
 import javax.inject.Inject;
 
-import org.joda.time.DateTime;
 import org.ancloud.fw.core.joda.DateTimeDeserializer;
 import org.ancloud.fw.core.joda.DateTimeSerializer;
 import org.ancloud.fw.presentation.intercepter.TraceLoggingInterceptor;
-import org.ancloud.fw.presentation.security.authentication.listener.LoginAttemptFilter;
-import org.ancloud.fw.tracking.PrincipalMDCFilter;
-import org.ancloud.fw.tracking.TraceHttpServletRequestFilter;
 import org.ancloud.presentation.message.CustomLocalValidatorFactoryBean;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.joda.time.DateTime;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.Ordered;
-import org.springframework.core.annotation.Order;
-import org.springframework.hateoas.config.EnableEntityLinks;
-import org.springframework.hateoas.config.EnableHypermediaSupport;
-import org.springframework.hateoas.config.EnableHypermediaSupport.HypermediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter;
 import org.springframework.mobile.device.DeviceResolverHandlerInterceptor;
@@ -35,15 +25,14 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
 
 @Configuration
-@EnableHypermediaSupport(type= {HypermediaType.HAL})
-@EnableEntityLinks
+//@EnableHypermediaSupport(type= {HypermediaType.HAL})
+//@EnableEntityLinks
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
 	@Inject

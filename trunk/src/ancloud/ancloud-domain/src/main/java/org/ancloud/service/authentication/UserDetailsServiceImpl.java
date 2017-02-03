@@ -1,4 +1,4 @@
-package org.ancloud.fw.core.serviceimpl;
+package org.ancloud.service.authentication;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,13 +8,10 @@ import javax.inject.Inject;
 
 import org.ancloud.domain.common.SystemCodeConstant;
 import org.ancloud.domain.modules.account.Account;
-import org.ancloud.domain.modules.account.AuthenticationAccountActivity;
-import org.ancloud.domain.modules.account.AuthenticationAccountActivity.AuthenticationType;
 import org.ancloud.domain.modules.account.Permission;
 import org.ancloud.domain.modules.account.Role;
 import org.ancloud.repository.modules.account.AccountRepository;
-import org.ancloud.repository.modules.account.AuthenticationAccountActivityRepository;
-import org.ancloud.service.authentication.UserDetailsImpl;
+import org.ancloud.service.modules.account.LoginAttemptService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
@@ -32,9 +29,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Inject
 	AccountRepository accountRepository;
 	
-	@Inject
-	AuthenticationAccountActivityRepository authenticationAccountActivityRepository;
-
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		UserDetailsImpl userDetails = null;
@@ -46,6 +40,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		
 		Set<Permission> permissions = userAccount.getPermissions();
 		for (Role role : userAccount.getRoles()) {
+			authorities.add(new SimpleGrantedAuthority("ROLE_"+role.getCode()));
 			permissions.addAll(role.getPermissions());
 		}
 		
@@ -54,8 +49,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			authorities.add(authority);
 		}
 		userDetails = new UserDetailsImpl(userAccount,authorities);
-		authenticationAccountActivityRepository.save(new AuthenticationAccountActivity(userAccount,AuthenticationType.LogInSuccess,null));
+		
 		return userDetails;
 	}
-
 }

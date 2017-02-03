@@ -1,6 +1,5 @@
 package org.ancloud.domain.modules.account;
 
-import java.sql.Timestamp;
 import java.util.List;
 import java.util.Set;
 
@@ -20,24 +19,23 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.hibernate.validator.constraints.NotEmpty;
 import org.ancloud.domain.BaseModel;
 import org.ancloud.domain.modules.account.enums.AccountStatus;
+import org.ancloud.domain.modules.account.enums.AccountType;
 import org.ancloud.fw.core.validation.annotation.Alphanumeric;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.joda.time.DateTime;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "account")
 @Inheritance(strategy=InheritanceType.JOINED)
 public class Account extends BaseModel {
 
-	private static final long serialVersionUID = -3559311596801406226L;
+	private static final long serialVersionUID = 8253111909049644950L;
 
-	@Column(unique=true)
+	@Column(unique=true,length=32)
 	@NotEmpty
 	@Alphanumeric(message="Field 'userName' is not alphanumeric, can only contains [a-zA-Z0-9_]")
 	private String userName;
@@ -52,7 +50,7 @@ public class Account extends BaseModel {
 	@NotEmpty
 	private String password;
 	
-	private Timestamp birthday;
+	private DateTime birthday;
 	
 	@JsonIgnore
 	@Transient
@@ -71,12 +69,24 @@ public class Account extends BaseModel {
 	private AccountStatus accountStatus;
 	
 	
-	private Integer accountType;
+	@Enumerated(EnumType.ORDINAL)
+	private AccountType accountType;
 	
 
 	@JsonIgnore
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Account approver;
+	
+	@OneToMany(fetch=FetchType.EAGER,mappedBy="account")
+	private Set<License> licenses;
+
+	public Set<License> getLicenses() {
+		return licenses;
+	}
+
+	public void setLicenses(Set<License> licenses) {
+		this.licenses = licenses;
+	}
 
 	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -218,11 +228,11 @@ public class Account extends BaseModel {
 		this.approver = approver;
 	}
 
-	public Integer getAccountType() {
+	public AccountType getAccountType() {
 		return accountType;
 	}
 
-	public void setAccountType(Integer accountType) {
+	public void setAccountType(AccountType accountType) {
 		this.accountType = accountType;
 	}
 
@@ -234,11 +244,11 @@ public class Account extends BaseModel {
 		this.contactNumber = contactNumber;
 	}
 
-	public Timestamp getBirthday() {
+	public DateTime getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(Timestamp birthday) {
+	public void setBirthday(DateTime birthday) {
 		this.birthday = birthday;
 	}
 }

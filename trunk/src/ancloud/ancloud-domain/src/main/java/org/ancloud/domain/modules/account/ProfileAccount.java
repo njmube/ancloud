@@ -1,7 +1,5 @@
 package org.ancloud.domain.modules.account;
 
-import java.util.Calendar;
-
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.MappedSuperclass;
@@ -10,6 +8,8 @@ import javax.persistence.Transient;
 
 import org.ancloud.domain.modules.account.enums.MaritalStatus;
 import org.ancloud.domain.modules.account.enums.SexStatus;
+import org.joda.time.DateTime;
+import org.joda.time.Years;
 
 @MappedSuperclass
 public class ProfileAccount extends Account{
@@ -98,9 +98,12 @@ public class ProfileAccount extends Account{
 	@PostLoad
 	private void postLoad(){
 		if(this.getBirthday()!=null){
-			Calendar birthdayCalendar = Calendar.getInstance();
-			birthdayCalendar.setTimeInMillis(this.getBirthday().getTime());
-			this.age = Calendar.getInstance().get(Calendar.YEAR) - birthdayCalendar.get(Calendar.YEAR);
+//			Calendar birthdayCalendar = Calendar.getInstance();
+//			birthdayCalendar.setTimeInMillis(this.getBirthday().getTime());
+//			this.age = Calendar.getInstance().get(Calendar.YEAR) - birthdayCalendar.get(Calendar.YEAR);
+			
+			DateTime now = new DateTime();
+			this.age = Years.yearsBetween(this.getBirthday(), now).getYears();
 		}
 	}
 

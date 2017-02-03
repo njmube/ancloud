@@ -11,12 +11,14 @@ public class AuthenticationAccountActivity extends AccountActivity{
 	
 	@Enumerated(EnumType.ORDINAL)
 	private AuthenticationType authenticationType;
+
+	private String userAgent;
 	
-	public AuthenticationAccountActivity(Account account,AuthenticationType authenticationType){
+	public AuthenticationAccountActivity(Account account,AuthenticationType authenticationType,String userAgent){
 		super(account);
 		this.authenticationType = authenticationType;
+		this.userAgent = userAgent;
 	}
-	
 	
 	public AuthenticationType getAuthenticationType() {
 		return authenticationType;
@@ -24,6 +26,14 @@ public class AuthenticationAccountActivity extends AccountActivity{
 
 	public void setAuthenticationType(AuthenticationType authenticationType) {
 		this.authenticationType = authenticationType;
+	}
+
+	public String getUserAgent() {
+		return userAgent;
+	}
+
+	public void setUserAgent(String userAgent) {
+		this.userAgent = userAgent;
 	}
 
 	public enum AuthenticationType{

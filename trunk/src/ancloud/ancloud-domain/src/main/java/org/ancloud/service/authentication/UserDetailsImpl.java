@@ -1,8 +1,10 @@
-package org.ancloud.fw.core.serviceimpl;
+package org.ancloud.service.authentication;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.ancloud.domain.modules.account.Account;
+import org.ancloud.domain.modules.account.License;
 import org.ancloud.domain.modules.account.enums.AccountStatus;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,6 +14,8 @@ public class UserDetailsImpl implements UserDetails{
 	private static final long serialVersionUID = -7541929085537697197L;
 	private Account account;
 	private Collection<? extends GrantedAuthority> authorities;
+	private Date lastPasswordResetDate;
+	private License license;
 	
 
 	public Account getAccount() {
@@ -44,12 +48,17 @@ public class UserDetailsImpl implements UserDetails{
 
 	@Override
 	public boolean isAccountNonExpired() {
-		return this.account.isAccountNonExpired();
+		if(license == null || license.getToDate()==null) return true;
+		if(license.getFromDate()==null) return license.getToDate().isAfterNow();
+		return license.getFromDate().isBeforeNow() & license.getToDate().isAfterNow();
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		return this.account.isAccountNonLocked();
+		if(license==null) {
+			return this.account.isAccountNonLocked();
+		}
+		return license.isNonLocked();
 	}
 
 	@Override
@@ -60,6 +69,22 @@ public class UserDetailsImpl implements UserDetails{
 	@Override
 	public boolean isEnabled() {
 		return this.account.getAccountStatus()==AccountStatus.Enabled;
+	}
+
+	public Date getLastPasswordResetDate() {
+		return lastPasswordResetDate;
+	}
+
+	public void setLastPasswordResetDate(Date lastPasswordResetDate) {
+		this.lastPasswordResetDate = lastPasswordResetDate;
+	}
+
+	public License getLicense() {
+		return license;
+	}
+
+	public void setLicense(License license) {
+		this.license = license;
 	}
 
 }
