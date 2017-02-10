@@ -1,8 +1,8 @@
-2016-12-21 09:44:36.009 [main] INFO  EmbeddedRedis - Starting EmbeddedRedis on henn-PC with PID 10384 (D:\Downloads\sources\ancloud\trunk\src\ancloud\EmbeddedRedis\target\classes started by henn in D:\Downloads\sources\ancloud\trunk\src\ancloud\EmbeddedRedis)
-2016-12-21 09:44:36.022 [main] INFO  EmbeddedRedis - No active profile set, falling back to default profiles: default
-2016-12-21 09:44:36.087 [main] INFO  org.springframework.context.annotation.AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@a3d9978: startup date [Wed Dec 21 09:44:36 ICT 2016]; root of context hierarchy
-2016-12-21 09:44:36.449 [main] INFO  EmbeddedRedis - Redis starting ...
-2016-12-21 09:44:41.727 [main] ERROR org.springframework.boot.SpringApplication - Application startup failed
+2017-02-07 10:37:30.318 [main] INFO  EmbeddedRedis - Starting EmbeddedRedis on henn-PC with PID 5876 (D:\Downloads\sources\ancloud\trunk\src\ancloud\EmbeddedRedis\target\classes started by henn in D:\Downloads\sources\ancloud\trunk\src\ancloud\EmbeddedRedis)
+2017-02-07 10:37:30.318 [main] INFO  EmbeddedRedis - No active profile set, falling back to default profiles: default
+2017-02-07 10:37:30.368 [main] INFO  org.springframework.context.annotation.AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@a3d9978: startup date [Tue Feb 07 10:37:30 ICT 2017]; root of context hierarchy
+2017-02-07 10:37:30.733 [main] INFO  EmbeddedRedis - Redis starting ...
+2017-02-07 10:37:31.153 [main] ERROR org.springframework.boot.SpringApplication - Application startup failed
 java.lang.IllegalStateException: Failed to execute CommandLineRunner
 	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:801) ~[spring-boot-1.4.0.RELEASE.jar:1.4.0.RELEASE]
 	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:782) [spring-boot-1.4.0.RELEASE.jar:1.4.0.RELEASE]
@@ -15,16 +15,22 @@ Caused by: java.lang.RuntimeException: Can't start redis server. Check logs for 
 	at redis.embedded.AbstractRedisInstance.awaitRedisServerReady(AbstractRedisInstance.java:61) ~[embedded-redis-0.6.jar:?]
 	at redis.embedded.AbstractRedisInstance.start(AbstractRedisInstance.java:39) ~[embedded-redis-0.6.jar:?]
 	at redis.embedded.RedisServer.start(RedisServer.java:9) ~[embedded-redis-0.6.jar:?]
-	at EmbeddedRedis$EmbeddedRedisEngine.startRedis(EmbeddedRedis.java:47) ~[classes/:?]
+	at EmbeddedRedis$EmbeddedRedisEngine.startRedis(EmbeddedRedis.java:50) ~[classes/:?]
 	at EmbeddedRedis$1.run(EmbeddedRedis.java:31) ~[classes/:?]
 	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:798) ~[spring-boot-1.4.0.RELEASE.jar:1.4.0.RELEASE]
 	... 6 more
-2016-12-21 09:44:41.773 [main] INFO  org.springframework.context.annotation.AnnotationConfigApplicationContext - Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@a3d9978: startup date [Wed Dec 21 09:44:36 ICT 2016]; root of context hierarchy
-2016-12-21 09:45:44.597 [main] INFO  EmbeddedRedis - Starting EmbeddedRedis on henn-PC with PID 6408 (D:\Downloads\sources\ancloud\trunk\src\ancloud\EmbeddedRedis\target\classes started by henn in D:\Downloads\sources\ancloud\trunk\src\ancloud\EmbeddedRedis)
-2016-12-21 09:45:44.599 [main] INFO  EmbeddedRedis - No active profile set, falling back to default profiles: default
-2016-12-21 09:45:44.633 [main] INFO  org.springframework.context.annotation.AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@a3d9978: startup date [Wed Dec 21 09:45:44 ICT 2016]; root of context hierarchy
-2016-12-21 09:45:44.894 [main] INFO  EmbeddedRedis - Redis starting ...
-2016-12-21 09:47:56.385 [main] ERROR org.springframework.boot.SpringApplication - Application startup failed
+2017-02-07 10:37:31.153 [main] INFO  org.springframework.context.annotation.AnnotationConfigApplicationContext - Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@a3d9978: startup date [Tue Feb 07 10:37:30 ICT 2017]; root of context hierarchy
+2017-02-07 10:38:01.175 [main] DEBUG org.springframework.boot.logging.ClasspathLoggingApplicationListener - Application started with classpath: [file:/D:/Downloads/sources/ancloud/trunk/src/ancloud/EmbeddedRedis/target/classes/, file:/D:/m2/.m2/repository/com/github/kstyrc/embedded-redis/0.6/embedded-redis-0.6.jar, file:/D:/m2/.m2/repository/com/google/guava/guava/18.0/guava-18.0.jar, file:/D:/m2/.m2/repository/commons-io/commons-io/2.4/commons-io-2.4.jar, file:/D:/m2/.m2/repository/org/springframework/boot/spring-boot/1.4.0.RELEASE/spring-boot-1.4.0.RELEASE.jar, file:/D:/m2/.m2/repository/org/springframework/spring-core/4.3.2.RELEASE/spring-core-4.3.2.RELEASE.jar, file:/D:/m2/.m2/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar, file:/D:/m2/.m2/repository/org/springframework/spring-context/4.3.2.RELEASE/spring-context-4.3.2.RELEASE.jar, file:/D:/m2/.m2/repository/org/springframework/spring-aop/4.3.2.RELEASE/spring-aop-4.3.2.RELEASE.jar, file:/D:/m2/.m2/repository/org/springframework/spring-beans/4.3.2.RELEASE/spring-beans-4.3.2.RELEASE.jar, file:/D:/m2/.m2/repository/org/springframework/spring-expression/4.3.2.RELEASE/spring-expression-4.3.2.RELEASE.jar, file:/D:/m2/.m2/repository/org/slf4j/slf4j-api/1.7.7/slf4j-api-1.7.7.jar, file:/D:/m2/.m2/repository/org/apache/logging/log4j/log4j-core/2.5/log4j-core-2.5.jar, file:/D:/m2/.m2/repository/org/apache/logging/log4j/log4j-api/2.5/log4j-api-2.5.jar, file:/D:/m2/.m2/repository/org/slf4j/jcl-over-slf4j/1.7.7/jcl-over-slf4j-1.7.7.jar, file:/D:/m2/.m2/repository/org/apache/logging/log4j/log4j-slf4j-impl/2.5/log4j-slf4j-impl-2.5.jar]
+2017-02-07 10:38:01.245 [main] INFO  EmbeddedRedis - Starting EmbeddedRedis on henn-PC with PID 8940 (D:\Downloads\sources\ancloud\trunk\src\ancloud\EmbeddedRedis\target\classes started by henn in D:\Downloads\sources\ancloud\trunk\src\ancloud\EmbeddedRedis)
+2017-02-07 10:38:01.245 [main] DEBUG EmbeddedRedis - Running with Spring Boot v1.4.0.RELEASE, Spring v4.3.2.RELEASE
+2017-02-07 10:38:01.245 [main] INFO  EmbeddedRedis - No active profile set, falling back to default profiles: default
+2017-02-07 10:38:01.245 [main] DEBUG org.springframework.boot.SpringApplication - Loading source class EmbeddedRedis
+2017-02-07 10:38:01.270 [main] DEBUG org.springframework.boot.context.config.ConfigFileApplicationListener - Loaded config file 'file:/D:/Downloads/sources/ancloud/trunk/src/ancloud/EmbeddedRedis/target/classes/application.properties' (classpath:/application.properties)
+2017-02-07 10:38:01.271 [main] DEBUG org.springframework.boot.context.config.ConfigFileApplicationListener - Skipped (empty) config file 'file:/D:/Downloads/sources/ancloud/trunk/src/ancloud/EmbeddedRedis/target/classes/application.properties' (classpath:/application.properties) for profile default
+2017-02-07 10:38:01.282 [main] INFO  org.springframework.context.annotation.AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@5a755cc1: startup date [Tue Feb 07 10:38:01 ICT 2017]; root of context hierarchy
+2017-02-07 10:38:02.735 [main] INFO  EmbeddedRedis - Redis starting ...
+2017-02-07 10:38:43.465 [main] DEBUG org.springframework.boot.logging.ClasspathLoggingApplicationListener - Application failed to start with classpath: [file:/D:/Downloads/sources/ancloud/trunk/src/ancloud/EmbeddedRedis/target/classes/, file:/D:/m2/.m2/repository/com/github/kstyrc/embedded-redis/0.6/embedded-redis-0.6.jar, file:/D:/m2/.m2/repository/com/google/guava/guava/18.0/guava-18.0.jar, file:/D:/m2/.m2/repository/commons-io/commons-io/2.4/commons-io-2.4.jar, file:/D:/m2/.m2/repository/org/springframework/boot/spring-boot/1.4.0.RELEASE/spring-boot-1.4.0.RELEASE.jar, file:/D:/m2/.m2/repository/org/springframework/spring-core/4.3.2.RELEASE/spring-core-4.3.2.RELEASE.jar, file:/D:/m2/.m2/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar, file:/D:/m2/.m2/repository/org/springframework/spring-context/4.3.2.RELEASE/spring-context-4.3.2.RELEASE.jar, file:/D:/m2/.m2/repository/org/springframework/spring-aop/4.3.2.RELEASE/spring-aop-4.3.2.RELEASE.jar, file:/D:/m2/.m2/repository/org/springframework/spring-beans/4.3.2.RELEASE/spring-beans-4.3.2.RELEASE.jar, file:/D:/m2/.m2/repository/org/springframework/spring-expression/4.3.2.RELEASE/spring-expression-4.3.2.RELEASE.jar, file:/D:/m2/.m2/repository/org/slf4j/slf4j-api/1.7.7/slf4j-api-1.7.7.jar, file:/D:/m2/.m2/repository/org/apache/logging/log4j/log4j-core/2.5/log4j-core-2.5.jar, file:/D:/m2/.m2/repository/org/apache/logging/log4j/log4j-api/2.5/log4j-api-2.5.jar, file:/D:/m2/.m2/repository/org/slf4j/jcl-over-slf4j/1.7.7/jcl-over-slf4j-1.7.7.jar, file:/D:/m2/.m2/repository/org/apache/logging/log4j/log4j-slf4j-impl/2.5/log4j-slf4j-impl-2.5.jar]
+2017-02-07 10:38:43.497 [main] ERROR org.springframework.boot.SpringApplication - Application startup failed
 java.lang.IllegalStateException: Failed to execute CommandLineRunner
 	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:801) ~[spring-boot-1.4.0.RELEASE.jar:1.4.0.RELEASE]
 	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:782) [spring-boot-1.4.0.RELEASE.jar:1.4.0.RELEASE]
@@ -37,13 +43,8 @@ Caused by: java.lang.RuntimeException: Can't start redis server. Check logs for 
 	at redis.embedded.AbstractRedisInstance.awaitRedisServerReady(AbstractRedisInstance.java:61) ~[embedded-redis-0.6.jar:?]
 	at redis.embedded.AbstractRedisInstance.start(AbstractRedisInstance.java:39) ~[embedded-redis-0.6.jar:?]
 	at redis.embedded.RedisServer.start(RedisServer.java:9) ~[embedded-redis-0.6.jar:?]
-	at EmbeddedRedis$EmbeddedRedisEngine.startRedis(EmbeddedRedis.java:47) ~[classes/:?]
+	at EmbeddedRedis$EmbeddedRedisEngine.startRedis(EmbeddedRedis.java:50) ~[classes/:?]
 	at EmbeddedRedis$1.run(EmbeddedRedis.java:31) ~[classes/:?]
 	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:798) ~[spring-boot-1.4.0.RELEASE.jar:1.4.0.RELEASE]
 	... 6 more
-2016-12-21 09:47:56.395 [main] INFO  org.springframework.context.annotation.AnnotationConfigApplicationContext - Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@a3d9978: startup date [Wed Dec 21 09:45:44 ICT 2016]; root of context hierarchy
-2016-12-21 09:55:10.491 [main] INFO  EmbeddedRedis - Starting EmbeddedRedis on henn-PC with PID 12024 (D:\Downloads\sources\ancloud\trunk\src\ancloud\EmbeddedRedis\target\classes started by henn in D:\Downloads\sources\ancloud\trunk\src\ancloud\EmbeddedRedis)
-2016-12-21 09:55:10.491 [main] INFO  EmbeddedRedis - No active profile set, falling back to default profiles: default
-2016-12-21 09:55:10.543 [main] INFO  org.springframework.context.annotation.AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@a3d9978: startup date [Wed Dec 21 09:55:10 ICT 2016]; root of context hierarchy
-2016-12-21 09:55:11.175 [main] INFO  EmbeddedRedis - Redis starting ...
-2016-12-21 09:55:13.733 [main] INFO  EmbeddedRedis - Started EmbeddedRedis in 3.626 seconds (JVM running for 6.215)
+2017-02-07 10:38:43.507 [main] INFO  org.springframework.context.annotation.AnnotationConfigApplicationContext - Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@5a755cc1: startup date [Tue Feb 07 10:38:01 ICT 2017]; root of context hierarchy

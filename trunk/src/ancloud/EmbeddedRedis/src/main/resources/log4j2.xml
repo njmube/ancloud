@@ -26,7 +26,7 @@
 		<Logger name="org.springframework.context" level="INFO" />
 
 
-		<Root level="INFO">
+		<Root level="DEBUG">
 			<AppenderRef ref="console" />
 			<AppenderRef ref="asyncAppFileAppender" />
 		</Root>
