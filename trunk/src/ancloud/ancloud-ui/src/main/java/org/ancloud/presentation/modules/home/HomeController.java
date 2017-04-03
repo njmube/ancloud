@@ -1,6 +1,6 @@
 package org.ancloud.presentation.modules.home;
 
-import org.ancloud.domain.common.SystemCodeConstant;
+import org.ancloud.domain.utils.SystemCodeConstant;
 import org.ancloud.fw.presentation.message.ResultMessage;
 import org.ancloud.fw.presentation.message.ResultMessages;
 import org.springframework.stereotype.Controller;

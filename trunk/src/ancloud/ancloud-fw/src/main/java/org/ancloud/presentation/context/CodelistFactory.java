@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import org.ancloud.domain.Resource;
-import org.ancloud.repository.modules.ResourceRepository;
+import org.ancloud.repository.ResourceRepository;
 import org.springframework.beans.factory.FactoryBean;
 
 public class CodelistFactory implements FactoryBean<Codelist> {

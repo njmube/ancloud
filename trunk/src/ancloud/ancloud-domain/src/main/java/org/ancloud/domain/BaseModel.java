@@ -15,7 +15,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Version;
 
-import org.ancloud.domain.modules.account.Account;
+import org.ancloud.domain.account.Account;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
 

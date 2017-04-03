@@ -6,12 +6,12 @@ import java.util.Set;
 
 import javax.inject.Inject;
 
-import org.ancloud.domain.common.SystemCodeConstant;
-import org.ancloud.domain.modules.account.Account;
-import org.ancloud.domain.modules.account.Permission;
-import org.ancloud.domain.modules.account.Role;
-import org.ancloud.repository.modules.account.AccountRepository;
-import org.ancloud.service.modules.account.LoginAttemptService;
+import org.ancloud.domain.account.Account;
+import org.ancloud.domain.account.Permission;
+import org.ancloud.domain.account.Role;
+import org.ancloud.domain.utils.SystemCodeConstant;
+import org.ancloud.repository.account.AccountRepository;
+import org.ancloud.service.account.LoginAttemptService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;

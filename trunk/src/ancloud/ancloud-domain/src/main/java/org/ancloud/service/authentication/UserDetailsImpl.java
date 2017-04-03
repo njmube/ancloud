@@ -3,9 +3,9 @@ package org.ancloud.service.authentication;
 import java.util.Collection;
 import java.util.Date;
 
-import org.ancloud.domain.modules.account.Account;
-import org.ancloud.domain.modules.account.License;
-import org.ancloud.domain.modules.account.enums.AccountStatus;
+import org.ancloud.domain.account.Account;
+import org.ancloud.domain.account.License;
+import org.ancloud.domain.account.enums.AccountStatus;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

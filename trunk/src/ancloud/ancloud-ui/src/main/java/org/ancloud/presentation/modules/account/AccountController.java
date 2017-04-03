@@ -5,13 +5,13 @@ import javax.inject.Inject;
 import ma.glasnost.orika.MapperFacade;
 
 import org.ancloud.domain.Project;
-import org.ancloud.domain.common.SessionConstant;
-import org.ancloud.domain.modules.account.Account;
-import org.ancloud.domain.modules.account.AccountSearchCriteria;
+import org.ancloud.domain.account.Account;
+import org.ancloud.domain.account.AccountSearchCriteria;
+import org.ancloud.domain.utils.SessionConstant;
 import org.ancloud.fw.core.service.SessionService;
 import org.ancloud.fw.presentation.BaseController;
 import org.ancloud.fw.presentation.resolver.Session;
-import org.ancloud.service.modules.account.AccountService;
+import org.ancloud.service.account.AccountService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;

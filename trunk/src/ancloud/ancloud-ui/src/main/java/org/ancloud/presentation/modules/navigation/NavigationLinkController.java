@@ -7,11 +7,11 @@ import javax.validation.Valid;
 
 import org.ancloud.domain.NavigationLink;
 import org.ancloud.domain.Project;
-import org.ancloud.domain.common.SessionConstant;
+import org.ancloud.domain.utils.SessionConstant;
 import org.ancloud.fw.core.service.SessionService;
 import org.ancloud.fw.presentation.BaseController;
 import org.ancloud.fw.presentation.resolver.Session;
-import org.ancloud.service.modules.navigation.NavigationLinkService;
+import org.ancloud.service.navigation.NavigationLinkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

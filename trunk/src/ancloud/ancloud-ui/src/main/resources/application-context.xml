@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:beans="http://www.springframework.org/schema/beans" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:aop="http://www.springframework.org/schema/aop" 
@@ -31,7 +32,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	<bean id="dateTimeProvider" class="org.ancloud.presentation.context.AuditingDateTimeProvider" />
 <!-- 	<jpa:auditing auditor-aware-ref="auditorAwarer" /> -->
 
-	<jpa:repositories base-package="org.ancloud.repository.modules" />
+	<jpa:repositories base-package="org.ancloud.repository" />
 
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
 		prop:entityManagerFactory-ref="entityManagerFactory" />

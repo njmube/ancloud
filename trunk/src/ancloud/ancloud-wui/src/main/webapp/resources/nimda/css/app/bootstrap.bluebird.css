@@ -1,0 +1,168 @@
+
+.bb-action-group-header {
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	margin-bottom: 5px;
+	border: 1.5px solid #C4C4C4;
+	background-color: #DEE7F7;
+	border-radius: 3px;
+}
+
+.bb-action-group-header .btn {
+	padding:5px 20px;
+	border-width: 0px;
+	background-color: #DEE7F7;
+	color: #737373;
+	transition: all 0.5s ease;
+}
+
+.bb-action-group-header .btn:hover{
+	background : #E3F2FD;
+}
+
+.bb-action-group-header .dropdown-toggle:after {
+	content: '';
+	display: inline-block;
+	width: 0;
+	height: 0;
+	margin-left: 2px;
+	vertical-align: middle;
+	border-top: 4px dashed;
+	border-right: 4px solid transparent;
+	border-left: 4px solid transparent;
+}
+
+.bb-action-group-footer {
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	margin-bottom: 5px;
+}
+
+.bb-fa-btn:before {
+	display: inline-block;
+	font: normal normal normal 14px/1 FontAwesome;
+	font-size: inherit;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	padding-left: 1px;
+}
+
+@media only screen and (min-width : 992px) {
+	.signin-box,
+	.signup-box{
+		margin: 10px auto;
+		max-width: 500px;
+	}
+}
+
+
+.signin-box .form-group .input-group,
+.signup-box .form-group .input-group,
+.signup-box .form-group label {
+	margin-top : 10px;
+	margin-bottom : 10px;
+}
+.signin-box .lost-password,
+.signup-box .lost-password {
+	float: right;
+	font-size: 80%;
+}
+
+.content .panel .panel-body {
+	padding: 5px;
+}
+
+.badge {
+	padding : 7px;
+}
+
+@media only screen and (min-width : 992px) {
+	.panel .bb-form .form-group {
+		padding : 5px 10px;
+	}
+}
+.panel .bb-form.form-horizontal .form-group {
+	    margin: 0px;
+	}
+.bb-button {
+	width: 100%;
+}
+
+.bb-table {
+	table-layout: fixed;
+}
+
+.bb-table-list > thead > tr:first-child > th:first-child,
+.bb-table-action > thead > tr:first-child > th:last-child {
+	width: 40px;
+}
+
+.bb-table-action .btn,
+.bb-table-action + .bb-table-action-plus .btn {
+	width: 28px;
+	height: 28px;
+	padding:0px
+}
+
+.bb-table-list > tbody > tr > td:first-child {
+	text-align: center;
+}
+table[name^=bb-table] th {
+	text-transform: uppercase;
+}
+
+@media screen and (max-width: 768px) {
+	table[name^=bb-table] thead {
+		display: none;
+	}
+	table[name^=bb-table] tr {
+		display: block;
+		border-bottom: 2px solid #ddd;
+	}
+	table[name^=bb-table] td {
+		display: block;
+		text-align: right;
+	}
+	table[name^=bb-table] td:before {
+		content: attr(data-title);
+		float: left;
+		text-transform: uppercase;
+		font-weight: bold;
+	}
+}
+
+.content-header {
+  position: relative;
+  padding: 5px 5px 5px 10px;
+}
+.content-header h1, .content-header h2, .content-header h3, .content-header h4, .content-header h5 {
+  margin: 0;
+}
+.content-footer {
+  max-height: 23px;
+  background: white;
+  padding: 1px;
+  color: #444444;
+  border-top: 1px solid #d2d6de;
+}
+
+.pagination {
+    margin: 0;
+}
+.input-group .input-group-addon {
+    width: 40px;
+}
+.info-box-icon {
+	height: 110px;
+	width: 110px;
+	font-size: 48px;
+    line-height: 110px;
+}
+.info-box {
+	min-height :110px;
+}
+.info-box-content {
+	margin-left : 110px;
+}

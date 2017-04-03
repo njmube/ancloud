@@ -45,7 +45,9 @@ public class EmbeddedRedis {
 		public void startRedis() throws IOException {
 			redisServer = RedisServer.builder()
 							.port(redisPort)
-							.setting("appendonly yes")
+							.setting("daemonize no")
+							.setting("appendonly no")
+							.setting("maxheap 128M")
 							.build();
 			redisServer.start();
 		}

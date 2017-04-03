@@ -1,0 +1,207 @@
+<tiles:insertDefinition name="medtech">
+	<tiles:putAttribute name="content-header">
+		<h3>Vital signs</h3>
+	</tiles:putAttribute>
+	<tiles:putAttribute name="page-script">
+		<script src="${resourceBasePath}/plugin/sockjs.min.js"></script>
+		<script src="${resourceBasePath}/plugin/stomp.js"></script>
+		<script src="${resourceBasePath}/plugin/moment.js"></script>
+		<script src="${resourceBasePath}/plugin/chart.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.4.0/d3.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+					var ctx = $(this).find("canvas[name=ecg]");
+					var data = $(this).find("input[name=ecg]").val().split("#");
+				
+					window.ecgConfig = {
+							type : 'line',
+							data : 
+							{
+									labels : data,
+									datasets : 
+									[
+										{
+											data : data,
+											fill: false,
+								            lineTension: 0,
+								            backgroundColor: "rgba(75,192,192,0.4)",
+								            borderColor: "rgba(75,192,192,1)",
+								            borderCapStyle: 'butt',
+								            borderDash: [],
+								            borderDashOffset: 0.0,
+								            borderJoinStyle: 'miter',
+								            pointBorderColor: "rgba(75,192,192,1)",
+								            pointBackgroundColor: "#fff",
+								            pointBorderWidth: 1,
+								            pointHoverRadius: 5,
+								            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+								            pointHoverBorderColor: "rgba(220,220,220,1)",
+								            pointHoverBorderWidth: 2,
+								            pointRadius: 1,
+								            pointHitRadius: 10,
+								            spanGaps: true
+										}
+									]
+							},
+							options : {
+								scales : {
+									xAxes : [ {
+										display : false
+									}]
+								},
+								legend: {
+						            display: false,
+						            labels: {
+						                fontColor: 'rgb(255, 99, 132)'
+						            }
+						        },
+						        responsive :true,
+						     	maintainAspectRatio: false
+							}
+						};
+					window.ecgChart = new Chart(ctx,window.ecgConfig);
+			});
+		</script>
+		<script type="text/javascript">
+// 			var url = 'ws://localhost:15674/ws';
+			var url = 'ws://sg.cloudstringers.com:15674/ws';
+// 			var client = Stomp.client(url);
+			var client = Stomp.over(new SockJS("http://localhost:15674/stomp"));
+
+			client.heartbeat.outgoing = 0;
+			client.heartbeat.incoming = 0;
+
+			var onDebug = function(m) {
+				console.log('DEBUG', m);
+			};
+			
+			var onConnect = function() {
+				client.subscribe('/exchange/medtech.heartdo/patient_12345', function(d) {
+					if (window.ecgConfig.data.datasets.length > 0) {
+						var data = JSON.parse(d.body).payload.ecg.split("#")
+						for(var i=0;i<data.length;i++){
+							val = data.shift();
+							window.ecgConfig.data.labels.push(val);
+							window.ecgConfig.data.datasets[0].data.push(val);
+							if(window.ecgConfig.data.datasets[0].data.length>1500){
+								window.ecgConfig.data.labels.shift();
+								window.ecgConfig.data.datasets[0].data.shift();
+							}
+							window.ecgChart.update();
+							
+						}
+						
+						
+					}
+					
+				});
+				
+			};
+			var onError = function(e) {
+				console.log('ERROR', e);
+			};
+
+			client.debug = onDebug;
+			client.connect('medtech', '12345', onConnect, onError, '/');
+		</script>
+	</tiles:putAttribute>
+	<tiles:putAttribute name="page-style">
+		<style type="text/css">
+			.vital-sign{
+				padding:5px;
+			}
+		</style>
+	</tiles:putAttribute>
+	<tiles:putAttribute name="content-body">
+		<div class="col-md-3 col-sm-12 col-xs-12">
+			<div class="box box-primary">
+				<div class="box-body box-profile">
+					<img class="profile-user-img img-responsive img-circle"
+						src="${resourceBasePath }/img/avatar.png">
+					<h3 class="profile-username text-center">${patient.name }</h3>
+					<p class="text-muted text-center">Patient</p>
+					<ul class="list-group list-group-unbordered">
+						<li class="list-group-item"><b>Sex</b> <a
+							class="pull-right">${patient.sex eq '1'?"Male":"Female" }</a></li>
+						<li class="list-group-item"><b>Ward</b> <a
+							class="pull-right">${patient.ward }</a></li>
+						<li class="list-group-item"><b>Bed</b> <a
+							class="pull-right">${patient.bed }</a></li>
+					</ul>
+					<a href="${basePath }/med/patient/show-info?patientId=${patient.id }" class="btn btn-info btn-block"><b>More info ...</b></a>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-9 col-sm-12 col-xs-12">
+			<div class="col-md-4 col-sm-6 col-xs-12 vital-sign">
+				<div class="info-box">
+					<span class="info-box-icon bg-aqua"><i
+						class="bb bb-foot"></i></span>
+					<div class="info-box-content">
+						<span class="info-box-text">PAS alarm</span> <span
+							class="info-box-number">Normal</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-6 col-xs-12 vital-sign">
+				<div class="info-box">
+					<span class="info-box-icon bg-red"><i
+						class="bb bb-diaper"></i></span>
+					<div class="info-box-content">
+						<span class="info-box-text">Diaper</span> <span
+							class="info-box-number">Normal</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-6 col-xs-12 vital-sign">
+				<div class="info-box">
+					<span class="info-box-icon bg-green"><i
+						class="bb bb-heart"></i></span>
+					<div class="info-box-content">
+						<table class="small">
+							<tr>
+								<td>Heart rate : </td>
+								<td>&nbsp;${heart.heartRate } (bpm)</td>
+							</tr>
+							<tr>
+								<td>Respiration rate : </td>
+								<td>&nbsp;${heart.respirationRate } (bpm)</td>
+							</tr>
+							<tr>
+								<td>HRV : </td>
+								<td>&nbsp;${heart.hrv } (ms)</td>
+							</tr>
+							<tr>
+								<td>Heart rate : </td>
+								<td>&nbsp;${heart.arrhythmia }</td>
+							</tr>
+							<tr>
+								<td>Missed beat : </td>
+								<td>&nbsp;${heart.missedBeat }</td>
+							</tr>
+							<tr>
+								<td>Premature beat : </td>
+								<td>&nbsp;${heart.prematureBeat }</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="box box-primary col-md-12 col-sm-12 col-xs-12">
+				<div class="box-header">
+					<i class="fa fa-heartbeat"></i>
+					<h3 class="box-title">ECG</h3>
+				</div>
+				<div class="box-body">
+					<input name="ecg" type="hidden" value="${heart.ecg }" />
+					<canvas name="ecg" width="100"></canvas> 											
+				</div>
+				<div class="box-footer clearfix no-border">
+				</div>
+			</div>
+		</div>
+
+	</tiles:putAttribute>
+</tiles:insertDefinition>
+
+

@@ -1,6 +1,6 @@
 package org.ancloud.presentation.context;
 
-import org.ancloud.domain.modules.account.Account;
+import org.ancloud.domain.account.Account;
 import org.ancloud.service.authentication.UserDetailsImpl;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.core.Authentication;

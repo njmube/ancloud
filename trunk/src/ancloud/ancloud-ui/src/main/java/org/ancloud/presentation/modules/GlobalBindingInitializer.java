@@ -5,8 +5,8 @@ import java.util.Date;
 
 import javax.inject.Inject;
 
-import org.ancloud.domain.common.SessionConstant;
-import org.ancloud.domain.modules.account.AccountProfile;
+import org.ancloud.domain.account.AccountProfile;
+import org.ancloud.domain.utils.SessionConstant;
 import org.ancloud.fw.core.service.SessionService;
 import org.ancloud.fw.presentation.util.LocaleUtils;
 import org.ancloud.presentation.context.Codelist;

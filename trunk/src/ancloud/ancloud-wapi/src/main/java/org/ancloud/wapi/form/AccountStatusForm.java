@@ -1,6 +1,6 @@
 package org.ancloud.wapi.form;
 
-import org.ancloud.domain.modules.account.enums.AccountStatus;
+import org.ancloud.domain.account.enums.AccountStatus;
 
 public class AccountStatusForm {
 	private String userName;

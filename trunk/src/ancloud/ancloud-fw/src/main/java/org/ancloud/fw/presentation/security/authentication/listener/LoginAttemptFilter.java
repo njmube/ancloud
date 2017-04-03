@@ -8,7 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.ancloud.service.modules.account.LoginAttemptService;
+import org.ancloud.service.account.LoginAttemptService;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.web.filter.OncePerRequestFilter;
 

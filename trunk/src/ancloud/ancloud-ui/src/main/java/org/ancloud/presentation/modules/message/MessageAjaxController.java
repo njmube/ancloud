@@ -6,13 +6,13 @@ import javax.inject.Inject;
 
 import org.apache.commons.lang3.StringUtils;
 import org.ancloud.domain.Project;
-import org.ancloud.domain.common.SessionConstant;
-import org.ancloud.domain.modules.message.Message;
-import org.ancloud.domain.modules.message.MessageSearchCriteria;
+import org.ancloud.domain.message.Message;
+import org.ancloud.domain.message.MessageSearchCriteria;
+import org.ancloud.domain.utils.SessionConstant;
 import org.ancloud.fw.presentation.resolver.JsonParam;
 import org.ancloud.fw.presentation.resolver.Session;
 import org.ancloud.presentation.modules.account.AccountSearchForm;
-import org.ancloud.service.modules.message.MessageService;
+import org.ancloud.service.message.MessageService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
