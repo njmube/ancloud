@@ -79,13 +79,16 @@
 }
 
 @media only screen and (min-width : 992px) {
-	.panel .bb-form .form-group {
+	.bb-form .form-group {
 		padding : 5px 10px;
 	}
 }
-.panel .bb-form.form-horizontal .form-group {
-	    margin: 0px;
-	}
+.bb-form.form-horizontal .form-group {
+			margin: 0px;
+}
+.bb-form .panel {
+	margin-bottom: 10px;
+}
 .bb-button {
 	width: 100%;
 }
@@ -95,22 +98,32 @@
 }
 
 .bb-table-list > thead > tr:first-child > th:first-child,
-.bb-table-action > thead > tr:first-child > th:last-child {
+.bb-table-list > tbody > tr > td:first-child,
+.bb-table-action > thead > tr:first-child > th:first-child,
+.bb-table-action > tbody > tr > td:first-child {
 	width: 40px;
+	text-align: center;
 }
 
-.bb-table-action .btn,
-.bb-table-action + .bb-table-action-plus .btn {
-	width: 28px;
-	height: 28px;
-	padding:0px
+.bb-table-action > thead > tr:first-child > th:last-child {
+	width: 75px;
+}
+
+
+.bb-table-action > tbody > tr > td:last-child .btn-group {
+	width: 64px;
 }
 
 .bb-table-list > tbody > tr > td:first-child {
 	text-align: center;
 }
-table[name^=bb-table] th {
+table[name^="bb-table"] th {
 	text-transform: uppercase;
+}
+
+.bb-form [class*="bb-form-group-"] {
+	margin-top:5px;
+	margin-bottom:5px;
 }
 
 @media screen and (max-width: 768px) {
@@ -133,36 +146,50 @@ table[name^=bb-table] th {
 	}
 }
 
-.content-header {
-  position: relative;
-  padding: 5px 5px 5px 10px;
-}
 .content-header h1, .content-header h2, .content-header h3, .content-header h4, .content-header h5 {
-  margin: 0;
+	margin: 0;
 }
 .content-footer {
-  max-height: 23px;
-  background: white;
-  padding: 1px;
-  color: #444444;
-  border-top: 1px solid #d2d6de;
+	max-height: 23px;
+	background: white;
+	padding: 1px;
+	color: #444444;
+	border-top: 1px solid #d2d6de;
 }
 
 .pagination {
-    margin: 0;
+		margin: 0;
 }
 .input-group .input-group-addon {
-    width: 40px;
+		width: 40px;
 }
 .info-box-icon {
 	height: 110px;
 	width: 110px;
 	font-size: 48px;
-    line-height: 110px;
+	line-height: 110px;
 }
 .info-box {
 	min-height :110px;
 }
 .info-box-content {
 	margin-left : 110px;
+}
+ul.dropdown-menu {
+	right: 0;
+	left: inherit;
+}
+.panel {
+	margin-bottom: 10px;
+}
+.panel-heading {
+	padding: 5px 7px;
+}
+.badge{
+	font-size : 10px;
+}
+
+.alert {
+	padding: 2px 10px;
+	margin:0;
 }

@@ -5,7 +5,9 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.ancloud.domain.account.enums.AccountType;
 import org.ancloud.domain.utils.CriteriaUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.jpa.domain.Specification;
 
 public class AccountSearchCriteria extends Account implements Specification<Account> {
@@ -14,8 +16,38 @@ public class AccountSearchCriteria extends Account implements Specification<Acco
 
 	@Override
 	public Predicate toPredicate(Root<Account> root,CriteriaQuery<?> criteriaquery, CriteriaBuilder criteriabuilder) {
-		String containsLikePattern = CriteriaUtil.getContainsLikePattern(this.getUserName());
-		return criteriabuilder.and(criteriabuilder.like(criteriabuilder.lower(root.<String>get("userName")),containsLikePattern));
+		Predicate predicate =  null;
+		if(StringUtils.isNotBlank(this.getName())){
+			predicate = criteriabuilder.or(
+					criteriabuilder.like(
+							criteriabuilder.lower(root.<String>get("name"))
+							,CriteriaUtil.getContainsLikePattern(this.getName())
+						)
+					,criteriabuilder.like(
+							criteriabuilder.lower(root.<String>get("userName"))
+							,CriteriaUtil.getContainsLikePattern(this.getName())
+						)
+				);
+		} else {
+			predicate = criteriabuilder.or(
+							criteriabuilder.isNull(root.<String>get("name"))
+							,criteriabuilder.isNotNull(root.<String>get("name"))
+							);
+		}
+		if(this.getAccountStatus() != null){
+			predicate = criteriabuilder.and(predicate
+									,criteriabuilder.equal(root.<Boolean>get("accountStatus")
+														,this.getAccountStatus()
+													)
+							);
+		}
+		if(this.getAccountType() != null){
+			predicate = criteriabuilder.and(predicate
+									,criteriabuilder.equal(root.<AccountType>get("accountType")
+														,this.getAccountType()
+													)
+							);
+		}
+		return predicate;
 	}
-	
 }

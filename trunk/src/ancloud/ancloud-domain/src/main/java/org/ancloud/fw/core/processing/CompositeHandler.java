@@ -3,6 +3,8 @@ package org.ancloud.fw.core.processing;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.ancloud.fw.pubsub.Subcriber;
+
 public class CompositeHandler<T> implements Handlers<T>,Handler<T>{
 
 	List<Handler<T>> handlers = new ArrayList<Handler<T>>();
@@ -25,8 +27,15 @@ public class CompositeHandler<T> implements Handlers<T>,Handler<T>{
 			this.handlers.add(handler);
 		}
 	}
-	
+	public void removeHandler(Handler<T> handler) {
+		if(handlers.contains(handler)){
+			handlers.remove(handler);
+		}
+	}
 	public List<Handler<T>> getHandlers() {
 		return handlers;
+	}
+	public void changeStrategy(ProcessingStrategy<Handlers<T>,T> processingStrategy){
+		this.processingStrategy = processingStrategy;
 	}
 }

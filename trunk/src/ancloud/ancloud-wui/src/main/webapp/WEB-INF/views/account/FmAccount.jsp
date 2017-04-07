@@ -25,7 +25,7 @@
 				accountTypeChanged($(select).val());
 			}
 			$(function(){
-				$("select[name=accountType]").prop("disabled",true);
+				$("select[name=accountType]").prop("readonly",true);
 				accountTypeChanged($("select[name=accountType]").val());
 			});
 		</script>
@@ -39,7 +39,7 @@
 					<div class="col-md-2"></div>
 					<div class="col-md-2"></div>
 					<div class="col-md-6" style="text-align: right">
-						<a href="${basePath}/account/search"
+						<a href="${basePath}/admin/account/search"
 							class="btn bb-fa-btn fa-search">
 							Search account
 						</a>
@@ -54,20 +54,20 @@
 					<span>Account information</span>
 				</div>
 				<div class="panel-body">
-					<form:form modelAttribute="accountForm" cssClass="form-horizontal bb-form" action="${basePath }/account/modify" method="POST">
-						<spring:bind path="accountForm.userName">
+					<form:form modelAttribute="accountMForm" cssClass="form-horizontal bb-form" action="${basePath }/admin/account/modify" method="POST">
+						<spring:bind path="accountMForm.userName">
 							<div class="form-group  ${status.error?'has-error':'' }">
 								<label for="userName " class="col-md-2">User name</label> 
 								<div class="input-group col-md-10">
 									<form:hidden path="accountType"/>
 									<form:hidden path="id"/>
-									<form:input path="userName" cssClass="form-control" />
+									<form:input path="userName" cssClass="form-control"/>
 									<span class="input-group-addon"><i class="fa fa-user"></i></span>
 								</div>
 								<form:errors path="userName"  cssClass="help-block col-md-12" />
 							</div>
 						</spring:bind>
-						<spring:bind path="accountForm.password">
+						<spring:bind path="accountMForm.password">
 							<div class="form-group ${status.error?'has-error':'' }">
 								<label for="password" class="col-md-2">Password</label> 
 								<div class="input-group col-md-10">
@@ -77,7 +77,7 @@
 								<form:errors path="password"  cssClass="help-block col-md-12" />
 							</div>
 						</spring:bind>
-						<spring:bind path="accountForm.reenterPassword">
+						<spring:bind path="accountMForm.reenterPassword">
 							<div class="form-group ${status.error?'has-error':'' }">
 								<label for="reenterPassword" class="col-md-2">Confirm password</label> 
 								<div class="input-group col-md-10">
@@ -199,13 +199,14 @@
 								</div>
 							</div>
 						</div>
+						<form:hidden path="version"/>
 					</form:form>
 				</div>
 			</div>
 		</div>
 		<div class="form-group btn-group col-md-12 bb-action-group-footer">
 			<div class="col-md-2">
-				<button type="submit" form="accountForm" class="btn btn-primary bb-button">Save</button>
+				<button type="submit" form="accountMForm" class="btn btn-primary bb-button">Save</button>
 			</div>
 			<div class="col-md-2"></div>
 			<div class="col-md-2"></div>

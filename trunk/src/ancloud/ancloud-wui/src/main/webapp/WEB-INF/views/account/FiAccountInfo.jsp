@@ -39,7 +39,7 @@
 					<div class="col-md-2"></div>
 					<div class="col-md-2"></div>
 					<div class="col-md-6" style="text-align: right">
-						<a href="${basePath}/account/search"
+						<a href="${basePath}/admin/account/search"
 							class="btn bb-fa-btn fa-search">
 							Search account
 						</a>
@@ -67,7 +67,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="name" class="col-md-2">Full name:</label> 
+							<label for="name" class="col-md-2">Full name</label> 
 							<div class="input-group col-md-10">
 									&nbsp;${account.name }
 							</div>
@@ -79,32 +79,27 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="accountStatus" class="col-md-2">Status:</label> 
+							<label for="accountStatus" class="col-md-2">Status</label> 
 							<div class="input-group col-md-10">
 									&nbsp;${account.accountStatus }
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="accountType" class="col-md-2">Account type:</label> 
+							<label for="accountType" class="col-md-2">Account type</label> 
 							<input type="hidden" name="accountType" value="${account.accountType }"/>
 							<div class="input-group col-md-10">
-								&nbsp;<c:choose>
-									<c:when test="${account.accountType eq 0}">Administrator</c:when>
-									<c:when test="${account.accountType eq 1}">Doctor</c:when>
-									<c:when test="${account.accountType eq 2}">Nurse</c:when>
-									<c:when test="${account.accountType eq 3}">Patient</c:when>
-								</c:choose>
+								&nbsp;${account.accountType}
 							</div>
 						</div>
 						<div id="doctor_info" style="display:none">
 							<div class="form-group">
-								<label for="department" class="col-md-2">Department:</label>
+								<label for="department" class="col-md-2">Department</label>
 								<div class="input-group col-md-10">
 									&nbsp;${account.department }
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="designation" class="col-md-2">Designation:</label> 
+								<label for="designation" class="col-md-2">Designation</label> 
 								<div class="input-group col-md-10">
 									&nbsp;${account.designation }
 							</div>
@@ -118,63 +113,45 @@
 						</div>
 						<div id="nurse_info" style="display:none">
 							<div class="form-group">
-								<label for="wristbandId" class="col-md-2">Wrist band id:</label> 
+								<label for="wristbandId" class="col-md-2">Wrist band id</label> 
 								<div class="input-group col-md-10">
 									&nbsp;${account.wristbandId }
-							</div>
-							</div>
-							<div class="form-group">
-								<label for="role" class="col-md-2">Role:</label> 
-								<div class="input-group col-md-10">
-									&nbsp;${account.role }
 								</div>
-							</div>
-							<div class="form-group">
-								<label for="received" class="col-md-2">Recieved:</label> 
-								<div class="input-group col-md-10">
-									&nbsp;${account.received }
-							</div>
-							</div>
-							<div class="form-group">
-								<label for="lookAfter" class="col-md-2">Look after:</label>
-								<div class="input-group col-md-10">
-									&nbsp;${account.lookAfter }
-							</div>
 							</div>
 						</div>
 						<div id="patient_info" style="display:none">
 							<div class="form-group">
-								<label for="ward" class="col-md-2">Weight:</label>
+								<label for="ward" class="col-md-2">Weight</label>
 								<div class="input-group col-md-10">
 									&nbsp;${account.weight }
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="ward" class="col-md-2">Height:</label>
+								<label for="ward" class="col-md-2">Height</label>
 								<div class="input-group col-md-10">
 									&nbsp;${account.height }
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="pasId" class="col-md-2">PAS id:</label>
+								<label for="pasId" class="col-md-2">PAS id</label>
 								<div class="input-group col-md-10">
 									&nbsp;${account.pasId }
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="heartdoId" class="col-md-2">Heartdo Id:</label>
+								<label for="heartdoId" class="col-md-2">Heartdo Id</label>
 								<div class="input-group col-md-10">
 									&nbsp;${account.heartdoId }
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="bed" class="col-md-2">Bed:</label> 
+								<label for="bed" class="col-md-2">Bed</label> 
 								<div class="input-group col-md-10">
 									&nbsp;${account.bed }
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="ward" class="col-md-2">Ward:</label>
+								<label for="ward" class="col-md-2">Ward</label>
 								<div class="input-group col-md-10">
 									&nbsp;${account.ward }
 								</div>

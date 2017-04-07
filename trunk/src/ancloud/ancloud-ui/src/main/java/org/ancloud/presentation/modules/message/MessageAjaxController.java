@@ -39,7 +39,7 @@ public class MessageAjaxController {
 											@Session(key=SessionConstant.SESSION_CURRENT_LOCALE) Locale locale,
 											@PageableDefault Pageable pageable){
 		if(message != null){
-			message.setProject(project);
+//			TODO message.setProject(project);
 			message.setCountry(locale.getCountry());
 			message.setLanguage(locale.getLanguage());
 		}

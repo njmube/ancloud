@@ -1,10 +1,9 @@
 package org.ancloud.domain;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,55 +14,65 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Version;
 
+import org.joda.time.DateTime;
 import org.ancloud.domain.account.Account;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-//@EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
+//@SQLDelete(sql = "UPDATE #{#entityName} SET state = CURRENT_TIMESTAMP() WHERE id = ?", check = ResultCheckStyle.COUNT)
+@EntityListeners(AuditingEntityListener.class)
 public abstract class BaseModel implements Serializable{
 	
-	private static final long serialVersionUID = -3895185079563549399L;
+	private static final long serialVersionUID = -1188098135887093096L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	protected Long id;
+	@JsonProperty("uid")
+	private Long id;
 	
 	@Column(unique=true)
-	protected String code;
+	private String code;
 	
-	protected String name;
+	private String name;
 	
 	@JsonIgnore
-	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@CreatedBy
-	protected Account createdBy;
+	private Account createdBy;
 	
 	@JsonIgnore
 //	@CreatedDate
-	protected Timestamp createdDate;
+	@Column(precision=3)
+	private DateTime createdDate;
 	
 	@JsonIgnore
-	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@LastModifiedBy
-	protected Account lastUpdatedBy;
+	private Account lastUpdatedBy;
 	
 	@JsonIgnore
 //	@LastModifiedDate
-	protected Timestamp lastUpdatedDate;
+	@Column(precision=3)
+	private DateTime lastUpdatedDate;
 	
 	@Version
-	protected Long version = 0L;
+	private Long version = 0L;
+	
+	@JsonIgnore
+	private DateTime deletedDate;
 
 	@PrePersist
 	private void prePersist(){
-		this.createdDate = new Timestamp(System.currentTimeMillis());
+		this.createdDate = new DateTime(); //new DateTime(System.currentTimeMillis());
 	}
 	@PreUpdate
 	private void preUpdate(){
-		this.lastUpdatedDate = new Timestamp(System.currentTimeMillis());
+		this.lastUpdatedDate = new DateTime(); //new DateTime(System.currentTimeMillis());
 	}
 	public Long getId() {
 		return id;
@@ -89,11 +98,11 @@ public abstract class BaseModel implements Serializable{
 		this.createdBy = createdBy;
 	}
 
-	public Timestamp getCreatedDate() {
+	public DateTime getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(Timestamp createDate) {
+	public void setCreatedDate(DateTime createDate) {
 		this.createdDate = createDate;
 	}
 
@@ -105,11 +114,11 @@ public abstract class BaseModel implements Serializable{
 		this.lastUpdatedBy = updatedBy;
 	}
 
-	public Timestamp getLastUpdatedDate() {
+	public DateTime getLastUpdatedDate() {
 		return lastUpdatedDate;
 	}
 
-	public void setLastUpdatedDate(Timestamp updatedDate) {
+	public void setLastUpdatedDate(DateTime updatedDate) {
 		this.lastUpdatedDate = updatedDate;
 	}
 
@@ -125,5 +134,11 @@ public abstract class BaseModel implements Serializable{
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public DateTime getDeletedDate() {
+		return deletedDate;
+	}
+	public void setDeletedDate(DateTime deletedDate) {
+		this.deletedDate = deletedDate;
 	}
 }

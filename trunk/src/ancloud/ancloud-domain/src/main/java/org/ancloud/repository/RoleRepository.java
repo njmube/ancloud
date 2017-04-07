@@ -1,9 +1,8 @@
 package org.ancloud.repository;
 
 import org.ancloud.domain.account.Role;
-import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface RoleRepository extends JpaRepository<Role, Long>{
+public interface RoleRepository extends BaseRepository<Role>{
 
 	public Role findOneByCodeIgnoreCase(String string);
 }

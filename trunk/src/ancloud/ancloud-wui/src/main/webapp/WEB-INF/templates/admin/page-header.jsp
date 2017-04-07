@@ -2,8 +2,10 @@
 
 <header class="main-header">
 	<a href="${basePath}/" class="logo"> 
-		<span class="logo-mini"><img src="${adminResourcePath}/img/trek-mini-logo.png"/></span> 
-		<span class="logo-lg"><b><img src="${adminResourcePath}/img/trek-lg-logo.png"/></b></span>
+<%-- 		<span class="logo-mini"><img src="${imageResourcePath}/trek-mini-logo.png"/></span>  --%>
+<%-- 		<span class="logo-lg"><b><img src="${imageResourcePath}/trek-lg-logo.png"/></b></span> --%>
+		<span class="logo-mini">MTC</span> 
+		<span class="logo-lg"><b>Med</b>TECH</span>
 	</a>
 	<nav class="navbar navbar-static-top"
 		role="navigation">
@@ -29,7 +31,7 @@
 <!-- 								<li> -->
 <!-- 									<a href="#"> -->
 <!-- 										<div class="pull-left"> -->
-<%-- 											<img src="${adminResourcePath}/img/avatar.png" --%>
+<%-- 											<img src="${imageResourcePath}/avatar.png" --%>
 <!-- 												class="img-circle" -->
 <!-- 												alt="User Image"> -->
 <!-- 										</div> -->
@@ -107,7 +109,7 @@
 					<ul class="dropdown-menu">
 						<c:forEach items="${codelist['language'].values()}" var="item">
 							<li>
-								<a href="?language=${item.key}">
+								<a href="?language=${item.resourceKey}">
 									<span class="flag-icon ${item.resourceGroup }"></span>
 									<span>${item.value }</span>
 								</a>
@@ -119,14 +121,14 @@
 					<a href="#"
 						class="dropdown-toggle"
 						data-toggle="dropdown">
-						<img src="${adminResourcePath}/img/avatar.png"
+						<img src="${imageResourcePath}/avatar.png"
 							class="user-image"
 							alt="User Image">
 						<span class="hidden-xs">${currentAccount.userName }</span>
 					</a>
 					<ul class="dropdown-menu">
 						<li class="user-header"><img
-							src="${adminResourcePath}/img/avatar.png"
+							src="${imageResourcePath}/avatar.png"
 							class="img-circle"
 							alt="User Image">
 							<p>

@@ -1,29 +1,26 @@
 <%@include file="/WEB-INF/views/include.jsp" %>
-<c:set var="adminResourcePath" scope="request">${resourceBasePath}/nimda</c:set>
-
-
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript">
+	var timerStart = Date.now();
+	console.log(timerStart);
+</script>
 <meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Medtech</title>
-<link rel="icon" href="${adminResourcePath}/img/favicon.ico?v=1" />
-<!-- Tell the browser to be responsive to screen width -->
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<meta http-equiv="Content-Security-Policy" content="
+        img-src 'self' data:;
+        " />
+<title>ancloud</title>
+<link rel="icon" href="${imageResourcePath}/favicon.ico?v=1" />
+<!-- Tell the browser to be responsive to screen width -->
+
 
 <script type="text/javascript">var CONTEXT_PATH = '${basePath}';</script>
-<link rel="stylesheet" href="${resourceBasePath}/plugin/font-awesome.css?v=1">
-<link rel="stylesheet" href="${resourceBasePath}/plugin/wfmi-style.css?v=1">
-<link rel="stylesheet" href="${resourceBasePath}/plugin/bb-medical.css?v=1">
-<link rel="stylesheet" href="${resourceBasePath}/plugin/bootstrap.css?v=1">
-<link rel="stylesheet" href="${resourceBasePath}/plugin/bootstrap.submenu.css?v=1">
-<link rel="stylesheet" href="${resourceBasePath}/plugin/flag/flag-icon.css?v=1">
-<link rel="stylesheet" href="${resourceBasePath}/plugin/typeahead.css?v=1">
-<link rel="stylesheet" href="${adminResourcePath}/css/core/bluebird.css?v=1">
-<link rel="stylesheet" href="${adminResourcePath}/css/core/bluebird.blue-light.css?v=1">
-<link rel="stylesheet" href="${adminResourcePath}/css/app/bootstrap.bluebird.css?v=1">
-<link rel="stylesheet" href="${adminResourcePath}/css/app/bootstrap.override.css?v=1">
+<link rel="stylesheet" href="${resourcePath}/admin.css?v=1">
+
 <tiles:insertAttribute name="page-style-link" ignore="true" />
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -60,7 +57,7 @@ desired effect
 <c:if test="${empty sessionScope.pageLayout }">
 	<c:set var="layout" value="sidebar-mini"></c:set>
 </c:if>
-<c:set var="layout" value="sidebar-mini fixed"></c:set>
+<c:set var="layout" value="sidebar-mini"></c:set>
 <body class="hold-transition skin-blue-light ${layout}">
 	<div class="wrapper">
 		<c:if test="${!fn:contains(layout,'layout-top-nav') }">
@@ -70,9 +67,9 @@ desired effect
 				<section class="content-header">
 					<tiles:insertAttribute name="content-header" ignore="true"/>
 				</section>
-				<section class="content clearfix">
+				<section class="content">
 					<div class="col-md-12 col-sm-12 col-xs-12">
-						<bb:messages name="messages"></bb:messages>
+						<bb-ex:messages messages="${messages}"></bb-ex:messages>
 					</div>
 					<tiles:insertAttribute name="content-body" ignore="true"/>
 				</section>
@@ -96,26 +93,53 @@ desired effect
 			</div>
 		</c:if>
 	</div>
-	<script src="${resourceBasePath}/plugin/jquery.js?v=1"></script>
-	<script src="${resourceBasePath}/plugin/bootstrap.js?v=1"></script>
-	<script src="${resourceBasePath}/plugin/bootstrap.submenu.js?v=1"></script>
-	<script src="${resourceBasePath}/plugin/jquery.slimscroll.js?v=1"></script>
-	<script src="${resourceBasePath}/plugin/handlebars.js?v=1"></script>
-	<script src="${resourceBasePath}/plugin/typeahead.bundle.js?v=1"></script>
-	<script src="${resourceBasePath}/plugin/angular.js?v=1" type="text/javascript"></script>
-	<script src="${resourceBasePath}/plugin/angular-router.js?v=1" type="text/javascript"></script>
-	<script src="${adminResourcePath}/js/core/bluebird.js?v=1"></script>
-	<script src="${adminResourcePath}/js/core/bluebird.common.js?v=1"></script>
-	<script src="${adminResourcePath}/js/core/bluebird.ar.js?v=1"></script>
-	
+	<div class="modal fade" id="confirmationBox">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Confirmation ?</h4>
+				</div>
+				<div class="modal-body">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Confirm</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<script src="${resourcePath}/admin.js?v=1"></script>
+	<script src="${resourcePath}/jsMessageSource.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			console.log("Time until DOMready: ", Date.now() - timerStart);
+		});
+		$(window).load(function() {
+			console.log("Time until everything loaded: ", Date.now() - timerStart);
+		});
+	</script>
 	<script type="text/javascript">
 		$(function() {
 			$.bb.initialize();
 			$.bb.ar.setTemplateFunction(function(template,data){
 				return Handlebars.compile(template)(data);
 			});
+			$(".btn-group").each(function(i){
+				var $toggleButton = $(this).find(".dropdown-toggle");
+				var $dropdownMenu = $(this).find("ul.dropdown-menu");
+				if($dropdownMenu.length == 0 || $dropdownMenu.find("li").length==0){
+					$toggleButton.prop("disabled",true);
+				}
+			});
 		});
 	</script>
+	
 	<tiles:insertAttribute name="page-template" ignore="true" />
 	<tiles:insertAttribute name="page-script" ignore="true" />
 	<%-- Optionally, you can add Slimscroll and FastClick plugins.
@@ -124,7 +148,3 @@ desired effect
      fixed layout. --%>
 </body>
 </html>
-
-
-
-

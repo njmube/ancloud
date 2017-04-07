@@ -6,23 +6,22 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.ancloud.domain.ProjectBaseModel;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Where;
+import org.ancloud.domain.BaseModel;
 
 @Entity
 @Table(name = "accountProfile")
-public class AccountProfile extends ProjectBaseModel {
+@Where(clause = "deletedDate IS NULL")
+public class AccountProfile extends BaseModel {
 
-	private static final long serialVersionUID = 2388675280757662749L;
+	private static final long serialVersionUID = 3379226982403749296L;
 
-	private String dateFormat = "dd/MM/YYYY";
+	private String dateFormat = "dd/MM/yyyy";
 	
-	private String dateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+	private String dateTimeFormat = "dd/MM/yyyy HH:mm:ss";
 
 	private String locale = "en_US";
 	
-	@JsonIgnore
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Account parent;
 	

@@ -16,11 +16,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.ancloud.domain.ProjectBaseModel;
+import org.hibernate.annotations.Where;
+import org.ancloud.domain.BaseModel;
 
 @Entity
 @Table(name = "role")
-public class Role extends ProjectBaseModel {
+@Where(clause = "deletedDate IS NULL")
+public class Role extends BaseModel {
 
 	private static final long serialVersionUID = 4513934956962115145L;
 	

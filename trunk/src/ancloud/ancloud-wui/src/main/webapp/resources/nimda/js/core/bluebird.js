@@ -461,7 +461,6 @@
 			$("[data-submenu]").submenu();
 		}
 		
-		// modules init
 		for(var propertyName in $.bb){
 			if(typeof $.bb[propertyName] == 'object' && typeof $.bb[propertyName]['initialize'] == 'function'){
 				$.bb[propertyName]['initialize']();

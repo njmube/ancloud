@@ -1,8 +1,13 @@
 package org.ancloud.fw.presentation.message;
 
+import java.io.Serializable;
+
 import org.springframework.util.Assert;
 
-public class ResultMessage {
+public class ResultMessage implements Serializable{
+
+	private static final long serialVersionUID = -2478301301510195660L;
+
 	private final String code;
 
 	private final Object[] args;

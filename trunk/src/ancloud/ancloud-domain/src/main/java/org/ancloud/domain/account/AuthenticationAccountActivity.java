@@ -1,6 +1,10 @@
 package org.ancloud.domain.account;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -40,6 +44,7 @@ public class AuthenticationAccountActivity extends AccountActivity{
 		LogInSuccess,
 		LogInFailed,
 		LogOut,
-		SessionTimeOut
+		SessionTimeOut,
+		ActivateBatteryCode
 	}
 }

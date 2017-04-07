@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.Date;
 
 import org.ancloud.domain.account.Account;
-import org.ancloud.domain.account.License;
+import org.ancloud.domain.account.AccountLicense;
 import org.ancloud.domain.account.enums.AccountStatus;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,7 +15,7 @@ public class UserDetailsImpl implements UserDetails{
 	private Account account;
 	private Collection<? extends GrantedAuthority> authorities;
 	private Date lastPasswordResetDate;
-	private License license;
+	private AccountLicense license;
 	
 
 	public Account getAccount() {
@@ -79,11 +79,11 @@ public class UserDetailsImpl implements UserDetails{
 		this.lastPasswordResetDate = lastPasswordResetDate;
 	}
 
-	public License getLicense() {
+	public AccountLicense getLicense() {
 		return license;
 	}
 
-	public void setLicense(License license) {
+	public void setLicense(AccountLicense license) {
 		this.license = license;
 	}
 

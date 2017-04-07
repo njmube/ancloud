@@ -1,5 +1,4 @@
 <%@include file="/WEB-INF/views/include.jsp"%>
-<c:set var="frontResourcePath" scope="request">${resourceBasePath}/front</c:set>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,18 +7,15 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
-	<meta name="author" content="">
+	<meta name="author" content="Le Tam An">
 	
-	<title>Medtech</title>
-	<link rel="icon" href="${resourceBasePath}/front/img/favicon.ico?v=1" />
-	<link rel="stylesheet" href="${resourceBasePath}/plugin/font-awesome.css?v=1">
-	<link rel="stylesheet" href="${resourceBasePath}/plugin/bootstrap.css?v=1">
+	<title>ancloud</title>
+	<link rel="icon" href="${imageResourcePath}/favicon.ico?v=1" />
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
-		rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
-		rel='stylesheet' type='text/css'>
-	<link href="${resourceBasePath}/plugin/magnific-popup/magnific-popup.css" rel="stylesheet">
-	<link href="${frontResourcePath}/css/creative.min.css" rel="stylesheet">
+        rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
+        rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="${resourcePath}/front.css?v=1">
 	
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -30,8 +26,8 @@
 
 </head>
 
-<body id="page-top">
-	<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+<body class="skin-blue-light">
+	<nav class="main-header navbar navbar-default navbar-fixed-top">
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
@@ -40,7 +36,7 @@
 						data-target="#bs-example-navbar-collapse-1">
 					<span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
 				</button>
-				<a class="navbar-brand page-scroll" href="#page-top">Meditec</a>
+				<a class="navbar-brand page-scroll" href="#page-top">ancloud</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -50,7 +46,50 @@
 					<li><a class="page-scroll" href="#about">About</a></li>
 					<li><a class="page-scroll" href="#services">Services</a></li>
 					<li><a class="page-scroll" href="#contact">Contact</a></li>
-					<li><a href="${basePath}/login" style="color:#F05F40">Login</a></li>
+					<li class="user-menu">
+						<c:if test="${not empty currentAccount}">
+							<a href="#"
+								class="dropdown-toggle"
+								data-toggle="dropdown"
+								style="color:#f05f40">
+								<img src="${imageResourcePath}/avatar.png"
+									class="user-image"
+									alt="User Image">
+								<span>${currentAccount.userName }</span>
+							</a>
+							<ul class="dropdown-menu">
+								<li class="user-header"><img
+									src="${imageResourcePath}/avatar.png"
+									class="img-circle"
+									alt="User Image">
+									<p>
+										${currentAccount.userName } - 
+										${currentAccount.accountType }
+										<small><spring:message code="sc.sys.00020"></spring:message>&nbsp;<bb-ex:formatDate jodaEnabled="true" jodaValue="${currentAccount.createdDate}" pattern="MMM. yyyy" /></small>
+									</p>
+								</li>
+								<li class="user-body">
+									<div class="row">
+									</div>
+								</li>
+								<li class="user-footer">
+									<ul class="nav nav-pills nav-stacked">
+										<li>
+											<a href="${basePath}/admin/account/search">
+												Go to admin page
+											</a>
+										</li>
+										<li>
+											<a href="${basePath}/logout">Logout</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</c:if>
+						<c:if test="${empty currentAccount}">
+							<a href="${basePath}/login">Login</a>
+						</c:if>
+					</li>
 				</ul>
 				
 			</div>
@@ -63,7 +102,7 @@
 			<div class="header-content-inner">
 				<h1 id="homeHeading">An favorite IoT solution for medical centers</h1>
 				<hr>
-				<p>Meditec can help you build better services using integrated IoT medical sensors around.</p>
+				<p>ancloud can help you build better services using integrated IoT medical sensors around.</p>
 				<a href="#about" class="btn btn-primary btn-xl page-scroll">Find Out More</a>
 			</div>
 		</div>
@@ -75,7 +114,7 @@
 				<div class="col-lg-8 col-lg-offset-2 text-center">
 					<h2 class="section-heading">We've got what you need!</h2>
 					<hr class="light">
-					<p class="text-faded">Meditec has excellent services you need
+					<p class="text-faded">ancloud has excellent services you need
 						to get more accurate medical diagnostic actions, comfort and pleasure your patients. Buy Meditec's equipments and place them the right place. No hassle attached!</p>
 					<a href="#services" class="page-scroll btn btn-default btn-xl sr-button">Get Started!</a>
 				</div>
@@ -136,26 +175,12 @@
 				<div class="col-lg-4 text-center">
 					<i class="fa fa-envelope-o fa-3x sr-contact"></i>
 					<p>
-						<a href="mailto:your-email@your-domain.com">tamanle23@gmail.com</a>
+						<a href="mailto:tamanle23@gmail.com">tamanle23@gmail.com</a>
 					</p>
 				</div>
 			</div>
 		</div>
 	</section>
-
-	<!-- jQuery -->
-	<script src="${resourceBasePath}/plugin/jquery.js"></script>
-
-	<script src="${resourceBasePath}/plugin/bootstrap.js"></script>
-
-	<!-- Plugin JavaScript -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-	<script src="${resourceBasePath}/plugin/scrollreveal/scrollreveal.min.js"></script>
-	<script src="${resourceBasePath}/plugin/magnific-popup/jquery.magnific-popup.min.js"></script>
-
-	<!-- Theme JavaScript -->
-	<script src="${frontResourcePath }/js/creative.min.js"></script>
-
+	<script src="${resourcePath}/front.js"></script>
 </body>
-
 </html>

@@ -4,11 +4,9 @@
 	<nav class="navbar navbar-static-top">
 		<div class="container">
 			<div class="navbar-header">
-				<a href="${basePath}/dashboard/dashboard"
+				<a href="${basePath}"
 					class="navbar-brand"> 
-					<span class="logo-lg">
-						<b><spring:message code="sc.sys.00001" /></b>
-					</span>
+					<span class="logo-lg"><b>Med</b>TECH</span>
 				</a>
 				<button
 					type="button"
@@ -18,23 +16,147 @@
 					<i class="fa fa-bars"></i>
 				</button>
 			</div>
-			<div class="collapse navbar-collapse pull-left"
-				id="navbar-collapse">
-				
+			<div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+				<ul class="nav navbar-nav">
+					<sec:authorize access="hasRole('Administrator')">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
+								<i class="svg-icon svg-admin"></i> 
+								<span>Administration</span> 
+								<span class="pull-right-container"> 
+									<i class="fa fa-angle-down pull-right"></i>
+								</span>
+							</a>
+							<ul class="dropdown-menu animated-dropdown-menu">
+								<li>
+									<a href="${basePath }/admin/medical-center/search">
+										<i class="svg-icon svg-hospital"></i>
+										<span class="icon-neighbor-info">Medical centers</span>
+									</a>
+								</li>
+								<li>
+									<a href="${basePath }/admin/account/search">
+										<i class="svg-icon svg-login-user"></i>
+										<span class="icon-neighbor-info">Users</span>
+									</a>
+								</li>
+								<li>
+									<a href="${basePath }/admin/license/search">
+										<i class="svg-icon svg-license"></i>
+										<span class="icon-neighbor-info">Licenses</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+					</sec:authorize>
+		<%-- 		<sec:authorize access="hasAnyRole('Administrator,Doctor,Nurse')">	 --%>
+		<!-- 			<li class="dropdown"> -->
+		<!-- 				<a href="#">  -->
+		<!-- 					<i class="fa fa-circle-o"></i>  -->
+		<!-- 					<span>M&D</span>  -->
+		<!-- 					<span class="pull-right-container">  -->
+		<!-- 						<i class="fa fa-angle-left pull-right"></i> -->
+		<!-- 					</span> -->
+		<!-- 				</a> -->
+		<!-- 				<ul class="dropdown-menu animated-dropdown-menu" style="display: block;"> -->
+		<%-- 					<sec:authorize access="hasAnyRole('Administrator,Doctor,Nurse')"> --%>
+		<!-- 					<li> -->
+		<%-- 						<a href="${basePath }/admin/patient/search"> --%>
+		<!-- 							<i class="fa fa-wheelchair"></i> -->
+		<!-- 							Patients -->
+		<!-- 						</a> -->
+		<!-- 					</li> -->
+		<%-- 					</sec:authorize> --%>
+		<%-- 					<sec:authorize access="hasAnyRole('Administrator,Doctor')"> --%>
+		<!-- 					<li> -->
+		<%-- 						<a href="${basePath }/admin/nurse/search"> --%>
+		<!-- 							<i class="fa icon-care-staff-area"></i> -->
+		<!-- 							Nurses -->
+		<!-- 						</a> -->
+		<!-- 					</li> -->
+		<%-- 					</sec:authorize> --%>
+		<%-- 					<sec:authorize access="hasAnyRole('Administrator')"> --%>
+		<!-- 					<li> -->
+		<%-- 						<a href="${basePath }/admin/doctor/search"> --%>
+		<!-- 							<i class="fa fa-user-md"></i> -->
+		<!-- 							Doctors -->
+		<!-- 						</a> -->
+		<!-- 					</li> -->
+		<%-- 					</sec:authorize> --%>
+		<%-- 					<sec:authorize access="hasAnyRole('Administrator,Doctor,Nurse')"> --%>
+		<!-- 					<li> -->
+		<%-- 						<a href="${basePath }/admin/heart/search"> --%>
+		<!-- 							<i class="fa fa-heartbeat"></i> -->
+		<!-- 							ECG information -->
+		<!-- 						</a> -->
+		<!-- 					</li> -->
+		<%-- 					</sec:authorize> --%>
+		<!-- 				</ul> -->
+		<!-- 			</li> -->
+		<%-- 		</sec:authorize> --%>
+		<%-- 		<sec:authorize access="hasAnyRole('Patient')"> --%>
+		<!-- 			<li class="treeview"> -->
+		<!-- 				<a href="#">  -->
+		<!-- 					<i class="fa fa-circle-o"></i>  -->
+		<!-- 					<span>M&D</span>  -->
+		<!-- 					<span class="pull-right-container">  -->
+		<!-- 						<i class="fa fa-angle-left pull-right"></i> -->
+		<!-- 					</span> -->
+		<!-- 				</a> -->
+		<!-- 				<ul class="dropdown-menu animated-dropdown-menu" style="display: block;"> -->
+		<!-- 					<li> -->
+		<%-- 						<a href="${basePath }/admin/patient/show-vital/${CURRENT_ACCOUNT.id}"> --%>
+		<!-- 							<i class="fa fa-wheelchair"></i> -->
+		<!-- 							Vital signs -->
+		<!-- 						</a> -->
+		<!-- 					</li> -->
+		<!-- 				</ul> -->
+		<!-- 			</li> -->
+		<%-- 		</sec:authorize> --%>
+		<!-- 			<li class="treeview"> -->
+		<!-- 				<a href="#">  -->
+		<!-- 					<i class="fa fa-circle-o"></i>  -->
+		<!-- 					<span>Health analysis</span>  -->
+		<!-- 					<span class="pull-right-container">  -->
+		<!-- 						<i class="fa fa-angle-left pull-right"></i> -->
+		<!-- 					</span> -->
+		<!-- 				</a> -->
+		<!-- 				<ul class="dropdown-menu animated-dropdown-menu" style="display: block;"> -->
+		<!-- 					<li> -->
+		<%-- 						<a href="${basePath }/admin/patient/show-vital/${CURRENT_ACCOUNT.id}"> --%>
+		<!-- 							<i class="fa fa-wheelchair"></i> -->
+		<!-- 							Tracking calendar -->
+		<!-- 						</a> -->
+		<!-- 					</li> -->
+		<!-- 					<li> -->
+		<%-- 						<a href="${basePath }/admin/patient/show-vital/${CURRENT_ACCOUNT.id}"> --%>
+		<!-- 							<i class="fa fa-wheelchair"></i> -->
+		<!-- 							Charting -->
+		<!-- 						</a> -->
+		<!-- 					</li> -->
+		<!-- 					<li> -->
+		<%-- 						<a href="${basePath }/admin/patient/show-vital/${CURRENT_ACCOUNT.id}"> --%>
+		<!-- 							<i class="fa fa-wheelchair"></i> -->
+		<!-- 							Reporting -->
+		<!-- 						</a> -->
+		<!-- 					</li> -->
+		<!-- 				</ul> -->
+		<!-- 			</li> -->
+				</ul>
 				<bb-ex:navigationLink
 					items="${sessionScope.NAVIGATION_LINKS}"
 					type="top"></bb-ex:navigationLink>
-				<form
-					class="navbar-form navbar-left"
-					role="search">
-					<div class="form-group">
-						<input
-							type="text"
-							class="form-control"
-							id="navbar-search-input"
-							placeholder="Search">
-					</div>
-				</form>
+<!-- 				<form -->
+<!-- 					class="navbar-form navbar-left" -->
+<!-- 					role="search"> -->
+<!-- 					<div class="form-group"> -->
+<!-- 						<input -->
+<!-- 							type="text" -->
+<!-- 							class="form-control" -->
+<!-- 							id="navbar-search-input" -->
+<!-- 							placeholder="Search"> -->
+<!-- 					</div> -->
+<!-- 				</form> -->
 			</div>
 			<div class="navbar-custom-menu">
 				<ul class="nav navbar-nav">
@@ -46,7 +168,7 @@
 							<i class="fa fa-envelope-o"></i>
 							<span class="label label-success">4</span>
 						</a>
-						<ul class="dropdown-menu">
+						<ul class="dropdown-menu animated-dropdown-menu">
 							<li class="header">You have 4 messages</li>
 							<li>
 								<ul class="menu">
@@ -55,7 +177,7 @@
 											<div class="pull-left">
 												<!-- User Image -->
 												<img
-													src="${adminResourcePath}/img/avatar.png"
+													src="${imageResourcePath}/avatar.png"
 													class="img-circle"
 													alt="User Image">
 											</div> <!-- Message title and timestamp -->
@@ -78,7 +200,7 @@
 							<i class="fa fa-bell-o"></i> 
 							<span class="label label-warning">10</span>
 						</a>
-						<ul class="dropdown-menu">
+						<ul class="dropdown-menu animated-dropdown-menu">
 							<li class="header">You have 10 notifications</li>
 							<li>
 								<ul class="menu">
@@ -100,7 +222,7 @@
 							<i class="fa fa-flag-o"></i>
 							<span class="label label-danger">9</span>
 						</a>
-						<ul class="dropdown-menu">
+						<ul class="dropdown-menu animated-dropdown-menu">
 							<li class="header">You have 9 tasks</li>
 							<li>
 								<ul class="menu">
@@ -131,7 +253,7 @@
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
 							<span class="flag-icon ${codelist['language'][currentLocale].resourceGroup }"></span>
 						</a>
-						<ul class="dropdown-menu">
+						<ul class="dropdown-menu animated-dropdown-menu">
 							<c:forEach items="${codelist['language'].values()}" var="item">
 								<li>
 									<a href="?language=${item.key}">
@@ -146,18 +268,18 @@
 						<a href="#"
 							class="dropdown-toggle"
 							data-toggle="dropdown">
-							<img src="${adminResourcePath}/img/avatar.png"
+							<img src="${imageResourcePath}/avatar.png"
 								class="user-image"
 								alt="User Image">
 							<span class="hidden-xs">${currentAccount.userName }</span>
 						</a>
-						<ul class="dropdown-menu">
+						<ul class="dropdown-menu animated-dropdown-menu">
 							<li class="user-header"><img
-								src="${adminResourcePath}/img/avatar.png"
+								src="${imageResourcePath}/avatar.png"
 								class="img-circle"
 								alt="User Image">
 								<p>
-									${currentAccount.userName } - ${currentAccount.title } <small><spring:message code="sc.sys.00020"></spring:message> <fmt:formatDate value="${currentAccount.createdDate}" pattern="MMM. yyyy"/></small>
+									${currentAccount.userName } - ${currentAccount.accountType } <small><spring:message code="sc.sys.00020"></spring:message> <bb-ex:formatDate jodaEnabled="true" jodaValue="${currentAccount.createdDate}" pattern="MMM. yyyy" /></small>
 								</p>
 							</li>
 							<li class="user-body">

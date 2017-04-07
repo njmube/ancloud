@@ -1,5 +1,6 @@
 package org.ancloud.fw.presentation.message;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -8,8 +9,10 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.Assert;
 
-public class ResultMessages implements Iterable<ResultMessage> {
+public class ResultMessages implements Iterable<ResultMessage>,Serializable {
 
+	private static final long serialVersionUID = 7929253728827004913L;
+	
 	public enum ResultMessageType {
 		SUCCESS("success"), INFO("info"), WARNING("warning"), ERROR("error"), DANGER(
 				"danger");
@@ -29,6 +32,7 @@ public class ResultMessages implements Iterable<ResultMessage> {
 		}
 	}
 	public static final String DEFAULT_MESSAGES_ATTRIBUTE_NAME = StringUtils.uncapitalize(ResultMessages.class.getSimpleName());
+	
 	private final List<ResultMessage> list = new ArrayList<ResultMessage>();
 
 	private ResultMessageType type;
@@ -37,6 +41,9 @@ public class ResultMessages implements Iterable<ResultMessage> {
 		this(type, (ResultMessage[]) null);
 	}
 	
+	public List<ResultMessage> getList(){
+		return list;
+	}
 	public ResultMessages(ResultMessageType type, ResultMessage... messages) {
 		if (type == null) {
 			throw new IllegalArgumentException("type must not be null!");

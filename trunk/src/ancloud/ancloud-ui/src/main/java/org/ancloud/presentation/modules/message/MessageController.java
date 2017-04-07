@@ -33,7 +33,7 @@ public class MessageController extends BaseController{
 	@RequestMapping(value={"","search"}, method = {RequestMethod.GET})
 	public String displaySearch(MessageSearchForm messageSearchForm,  Model model,@Session(key=SessionConstant.SESSION_CURRENT_PROJECT) Project project, @PageableDefault Pageable pageable){
 		MessageSearchCriteria criteria = mapper.map(messageSearchForm, MessageSearchCriteria.class);
-		criteria.setProject(project);
+//		TODO criteria.setProject(project);
 		Page<Message> page = messageService.findAll(criteria, pageable);
 		model.addAttribute("page",page);
 		return "message/FsMessage";
@@ -42,7 +42,7 @@ public class MessageController extends BaseController{
 	@RequestMapping(value="search", method = {RequestMethod.POST})
 	public String processSearch(MessageSearchForm messageSearchForm,Boolean lucence, Model model,@Session(key=SessionConstant.SESSION_CURRENT_PROJECT) Project project, @PageableDefault Pageable pageable){
 		MessageSearchCriteria criteria = mapper.map(messageSearchForm, MessageSearchCriteria.class);
-		criteria.setProject(project);
+//		TODO criteria.setProject(project);
 		Page<Message> page = null;
 		if(lucence== null || !lucence){
 			page = messageService.findAll(criteria, pageable);

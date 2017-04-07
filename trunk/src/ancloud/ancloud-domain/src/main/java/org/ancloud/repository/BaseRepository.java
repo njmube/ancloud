@@ -2,6 +2,7 @@ package org.ancloud.repository;
 
 import java.util.List;
 
+import org.joda.time.DateTime;
 import org.ancloud.domain.BaseModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -15,6 +16,10 @@ public interface BaseRepository<T extends BaseModel> extends JpaRepository<T, Lo
 	@Modifying
 	@Query("DELETE FROM #{#entityName} A WHERE A.id NOT IN ?1")
 	Integer deleteByIdNotIn(List<Long> ids);
+	
+	@Modifying
+	@Query("UPDATE #{#entityName} A SET A.deletedDate = ?2 WHERE A.id = ?1")
+	Integer deleteById(Long id,DateTime date);
 	
 	T findOneByCode(String code);
 }

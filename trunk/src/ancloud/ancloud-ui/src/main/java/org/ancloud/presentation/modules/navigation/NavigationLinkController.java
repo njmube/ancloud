@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -60,7 +59,7 @@ public class NavigationLinkController extends BaseController {
 			dest = "navigation-link/FmNavigationLink";
 		} else {
 			navigationLinkService.modifyList(this.mapper.mapAsList(fmNavigationLink.getNavigationLinks(), NavigationLink.class),project);
-			sessionService.put(SessionConstant.SESSION_NAVIGATION_LINKS, navigationLinkService.findAllNavigationLinkByProject(project, null));
+//			TODO sessionService.put(SessionConstant.SESSION_NAVIGATION_LINKS, navigationLinkService.findAllNavigationLinkByProject(project, null));
 			dest = "redirect:/navigation-link/modify";
 		}
 		

@@ -7,7 +7,6 @@ import java.util.GregorianCalendar;
 
 public class AuditingDateTimeProvider implements DateTimeProvider {
 
-
 	@Override
 	public Calendar getNow() {
 		return GregorianCalendar.getInstance();

@@ -2,41 +2,35 @@ package org.ancloud.domain.message;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import org.ancloud.domain.ProjectBaseModel;
-import org.hibernate.search.annotations.Analyze;
-import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.Index;
-import org.hibernate.search.annotations.Indexed;
-import org.hibernate.search.annotations.Store;
+import org.ancloud.domain.BaseModel;
 
 @Entity
 @Table(name = "message",
 		uniqueConstraints=@UniqueConstraint(columnNames={"messageKey","language","country"})
 )
 @Embeddable
-@Indexed()
-public class Message extends ProjectBaseModel {
+public class Message {
 
-	private static final long serialVersionUID = -8644123651815590065L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
-	@Field
 	private String messageKey;
 
-	@Field
 	private String language;
 
-	@Field
 	private String country;
 
-	@Field
 	private String basename;
 
 	private String variant;
 
-	@Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO)
 	private String message;
 
 	public Message() {
@@ -89,4 +83,5 @@ public class Message extends ProjectBaseModel {
 	public void setMessage(String message) {
 		this.message = message;
 	}
+
 }

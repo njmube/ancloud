@@ -13,17 +13,16 @@ import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.ancloud.domain.ProjectBaseModel;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Where;
+import org.ancloud.domain.BaseModel;
 
 @Entity
 @Table(name = "permission")
-public class Permission extends ProjectBaseModel{
+@Where(clause = "deletedDate IS NULL")
+public class Permission extends BaseModel{
 	
 	private static final long serialVersionUID = 4396393555601831943L;
 
-	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy="permissions")
 	private Set<Account> accounts;
 

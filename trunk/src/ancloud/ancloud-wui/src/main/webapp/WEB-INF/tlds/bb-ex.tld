@@ -53,4 +53,8 @@
 		<name>sort</name>
 		<path>/WEB-INF/tags/bb-sort.tag</path>
 	</tag-file>
+	<tag-file>
+		<name>messages</name>
+		<path>/WEB-INF/tags/bb-messages.tag</path>
+	</tag-file>
 </taglib>

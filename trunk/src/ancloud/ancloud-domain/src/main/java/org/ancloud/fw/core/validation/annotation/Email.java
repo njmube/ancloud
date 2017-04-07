@@ -14,7 +14,7 @@ import javax.validation.constraints.Pattern;
 @Constraint(validatedBy = {})
 @Target({ ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
-@Pattern(regexp = "/^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$/")
+@Pattern(regexp = "^$|^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")
 @ReportAsSingleViolation
 public @interface Email {
 

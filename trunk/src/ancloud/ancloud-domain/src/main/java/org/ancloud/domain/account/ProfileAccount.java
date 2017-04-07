@@ -6,40 +6,45 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.PostLoad;
 import javax.persistence.Transient;
 
-import org.ancloud.domain.account.enums.MaritalStatus;
-import org.ancloud.domain.account.enums.SexStatus;
+import org.ancloud.domain.enums.MaritalStatus;
+import org.ancloud.domain.enums.SexStatus;
 import org.joda.time.DateTime;
 import org.joda.time.Years;
 
 @MappedSuperclass
-public class ProfileAccount extends Account{
+public class ProfileAccount extends Account {
 
 	private static final long serialVersionUID = -4424899948512063878L;
-	
+
+	private String title;
+
+	private String contactNumber;
+
+	private DateTime birthday;
 	@Transient
 	private String firstName;
-	
+
 	@Transient
 	private String lastName;
-	
+
 	@Transient
 	private Integer age;
-	
+
 	private String picturePath;
-	
+
 	private String address;
-	
+
 	private String workAddress;
-	
+
 	@Enumerated(EnumType.STRING)
-	private MaritalStatus maritalStatus=MaritalStatus.Single;
-	
+	private MaritalStatus maritalStatus = MaritalStatus.Single;
+
 	private String occupation;
-	
+
 	private String nationality;
-	
+
 	private String race;
-	
+
 	@Enumerated(EnumType.ORDINAL)
 	private SexStatus sex;
 
@@ -90,18 +95,19 @@ public class ProfileAccount extends Account{
 	public void setWorkAddress(String workAddress) {
 		this.workAddress = workAddress;
 	}
-	
+
 	public Integer getAge() {
 		return age;
 	}
-	
+
 	@PostLoad
-	private void postLoad(){
-		if(this.getBirthday()!=null){
-//			Calendar birthdayCalendar = Calendar.getInstance();
-//			birthdayCalendar.setTimeInMillis(this.getBirthday().getTime());
-//			this.age = Calendar.getInstance().get(Calendar.YEAR) - birthdayCalendar.get(Calendar.YEAR);
-			
+	private void postLoadSetAge() {
+		if (this.getBirthday() != null) {
+			// Calendar birthdayCalendar = Calendar.getInstance();
+			// birthdayCalendar.setTimeInMillis(this.getBirthday().getTime());
+			// this.age = Calendar.getInstance().get(Calendar.YEAR) -
+			// birthdayCalendar.get(Calendar.YEAR);
+
 			DateTime now = new DateTime();
 			this.age = Years.yearsBetween(this.getBirthday(), now).getYears();
 		}
@@ -122,6 +128,14 @@ public class ProfileAccount extends Account{
 	public void setSex(SexStatus sex) {
 		this.sex = sex;
 	}
+	
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -137,5 +151,21 @@ public class ProfileAccount extends Account{
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+	
+	public String getContactNumber() {
+		return contactNumber;
+	}
+
+	public void setContactNumber(String contactNumber) {
+		this.contactNumber = contactNumber;
+	}
+
+	public DateTime getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(DateTime birthday) {
+		this.birthday = birthday;
 	}
 }

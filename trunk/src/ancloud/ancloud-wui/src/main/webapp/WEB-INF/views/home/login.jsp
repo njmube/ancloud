@@ -1,22 +1,22 @@
 <%@include file="/WEB-INF/views/include.jsp" %>
-<c:set var="resourceBasePath" scope="request">/resources</c:set>
+<c:set var="resourcePath" scope="request">/resources</c:set>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>MedTech</title>
-<link rel="icon" href="${resourceBasePath}/nimda/img/favicon.ico?v=1" />
+<title>ancloud</title>
+<link rel="icon" href="${resourcePath}/nimda/img/favicon.ico?v=1" />
 <!-- Tell the browser to be responsive to screen width -->
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-<link rel="stylesheet" href="${resourceBasePath}/plugin/font-awesome.css">
-<link rel="stylesheet" href="${resourceBasePath}/plugin/bootstrap.css">
-<link rel="stylesheet" href="${resourceBasePath}/plugin/icheck/all.css">
-<link rel="stylesheet" href="${resourceBasePath}/nimda/css/core/bluebird.css">
-<link rel="stylesheet" href="${resourceBasePath}/nimda/css/core/bluebird.blue-light.css">
-<link rel="stylesheet" href="${resourceBasePath}/nimda/css/app/bootstrap.override.css">
-<link rel="stylesheet" href="${resourceBasePath}/nimda/css/app/bootstrap.bluebird.css">
+<link rel="stylesheet" href="${resourcePath}/plugin/font-awesome.css">
+<link rel="stylesheet" href="${resourcePath}/plugin/bootstrap.css">
+<link rel="stylesheet" href="${resourcePath}/plugin/icheck/all.css">
+<link rel="stylesheet" href="${resourcePath}/nimda/css/core/bluebird.css">
+<link rel="stylesheet" href="${resourcePath}/nimda/css/core/bluebird.blue-light.css">
+<link rel="stylesheet" href="${resourcePath}/nimda/css/app/bootstrap.override.css">
+<link rel="stylesheet" href="${resourcePath}/nimda/css/app/bootstrap.bluebird.css">
 
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -72,12 +72,12 @@
 			</div>
 		</div>
 	</div>
-	<script src="${resourceBasePath}/plugin/jquery.js"></script>
-	<script src="${resourceBasePath}/plugin/icheck/icheck.js"></script>
-	<script src="${resourceBasePath}/plugin/jquery.slimscroll.js"></script>
-	<script src="${resourceBasePath}/plugin/bootstrap.js"></script>
-	<script src="${resourceBasePath}/nimda/js/core/bluebird.js"></script>
-	<script src="${resourceBasePath}/nimda/js/core/bluebird.ar.js"></script>
+	<script src="${resourcePath}/plugin/jquery.js"></script>
+	<script src="${resourcePath}/plugin/icheck/icheck.js"></script>
+	<script src="${resourcePath}/plugin/jquery.slimscroll.js"></script>
+	<script src="${resourcePath}/plugin/bootstrap.js"></script>
+	<script src="${resourcePath}/nimda/js/core/bluebird.js"></script>
+	<script src="${resourcePath}/nimda/js/core/bluebird.ar.js"></script>
 	<script>
 		$(function() {
 			$.bb.initialize();

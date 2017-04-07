@@ -3,8 +3,6 @@ package org.ancloud.domain.account;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -16,41 +14,40 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PostLoad;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.apache.commons.lang3.StringUtils;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 import org.ancloud.domain.BaseModel;
 import org.ancloud.domain.account.enums.AccountStatus;
 import org.ancloud.domain.account.enums.AccountType;
-import org.ancloud.fw.core.validation.annotation.Alphanumeric;
-import org.hibernate.validator.constraints.NotEmpty;
-import org.joda.time.DateTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "account")
 @Inheritance(strategy=InheritanceType.JOINED)
+@Where(clause = "deletedDate IS NULL")
+@SQLDelete(sql = "UPDATE account SET deletedDate = CURRENT_DATE WHERE id_product = ? and last_modification_date = ?")
 public class Account extends BaseModel {
 
-	private static final long serialVersionUID = 8253111909049644950L;
+	private static final long serialVersionUID = -2255091421647057444L;
 
-	@Column(unique=true,length=32)
-	@NotEmpty
-	@Alphanumeric(message="Field 'userName' is not alphanumeric, can only contains [a-zA-Z0-9_]")
 	private String userName;
 	
-	private String title;
-	
-	@Column(unique=true)
 	private String email;
 	
-	private String contactNumber;
-
-	@NotEmpty
+	@JsonIgnore
 	private String password;
 	
-	private DateTime birthday;
+	private String firstName;
+	
+	private String lastName;
 	
 	@JsonIgnore
 	@Transient
@@ -73,23 +70,25 @@ public class Account extends BaseModel {
 	private AccountType accountType;
 	
 
+	@Fetch(FetchMode.JOIN)
 	@JsonIgnore
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Account approver;
 	
-	@OneToMany(fetch=FetchType.EAGER,mappedBy="account")
-	private Set<License> licenses;
+	@OneToMany(fetch=FetchType.LAZY,mappedBy="account")
+	@JsonIgnore
+	private Set<AccountLicense> licenses;
 
-	public Set<License> getLicenses() {
+	public Set<AccountLicense> getLicenses() {
 		return licenses;
 	}
 
-	public void setLicenses(Set<License> licenses) {
+	public void setLicenses(Set<AccountLicense> licenses) {
 		this.licenses = licenses;
 	}
 
 	@JsonIgnore
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "accountPermission", 
 			joinColumns = {
 							@JoinColumn(name = "userName",
@@ -105,7 +104,7 @@ public class Account extends BaseModel {
 	private Set<Permission> permissions;
 	
 	@JsonIgnore
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "accountRole", 
 			joinColumns = {
 							@JoinColumn(name = "userName",
@@ -203,15 +202,7 @@ public class Account extends BaseModel {
 	public void setAccountProfiles(List<AccountProfile> accountProfiles) {
 		this.accountProfiles = accountProfiles;
 	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
+	
 	public String getEmail() {
 		return email;
 	}
@@ -219,6 +210,7 @@ public class Account extends BaseModel {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
 
 	public Account getApprover() {
 		return approver;
@@ -236,19 +228,32 @@ public class Account extends BaseModel {
 		this.accountType = accountType;
 	}
 
-	public String getContactNumber() {
-		return contactNumber;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setContactNumber(String contactNumber) {
-		this.contactNumber = contactNumber;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public DateTime getBirthday() {
-		return birthday;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setBirthday(DateTime birthday) {
-		this.birthday = birthday;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
+
+	@PostLoad
+	public void postLoad() {
+		if(StringUtils.isBlank(super.getName())){
+			if(StringUtils.isNotBlank(this.firstName)
+					|| StringUtils.isNotBlank(this.lastName)) {
+				super.setName(this.firstName+" "+this.lastName);
+			} else {
+				super.setName(this.userName);
+			}
+		}
+	}
+	
 }

@@ -13,6 +13,8 @@ import org.ancloud.fw.presentation.util.HttpServletRequestUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.session.Session;
+import org.springframework.stereotype.Service;
 
 public class WebSessionService implements SessionService {
 	
@@ -48,6 +50,19 @@ public class WebSessionService implements SessionService {
 	}
 	
 	@Override
+	public String getUserAgent() {
+		String userAgent=null;
+		try{
+			userAgent = (String) HttpServletRequestUtil.getRequest().getAttribute("User-Agent");
+		} catch(Exception ex){
+			if(logger.isDebugEnabled()){
+				logger.debug("Cannot fetch user-agent.",ex);
+			}
+		}
+		return userAgent;
+	}
+	
+	@Override
 	public<T> T get(String objectName,Class<T> clazz) {
 		T value = null;
 		try{
@@ -65,5 +80,11 @@ public class WebSessionService implements SessionService {
 			sessionMap.put(principal, (List<Object>)(List<?>) sessionRegistry.getAllSessions(principal, true));
 		}
 		return sessionMap;
+	}
+
+	@Override
+	public Map<String, ? extends Session> findByIndexNameAndIndexValue(String principalNameIndexName, String userName) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

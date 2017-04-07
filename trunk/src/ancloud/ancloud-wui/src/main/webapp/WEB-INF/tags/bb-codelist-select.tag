@@ -5,10 +5,12 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <%@ attribute name="path" rtexprvalue="true" required="true" %>
 <%@ attribute name="codelistName" rtexprvalue="true" required="true" %>
+<%@ attribute name="cssClass" rtexprvalue="true" required="true" %>
 
-<form:select path="${path}">
-	<c:forEach items="${codelist[codelistName].values }" var="item">
-		<form:option value="${item.key}">
+<form:select path="${path}" cssClass="${cssClass }">
+	<option></option>
+	<c:forEach items="${codelist[codelistName].values() }" var="item">
+		<form:option value="${item.resourceKey}">
 			<c:if test="${not empty item.value}">
 				<c:out value="${item.value}" escapeXml="true"/>
 			</c:if>

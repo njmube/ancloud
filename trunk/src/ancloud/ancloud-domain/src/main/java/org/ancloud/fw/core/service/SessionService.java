@@ -14,4 +14,8 @@ public interface SessionService{
 	public<T> T get(String objectName,Class<T> clazz);
 
 	Map<Object, List<Object>> getAllSessions();
+
+	Map<String, ? extends Session> findByIndexNameAndIndexValue(String principalNameIndexName, String userName);
+	
+	public String getUserAgent();
 }

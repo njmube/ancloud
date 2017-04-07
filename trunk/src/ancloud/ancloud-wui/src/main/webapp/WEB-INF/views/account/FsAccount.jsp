@@ -2,13 +2,13 @@
 
 <tiles:insertDefinition name="admin">
 	<tiles:putAttribute name="content-header" >
-		<div class="col-md-6"><h3>Account management</h3></div>
-		<div class="form-group btn-group col-md-6 bb-action-group-footer">
+		<div class="col-md-6"><h3>Account <small>Search</small></h3></div>
+		<div class="btn-group col-md-6">
 			<div class="col-md-6"></div>
 			<div class="col-md-6" style="text-align: right">
-				<a href="${basePath}/account/register"
+				<a href="${basePath}/admin/account/register"
 					class="btn bb-fa-btn fa-plus">
-					Register new account
+					Register new
 				</a>
 			</div>
 		</div>
@@ -21,15 +21,15 @@
 					<span><spring:message code="sc.common.00008"></spring:message></span>
 				</div>
 				<div class="panel-body">
-					<form:form modelAttribute="accountSearchForm" cssClass="form-horizontal bb-form" action="${basePath }/account/search" method="POST">
+					<form:form modelAttribute="accountSearchForm" cssClass="form-horizontal bb-form" action="${basePath }/admin/account/search" method="POST">
 						<div class="bb-form-group">
 							<div class="col-md-2 bb-form-group-label">
-								<label class="control-label" for="userName">
-									<spring:message code="sc.account.00006" />
+								<label class="control-label" for="name">
+									Name
 								</label>
 							</div>
 							<div class="col-md-4 bb-form-group-control">
-								<form:input path="userName" cssClass="form-control" />
+								<form:input path="name" cssClass="form-control" />
 							</div>
 							<div class="col-md-2 bb-form-group-label">
 								<label class="control-label" for="status">
@@ -76,26 +76,26 @@
 				</div>
 				<div class="panel-body">
 					<c:if test="${page.totalElements > 0}">
-						<div class="table-responsive">
-							<table class="table table-bordered table-condensed  bb-table-list">
+						<div class="">
+							<table class="table table-bordered table-condensed table-hover  bb-table-action">
 								<colgroup>
 									<col>
 									<col>
+									<col width="12%">
+									<col width="12%">
+									<col width="16%">
 									<col width="10%">
 									<col width="10%">
-									<col width="14%">
-									<col width="10%">
-									<col width="17%">
-									<col width="75px">
+									<col>
 								</colgroup>
-								<thead>
+								<thead class="thead-inverse">
 									<tr>
 										<th><spring:message code="sc.common.00007" /></th>
 										<th>
 											<bb-ex:sort page="${page }" 
 														formName="accountSearchForm" 
-														sortProperty="userName" 
-														label="User name"/>
+														sortProperty="name" 
+														label="Name"/>
 										</th>
 										<th>
 											<bb-ex:sort page="${page }" 
@@ -131,9 +131,9 @@
 										<tr>
 											<td data-title="<spring:message code='sc.common.00007' />">
 												${page.number * page.size + status.index + 1}</td>
-											<td data-title="<spring:message code='sc.account.00006' />">
-												<a href="${basePath}/account/show-info?id=${account.id}&accountType=${account.accountType}">
-													${account.userName }
+											<td data-title="Name">
+												<a href="${basePath}/admin/account/show-info?id=${account.id}&accountType=${account.accountType}">
+													${account.name }
 												</a>
 											</td>
 											<td data-title="Account type">
@@ -144,28 +144,50 @@
 											<td data-title="<spring:message code='sc.account.00007' />">******</td>
 											<td data-title="<spring:message code='sc.account.00011' />">
 												${account.accountStatus}
-												<c:if test="${account.accountStatus eq 'Pending' }">
-													<a title="Approve" class="btn btn-success bb-fa-btn fa-check" href="${basePath}/account/approve?isApproval=1&id=${account.id}&version=${account.version}"></a>
-													<a title="Reject" class="btn btn-danger bb-fa-btn fa-close" href="${basePath}/account/approve?isApproval=0&id=${account.id}&version=${account.version}"></a>
-												</c:if>
+												
 											</td>
 											<td>
-												<!-- Split button -->
 												<div class="btn-group">
-													<a class="btn btn-success bb-fa-btn fa-edit" href="${basePath}/account/modify?id=${account.id}&accountType=${account.accountType}"></a>
+													<a class="btn btn-success bb-fa-btn fa-edit" href="${basePath}/admin/account/modify?id=${account.id}&accountType=${account.accountType}"></a>
 													<button type="button"
 														class="btn btn-success dropdown-toggle"
-														data-toggle="dropdown" aria-haspopup="true"
-														aria-expanded="false">
+														data-toggle="dropdown">
 														<span class="caret"></span> 
-														<span class="sr-only">Toggle Dropdown</span>
 													</button>
 													<ul class="dropdown-menu">
-														<li><a href="#">Action</a></li>
-														<li><a href="#">Another action</a></li>
-														<li><a href="#">Something else here</a></li>
-														<li role="separator" class="divider"></li>
-														<li><a href="#">Separated link</a></li>
+														<c:if test="${account.accountStatus eq 'Pending' }">
+															<li>
+																<a title="Approve"
+																	class="bb-confirm-approve"
+																	href="${basePath}/admin/account/approve?isApproval=1&id=${account.id}&version=${account.version}">
+																	<i class="fa fa-check-circle"></i>Approve
+																</a>
+															</li>
+															<li>
+																<a title="Reject"
+																	class="bb-confirm-reject"
+																	href="${basePath}/admin/account/approve?isApproval=0&id=${account.id}&version=${account.version}">
+																	<i class="fa fa-ban"></i>Reject
+																</a>
+															</li>
+															<li class="divider"></li>
+														</c:if>
+														<li>
+															<a href="${basePath}/admin/account-license/search?account.id=${account.id}&account.name=${bb:escape(account.name)}&fromDate=&toDate=">
+																Show licenses
+															</a>
+														</li>
+														<li>
+															<a href="${basePath}/admin/account-license/register?account.id=${account.id}&account.name=${bb:escape(account.name)}">
+																Add license
+															</a>
+														</li>
+														<li class="divider"></li>
+														<li>
+															<a class="bb-confirm-delete" href="${basePath}/admin/account/delete?id=${account.id}&accountType=${account.accountType}">
+																<i class="fa fa-close"></i>Delete
+															</a>
+														</li>
 													</ul>
 												</div>
 											</td>

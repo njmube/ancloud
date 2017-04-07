@@ -5,10 +5,10 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-sources/apt"/>
-        <dependent-module archiveName="ancloud-fw-0.0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ancloud-fw/ancloud-fw">
+        <dependent-module archiveName="ancloud-fw-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ancloud-fw/ancloud-fw">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="ancloud-domain-0.0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ancloud-domain/ancloud-domain">
+        <dependent-module archiveName="ancloud-domain-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ancloud-domain/ancloud-domain">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="java-output-path" value="target/classes"/>

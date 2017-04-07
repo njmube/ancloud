@@ -8,15 +8,15 @@
 				$("#nurse_info").hide();
 				$("#patient_info").hide();
 				switch(accountType){
-				case '0':
+				case 'Administrator':
 					break;
-				case '1':
+				case 'Doctor':
 					$("#doctor_info").show();
 					break;
-				case '2':
+				case 'Nurse':
 					$("#nurse_info").show();
 					break;
-				case '3':
+				case 'Patient':
 					$("#patient_info").show();
 					break;
 				}
@@ -30,22 +30,24 @@
 		</script>
 	</tiles:putAttribute>
 	<tiles:putAttribute name="content-header" >
-		<h3>Register new account</h3>
+		<div class="col-md-6">
+			<h3>Account <small>Registration</small></h3>
+		</div>
+		
+		<div class="form-group btn-group col-md-6 bb-action-group-footer">
+			<div class="col-md-2"></div>
+			<div class="col-md-2"></div>
+			<div class="col-md-2"></div>
+			<div class="col-md-6" style="text-align: right">
+				<a href="${basePath}/admin/account/search"
+					class="btn bb-fa-btn fa-search">
+					Search
+				</a>
+			</div>
+		</div>
 	</tiles:putAttribute>
 	<tiles:putAttribute name="content-body">
-		<div class="form-group btn-group col-md-12 bb-action-group-footer">
-					<div class="col-md-2"></div>
-					<div class="col-md-2"></div>
-					<div class="col-md-2"></div>
-					<div class="col-md-6" style="text-align: right">
-						<a href="${basePath}/account/search"
-							class="btn bb-fa-btn fa-search">
-							Search account
-						</a>
-					</div>
-					
-				
-		</div>
+		
 		<div class="col-md-12">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
@@ -53,8 +55,8 @@
 					<span>Account information</span>
 				</div>
 				<div class="panel-body">
-					<form:form modelAttribute="accountForm" cssClass="form-horizontal bb-form" action="${basePath }/account/register" method="POST">
-						<spring:bind path="accountForm.userName">
+					<form:form modelAttribute="accountRForm" cssClass="form-horizontal bb-form" action="${basePath }/admin/account/register" method="POST">
+						<spring:bind path="accountRForm.userName">
 							<div class="form-group  ${status.error?'has-error':'' }">
 								<label for="userName " class="col-md-2">User name</label> 
 								<div class="input-group col-md-10">
@@ -64,7 +66,7 @@
 								<form:errors path="userName"  cssClass="help-block col-md-12" />
 							</div>
 						</spring:bind>
-						<spring:bind path="accountForm.password">
+						<spring:bind path="accountRForm.password">
 							<div class="form-group ${status.error?'has-error':'' }">
 								<label for="password" class="col-md-2">Password</label> 
 								<div class="input-group col-md-10">
@@ -74,7 +76,7 @@
 								<form:errors path="password"  cssClass="help-block col-md-12" />
 							</div>
 						</spring:bind>
-						<spring:bind path="accountForm.reenterPassword">
+						<spring:bind path="accountRForm.reenterPassword">
 							<div class="form-group ${status.error?'has-error':'' }">
 								<label for="reenterPassword" class="col-md-2">Confirm password</label> 
 								<div class="input-group col-md-10">
@@ -113,10 +115,10 @@
 							<label for="accountType" class="col-md-2">Account type</label> 
 							<div class="input-group col-md-10">
 								<form:select path="accountType" cssClass="form-control" onchange="accountTypeSelectChanged(this);">
-									<form:option value="0">Administrator</form:option>
-									<form:option value="1">Doctor</form:option>
-									<form:option value="2">Nurse</form:option>
-									<form:option value="3">Patient</form:option>
+									<form:option value="Administrator">Administrator</form:option>
+									<form:option value="Doctor">Doctor</form:option>
+									<form:option value="Nurse">Nurse</form:option>
+									<form:option value="Patient">Patient</form:option>
 								</form:select>
 							</div>
 						</div>
@@ -202,7 +204,7 @@
 		</div>
 		<div class="form-group btn-group col-md-12 bb-action-group-footer">
 			<div class="col-md-2">
-				<button type="submit" form="accountForm" class="btn btn-primary bb-button">Register</button>
+				<button type="submit" form="accountRForm" class="btn btn-primary bb-button">Register</button>
 			</div>
 			<div class="col-md-2"></div>
 			<div class="col-md-2"></div>

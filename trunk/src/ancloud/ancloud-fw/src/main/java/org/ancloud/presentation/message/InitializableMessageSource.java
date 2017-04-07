@@ -7,35 +7,29 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.ancloud.fw.presentation.util.LocaleUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.support.AbstractMessageSource;
 import org.springframework.util.Assert;
 
 public class InitializableMessageSource extends AbstractMessageSource implements InitializingBean {
-	
-	private Logger logger = LoggerFactory.getLogger(InitializableMessageSource.class);
 	protected Map<Locale, List<String>> resolvingPath;
-	protected Map<String, Map<String, MessageFormat>> messages = new HashMap<String, Map<String, MessageFormat>>();
+	protected Map<String, Map<String, String>> messages = new HashMap<String, Map<String, String>>();
 	protected Locale defaultLocale;
-	protected boolean autoInitialization;
-	private ArrayList<String> basenames;
-	private boolean basenameRestriction;
-	private Boolean returnUnresolvedCode = true;
 	protected MessageProvider messageProvider;
+	protected boolean autoInitialization;
 
 	public InitializableMessageSource() {
 		this.resolvingPath = new HashMap<Locale, List<String>>();
 	}
 
-	private void addMessage(String basename, Locale locale, String code,MessageFormat messageFormat) {
-		String localeString = basename + "_" + (locale != null ? locale.toString() : "");
-		Map<String, MessageFormat> codeMap = messages.get(localeString);
+	private void addMessage(String locale, String code,String messageFormat) {
+		String localeString = (locale != null ? locale : "");
+		Map<String, String> codeMap = messages.get(localeString);
 
 		if (codeMap == null) {
-			codeMap = new HashMap<String, MessageFormat>();
+			codeMap = new HashMap<String, String>();
 			messages.put(localeString, codeMap);
 		}
 
@@ -61,19 +55,19 @@ public class InitializableMessageSource extends AbstractMessageSource implements
 					getDefaultLocale());
 			for (Locale loc : localePath) {
 				if (loc == null) {
-					paths.add("_");
+					paths.add("");
 				} else {
 
 					String language = LocaleUtils.getLanguage(loc);
 					String country = LocaleUtils.getCountry(loc);
 					String variant = LocaleUtils.getVariant(loc);
 					if (!variant.isEmpty()) {
-						paths.add(String.format("_%s_%s_%s", language, country,
+						paths.add(String.format("%s_%s_%s", language, country,
 								variant));
 					} else if (!country.isEmpty()) {
-						paths.add(String.format("_%s_%s", language, country));
+						paths.add(String.format("%s_%s", language, country));
 					} else if (!language.isEmpty()) {
-						paths.add(String.format("_%s", language));
+						paths.add(String.format("%s", language));
 					}
 				}
 
@@ -84,81 +78,50 @@ public class InitializableMessageSource extends AbstractMessageSource implements
 		return paths;
 	}
 
-	public Boolean getReturnUnresolvedCode() {
-
-		return this.returnUnresolvedCode;
-	}
-
 	public void initialize() {
+		Messages messages = messageProvider.getMessages();
 
-		// reset the path-cache (default-locale could have been changed)
-		resolvingPath = new HashMap<Locale, List<String>>();
-
-		if (!basenameRestriction) {
-			basenames = new ArrayList<String>();
-			basenames.addAll(messageProvider.getAvailableBaseNames());
-		}
-
-		messages = new HashMap<String, Map<String, MessageFormat>>();
-
-		for (String basename : basenames) {
-			initialize(basename);
-		}
-	}
-
-	public void initialize(String basename) {
-		Messages messagesForBasename = messageProvider.getMessages(basename);
-		if(!messages.isEmpty()){
-			messages.clear();
-		}
-		for (Locale locale : messagesForBasename.getLocales()) {
-			Map<String, String> codeToMessage = messagesForBasename
-					.getMessages(locale);
+		for (String locale : messages.getLocales()) {
+			Map<String, String> codeToMessage = messages.getMessages(locale);
 
 			for (String code : codeToMessage.keySet()) {
-				addMessage(
-						basename,
-						locale,
-						code,
-						createMessageFormat(codeToMessage.get(code), locale));
+				try {
+					addMessage(
+							locale,
+							code,
+							codeToMessage.get(code));
+				} catch (RuntimeException e) {
+					throw new RuntimeException(
+							String.format(
+									"Error processing Message code=%s locale=%s , %s",
+									code, locale, e.getMessage()), e);
+				}
 			}
 		}
 
 	}
 
 	protected MessageFormat resolveCode(String code, Locale locale) {
-		for (String basename : basenames) {
-			List<String> paths = getPath(locale);
-			for (String loc : paths) {
-				Map<String, MessageFormat> formatMap = messages.get(basename
-						+ loc);
-				if (formatMap != null) {
-					MessageFormat format = formatMap.get(code);
-					if (format != null) {
-						if (format.getLocale() == null) {
-							format.setLocale(defaultLocale);
-						}
-						return format;
+		List<String> paths = getPath(locale);
+		for (String loc : paths) {
+			Map<String, String> formatMap = messages.get(loc);
+			if (formatMap != null) {
+				String pattern = formatMap.get(code);
+				if (StringUtils.isNotBlank(pattern)) {
+					MessageFormat format = createMessageFormat(pattern,locale);
+					if (format.getLocale() == null) {
+						format.setLocale(defaultLocale);
 					}
+					return format;
 				}
 			}
 		}
 
-		if (getReturnUnresolvedCode()) {
-			return createMessageFormat(code, locale);
-		} else {
-			return null;
-		}
+		return createMessageFormat(code.replace("{", "'{").replace("}", "}'"), locale);
 	}
 
 	public void setAutoInitialize(boolean autoInitialize) {
 		this.autoInitialization = autoInitialize;
-	}
-
-	public void setBasename(String basename) {
-		basenameRestriction = true;
-		this.basenames = new ArrayList<String>();
-		basenames.add(basename);
 	}
 
 	public void setDefaultLocale(Locale defaultLocale) {
@@ -170,11 +133,11 @@ public class InitializableMessageSource extends AbstractMessageSource implements
 		this.messageProvider = messageProvider;
 	}
 
-	public void setReturnUnresolvedCode(Boolean returnUnresolvedCode) {
-		this.returnUnresolvedCode = returnUnresolvedCode;
-	}
-	
 	public void setAutoInitialization(boolean autoInitialization) {
 		this.autoInitialization = autoInitialization;
+	}
+
+	public Map<String, Map<String, String>> getMessages() {
+		return this.messages;
 	}
 }

@@ -8,9 +8,11 @@ import ma.glasnost.orika.Filter;
 import ma.glasnost.orika.Mapper;
 import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.ObjectFactory;
+import ma.glasnost.orika.converter.builtin.PassThroughConverter;
 import ma.glasnost.orika.impl.ConfigurableMapper;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
 
+import org.joda.time.DateTime;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -26,6 +28,7 @@ public class BeanMapperContextAware extends ConfigurableMapper implements Applic
 	@Override
 	protected void configure(final MapperFactory factory) {
 		this.factory = factory;
+		this.factory.getConverterFactory().registerConverter(new PassThroughConverter(DateTime.class));
 	}
 
 	@Override

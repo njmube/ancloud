@@ -1,20 +1,16 @@
 package org.ancloud.fw.core.util;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.util.List;
-
-import org.apache.commons.collections.ListUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.ancloud.fw.core.exception.ErrorMessage;
 import org.slf4j.Logger;
 import org.springframework.util.DigestUtils;
-import org.springframework.util.StringUtils;
-import org.springframework.validation.ObjectError;
-import org.ancloud.fw.core.exception.ErrorMessage;
 
 public class ErrorHandlingUtils {
+
+	private ErrorHandlingUtils() {
+
+	}
 
 	public static ErrorMessage logException(Logger logger, Throwable throwable) {
 		StringBuilder errorCodeBuilder = new StringBuilder("0x");

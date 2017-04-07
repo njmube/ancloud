@@ -55,15 +55,36 @@ public class TraceHttpServletRequestFilter extends OncePerRequestFilter {
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-		long startTime = System.nanoTime();
-		MDC.put(MDC_TRACKING_ID, createTrackingId());
-		if(logger.isTraceEnabled()) {
-			logger.trace("[START SERVLET REQUEST]");
+		String contentType = request.getContentType();
+		String accept = request.getHeader("Accept");
+		
+		if(!(contentType == null || !(contentType.equals("application/json") 
+				|| contentType.equals("application/xml")
+				|| contentType.equals("text/html")
+				|| contentType.equals("text/json")
+				|| contentType.equals("text/xml")
+				))
+			||
+			!(accept == null || !(accept.equals("text/html+xml") 
+					|| accept.contains("text/html")
+					))
+			&  logger.isDebugEnabled()){
+			
+			long startTime = System.nanoTime();
+			MDC.put(MDC_TRACKING_ID, createTrackingId());
+			logger.debug("[START SERVLET REQUEST]");
 			if(request instanceof HttpServletRequest){
-				logger.trace("HTTP {} {} {}", new Object[] {
-						request.getMethod(),
-						request.getRequestURI(),
-						request.getHeader("content-type")
+				String ipAddress = request.getHeader("X-FORWARDED-FOR");
+				if (ipAddress == null) {
+						ipAddress = request.getRemoteAddr();
+				}
+				logger.debug("{} {}?{}", new Object[] {
+						ipAddress,
+						request.getRequestURL(),
+						request.getQueryString(),
+				});
+				logger.debug("{}", new Object[] {
+						request.getHeader("User-Agent"),
 				});
 				
 				if(!(request.getContentType() == null || !(request.getContentType().equals("application/json") ||
@@ -72,34 +93,27 @@ public class TraceHttpServletRequestFilter extends OncePerRequestFilter {
 						logger.trace(IOUtils.toString(request.getInputStream()));
 				}
 			}
-		}
-		try {
-			filterChain.doFilter(request, response);
-		} finally {
-			if(logger.isTraceEnabled()) {
+			try {
+				filterChain.doFilter(request, response);
+			} finally {
 				long handlingTime = System.nanoTime() - startTime;
-				String formattedHandlingTime = String.format("%1$,3d",new Object[] { Long.valueOf(handlingTime) });
+				String formattedHandlingTime = String.format("%1$,3d",new Object[] { TimeUnit.MILLISECONDS.toSeconds(handlingTime) });
 				boolean isWarnHandling = handlingTime > this.warnHandlingNanos;
-				if (isWarnHandling) {
-					if (!(logger.isWarnEnabled()))
-						return;
-				} else if (!(logger.isTraceEnabled())) {
-					return;
-				}
-				logger.trace("[END SERVLET REQUEST] {}.{}({})-> view={}, model={}",
-						new Object[] {});
+				logger.debug("[END SERVLET REQUEST]", new Object[] {});
 	
-				String handlingTimeMessage = "[HANDLING TIME] {} ns";
-				if (isWarnHandling) {
+				String handlingTimeMessage = "[HANDLING TIME] {} ms";
+				if (isWarnHandling & logger.isWarnEnabled()) {
 					logger.warn(handlingTimeMessage + " > {}", 
 							new Object[] {formattedHandlingTime,
-										Long.valueOf(this.warnHandlingNanos) 
+									TimeUnit.MILLISECONDS.toSeconds(this.warnHandlingNanos)
 							});
 				} else {
-					logger.trace(handlingTimeMessage, new Object[] { formattedHandlingTime });
+					logger.debug(handlingTimeMessage, new Object[] { formattedHandlingTime });
 				}
+				MDC.remove(MDC_TRACKING_ID);
 			}
-			MDC.remove(MDC_TRACKING_ID);
+		} else {
+			filterChain.doFilter(request, response);
 		}
 	}
 
@@ -148,34 +162,33 @@ public class TraceHttpServletRequestFilter extends OncePerRequestFilter {
 			}
 
 			public boolean markSupported() {
-				return false;
+				return is.markSupported();
 			}
 
 			public synchronized void mark(int i) {
-				throw new RuntimeException(new IOException("mark/reset not supported"));
+				is.mark(i);
 			}
 
 			public synchronized void reset() throws IOException {
-				throw new IOException("mark/reset not supported");
+				is.reset();
 			}
 
 			@Override
 			public boolean isFinished() {
+				// TODO Auto-generated method stub
 				return false;
 			}
 
 			@Override
 			public boolean isReady() {
+				// TODO Auto-generated method stub
 				return false;
 			}
 
 			@Override
 			public void setReadListener(ReadListener readListener) {
 				// TODO Auto-generated method stub
-				
 			}
 		}
-
-
 	}
 }

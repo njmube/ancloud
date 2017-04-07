@@ -21,7 +21,7 @@ public class LoginAttemptFilter extends OncePerRequestFilter {
 	protected final void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
 			FilterChain filterChain) throws ServletException, IOException {
 		if (loginAttemptService.isBlocked(getClientIP(request))){
-			throw new LockedException("User Account is locked!");
+			throw new LockedException("You are blocked!");
 		}
 		filterChain.doFilter(request, response);
 	}

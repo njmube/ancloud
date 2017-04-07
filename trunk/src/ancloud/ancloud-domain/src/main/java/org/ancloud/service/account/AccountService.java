@@ -3,23 +3,31 @@ package org.ancloud.service.account;
 import java.util.Map;
 
 import org.ancloud.domain.account.Account;
-import org.ancloud.domain.account.AccountSearchCriteria;
 import org.ancloud.domain.account.AuthenticationAccountActivity.AuthenticationType;
 import org.ancloud.domain.account.enums.AccountStatus;
-import org.hibernate.annotations.Parent;
+import org.ancloud.domain.account.enums.AccountType;
+import org.ancloud.service.authentication.UserDetailsImpl;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.session.Session;
 
 public interface AccountService {
-	public Page<Account> findAllAccountByCriteria(AccountSearchCriteria criteria,Pageable pageable);
 
-	public Account registerNewAccount(Account account);
+	public Page<Account> findAllByCriteria(Specification<Account> criteria, Pageable pageable);
+	
+	public<T extends Account> T registerNew(T account);
+	
+	public<T extends Account> T modify(T account);
+	
+	public<T extends Account> void delete(T account);
+	
+	public Account findById(Long id);
+	
+	public Account findByIdAndAccountType(Long accountId, AccountType accountType);
 
-	public Account findAccountById(Long accountId, Integer accountType);
-
-	public void modifyAccount(Account account);
-
+	public Account findByUserName(String userName);
+	
 	public void approveAccount(Account account,AccountStatus status);
 
 	public void registerAuthenticationActivity(Account account, AuthenticationType loginsuccess,String userAgent);
@@ -28,7 +36,10 @@ public interface AccountService {
 	
 	public Account disableAccount(String currentPrincipal);
 
-	public Account findAccountByUserName(String userName);
+	public Map<String, ? extends Session> getSessionsByUserName(String userName);
 
-	Map<String, ? extends Session> getSessionsByUserName(String userName);
+	UserDetailsImpl loadUserByUserName(String username);
+
+	UserDetailsImpl loadUserById(Long id);
+
 }

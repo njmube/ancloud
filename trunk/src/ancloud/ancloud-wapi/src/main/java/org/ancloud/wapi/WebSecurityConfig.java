@@ -7,9 +7,8 @@ import org.ancloud.fw.presentation.security.authentication.listener.LoginAttempt
 import org.ancloud.fw.tracking.ClientAddressMDCFilter;
 import org.ancloud.fw.tracking.PrincipalMDCFilter;
 import org.ancloud.fw.tracking.TraceHttpServletRequestFilter;
-import org.ancloud.presentation.service.RedisSessionService;
+import org.ancloud.presentation.service.WebSessionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.web.ErrorAttributes;
 import org.springframework.context.annotation.Bean;
@@ -27,14 +26,8 @@ import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.FilterChainProxy;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
-import org.springframework.session.ExpiringSession;
-import org.springframework.session.FindByIndexNameSessionRepository;
-import org.springframework.session.config.annotation.web.http.EnableSpringHttpSession;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
-import org.springframework.session.security.SpringSessionBackedSessionRegistry;
-import org.springframework.web.filter.DelegatingFilterProxy;
 
 @Configuration
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
@@ -47,11 +40,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Value("${spring.redis.port}")
 	private int REDIS_PORT;
-
+	
 	@Inject
 	UserDetailsService userDetailsService;
 
-	@Value("${security.session.max}")
+	@Value("${ancloud.security.session.max}")
 	private int SESSION_MAX;
 
 	@Override
@@ -74,7 +67,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				// .loginPage("/api/login").permitAll()
 			.and()
 				.logout().permitAll().and().authorizeRequests()
-				.antMatchers("/api/auth/check-license**/*","/api/parent/register**").permitAll()
+				.antMatchers("/api/auth/check-license**/*","/api/parent/register**","/api/gateway/register**").permitAll()
 				.anyRequest().authenticated()
 			.and()
 			.addFilterBefore(traceServletRequestFilter(), BasicAuthenticationFilter.class)
@@ -106,18 +99,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	// return new AuthenticationTokenFilter();
 	// }
 
-	// @Bean
-	// public MapSessionRepository sessionRepository() {
-	// return new MapSessionRepository();
-	// }
 
-	@Bean
-	public LettuceConnectionFactory connectionFactory() {
-		LettuceConnectionFactory redisConnectionFactory = new LettuceConnectionFactory();
-		redisConnectionFactory.setHostName(REDIS_HOST);
-		redisConnectionFactory.setPort(REDIS_PORT);
-		return redisConnectionFactory;
-	}
 
 //	@Autowired
 //	@Qualifier(value="sessionRepository")
@@ -131,7 +113,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Bean
 	public SessionService sessionService() {
-		return new RedisSessionService();
+//		return new RedisSessionService();
+		return new WebSessionService();
 	}
 	
 	@Bean
@@ -158,5 +141,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public LoginAttemptFilter loginAttemptFilter() {
 		LoginAttemptFilter filter = new LoginAttemptFilter();
 		return filter;
+	}
+	
+//	 @Bean
+//	 public MapSessionRepository sessionRepository() {
+//	 return new MapSessionRepository();
+//	 }
+
+	@Bean
+	public LettuceConnectionFactory connectionFactory() {
+		LettuceConnectionFactory redisConnectionFactory = new LettuceConnectionFactory();
+		redisConnectionFactory.setHostName(REDIS_HOST);
+		redisConnectionFactory.setPort(REDIS_PORT);
+		return redisConnectionFactory;
 	}
 }

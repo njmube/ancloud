@@ -6,7 +6,7 @@
 					<span>Account information</span>
 				</div>
 				<div class="panel-body">
-					<form:form modelAttribute="accountForm" cssClass="form-horizontal bb-form" action="${basePath }/account/register" method="POST">
+					<form:form modelAttribute="accountForm" cssClass="form-horizontal bb-form" action="${basePath }/admin/account/register" method="POST">
 						<spring:bind path="accountForm.userName">
 							<div class="form-group  ${status.error?'has-error':'' }">
 								<label for="userName " class="col-md-2">User name</label> 

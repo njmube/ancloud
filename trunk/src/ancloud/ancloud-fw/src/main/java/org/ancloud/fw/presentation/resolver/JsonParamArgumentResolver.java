@@ -1,6 +1,6 @@
 package org.ancloud.fw.presentation.resolver;
 
-import org.ancloud.fw.core.util.DataTypeUtil;
+import org.ancloud.fw.core.util.DataTypeUtils;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -15,7 +15,7 @@ public class JsonParamArgumentResolver implements HandlerMethodArgumentResolver 
 			NativeWebRequest nativeWebRequest,
 			WebDataBinderFactory webdatabinderfactory) throws Exception {
 		JsonParam jsonParamAnnotation = methodParameter.getParameterAnnotation(JsonParam.class);
-		return DataTypeUtil.toObject(nativeWebRequest.getParameter(jsonParamAnnotation.value()), methodParameter.getNestedParameterType());
+		return DataTypeUtils.toObject(nativeWebRequest.getParameter(jsonParamAnnotation.value()), methodParameter.getNestedParameterType());
 	}
 
 	@Override

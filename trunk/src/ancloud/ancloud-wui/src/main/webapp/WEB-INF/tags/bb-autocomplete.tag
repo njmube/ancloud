@@ -24,5 +24,5 @@
 		data-parameter='${parameters }'
 		data-query-string-property="${queryStringProperty }"
 		data-display-properties="${displayProperties }"
-		data-submit-property="${submitProperty }" ></input>
+		data-submit-property="${submitProperty }"></input>
 <input name="${name }" value="${value}" type="hidden"></input>

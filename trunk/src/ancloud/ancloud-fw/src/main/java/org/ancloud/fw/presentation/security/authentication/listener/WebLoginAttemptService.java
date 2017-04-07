@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class WebLoginAttemptService implements LoginAttemptService{
 
 	private Logger logger = LoggerFactory.getLogger(WebLoginAttemptService.class);
-	private final int MAX_ATTEMPT = 3;
+	private final int MAX_ATTEMPT = 10;
 	private Map<String, Integer> attemptsCache;
 
 	public WebLoginAttemptService() {
@@ -39,7 +39,7 @@ public class WebLoginAttemptService implements LoginAttemptService{
 		return !(attempts == null || attemptsCache.get(key) < MAX_ATTEMPT);
 	}
 	
-	@Scheduled(cron = "${org.ancloud.authentication.attempts.cleanup.cron.expression:0 30/1 * * * ?}")
+	@Scheduled(cron = "${org.ancloud.authentication.attempts.cleanup.cron.expression:0 30/15 * * * *}")
 	public void cleanupAttemps() {
 		// TODO Clean login attemps.
 		logger.debug("/Clean login attemps.");

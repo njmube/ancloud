@@ -10,6 +10,13 @@
 
 <c:set var="direction">${page.sort.getOrderFor(sortProperty).direction}</c:set>
 <a href="?page=${page.number }&sort=${empty direction?sortProperty.concat(',asc'):direction eq 'DESC'?'': sortProperty.concat(',desc')}">
-	<span><spring:message code='${label }' /></span>
+	<span>
+		<c:catch var="exception">
+			<spring:message code="${label}"></spring:message>
+		</c:catch>
+		<c:if test = "${exception != null}">
+			<c:out value="${label}"></c:out>
+		</c:if>
+	</span>
 	<span class= "fa ${empty direction?'fa-sort':direction eq 'DESC'?'fa-sort-alpha-desc': 'fa-sort-alpha-asc'}"></span>
 </a>

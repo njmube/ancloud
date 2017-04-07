@@ -6,6 +6,8 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.collections.CollectionUtils;
+import org.joda.time.DateTime;
 import org.ancloud.domain.AuthenticationToken;
 import org.ancloud.domain.account.Account;
 import org.ancloud.domain.account.AccountProfile;
@@ -13,12 +15,10 @@ import org.ancloud.domain.account.AuthenticationAccountActivity.AuthenticationTy
 import org.ancloud.domain.utils.SessionConstant;
 import org.ancloud.fw.core.service.SessionService;
 import org.ancloud.fw.presentation.BaseController;
+import org.ancloud.service.account.AccountLicenseService;
 import org.ancloud.service.account.AccountService;
-import org.ancloud.service.account.LicenseService;
 import org.ancloud.service.authentication.UserDetailsImpl;
 import org.ancloud.wapi.form.AccountStatusForm;
-import org.apache.commons.collections.CollectionUtils;
-import org.joda.time.DateTime;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mobile.device.Device;
@@ -41,7 +41,7 @@ public class AuthenticationController extends BaseController {
 	AccountService accountService;
 	
 	@Inject
-	LicenseService licenseService;
+	AccountLicenseService licenseService;
 
 //	@ExceptionHandler(Exception.class)
 //	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -66,16 +66,17 @@ public class AuthenticationController extends BaseController {
 		
 		sessionService.put(SessionConstant.SESSION_CURRENT_ACCOUNT_PROFILE,accountProfile);
 		sessionService.put(SessionConstant.SESSION_CURRENT_DEVICE,accountProfile);
+		sessionService.put(SessionConstant.SESSION_ACCOUNT,account);
 		return ResponseEntity.ok(new AuthenticationToken(session.getId()));
 	}
 	
 	@RequestMapping(value="/check-license/{token}",method = {RequestMethod.GET})
 	public ResponseEntity<?> checkLicense(@PathVariable("token") String authenticationToken) {
-		return ResponseEntity.ok(licenseService.getLicense(authenticationToken));
+		return ResponseEntity.ok(licenseService.findByAuthenticationToken(authenticationToken));
 	}
 	
 	@RequestMapping(value="/change-status/{userName}/{isEnabled}",method = {RequestMethod.PATCH})
-	@PreAuthorize("hasRole('administrator')")
+	@PreAuthorize("hasRole('Administrator')")
 	public ResponseEntity<?> changeAccountStatus(@PathVariable("userName") String userName,@PathVariable("isEnabled") Boolean isEnabled,@AuthenticationPrincipal UserDetailsImpl userDetails) {
 		return ResponseEntity.ok(accountService.disableAccount(userDetails.getUsername()));
 	}
@@ -88,7 +89,7 @@ public class AuthenticationController extends BaseController {
 	@RequestMapping(value="/get-status/{userName}",method = {RequestMethod.GET})
 	public ResponseEntity<?> getAccountStatus(@PathVariable("userName") String userName,@PathVariable("isEnabled") Boolean isEnabled) {
 		
-		return ResponseEntity.ok(mapper.map(accountService.findAccountByUserName(userName),AccountStatusForm.class));
+		return ResponseEntity.ok(mapper.map(accountService.findByUserName(userName),AccountStatusForm.class));
 	}
 	
 	@RequestMapping(value="get-server-time-joda",method = {RequestMethod.GET})
@@ -109,5 +110,12 @@ public class AuthenticationController extends BaseController {
 		return ResponseEntity.ok(new Date());
 	}
 	
-	
+	@RequestMapping(value="get-user-ip",method = {RequestMethod.GET})
+	public ResponseEntity<?> getUserIp(HttpServletRequest request) {
+		String ipAddress = request.getHeader("X-FORWARDED-FOR");
+		if (ipAddress == null) {
+				ipAddress = request.getRemoteAddr();
+		}
+		return ResponseEntity.ok(ipAddress);
+	}
 }
