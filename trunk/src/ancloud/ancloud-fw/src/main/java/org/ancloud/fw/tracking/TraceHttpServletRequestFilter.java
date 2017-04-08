@@ -57,6 +57,7 @@ public class TraceHttpServletRequestFilter extends OncePerRequestFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 		String contentType = request.getContentType();
 		String accept = request.getHeader("Accept");
+		HttpSession session = request.getSession(true);
 		
 		if(!(contentType == null || !(contentType.equals("application/json") 
 				|| contentType.equals("application/xml")
@@ -71,7 +72,7 @@ public class TraceHttpServletRequestFilter extends OncePerRequestFilter {
 			&  logger.isDebugEnabled()){
 			
 			long startTime = System.nanoTime();
-			MDC.put(MDC_TRACKING_ID, createTrackingId());
+			MDC.put(MDC_TRACKING_ID, createTrackingId()+"_"+session.getId());
 			logger.debug("[START SERVLET REQUEST]");
 			if(request instanceof HttpServletRequest){
 				String ipAddress = request.getHeader("X-FORWARDED-FOR");
