@@ -26,8 +26,16 @@ public class JdbcMessageProvider implements MessageProvider {
 	private String tableName = "message";
 
 	private final MessageExtractor extractor = new MessageExtractor();
-
+	
+	public JdbcMessageProvider(){
+		
+	}
 	public JdbcMessageProvider(DataSource dataSource){
+		Assert.notNull(dataSource);
+		this.template = new JdbcTemplate(dataSource);
+	}
+	
+	public void setDataSource(DataSource dataSource){
 		Assert.notNull(dataSource);
 		this.template = new JdbcTemplate(dataSource);
 	}

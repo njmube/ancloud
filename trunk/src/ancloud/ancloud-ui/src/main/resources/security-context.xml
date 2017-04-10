@@ -44,7 +44,7 @@
 		<sec:custom-filter position="CONCURRENT_SESSION_FILTER" ref="concurrencyFilter" />
 		<sec:session-management session-authentication-strategy-ref="sessionAuthenticationStrategy" />
 	</sec:http>
-	<bean id="userDetailsService" class="org.ancloud.fw.core.serviceimpl.UserDetailsServiceImpl"></bean>
+	<bean id="userDetailsService" class="org.ancloud.service.authentication.UserDetailsServiceImpl"></bean>
 	<bean id="authenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
 		<constructor-arg value="/login" />
 	</bean>
