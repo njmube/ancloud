@@ -18,14 +18,14 @@ import javax.persistence.PostLoad;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.ancloud.domain.BaseModel;
+import org.ancloud.domain.account.enums.AccountStatus;
+import org.ancloud.domain.account.enums.AccountType;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
-import org.ancloud.domain.BaseModel;
-import org.ancloud.domain.account.enums.AccountStatus;
-import org.ancloud.domain.account.enums.AccountType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

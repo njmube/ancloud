@@ -3,8 +3,6 @@ package org.ancloud.fw.core.processing;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.ancloud.fw.pubsub.Subcriber;
-
 public class CompositeHandler<T> implements Handlers<T>,Handler<T>{
 
 	List<Handler<T>> handlers = new ArrayList<Handler<T>>();

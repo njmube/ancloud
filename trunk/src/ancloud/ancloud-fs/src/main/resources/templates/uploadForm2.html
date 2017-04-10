@@ -13,6 +13,13 @@
 <body>
 	<label class="control-label">File uploader</label>
 	<input id="input-24" name="files" type="file" multiple="true" class="file-loading">
+	<div>
+		<ul>
+			<li th:each="file : ${files}">
+				<a th:href="${file}" th:text="${file}" />
+			</li>
+		</ul>
+	</div>
 	<script>
 	$(document).on('ready', function() {
 	    $("#input-24").fileinput({

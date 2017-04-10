@@ -46,17 +46,18 @@ public class FileUploadController {
 	public String listUploadedFiles(Model model) throws IOException {
 
 		model.addAttribute("files",
-					storageService.loadAll().map(new Function<Path,String>(){
-													@Override
-													public String apply(Path path) {
-														return MvcUriComponentsBuilder.fromMethodName(
-																	FileUploadController.class,
-																	"serveFile",
-																	path.getFileName().toString()
-																).build().toString();
-													}
-												})
-											.collect(Collectors.toList())
+					storageService.loadAll()
+									.map(new Function<Path,String>(){
+											@Override
+											public String apply(Path path) {
+												return MvcUriComponentsBuilder.fromMethodName(
+															FileUploadController.class,
+															"serveFile",
+															path.getFileName().toString()
+														).build().toString();
+											}
+										})
+									.collect(Collectors.toList())
 		);
 
 		return "uploadForm";
@@ -124,6 +125,19 @@ public class FileUploadController {
 	
 	@GetMapping("/async-upload")
 	public String asyncUpload(Model model) throws IOException {
+		model.addAttribute("files",
+				storageService.loadAll().map(new Function<Path,String>(){
+												@Override
+												public String apply(Path path) {
+													return MvcUriComponentsBuilder.fromMethodName(
+																FileUploadController.class,
+																"serveFile",
+																path.getFileName().toString()
+															).build().toString();
+												}
+											})
+										.collect(Collectors.toList())
+		);
 		return "uploadForm2";
 	}
 	

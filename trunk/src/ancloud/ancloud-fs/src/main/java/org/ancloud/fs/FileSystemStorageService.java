@@ -46,17 +46,17 @@ public class FileSystemStorageService implements StorageService {
 		try {
 			return Files.walk(this.rootLocation, 1)
 						.filter(new Predicate<Path>() {
-
-							@Override
-							public boolean test(Path path) {
-								return !path.equals(rootLocation);
-							}
+									@Override
+									public boolean test(Path path) {
+										return !path.equals(rootLocation);
+									}
 						})
 						.map(new Function<Path,Path>(){
-							@Override
-							public Path apply(Path path) {
-								return rootLocation.relativize(path);
-							}});
+									@Override
+									public Path apply(Path path) {
+										return rootLocation.relativize(path);
+									}
+						});
 		} catch (IOException e) {
 			throw new StorageException("Failed to read stored files", e);
 		}
