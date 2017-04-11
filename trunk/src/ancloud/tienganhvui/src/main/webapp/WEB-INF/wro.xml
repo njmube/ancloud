@@ -1,0 +1,64 @@
+<groups xmlns="http://www.isdc.ro/wro">
+	<group name="front">
+		<css>/resources/plugin/font-awesome.css</css>
+        <css>/resources/plugin/bootstrap.css</css>
+		<css>/resources/plugin/magnific-popup.css</css>
+        <css>/resources/front/css/creative.css</css>
+
+        <js>/resources/plugin/jquery.js</js>
+        <js>/resources/plugin/bootstrap.js</js>
+        <js>/resources/plugin/jquery.easing.js</js>
+        <js>/resources/plugin/scrollreveal.js</js>
+        <js>/resources/plugin/magnific-popup.js</js>
+        <js>/resources/nimda/js/core/bluebird.js</js>
+        <js>/resources/nimda/js/core/bluebird.common.js</js>
+        <js>/resources/nimda/js/core/bluebird.ar.js</js>
+        <js>/resources/front/js/creative.js</js>
+	</group>
+
+	<group name="admin">
+		<group-ref>plugin</group-ref>
+		<css>/resources/nimda/css/core/bluebird.css</css>
+		<css>/resources/nimda//css/core/bluebird.blue-light.css</css>
+		<css>/resources/nimda//css/app/bootstrap.bluebird.css</css>
+		
+		<js>/resources/nimda/js/core/bluebird.js</js>
+		<js>/resources/nimda/js/core/bluebird.ar.js</js>
+		<js>/resources/nimda/js/core/bluebird.common.js</js>
+		
+	</group>
+
+	<group name="plugin">
+		
+		<css>/resources/plugin/font-awesome.css</css>
+		<css>/resources/plugin/icons.css</css>
+		<css>/resources/plugin/bootstrap.css</css>
+		<css>/resources/plugin/bootstrap.submenu.css</css>
+		<css>/resources/plugin/daterangepicker.css</css>
+		<css>/resources/plugin/flag-icon.css</css>
+		<css>/resources/plugin/typeahead.css</css>
+		<css>/resources/plugin/select2.css</css>
+		<css>/resources/plugin/inputmask.css</css>
+		
+		<js>/resources/plugin/jquery.js</js>
+		<js>/resources/plugin/bootstrap.js</js>
+		<js>/resources/plugin/inputmask.js</js>
+		<js>/resources/plugin/moment.js</js>
+		<js>/resources/plugin/bootstrap.submenu.js</js>
+		<js>/resources/plugin/daterangepicker.js</js>
+		<js>/resources/plugin/jquery.slimscroll.js</js>
+		<js>/resources/plugin/fastclick.js</js>
+		<js>/resources/plugin/colResizable.js</js>
+		<js>/resources/plugin/handlebars.js</js>
+		<js>/resources/plugin/typeahead.bundle.js</js>
+		<js>/resources/plugin/select2.js</js>
+		<js>/resources/plugin/angular.js</js>
+		<js>/resources/plugin/angular-router.js</js>
+	</group>
+
+
+	
+
+
+
+</groups>

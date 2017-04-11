@@ -1,0 +1,7 @@
+#navigationLinkTable>thead>tr:first-child th:nth-child(1){
+	width : 40px;
+}
+
+#navigationLinkTable>thead>tr:first-child th:nth-child(3){
+	width : 20%;
+}

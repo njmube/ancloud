@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class AncloudEdgeApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AncloudEdgeApplication.class, args);
+		SpringApplication application = new SpringApplication(AncloudEdgeApplication.class);
+        application.run(args);
 	}
 }

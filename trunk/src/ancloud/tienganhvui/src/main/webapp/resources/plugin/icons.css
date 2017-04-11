@@ -1,0 +1,44 @@
+[class*="svg-icon"] {
+	display: inline-block;
+	vertical-align: middle;
+	border-radius:50%;
+	border: 1px solid;
+    border-color: rgba(255, 255, 255, 0.2);
+    background-repeat:no-repeat;
+}
+.icon-neighbor-info {
+	display: inline-block;
+	vertical-align: middle;
+}
+.svg-icon-16 {
+	width: 16px;
+	height: 16px;
+}
+.svg-icon,
+.svg-icon-24 {
+	width: 24px;
+	height: 24px;
+}
+.svg-icon-32 {
+	width: 32px;
+	height: 32px;
+}
+.svg-icon-64 {
+	width: 64px;
+	height: 64px;
+}
+.svg-hospital {
+	background-image: url('../img/hospital.svg');
+}
+.svg-admin {
+	background-image: url('../img/admin.svg');
+}
+.svg-license {
+	background-image: url('../img/license.svg');
+}
+.svg-login-user {
+	background-image: url('../img/login-user.svg');
+}
+.svg-info {
+	background-image: url('../img/info.svg');
+}
