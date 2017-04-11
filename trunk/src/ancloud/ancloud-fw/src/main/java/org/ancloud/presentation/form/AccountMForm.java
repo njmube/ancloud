@@ -1,7 +1,7 @@
 package org.ancloud.presentation.form;
 
+import org.ancloud.fw.presentation.validation.annotation.Alphanumeric;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.ancloud.fw.core.validation.annotation.Alphanumeric;
 
 public class AccountMForm extends AccountForm {
 

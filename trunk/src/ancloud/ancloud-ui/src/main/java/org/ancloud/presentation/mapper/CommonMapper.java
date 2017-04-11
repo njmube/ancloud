@@ -2,14 +2,13 @@ package org.ancloud.presentation.mapper;
 
 import javax.inject.Inject;
 
+import org.ancloud.domain.Project;
+import org.ancloud.domain.ProjectBaseModel;
+import org.ancloud.domain.constant.SessionConstant;
+import org.ancloud.fw.core.service.SessionService;
+
 import ma.glasnost.orika.CustomMapper;
 import ma.glasnost.orika.MappingContext;
-
-import org.ancloud.domain.ProjectBaseModel;
-import org.ancloud.domain.utils.SessionConstant;
-import org.ancloud.domain.Project;
-import org.ancloud.fw.core.service.SessionService;
-import org.springframework.stereotype.Component;
 
 public class CommonMapper extends CustomMapper<Object,ProjectBaseModel> {
 	

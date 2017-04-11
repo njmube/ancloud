@@ -2,7 +2,7 @@ package org.ancloud.presentation.context;
 
 import javax.inject.Inject;
 
-import org.ancloud.presentation.message.InitializableMessageSource;
+import org.ancloud.fw.presentation.i18n.InitializableMessageSource;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

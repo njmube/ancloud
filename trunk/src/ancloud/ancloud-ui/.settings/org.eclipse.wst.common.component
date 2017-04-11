@@ -11,6 +11,9 @@
         <dependent-module archiveName="ancloud-domain-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ancloud-domain/ancloud-domain">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="ancloud-core-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ancloud-core/ancloud-core">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="java-output-path" value="target/classes"/>
         <property name="context-root" value="ancloud-ui"/>
     </wb-module>

@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
-import org.ancloud.domain.utils.SystemCodeConstant;
+import org.ancloud.domain.constant.SystemCodeConstant;
 import org.ancloud.fw.presentation.BaseController;
 import org.ancloud.fw.presentation.message.ResultMessage;
 import org.ancloud.fw.presentation.message.ResultMessages;

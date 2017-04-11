@@ -6,7 +6,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.ancloud.domain.account.enums.AccountType;
-import org.ancloud.domain.utils.CriteriaUtil;
+import org.ancloud.repository.utils.CriteriaUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.jpa.domain.Specification;
 

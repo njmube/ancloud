@@ -7,7 +7,7 @@ import javax.validation.Valid;
 
 import org.ancloud.domain.NavigationLink;
 import org.ancloud.domain.Project;
-import org.ancloud.domain.utils.SessionConstant;
+import org.ancloud.domain.constant.SessionConstant;
 import org.ancloud.fw.core.service.SessionService;
 import org.ancloud.fw.presentation.BaseController;
 import org.ancloud.fw.presentation.resolver.Session;

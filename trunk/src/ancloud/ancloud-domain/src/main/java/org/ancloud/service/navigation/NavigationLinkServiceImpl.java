@@ -8,11 +8,10 @@ import javax.inject.Inject;
 
 import org.ancloud.domain.NavigationLink;
 import org.ancloud.domain.Project;
-import org.ancloud.fw.core.util.DataTypeUtil;
-import org.ancloud.repository.NavigationLinkRepository;
+import org.ancloud.fw.core.util.DataTypeUtils;
+import org.ancloud.repository.account.NavigationLinkRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.CollectionUtils;
 
 @Service
 @Transactional
@@ -59,7 +58,7 @@ public class NavigationLinkServiceImpl implements NavigationLinkService{
 
 	private NavigationLink findEditingNavigationLink(Long id, List<NavigationLink> currentNavigationLinks) {
 		for(NavigationLink navigationLink : currentNavigationLinks){
-			if(DataTypeUtil.equal(navigationLink.getId(),id)){
+			if(DataTypeUtils.equal(navigationLink.getId(),id)){
 				return navigationLink;
 			}
 		}
@@ -70,7 +69,7 @@ public class NavigationLinkServiceImpl implements NavigationLinkService{
 	private NavigationLink findParentNavigationLink(String groupId,List<NavigationLink>... navigationLinksParam) {
 		for(List<NavigationLink> navigationLinks:navigationLinksParam){
 			for(NavigationLink navigationLink : navigationLinks){
-				if(DataTypeUtil.equal(navigationLink.getGroupIndex(),groupId)){
+				if(DataTypeUtils.equal(navigationLink.getGroupIndex(),groupId)){
 					return navigationLink;
 				}
 			}

@@ -6,7 +6,7 @@ import javax.validation.Valid;
 import org.ancloud.domain.account.Account;
 import org.ancloud.domain.account.AccountSearchCriteria;
 import org.ancloud.domain.account.enums.AccountStatus;
-import org.ancloud.domain.utils.SystemConstant;
+import org.ancloud.domain.constant.SystemConstant;
 import org.ancloud.fw.core.exception.BusinessException;
 import org.ancloud.fw.core.service.SessionService;
 import org.ancloud.fw.presentation.BaseController;

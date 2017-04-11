@@ -22,7 +22,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	<context:component-scan base-package="org.ancloud.service" />
 	<context:component-scan base-package="org.ancloud.presentation.service" />
 	<context:component-scan base-package="org.ancloud.presentation.mapper" />
-	<context:component-scan base-package="org.ancloud.repository" />
+	<context:component-scan base-package="org.ancloud.repository.account" />
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	
 	<bean class="org.ancloud.presentation.context.ApplicationContextListener"></bean>
@@ -32,7 +32,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	<bean id="dateTimeProvider" class="org.ancloud.presentation.context.AuditingDateTimeProvider" />
 <!-- 	<jpa:auditing auditor-aware-ref="auditorAwarer" /> -->
 
-	<jpa:repositories base-package="org.ancloud.repository" />
+	<jpa:repositories base-package="org.ancloud.repository.account" />
 
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
 		prop:entityManagerFactory-ref="entityManagerFactory" />
@@ -74,11 +74,11 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	<jdbc:initialize-database data-source="dataSource" enabled="${spring.initDb}">
 		<jdbc:script location="classpath:/initDB.sql" encoding="UTF-8" />
 	</jdbc:initialize-database>
-	<bean class="org.ancloud.fw.presentation.factorybean.BeanMapperContextAware"></bean>
+	<bean class="org.ancloud.fw.presentation.mapper.BeanMapperContextAware"></bean>
 	<bean class="org.ancloud.presentation.context.CodelistFactory"></bean>
-	<bean id="messageSource" class="org.ancloud.presentation.message.InitializableMessageSource">
+	<bean id="messageSource" class="org.ancloud.fw.presentation.i18n.InitializableMessageSource">
 		<property name="messageProvider">
-			<bean id="jdbcMessageProvider" class="org.ancloud.presentation.message.JdbcMessageProvider">
+			<bean id="jdbcMessageProvider" class="org.ancloud.fw.presentation.i18n.JdbcMessageProvider">
 				<property name="dataSource" ref="dataSource" />
 			</bean>
 		</property>

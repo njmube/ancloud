@@ -40,7 +40,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 	<bean id="validator"
-		class="org.ancloud.presentation.message.CustomLocalValidatorFactoryBean">
+		class="org.ancloud.fw.presentation.i18n.CustomLocalValidatorFactoryBean">
 		<property name="validationMessageSource" ref="messageSource" />
 	</bean>
 	<bean id="xmlMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">

@@ -10,8 +10,8 @@ import org.ancloud.domain.account.Role;
 import org.ancloud.domain.account.enums.AccountStatus;
 import org.ancloud.domain.account.enums.AccountType;
 import org.ancloud.fw.core.exception.BusinessException;
-import org.ancloud.repository.AccountRepository;
-import org.ancloud.repository.RoleRepository;
+import org.ancloud.repository.account.AccountRepository;
+import org.ancloud.repository.account.RoleRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 public abstract class BaseAccountService {
