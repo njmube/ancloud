@@ -9,7 +9,7 @@ import javax.sql.DataSource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.joda.time.DateTimeZone;
-import org.ancloud.domain.dbmigration.CustomFlywayMigrationStrategy;
+import org.ancloud.fw.core.dbmigration.CustomFlywayMigrationStrategy;
 import org.ancloud.service.authentication.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringBootConfiguration;

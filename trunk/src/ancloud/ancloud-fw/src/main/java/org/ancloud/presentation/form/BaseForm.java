@@ -6,7 +6,7 @@ import java.io.Serializable;
 import org.hibernate.validator.constraints.Length;
 import org.joda.time.DateTime;
 import org.ancloud.domain.account.Account;
-import org.ancloud.fw.core.validation.annotation.Alphanumeric;
+import org.ancloud.fw.presentation.validation.annotation.Alphanumeric;
 
 
 public abstract class BaseForm implements Serializable{

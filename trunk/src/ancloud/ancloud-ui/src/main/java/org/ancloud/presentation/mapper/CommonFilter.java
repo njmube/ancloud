@@ -2,11 +2,10 @@ package org.ancloud.presentation.mapper;
 
 import javax.inject.Inject;
 
-import org.ancloud.domain.ProjectBaseModel;
-import org.ancloud.domain.utils.SessionConstant;
 import org.ancloud.domain.Project;
+import org.ancloud.domain.ProjectBaseModel;
+import org.ancloud.domain.constant.SessionConstant;
 import org.ancloud.fw.core.service.SessionService;
-import org.springframework.stereotype.Component;
 
 import ma.glasnost.orika.MappingContext;
 import ma.glasnost.orika.NullFilter;
@@ -33,10 +32,12 @@ public class CommonFilter extends NullFilter<Object, ProjectBaseModel> {
 			final Type<?> sourceType, final String sourceName,
 			final Type<D> destType, final String destName,
 			final MappingContext mappingContext) {
-		
-		((ProjectBaseModel) destinationValue).setProject(sessionService.get(
-				SessionConstant.SESSION_CURRENT_PROJECT, Project.class));
-
+		if(destinationValue instanceof ProjectBaseModel){
+			((ProjectBaseModel) destinationValue).setProject(
+										sessionService.get(SessionConstant.SESSION_CURRENT_PROJECT
+														,Project.class)
+									);
+		}
 		return destinationValue;
 	}
 

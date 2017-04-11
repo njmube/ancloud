@@ -10,20 +10,19 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.ancloud.domain.account.AccountLicense;
-import org.ancloud.domain.utils.SystemConstant;
+import org.ancloud.domain.constant.SystemConstant;
 import org.ancloud.fw.core.exception.BusinessException;
 import org.ancloud.fw.core.service.SessionService;
 import org.ancloud.fw.core.util.DataTypeUtils;
 import org.ancloud.fw.core.util.GenerationUtil;
 import org.ancloud.fw.core.util.QRGenerator;
-import org.ancloud.repository.AccountLicenseRepository;
-import org.ancloud.repository.AccountRepository;
-import org.ancloud.repository.BaseRepository;
-import org.ancloud.service.BaseService;
+import org.ancloud.fw.service.BaseService;
+import org.ancloud.repository.BaseModelRepository;
+import org.ancloud.repository.account.AccountLicenseRepository;
+import org.ancloud.repository.account.AccountRepository;
 import org.ancloud.service.authentication.UserDetailsImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.io.Resource;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextImpl;
@@ -54,7 +53,7 @@ public class AccountLicenseServiceImpl extends BaseService<AccountLicense> imple
 	SessionService sessionService;
 	
 	@Override
-	public BaseRepository<AccountLicense> getRepository() {
+	public BaseModelRepository<AccountLicense> getRepository() {
 		return this.accountLicenseRepository;
 	}
 	

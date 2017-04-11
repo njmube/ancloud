@@ -4,8 +4,8 @@ import javax.inject.Inject;
 
 import org.ancloud.domain.message.Message;
 import org.ancloud.domain.message.MessageSearchCriteria;
-import org.ancloud.repository.MessageFulltextRepository;
-import org.ancloud.repository.MessageRepository;
+import org.ancloud.repository.account.MessageFulltextRepository;
+import org.ancloud.repository.account.MessageRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

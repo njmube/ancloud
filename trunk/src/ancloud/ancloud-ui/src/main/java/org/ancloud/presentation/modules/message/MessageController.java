@@ -3,12 +3,9 @@ package org.ancloud.presentation.modules.message;
 import javax.inject.Inject;
 
 import org.ancloud.domain.Project;
-import org.ancloud.domain.account.Account;
-import org.ancloud.domain.account.AccountSearchCriteria;
-import org.ancloud.domain.message.MesageSearchCriteria;
+import org.ancloud.domain.constant.SessionConstant;
 import org.ancloud.domain.message.Message;
 import org.ancloud.domain.message.MessageSearchCriteria;
-import org.ancloud.domain.utils.SessionConstant;
 import org.ancloud.fw.presentation.BaseController;
 import org.ancloud.fw.presentation.resolver.Session;
 import org.ancloud.service.message.MessageService;

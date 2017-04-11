@@ -7,13 +7,13 @@ import java.util.TimeZone;
 
 import org.apache.jasper.servlet.JspServlet;
 import org.joda.time.DateTime;
-import org.ancloud.domain.utils.SystemConstant;
+import org.ancloud.domain.constant.SystemConstant;
 import org.ancloud.fw.core.joda.DateTimeDeserializer;
 import org.ancloud.fw.core.joda.DateTimeSerializer;
-import org.ancloud.fw.presentation.factorybean.BeanMapperContextAware;
+import org.ancloud.fw.presentation.i18n.CustomLocalValidatorFactoryBean;
+import org.ancloud.fw.presentation.mapper.BeanMapperContextAware;
 import org.ancloud.fw.presentation.resolver.JsonParamArgumentResolver;
 import org.ancloud.fw.presentation.util.LocaleUtils;
-import org.ancloud.presentation.message.CustomLocalValidatorFactoryBean;
 import org.springframework.boot.web.filter.OrderedCharacterEncodingFilter;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;

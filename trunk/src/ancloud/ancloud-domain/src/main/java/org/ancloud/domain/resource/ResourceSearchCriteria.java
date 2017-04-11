@@ -5,7 +5,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import org.ancloud.domain.utils.CriteriaUtil;
+import org.ancloud.repository.utils.CriteriaUtil;
 import org.springframework.data.jpa.domain.Specification;
 
 public class ResourceSearchCriteria extends Resource implements Specification<Resource> {

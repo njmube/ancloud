@@ -5,9 +5,9 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.ancloud.repository.utils.CriteriaUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
-import org.ancloud.domain.utils.CriteriaUtil;
 import org.springframework.data.jpa.domain.Specification;
 
 public class AccountLicenseSearchCriteria extends AccountLicense implements Specification<AccountLicense> {

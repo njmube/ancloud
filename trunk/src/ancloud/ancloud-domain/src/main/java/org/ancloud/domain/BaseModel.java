@@ -68,11 +68,11 @@ public abstract class BaseModel implements Serializable{
 
 	@PrePersist
 	private void prePersist(){
-		this.createdDate = new DateTime(); //new DateTime(System.currentTimeMillis());
+		this.createdDate = new DateTime();
 	}
 	@PreUpdate
 	private void preUpdate(){
-		this.lastUpdatedDate = new DateTime(); //new DateTime(System.currentTimeMillis());
+		this.lastUpdatedDate = new DateTime();
 	}
 	public Long getId() {
 		return id;

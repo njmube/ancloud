@@ -1,7 +1,7 @@
 package org.ancloud.service.account;
 
 import org.ancloud.domain.account.AccountLicense;
-import org.ancloud.service.CrudService;
+import org.ancloud.fw.service.CrudService;
 import org.springframework.core.io.Resource;
 
 public interface AccountLicenseService extends CrudService<AccountLicense> {
