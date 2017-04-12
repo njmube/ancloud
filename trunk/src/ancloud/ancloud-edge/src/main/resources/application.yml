@@ -1,9 +1,13 @@
 spring:
     application:
-        name:edge
+        name: edge
 server:
-    port:80
+    port: 80
 zuul:
     routes:
         jsf:
-            url:http://localhost:8080
+            path: /jsf/**
+            url: http://localhost:8080
+ribbon:
+    eureka:
+        enabled: false

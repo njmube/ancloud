@@ -10,7 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.Ordered;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter implements Ordered{
@@ -35,25 +39,25 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter implement
 		}
 		authToken = authToken.substring(7);
 		String username = tokenUtils.getUsernameFromToken(authToken);
-//
-//		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-//
-//			// It is not compelling necessary to load the use details from the
-//			// database. You could also store the information
-//			// in the token and read it from it. It's up to you ;)
-//			UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
-//
-//			// For simple validation it is completely sufficient to just check
-//			// the token integrity. You don't have to call
-//			// the database compellingly. Again it's up to you ;)
-//			if (tokenUtils.validateToken(authToken, userDetails)) {
-//				UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-//						userDetails, null, userDetails.getAuthorities());
-//				authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-//				logger.info("authenticated user " + username + ", setting security context");
-//				SecurityContextHolder.getContext().setAuthentication(authentication);
-//			}
-//		}
+
+		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+
+			// It is not compelling necessary to load the use details from the
+			// database. You could also store the information
+			// in the token and read it from it. It's up to you ;)
+			UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+
+			// For simple validation it is completely sufficient to just check
+			// the token integrity. You don't have to call
+			// the database compellingly. Again it's up to you ;)
+			if (tokenUtils.validateToken(authToken, userDetails)) {
+				UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+						userDetails, null, userDetails.getAuthorities());
+				authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+				logger.info("authenticated user " + username + ", setting security context");
+				SecurityContextHolder.getContext().setAuthentication(authentication);
+			}
+		}
 
 		chain.doFilter(request, response);
 	}

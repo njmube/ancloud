@@ -6,11 +6,12 @@ import java.util.TimeZone;
 
 import javax.inject.Inject;
 
-import org.joda.time.DateTime;
 import org.ancloud.fw.core.joda.DateTimeDeserializer;
 import org.ancloud.fw.core.joda.DateTimeSerializer;
 import org.ancloud.fw.presentation.i18n.CustomLocalValidatorFactoryBean;
 import org.ancloud.fw.presentation.mapper.BeanMapperFacadeFactory;
+import org.joda.time.DateTime;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -111,7 +112,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	
 	@Bean
 	public BeanMapperFacadeFactory beanMapperFacadeFactory() {
-		BeanMapperFacadeFactory mapperFactory = new BeanMapperFacadeFactory();
-		return mapperFactory;
+		return new BeanMapperFacadeFactory();
 	}
 }

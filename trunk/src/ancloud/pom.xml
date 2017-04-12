@@ -42,6 +42,7 @@
 		<spring-session.version>1.3.0.RELEASE</spring-session.version>
 		<tomcat.version>8.5.11</tomcat.version>
 		<wro4j.version>1.8.0</wro4j.version>
+		<sortpom-maven-plugin.version>2.5.0</sortpom-maven-plugin.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -237,4 +238,24 @@
 			</plugins>
 		</pluginManagement>
 	</build>
+    <profiles>
+	<profile>
+		<id>dev</id>
+		<activation>
+			<activeByDefault>true</activeByDefault>
+		</activation>
+		<properties>
+			<build.profile.id>dev</build.profile.id>
+			<log4j.loglevel>DEBUG</log4j.loglevel>
+			<spring.profiles.active>dev</spring.profiles.active>
+		</properties>
+	</profile>
+	<profile>
+		<id>prod</id>
+		<properties>
+			<log4j.loglevel>INFO</log4j.loglevel>
+			<spring.profiles.active>prod</spring.profiles.active>
+		</properties>
+	</profile>
+</profiles>	
 </project>
