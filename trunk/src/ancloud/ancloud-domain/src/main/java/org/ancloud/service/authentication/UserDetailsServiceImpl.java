@@ -6,10 +6,14 @@ import org.ancloud.repository.account.AccountRepository;
 import org.ancloud.service.account.AccountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
 
+@Component
+@DependsOn(value="AccountService")
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	Logger logger = LoggerFactory.getLogger(UserDetailsServiceImpl.class);

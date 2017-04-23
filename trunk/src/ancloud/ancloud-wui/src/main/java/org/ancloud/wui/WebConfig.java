@@ -10,10 +10,10 @@ import org.joda.time.DateTime;
 import org.ancloud.domain.constant.SystemConstant;
 import org.ancloud.fw.core.joda.DateTimeDeserializer;
 import org.ancloud.fw.core.joda.DateTimeSerializer;
+import org.ancloud.fw.presentation.controller.resolver.JsonParamArgumentResolver;
+import org.ancloud.fw.presentation.helper.LocaleHelpers;
 import org.ancloud.fw.presentation.i18n.CustomLocalValidatorFactoryBean;
 import org.ancloud.fw.presentation.mapper.BeanMapperContextAware;
-import org.ancloud.fw.presentation.resolver.JsonParamArgumentResolver;
-import org.ancloud.fw.presentation.util.LocaleUtils;
 import org.springframework.boot.web.filter.OrderedCharacterEncodingFilter;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -195,7 +195,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public SessionLocaleResolver localeResolver() {
 		SessionLocaleResolver localeResolver = new SessionLocaleResolver();
-		localeResolver.setDefaultLocale(LocaleUtils.toLocale("en_US"));
+		localeResolver.setDefaultLocale(LocaleHelpers.toLocale("en_US"));
 		return localeResolver;
 	}
 

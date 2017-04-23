@@ -2,7 +2,7 @@ package org.ancloud.fw.core.joda;
 
 import java.beans.PropertyEditorSupport;
 
-import org.apache.logging.log4j.util.Strings;
+import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -29,6 +29,6 @@ public class DateTimeEditor extends PropertyEditorSupport {
 	public String getAsText() throws IllegalArgumentException {
 		if(getValue()!=null){
 			return ((DateTime)getValue()).toString(formatter);
-		} else return Strings.EMPTY;
+		} else return StringUtils.EMPTY;
 	}
 }

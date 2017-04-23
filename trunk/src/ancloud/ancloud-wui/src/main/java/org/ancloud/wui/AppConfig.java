@@ -178,27 +178,8 @@ public class AppConfig {
 	}
 	
 	@Bean
-	public MessageSource messageSource(){
-		InitializableMessageSource messageSource = new InitializableMessageSource();
-		messageSource.setMessageProvider(messageProvider());
-		return messageSource;
-	}
-	
-//	@Bean
-//	public ResourceBundleMessageSource messageSource(){
-//		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-//		messageSource.setBasename("messages");
-//		return messageSource;
-//	}
-	
-	@Bean
 	public ApplicationContextListener contextListener(){
 		return new ApplicationContextListener();
-	}
-	
-	@Bean
-	public CodelistFactory codelist(){
-		return new CodelistFactory();
 	}
 	
 	@Bean

@@ -7,16 +7,23 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.inject.Inject;
+
+import org.ancloud.fw.presentation.helper.LocaleHelpers;
 import org.apache.commons.lang3.StringUtils;
-import org.ancloud.fw.presentation.util.LocaleUtils;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.support.AbstractMessageSource;
+import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
+@Component
+@DependsOn(value="MessageProvider")
 public class InitializableMessageSource extends AbstractMessageSource implements InitializingBean {
 	protected Map<Locale, List<String>> resolvingPath;
 	protected Map<String, Map<String, String>> messages = new HashMap<String, Map<String, String>>();
 	protected Locale defaultLocale;
+	@Inject
 	protected MessageProvider messageProvider;
 	protected boolean autoInitialization;
 
@@ -51,16 +58,16 @@ public class InitializableMessageSource extends AbstractMessageSource implements
 		if (paths == null) {
 			paths = new ArrayList<String>();
 
-			List<Locale> localePath = LocaleUtils.getPath(locale,
+			List<Locale> localePath = LocaleHelpers.getPath(locale,
 					getDefaultLocale());
 			for (Locale loc : localePath) {
 				if (loc == null) {
 					paths.add("");
 				} else {
 
-					String language = LocaleUtils.getLanguage(loc);
-					String country = LocaleUtils.getCountry(loc);
-					String variant = LocaleUtils.getVariant(loc);
+					String language = LocaleHelpers.getLanguage(loc);
+					String country = LocaleHelpers.getCountry(loc);
+					String variant = LocaleHelpers.getVariant(loc);
 					if (!variant.isEmpty()) {
 						paths.add(String.format("%s_%s_%s", language, country,
 								variant));

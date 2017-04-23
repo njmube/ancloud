@@ -12,7 +12,7 @@ import org.ancloud.domain.account.AccountProfile;
 import org.ancloud.domain.account.Role;
 import org.ancloud.domain.constant.SessionConstant;
 import org.ancloud.fw.core.service.SessionService;
-import org.ancloud.fw.presentation.util.HttpServletRequestUtil;
+import org.ancloud.fw.presentation.helper.HttpServletRequestHelpers;
 import org.ancloud.repository.account.AccountRepository;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.LocaleUtils;
@@ -42,7 +42,7 @@ public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticatio
 			accountProfile = account.getAccountProfiles().get(0);
 		}
 		sessionService.put(SessionConstant.SESSION_CURRENT_ACCOUNT_PROFILE,accountProfile);
-		localeResolver.setLocale(HttpServletRequestUtil.getRequest(), null, LocaleUtils.toLocale(accountProfile.getLocale()));
+		localeResolver.setLocale(HttpServletRequestHelpers.getRequest(), null, LocaleUtils.toLocale(accountProfile.getLocale()));
 		super.onAuthenticationSuccess(request, response, intercepAuthentication(authentication));
 	}
 	

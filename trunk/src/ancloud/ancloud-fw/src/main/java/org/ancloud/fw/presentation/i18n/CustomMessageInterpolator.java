@@ -4,10 +4,10 @@ import java.util.Locale;
 
 import javax.validation.MessageInterpolator;
 
+import org.ancloud.fw.presentation.helper.LocaleHelpers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
-import org.ancloud.fw.presentation.util.LocaleUtils;
 
 public class CustomMessageInterpolator implements MessageInterpolator {
 
@@ -21,7 +21,7 @@ public class CustomMessageInterpolator implements MessageInterpolator {
 
 	public String interpolate(String message, Context context) {
 		String interpolatedMessage = message;
-		interpolatedMessage = interpolateMessage(message, context, LocaleUtils.getCurrentLocale());
+		interpolatedMessage = interpolateMessage(message, context, LocaleHelpers.getCurrentLocale());
 		return interpolatedMessage;
 	}
 

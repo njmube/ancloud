@@ -4,7 +4,7 @@ import javax.inject.Inject;
 
 import org.ancloud.domain.account.Account;
 import org.ancloud.domain.account.AccountSearchCriteria;
-import org.ancloud.fw.presentation.resolver.JsonParam;
+import org.ancloud.fw.presentation.controller.resolver.JsonParam;
 import org.ancloud.service.account.AccountService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

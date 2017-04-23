@@ -8,7 +8,9 @@ import javax.inject.Inject;
 import org.ancloud.domain.resource.Resource;
 import org.ancloud.repository.account.ResourceRepository;
 import org.springframework.beans.factory.FactoryBean;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CodelistFactory implements FactoryBean<Codelist> {
 	
 	@Inject

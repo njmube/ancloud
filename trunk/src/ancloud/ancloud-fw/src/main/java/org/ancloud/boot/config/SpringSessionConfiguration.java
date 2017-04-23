@@ -47,11 +47,10 @@ public class SpringSessionConfiguration extends WebSecurityConfigurerAdapter {
 		return new SessionRegistryImpl();
 	}
 	
-	@Bean
-	public SessionService sessionService() {
-		// return new RedisSessionService();
-		return new WebSessionService();
-	}
+//	@Bean
+//	public SessionService sessionService() {
+//		return new RedisSessionService();
+//	}
 
 	@Bean
 	public LettuceConnectionFactory connectionFactory() {

@@ -6,12 +6,14 @@ import java.util.Locale;
 
 import javax.sql.DataSource;
 
-import org.ancloud.fw.presentation.util.LocaleUtils;
+import org.ancloud.fw.presentation.helper.LocaleHelpers;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
+@Component
 public class JdbcMessageProvider implements MessageProvider {
 
 	protected static final String QUERY_SELECT_MESSAGES = "SELECT %s,%s,%s,%s,%s FROM %s";
@@ -61,7 +63,7 @@ public class JdbcMessageProvider implements MessageProvider {
 				String key = rs.getString(keyColumn);
 				String message = rs.getString(messageColumn);
 
-				Locale locale = LocaleUtils.toLocale(language, country, variant);
+				Locale locale = LocaleHelpers.toLocale(language, country, variant);
 				messages.addMessage(locale.toString(), key, message);
 			}
 

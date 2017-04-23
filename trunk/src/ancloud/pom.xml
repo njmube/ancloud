@@ -6,43 +6,27 @@
 	<artifactId>ancloud</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.3.RELEASE</version>
+	</parent>
 	<modules>
 		<module>ancloud-core</module>
 		<module>ancloud-fw</module>
-		<module>ancloud-boot</module>
 		<module>ancloud-domain</module>
 		<module>ancloud-wapi</module>
-		<module>ancloud-ui</module>
 		<module>ancloud-fs</module>
 		<module>ancloud-wui</module>
 	</modules>
 	<properties>
-		<spring.version>4.3.5.RELEASE</spring.version>
-		<spring-data.version>1.11.1.RELEASE</spring-data.version>
-		<spring-security.version>4.1.4.RELEASE</spring-security.version>
-		<spring-boot.version>1.4.4.RELEASE</spring-boot.version>
-		<junit.version>4.12</junit.version>
 		<java.version>1.7</java.version>
-		<jpa.version>2.1</jpa.version>
-		<jadira.version>6.0.1.GA</jadira.version>
-		<hibernate.version>5.2.6.Final</hibernate.version>
-		<hibernate-validator.version>5.4.0.Final</hibernate-validator.version>
-		<servlet.version>3.1.0</servlet.version>
-		<servlet-jsp.version>2.2</servlet-jsp.version>
-		<servlet-jstl.version>1.2</servlet-jstl.version>
 		<tiles.version>3.0.7</tiles.version>
 		<log4j.version>2.5</log4j.version>
-		<slf4j.version>1.7.7</slf4j.version>
-		<apache.common.lang.version>3.4</apache.common.lang.version>
-		<apache.common.beanutil.version>1.9.2</apache.common.beanutil.version>
-		<jackson.version>2.8.0</jackson.version>
-		<javax.persistence.version>1.0.0.Final</javax.persistence.version>
 		<javax.inject.version>1</javax.inject.version>
 		<spring-session.version>1.3.0.RELEASE</spring-session.version>
 		<tomcat.version>8.5.11</tomcat.version>
 		<wro4j.version>1.8.0</wro4j.version>
-		<sortpom-maven-plugin.version>2.5.0</sortpom-maven-plugin.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -59,16 +43,6 @@
 			<dependency>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>ancloud-domain</artifactId>
-				<version>1.0.0-SNAPSHOT</version>
-			</dependency>
-			<dependency>
-				<groupId>${project.groupId}</groupId>
-				<artifactId>ancloud-ui</artifactId>
-				<version>1.0.0-SNAPSHOT</version>
-			</dependency>
-			<dependency>
-				<groupId>${project.groupId}</groupId>
-				<artifactId>ancloud-boot</artifactId>
 				<version>1.0.0-SNAPSHOT</version>
 			</dependency>
 			<dependency>
@@ -90,34 +64,9 @@
 	</dependencyManagement>
 	<dependencies>
 		<dependency>
-			<groupId>javax.inject</groupId>
-			<artifactId>javax.inject</artifactId>
-			<version>1</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
-			<version>1.1.0.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
-			<version>${jackson.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>${jackson.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.4</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-dbcp2</artifactId>
-			<version>2.1.1</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-io</groupId>
@@ -127,68 +76,15 @@
 		<dependency>
 			<groupId>commons-beanutils</groupId>
 			<artifactId>commons-beanutils</artifactId>
-			<version>1.9.2</version>
 		</dependency>
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-core</artifactId>
-			<version>${log4j.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<version>${slf4j.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-slf4j-impl</artifactId>
-			<version>${log4j.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-beans</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-aspects</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-core</artifactId>
-			<version>${spring-security.version}</version>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot</artifactId>
-			<version>${spring-boot.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-autoconfigure</artifactId>
-			<version>${spring-boot.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-			<version>${spring-boot.version}</version>
+			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 	</dependencies>
 	<build>

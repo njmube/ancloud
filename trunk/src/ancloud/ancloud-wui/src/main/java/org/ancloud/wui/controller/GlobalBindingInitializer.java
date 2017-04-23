@@ -9,7 +9,7 @@ import org.ancloud.domain.account.AccountProfile;
 import org.ancloud.domain.constant.SessionConstant;
 import org.ancloud.fw.core.joda.DateTimeEditor;
 import org.ancloud.fw.core.service.SessionService;
-import org.ancloud.fw.presentation.util.LocaleUtils;
+import org.ancloud.fw.presentation.helper.LocaleHelpers;
 import org.ancloud.presentation.context.Codelist;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
@@ -50,7 +50,7 @@ public class GlobalBindingInitializer extends ResponseEntityExceptionHandler {
 	@ModelAttribute
 	public void initBaseForm(Model model) {
 		model.addAttribute("codelist",factory.getBean(Codelist.class));
-		model.addAttribute("currentLocale",LocaleUtils.getRequestLocale());
+		model.addAttribute("currentLocale",LocaleHelpers.getRequestLocale());
 		model.addAttribute("currentAccount",sessionService.get(SessionConstant.SESSION_ACCOUNT));
 	}
 	
