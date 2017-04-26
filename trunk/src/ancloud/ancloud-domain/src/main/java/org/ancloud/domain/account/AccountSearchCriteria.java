@@ -6,7 +6,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.ancloud.domain.account.enums.AccountType;
-import org.ancloud.repository.utils.CriteriaUtil;
+import org.ancloud.repository.helpers.CriteriaHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -21,11 +21,11 @@ public class AccountSearchCriteria extends Account implements Specification<Acco
 			predicate = criteriabuilder.or(
 					criteriabuilder.like(
 							criteriabuilder.lower(root.<String>get("name"))
-							,CriteriaUtil.getContainsLikePattern(this.getName())
+							,CriteriaHelper.getContainsLikePattern(this.getName())
 						)
 					,criteriabuilder.like(
 							criteriabuilder.lower(root.<String>get("userName"))
-							,CriteriaUtil.getContainsLikePattern(this.getName())
+							,CriteriaHelper.getContainsLikePattern(this.getName())
 						)
 				);
 		} else {

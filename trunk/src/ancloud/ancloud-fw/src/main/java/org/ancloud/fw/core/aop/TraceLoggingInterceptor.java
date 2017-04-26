@@ -1,4 +1,4 @@
-package org.ancloud.fw.presentation.intercepter;
+package org.ancloud.fw.core.aop;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;

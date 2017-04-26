@@ -1,6 +1,6 @@
-package org.ancloud.repository.utils;
+package org.ancloud.repository.helpers;
 
-public class CriteriaUtil {
+public class CriteriaHelper {
 
 	public static String getContainsLikePattern(String searchTerm) {
 		if (searchTerm == null || searchTerm.isEmpty()) {

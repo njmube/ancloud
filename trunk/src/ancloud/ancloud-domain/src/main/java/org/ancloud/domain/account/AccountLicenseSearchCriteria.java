@@ -5,7 +5,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import org.ancloud.repository.utils.CriteriaUtil;
+import org.ancloud.repository.helpers.CriteriaHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.springframework.data.jpa.domain.Specification;
@@ -24,7 +24,7 @@ public class AccountLicenseSearchCriteria extends AccountLicense implements Spec
 		}
 		if(StringUtils.isNotBlank(this.getCode())){
 			predicate = criteriaBuilder.and(predicate
-					,criteriaBuilder.like(root.<String>get("code"), CriteriaUtil.getContainsLikePattern(this.getCode()))
+					,criteriaBuilder.like(root.<String>get("code"), CriteriaHelper.getContainsLikePattern(this.getCode()))
 			);
 		}
 		

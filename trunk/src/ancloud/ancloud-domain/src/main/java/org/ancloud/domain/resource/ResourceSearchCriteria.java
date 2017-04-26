@@ -5,7 +5,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import org.ancloud.repository.utils.CriteriaUtil;
+import org.ancloud.repository.helpers.CriteriaHelper;
 import org.springframework.data.jpa.domain.Specification;
 
 public class ResourceSearchCriteria extends Resource implements Specification<Resource> {
@@ -14,7 +14,7 @@ public class ResourceSearchCriteria extends Resource implements Specification<Re
 
 	@Override
 	public Predicate toPredicate(Root<Resource> root,CriteriaQuery<?> criteriaquery, CriteriaBuilder criteriabuilder) {
-		return criteriabuilder.and(criteriabuilder.like(criteriabuilder.lower(root.<String>get("value")),CriteriaUtil.getContainsLikePattern(this.getValue())),
+		return criteriabuilder.and(criteriabuilder.like(criteriabuilder.lower(root.<String>get("value")),CriteriaHelper.getContainsLikePattern(this.getValue())),
 									criteriabuilder.equal(root.<String>get("category"), this.getCategory()));
 	}
 	
