@@ -12,7 +12,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-@Component
 @DependsOn(value="AccountService")
 public class UserDetailsServiceImpl implements UserDetailsService {
 

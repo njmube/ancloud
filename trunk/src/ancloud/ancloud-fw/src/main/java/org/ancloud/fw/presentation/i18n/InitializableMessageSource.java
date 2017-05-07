@@ -17,8 +17,6 @@ import org.springframework.context.support.AbstractMessageSource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
-@Component
-@DependsOn(value="MessageProvider")
 public class InitializableMessageSource extends AbstractMessageSource implements InitializingBean {
 	protected Map<Locale, List<String>> resolvingPath;
 	protected Map<String, Map<String, String>> messages = new HashMap<String, Map<String, String>>();

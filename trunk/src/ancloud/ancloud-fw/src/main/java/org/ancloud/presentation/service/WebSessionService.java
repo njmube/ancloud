@@ -16,7 +16,6 @@ import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.session.Session;
 import org.springframework.stereotype.Component;
 
-@Component("sessionService")
 public class WebSessionService implements SessionService {
 	
 	Logger logger = LoggerFactory.getLogger(WebSessionService.class);

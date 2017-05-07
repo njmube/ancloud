@@ -93,11 +93,6 @@ public class AppConfig {
 	private String JPA_SCHEMA_GENERATION_SCRIPTS_DROP;
 	
 	@Bean
-	public UserDetailsService userDetailsServiceFactory() {
-		return new UserDetailsServiceImpl();
-	}
-
-	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName(DB_DRIVER);
@@ -152,38 +147,7 @@ public class AppConfig {
 		return transactionManager;
 	}
 
-	@Bean
-	public ScheduledExecutorFactoryBean scheduledExecutorService() {
-		return new ScheduledExecutorFactoryBean();
-	}
+	
+	
 
-	@Bean
-	public TaskScheduler taskScheduler() {
-		return new ThreadPoolTaskScheduler ();
-	}
-
-	@Bean
-	public HibernateExceptionTranslator exceptionTranslation() {
-		return new HibernateExceptionTranslator();
-	}
-	
-	@Bean
-	public CustomFlywayMigrationStrategy customFlywayMigrationStrategy(){
-		return new CustomFlywayMigrationStrategy();
-	}
-	
-	@Bean
-	public MessageProvider messageProvider(){
-		return new JdbcMessageProvider(dataSource());
-	}
-	
-	@Bean
-	public ApplicationContextListener contextListener(){
-		return new ApplicationContextListener();
-	}
-	
-	@Bean
-	public SsePushService pushService(){
-		return new SsePushServiceImpl();
-	}
 }

@@ -16,7 +16,6 @@ import ma.glasnost.orika.MapperFacade;
 import ma.glasnost.orika.converter.builtin.EnumConverter;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
 
-@Component
 public class BeanMapperContextAware implements FactoryBean<MapperFacade>,ApplicationContextAware {
 
 	DefaultMapperFactory factory = new DefaultMapperFactory.Builder().build();
