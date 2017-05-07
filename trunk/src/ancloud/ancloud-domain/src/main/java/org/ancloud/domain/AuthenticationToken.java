@@ -1,10 +1,7 @@
 package org.ancloud.domain;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 public class AuthenticationToken{
 	
-	@NotEmpty
 	private String token;
 
 	public AuthenticationToken(String token){

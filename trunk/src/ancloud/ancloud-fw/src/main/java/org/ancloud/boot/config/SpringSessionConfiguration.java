@@ -19,8 +19,8 @@ import org.springframework.session.MapSessionRepository;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.session.security.SpringSessionBackedSessionRegistry;
 
-@Configuration
-@EnableRedisHttpSession(maxInactiveIntervalInSeconds = -1)
+
+//@EnableRedisHttpSession(maxInactiveIntervalInSeconds = -1)
 // @EnableSpringHttpSession
 public class SpringSessionConfiguration extends WebSecurityConfigurerAdapter {
 	@Value("${spring.redis.host}")
@@ -53,6 +53,7 @@ public class SpringSessionConfiguration extends WebSecurityConfigurerAdapter {
 //	}
 
 	@Bean
+	@Profile(value = "spring-session")
 	public LettuceConnectionFactory connectionFactory() {
 		LettuceConnectionFactory redisConnectionFactory = new LettuceConnectionFactory();
 		redisConnectionFactory.setHostName(REDIS_HOST);

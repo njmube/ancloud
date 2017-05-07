@@ -1,57 +1,81 @@
 application:
-    database:
-        url: jdbc:mysql://localhost:3306/ancloud_cloud
-        #url:jdbc:h2:file:./temp/ancloud
-        username: ancloud
-        password: 0af3b424
-        driverClassName: com.mysql.jdbc.Driver
-        #driverClassName: org.h2.Driver
-        dialect: org.hibernate.dialect.MySQL5Dialect
-        #dialect:org.hibernate.dialect.H2Dialect
-        showSql: true
-    cp:
-        maxActive: 96
-        maxIdle: 16
-        minIdle: 0
-        maxWaitMillis: 60000
-# none, create, drop-and-create, drop
-    jpa:
-        schemaGeneration: none
-        schemaScriptGeneration: none
-        schemaScriptGenerationCreateTarget: C:/create-script.sql
-        schemaScriptGenerationDropTarget: C:/drop-script.sql
-    security:
-        maxSession: 1
-        sessionExpiredUrl: /api/auth/expire
-        permitAlls:
-            - /api/auth/check-license**/*
-            - /api/parent/register**
-            - /api/gateway/register**
-        jwtTokenHeader: Authorization
-        jwtTokenSecret: VEdiOCM5e1soNSFKZV1eVw==
-        jwtTokenExpiration: 604800
+  database:
+    url: jdbc:mysql://localhost:3306/ancloud_cloud
+    #url:jdbc:h2:file:./temp/ancloud
+    userName: ancloud
+    password: 0af3b424
+    driverClassName: com.mysql.jdbc.Driver
+    #driverClassName: org.h2.Driver
+    dialect: org.hibernate.dialect.MySQL5Dialect
+    #dialect:org.hibernate.dialect.H2Dialect
+    showSql: true
+  cp:
+    maxActive: 96
+    maxIdle: 16
+    minIdle: 0
+    maxWaitMillis: 60000
+  security:
+    maxSession: 1
+    sessionExpiredUrl: /api/auth/expire
+    permitAlls:
+      - /api/auth/check-license**/*
+      - /api/parent/register**
+      - /api/gateway/register**
+    jwtTokenHeader: Authorization
+    jwtTokenSecret: VEdiOCM5e1soNSFKZV1eVw==
+    jwtTokenExpiration: 604800
 
 ################### Spring boot Configuration ##########################
 server:
-    port : 9000
+  port : 9000
 spring:
+  redis:
+    host : localhost
+    #host : 192.168.50.253
+    port : 6379
+  main:
+    web-environment: true
+  data:
     redis:
-        host : localhost
-        #host : 192.168.50.253
-        port : 6379
-    jpa:
-        open-in-view: true
-    main:
-        web-environment: true
-    data:
-        redis:
-            repositories:
-                enabled: false
-    mvc:
-        favicon:
-            enabled: false
+      repositories:
+        enabled: false
+  mvc:
+    favicon:
+      enabled: false
+  datasource:
+    url: jdbc:hsqldb:file:./db/serima
+#    url: jdbc:mysql://localhost:3306/serima
+    driver-class-name: org.hsqldb.jdbcDriver
+#    driver-class-name: com.mysql.jdbc.Driver
+#    username: ancloud
+#    password: 0af3b424
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+        idleTimeout: 10000
+        maximumPoolSize: 96
+        minimumIdle: 10
+        connectionTimeout: 60000
+  jpa:
+    show-sql: false
+    hibernate:
+        ddl-auto: none
+        naming:
+            implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+            physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+        hibernate:
+            dialect: org.hibernate.dialect.HSQLDialect
+#            dialect: org.hibernate.dialect.MySQL5Dialect
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: false
+    serialization:
+      fail-on-empty-beans: false
+liquibase:
+  enabled: true
+  change-log: classpath:/db/changelog/db.changelog-master.xml
 flyway:
-    enabled: true
-    validate-on-migrate: true
+  enabled: true
+  validate-on-migrate: true
 security:
-    filter-order: 5
+  filter-order: 5
