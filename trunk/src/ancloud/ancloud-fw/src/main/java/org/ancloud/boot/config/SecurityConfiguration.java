@@ -33,6 +33,7 @@ import org.springframework.session.web.http.SessionRepositoryFilter;
 import org.springframework.web.filter.RequestContextFilter;
 
 @Configuration
+@DependsOn(value="UserDetailsService")
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	

@@ -1,5 +1,4 @@
 package org.ancloud.boot.config;
-
 import org.ancloud.fw.core.dbmigration.CustomFlywayMigrationStrategy;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;

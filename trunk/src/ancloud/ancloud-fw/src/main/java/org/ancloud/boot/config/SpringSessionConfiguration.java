@@ -3,8 +3,6 @@ package org.ancloud.boot.config;
 import org.ancloud.fw.core.service.SessionService;
 import org.ancloud.presentation.service.WebSessionService;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Profile;
-import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.session.SessionRegistry;

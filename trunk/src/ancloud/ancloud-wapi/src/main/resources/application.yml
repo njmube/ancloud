@@ -75,7 +75,6 @@ liquibase:
   enabled: true
   change-log: classpath:/db/changelog/db.changelog-master.xml
 flyway:
-  enabled: false
-  validate-on-migrate: true
-security:
+    enabled: false
+    validate-on-migrate: truesecurity:
   filter-order: 5

@@ -8,23 +8,17 @@ import javax.inject.Inject;
 
 import org.ancloud.fw.core.joda.DateTimeDeserializer;
 import org.ancloud.fw.core.joda.DateTimeSerializer;
-import org.ancloud.fw.core.service.SessionService;
 import org.ancloud.fw.presentation.i18n.CustomLocalValidatorFactoryBean;
-import org.ancloud.presentation.context.Codelist;
 import org.ancloud.presentation.context.CodelistFactory;
-import org.ancloud.presentation.service.WebSessionService;
 import org.joda.time.DateTime;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter;
 import org.springframework.mobile.device.DeviceResolverHandlerInterceptor;
 import org.springframework.mobile.device.DeviceResolverRequestFilter;
 import org.springframework.mobile.device.DeviceWebArgumentResolver;
-import org.springframework.security.core.session.SessionRegistry;
-import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.web.method.annotation.AuthenticationPrincipalArgumentResolver;
 import org.springframework.validation.Validator;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
@@ -112,7 +106,6 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 		jsonConverter.setObjectMapper(objectMapper);
 		return jsonConverter;
 	}
-	
 	@Bean
 	public CodelistFactory codelistFactory(){
 		return new CodelistFactory();

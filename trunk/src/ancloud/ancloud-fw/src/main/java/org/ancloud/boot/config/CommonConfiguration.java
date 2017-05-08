@@ -66,6 +66,4 @@ public class CommonConfiguration {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		return passwordEncoder;
 	}
-	
-
 }
