@@ -12,12 +12,12 @@ public class AccountForm extends BaseForm {
 
 	private static final long serialVersionUID = -1900019761440463396L;
 
-	@Length(max=128)
+	@Length(max=50)
 	private String userName;
 	
 	private String title;
 	
-	@Length(max=254)
+	@Length(max=200)
 	private String email;
 	
 	private String contactNumber;

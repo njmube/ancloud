@@ -3,6 +3,7 @@ package org.ancloud.boot.config;
 import org.ancloud.fw.core.service.SessionService;
 import org.ancloud.presentation.service.WebSessionService;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.session.SessionRegistry;
@@ -12,12 +13,9 @@ import org.springframework.session.config.annotation.web.http.EnableSpringHttpSe
 
 
 @EnableSpringHttpSession
+@Order(92)
 //@Profile(value = "spring-session")
-public class SpringSessionConfiguration extends WebSecurityConfigurerAdapter {
-
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-	}
+public class SpringSessionConfiguration {
 
 	@Bean
 	public SessionRegistry sessionRegistry() {

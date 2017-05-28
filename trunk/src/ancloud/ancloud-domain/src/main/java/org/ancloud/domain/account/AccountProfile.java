@@ -11,7 +11,6 @@ import org.ancloud.domain.BaseModel;
 
 @Entity
 @Table(name = "accountProfile")
-@Where(clause = "deletedDate IS NULL")
 public class AccountProfile extends BaseModel {
 
 	private static final long serialVersionUID = 3379226982403749296L;

@@ -24,30 +24,20 @@ import org.ancloud.domain.account.enums.AccountType;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.Where;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "account")
 @Inheritance(strategy=InheritanceType.JOINED)
-@Where(clause = "deletedDate IS NULL")
-@SQLDelete(sql = "UPDATE account SET deletedDate = CURRENT_DATE WHERE id_product = ? and last_modification_date = ?")
 public class Account extends BaseModel {
 
-	private static final long serialVersionUID = -2255091421647057444L;
-
-	private String userName;
+	protected String userName;
 	
 	private String email;
 	
 	@JsonIgnore
 	private String password;
-	
-	private String firstName;
-	
-	private String lastName;
 	
 	@JsonIgnore
 	@Transient
@@ -228,32 +218,8 @@ public class Account extends BaseModel {
 		this.accountType = accountType;
 	}
 
-	public String getFirstName() {
-		return firstName;
-	}
+	
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	@PostLoad
-	public void postLoad() {
-		if(StringUtils.isBlank(super.getName())){
-			if(StringUtils.isNotBlank(this.firstName)
-					|| StringUtils.isNotBlank(this.lastName)) {
-				super.setName(this.firstName+" "+this.lastName);
-			} else {
-				super.setName(this.userName);
-			}
-		}
-	}
+	
 	
 }

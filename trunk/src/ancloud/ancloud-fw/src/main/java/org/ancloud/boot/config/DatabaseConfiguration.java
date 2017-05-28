@@ -12,11 +12,6 @@ import org.springframework.orm.hibernate5.HibernateExceptionTranslator;
 public class DatabaseConfiguration {
 
 	@Bean
-	public CustomFlywayMigrationStrategy customFlywayMigrationStrategy(){
-		return new CustomFlywayMigrationStrategy();
-	}
-	
-	@Bean
 	public HibernateExceptionTranslator exceptionTranslation() {
 		return new HibernateExceptionTranslator();
 	}

@@ -15,10 +15,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Table(name = "resource",
 	uniqueConstraints=@UniqueConstraint(columnNames={"category", "resourceKey"}))
 
-public class Resource implements Serializable{
+public class Resource{
 	
-	private static final long serialVersionUID = -4768881665669079490L;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JsonProperty("uid")

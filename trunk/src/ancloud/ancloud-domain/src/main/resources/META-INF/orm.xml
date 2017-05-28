@@ -9,7 +9,6 @@
 			<![CDATA[
 			SELECT B.message,
 					A.*
-					
 			FROM navigationLink A 
 				LEFT JOIN
 				(SELECT messageKey,language,country,MIN(message) as message 
