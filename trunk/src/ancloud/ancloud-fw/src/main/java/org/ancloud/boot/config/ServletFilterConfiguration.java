@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 @Configuration
+@Order(91)
 public class ServletFilterConfiguration extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -42,5 +43,7 @@ public class ServletFilterConfiguration extends WebSecurityConfigurerAdapter{
 		LoginAttemptFilter filter = new LoginAttemptFilter();
 		return filter;
 	}
+	
+	
 	
 }

@@ -7,6 +7,8 @@ import java.util.Locale;
 import javax.sql.DataSource;
 
 import org.ancloud.fw.presentation.helper.LocaleHelpers;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
@@ -17,6 +19,8 @@ import org.springframework.util.Assert;
 public class JdbcMessageProvider implements MessageProvider {
 
 	protected static final String QUERY_SELECT_MESSAGES = "SELECT %s,%s,%s,%s,%s FROM %s";
+	
+	private Logger logger = LoggerFactory.getLogger(JdbcMessageProvider.class);
 
 	private JdbcTemplate template;
 
@@ -47,8 +51,13 @@ public class JdbcMessageProvider implements MessageProvider {
 				countryColumn, variantColumn, keyColumn,
 				messageColumn, tableName, languageColumn,
 				countryColumn);
-
-		return template.query(query, new Object[] {}, extractor);
+		Messages messages = null;
+		try{
+		messages = template.query(query, new Object[] {}, extractor);
+		} catch(Exception ex){
+			logger.info("Cannot load messages.");
+		}
+		return messages;
 	}
 
 	class MessageExtractor implements ResultSetExtractor<Messages> {

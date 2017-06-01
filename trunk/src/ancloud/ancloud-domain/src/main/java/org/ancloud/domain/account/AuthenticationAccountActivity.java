@@ -18,6 +18,8 @@ public class AuthenticationAccountActivity extends AccountActivity{
 
 	private String userAgent;
 	
+	private String description;
+	
 	public AuthenticationAccountActivity(Account account,AuthenticationType authenticationType,String userAgent){
 		super(account);
 		this.authenticationType = authenticationType;
@@ -44,7 +46,14 @@ public class AuthenticationAccountActivity extends AccountActivity{
 		LogInSuccess,
 		LogInFailed,
 		LogOut,
-		SessionTimeOut,
-		ActivateBatteryCode
+		SessionTimeOut
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }

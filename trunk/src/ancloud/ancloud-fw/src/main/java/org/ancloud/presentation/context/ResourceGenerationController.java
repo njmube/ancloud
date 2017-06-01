@@ -1,9 +1,13 @@
 package org.ancloud.presentation.context;
 
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.ancloud.fw.presentation.i18n.InitializableMessageSource;
 import org.springframework.context.MessageSource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,11 +21,34 @@ public class ResourceGenerationController {
 	MessageSource messageSource;
 	
 	@RequestMapping(value="jsMessageSource.js",method = RequestMethod.GET)
-	public String generateJsMessageSource(String locale,Model model) {
+	public ResponseEntity<String> generateJsMessageSource(Model model) {
+		Map<String, Map<String, String>> messages;
+		StringBuilder scriptBuilder = new StringBuilder();
 		if(messageSource instanceof InitializableMessageSource){
-			model.addAttribute("messages",((InitializableMessageSource)messageSource).getMessages());
+			messages = ((InitializableMessageSource)messageSource).getMessages();
+			scriptBuilder.append("window.messageSource ={");
+			for(String locale: messages.keySet()){
+				scriptBuilder.append("\"");
+				scriptBuilder.append(locale);
+				scriptBuilder.append("\"");
+				scriptBuilder.append(":{");
+				for(String messageKey :messages.get(locale).keySet()){
+					scriptBuilder.append("\"");
+					scriptBuilder.append(messageKey);
+					scriptBuilder.append("\": \"");
+					scriptBuilder.append(messages.get(locale).get(messageKey));
+					scriptBuilder.append("\",");
+				}
+				if(messages.get(locale).size()>0) {
+					scriptBuilder.deleteCharAt(scriptBuilder.length()-1);
+				}
+				scriptBuilder.append(locale + "}");
+;			}
+			scriptBuilder.append("}");
 		}
 		
-		return "jsMessageSource";
+		return ResponseEntity.ok()
+							.header(HttpHeaders.CONTENT_TYPE, "text/javascript")
+							.body(scriptBuilder.toString());
 	}
 }

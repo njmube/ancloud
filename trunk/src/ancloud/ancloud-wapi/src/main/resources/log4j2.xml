@@ -51,7 +51,7 @@
 		<Logger name="org.hibernate.SQL" level="TRACE" />
 		<Logger name="org.hibernate.type" level="TRACE" />
 
-		<Root level="DEBUG">
+		<Root level="INFO">
 			<AppenderRef ref="console" />
 			<AppenderRef ref="asyncAppFileAppender" />
 		</Root>

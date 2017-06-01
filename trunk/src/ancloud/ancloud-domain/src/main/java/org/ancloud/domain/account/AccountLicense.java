@@ -14,8 +14,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Where(clause = "deletedDate IS NULL")
 public class AccountLicense extends License {
 
-	private static final long serialVersionUID = -495181427761841881L;
-	
 	@ManyToOne
 	private Account account;
 

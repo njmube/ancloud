@@ -6,25 +6,24 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.PostLoad;
 import javax.persistence.Transient;
 
+import org.ancloud.domain.Address;
 import org.ancloud.domain.enums.MaritalStatus;
 import org.ancloud.domain.enums.SexStatus;
+import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.Years;
 
 @MappedSuperclass
 public class ProfileAccount extends Account {
 
-	private static final long serialVersionUID = -4424899948512063878L;
-
 	private String title;
 
 	private String contactNumber;
 
 	private DateTime birthday;
-	@Transient
-	private String firstName;
 
-	@Transient
+	private String firstName;
+	
 	private String lastName;
 
 	@Transient
@@ -32,9 +31,7 @@ public class ProfileAccount extends Account {
 
 	private String picturePath;
 
-	private String address;
-
-	private String workAddress;
+	private Address address;
 
 	@Enumerated(EnumType.STRING)
 	private MaritalStatus maritalStatus = MaritalStatus.Single;
@@ -78,22 +75,6 @@ public class ProfileAccount extends Account {
 
 	public void setNationality(String nationality) {
 		this.nationality = nationality;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getWorkAddress() {
-		return workAddress;
-	}
-
-	public void setWorkAddress(String workAddress) {
-		this.workAddress = workAddress;
 	}
 
 	public Integer getAge() {
@@ -153,6 +134,18 @@ public class ProfileAccount extends Account {
 		this.lastName = lastName;
 	}
 	
+	@PostLoad
+	public void postLoad() {
+		if(StringUtils.isBlank(super.getName())){
+			if(StringUtils.isNotBlank(this.firstName)
+					|| StringUtils.isNotBlank(this.lastName)) {
+				super.setName(this.firstName+" "+this.lastName);
+			} else {
+				super.setName(this.userName);
+			}
+		}
+	}
+	
 	public String getContactNumber() {
 		return contactNumber;
 	}
@@ -167,5 +160,13 @@ public class ProfileAccount extends Account {
 
 	public void setBirthday(DateTime birthday) {
 		this.birthday = birthday;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 }

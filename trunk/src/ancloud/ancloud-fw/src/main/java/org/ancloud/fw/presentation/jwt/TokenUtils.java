@@ -17,7 +17,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-@Component
 public class TokenUtils implements Serializable {
 
 	private static final long serialVersionUID = -3301605591108950415L;
@@ -31,10 +30,10 @@ public class TokenUtils implements Serializable {
 	private static final String AUDIENCE_MOBILE = "mobile";
 	private static final String AUDIENCE_TABLET = "tablet";
 
-	@Value("${ancloud.security.token.secret}")
+	@Value("${application.security.token.secret}")
 	private String secret;
 
-	@Value("${ancloud.security.token.expiration}")
+	@Value("${application.security.token.expiration}")
 	private Long expiration;
 
 	public String getUsernameFromToken(String token) {

@@ -29,14 +29,14 @@ public abstract class AccountActivity {
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	private Account operationAccount;
 
-	private Timestamp operationTimeRecord;
+	private Timestamp operationTime;
 	
 	@Column(insertable=false, updatable=false)
 	private String discriminator;
 	
 	public AccountActivity(Account account){
 		this.operationAccount = account;
-		operationTimeRecord = new Timestamp(System.currentTimeMillis());
+		operationTime = new Timestamp(System.currentTimeMillis());
 	}
 	
 	public Long getId() {
@@ -56,11 +56,11 @@ public abstract class AccountActivity {
 	}
 
 	public Timestamp getOperationTimeRecord() {
-		return operationTimeRecord;
+		return operationTime;
 	}
 
 	public void setOperationTimeRecord(Timestamp operationTimeRecord) {
-		this.operationTimeRecord = operationTimeRecord;
+		this.operationTime = operationTimeRecord;
 	}
 
 	public String getDiscriminator() {

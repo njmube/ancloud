@@ -1,7 +1,5 @@
 package org.ancloud.domain;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
@@ -14,8 +12,8 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Version;
 
-import org.joda.time.DateTime;
 import org.ancloud.domain.account.Account;
+import org.joda.time.DateTime;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -26,10 +24,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @MappedSuperclass
 //@SQLDelete(sql = "UPDATE #{#entityName} SET state = CURRENT_TIMESTAMP() WHERE id = ?", check = ResultCheckStyle.COUNT)
 @EntityListeners(AuditingEntityListener.class)
-public abstract class BaseModel implements Serializable{
+public abstract class BaseModel {
 	
-	private static final long serialVersionUID = -1188098135887093096L;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JsonProperty("uid")

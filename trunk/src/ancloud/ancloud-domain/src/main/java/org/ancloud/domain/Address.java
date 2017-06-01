@@ -5,10 +5,7 @@ import javax.persistence.Entity;
 import org.hibernate.annotations.Where;
 
 @Entity
-@Where(clause = "deletedDate IS NULL")
 public class Address extends BaseModel {
-	
-	private static final long serialVersionUID = -4204699449282030705L;
 	
 	private String country;
 	private String city;

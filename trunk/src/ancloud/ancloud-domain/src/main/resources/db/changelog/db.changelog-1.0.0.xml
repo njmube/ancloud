@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+	<changeSet id="changelog-1.0.0" author="Le Tam An">
+		<createTable tableName="account">
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="code" type="VARCHAR(50)">
+				<constraints unique="true"/>
+			</column>
+			<column name="name" type="VARCHAR(255)"></column>
+			<column name="createdBy_id" type="BIGINT">
+				<constraints foreignKeyName="FK_account_createdByid_account" referencedTableName="account" referencedColumnNames="id" />
+			</column>
+			<column name="createdDate" type="TIMESTAMP"></column>
+			<column name="lastUpdatedBy_id" type="BIGINT">
+				<constraints foreignKeyName="FK_account_lastUpdatedByid_account" referencedTableName="account" referencedColumnNames="id" />
+			</column>
+			<column name="lastUpdatedDate" type="TIMESTAMP"></column>
+			<column name="version" type="BIGINT"></column>
+			<column name="deletedDate" type="TIMESTAMP"></column>
+			
+			<column name="userName" type="VARCHAR(50)">
+				<constraints unique="true"/>
+			</column>
+			<column name="email" type="VARCHAR(200)"></column>
+			<column name="password" type="VARCHAR(128)"></column>
+			<column name="accountNonExpired" type="BOOLEAN"></column>
+			<column name="accountNonLocked" type="BOOLEAN"></column>
+			<column name="credentialsNonExpired" type="BOOLEAN"></column>
+			<column name="accountStatus" type="TINYINT"></column>
+			<column name="accountType" type="TINYINT"></column>
+			<column name="approver_id" type="BIGINT">
+				<constraints foreignKeyName="FK_account_approver_id_account" referencedTableName="account" referencedColumnNames="id" />
+			</column>
+		</createTable>
+		<createTable tableName="accountActivity">
+			<column name="discriminator" type="VARCHAR(31)"></column>
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="operationAccount_id" type="BIGINT">
+				<constraints foreignKeyName="FK_accountActivity_operationAccountid_account" referencedTableName="account" referencedColumnNames="id" />
+			</column>
+			<column name="operationTime" type="TIMESTAMP"></column>
+			<column name="authenticationType" type="TINYINT"></column>
+			<column name="userAgent" type="VARCHAR(2000)"></column>
+			<column name="description" type="VARCHAR(2000)"></column>
+		</createTable>
+		<createTable tableName="license">
+			<column name="discriminator" type="VARCHAR(31)"></column>
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="code" type="VARCHAR(50)">
+				<constraints unique="true"/>
+			</column>
+			<column name="name" type="VARCHAR(255)"></column>
+			<column name="createdBy_id" type="BIGINT">
+				<constraints foreignKeyName="FK_license_createdByid_account" referencedTableName="account" referencedColumnNames="id" />
+			</column>
+			<column name="createdDate" type="TIMESTAMP"></column>
+			<column name="lastUpdatedBy_id" type="BIGINT">
+				<constraints foreignKeyName="FK_license_lastUpdatedByid_account" referencedTableName="account" referencedColumnNames="id" />
+			</column>
+			<column name="lastUpdatedDate" type="TIMESTAMP"></column>
+			<column name="version" type="BIGINT"></column>
+			<column name="deletedDate" type="TIMESTAMP"></column>
+			
+			<column name="fromDate" type="TIMESTAMP"></column>
+			<column name="toDate" type="TIMESTAMP"></column>
+			<column name="nonLocked" type="BOOLEAN"></column>
+			<column name="account_id" type="BIGINT">
+				<constraints foreignKeyName="FK_license_accountid_account" referencedTableName="account" referencedColumnNames="id" />
+			</column>
+			<column name="qrCode" type="BLOB"></column>
+		</createTable>
+		<createTable tableName="role">
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="code" type="VARCHAR(50)">
+				<constraints unique="true"/>
+			</column>
+			<column name="name" type="VARCHAR(255)"></column>
+			<column name="createdBy_id" type="BIGINT">
+				<constraints foreignKeyName="FK_role_createdByid_account" referencedTableName="account" referencedColumnNames="id" />
+			</column>
+			<column name="createdDate" type="TIMESTAMP"></column>
+			<column name="lastUpdatedBy_id" type="BIGINT">
+				<constraints foreignKeyName="FK_role_lastUpdatedByid_account" referencedTableName="account" referencedColumnNames="id" />
+			</column>
+			<column name="lastUpdatedDate" type="TIMESTAMP"></column>
+			<column name="version" type="BIGINT"></column>
+			<column name="deletedDate" type="TIMESTAMP"></column>
+			
+		</createTable>
+		<createTable tableName="permission">
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="code" type="VARCHAR(50)">
+				<constraints unique="true"/>
+			</column>
+			<column name="name" type="VARCHAR(255)"></column>
+			<column name="createdBy_id" type="BIGINT">
+				<constraints foreignKeyName="FK_permission_createdByid_account" referencedTableName="account" referencedColumnNames="id" />
+			</column>
+			<column name="createdDate" type="TIMESTAMP"></column>
+			<column name="lastUpdatedBy_id" type="BIGINT">
+				<constraints foreignKeyName="FK_permission_lastUpdatedByid_account" referencedTableName="account" referencedColumnNames="id" />
+			</column>
+			<column name="lastUpdatedDate" type="TIMESTAMP"></column>
+			<column name="version" type="BIGINT"></column>
+			<column name="deletedDate" type="TIMESTAMP"></column>
+			
+		</createTable>
+		<createTable tableName="accountPermission">
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="code" type="VARCHAR(50)">
+				<constraints unique="true"/>
+			</column>
+			<column name="name" type="VARCHAR(255)"></column>
+			<column name="createdBy_id" type="BIGINT">
+				<constraints foreignKeyName="FK_accountPermission_createdByid_account" referencedTableName="account" referencedColumnNames="id" />
+			</column>
+			<column name="createdDate" type="TIMESTAMP"></column>
+			<column name="lastUpdatedBy_id" type="BIGINT">
+				<constraints foreignKeyName="FK_accountPermission_lastUpdatedByid_account" referencedTableName="account" referencedColumnNames="id" />
+			</column>
+			<column name="lastUpdatedDate" type="TIMESTAMP"></column>
+			<column name="version" type="BIGINT"></column>
+			<column name="deletedDate" type="TIMESTAMP"></column>
+			
+			<column name="userName" type="VARCHAR(50)">
+				<constraints foreignKeyName="FK_accountPermission_userName_account" referencedTableName="account" referencedColumnNames="userName" />
+			</column>
+			<column name="permissionCode" type="VARCHAR(50)">
+				<constraints foreignKeyName="FK_accountPermission_permissionCode_permission" referencedTableName="permission" referencedColumnNames="code" />
+			</column>
+		</createTable>
+		<createTable tableName="rolePermission">
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="code" type="VARCHAR(50)">
+				<constraints unique="true"/>
+			</column>
+			<column name="name" type="VARCHAR(255)"></column>
+			<column name="createdBy_id" type="BIGINT">
+				<constraints foreignKeyName="FK_rolePermission_createdByid_account" referencedTableName="account" referencedColumnNames="id" />
+			</column>
+			<column name="createdDate" type="TIMESTAMP"></column>
+			<column name="lastUpdatedBy_id" type="BIGINT">
+				<constraints foreignKeyName="FK_rolePermission_lastUpdatedByid_account" referencedTableName="account" referencedColumnNames="id" />
+			</column>
+			<column name="lastUpdatedDate" type="TIMESTAMP"></column>
+			<column name="version" type="BIGINT"></column>
+			<column name="deletedDate" type="TIMESTAMP"></column>
+			
+			<column name="roleCode" type="VARCHAR(50)">
+				<constraints foreignKeyName="FK_rolePermission_roleCode_role" referencedTableName="role" referencedColumnNames="code" />
+			</column>
+			<column name="permissionCode" type="VARCHAR(50)">
+				<constraints foreignKeyName="FK_rolePermission_permissionCode_permission" referencedTableName="permission" referencedColumnNames="code" />
+			</column>
+		</createTable>
+		<createTable tableName="accountProfile">
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="code" type="VARCHAR(50)">
+				<constraints unique="true"/>
+			</column>
+			<column name="name" type="VARCHAR(255)"></column>
+			<column name="createdBy_id" type="BIGINT">
+				<constraints foreignKeyName="FK_accountProfile_createdByid_account" referencedTableName="account" referencedColumnNames="id" />
+			</column>
+			<column name="createdDate" type="TIMESTAMP"></column>
+			<column name="lastUpdatedBy_id" type="BIGINT">
+				<constraints foreignKeyName="FK_accountProfile_lastUpdatedByid_account" referencedTableName="account" referencedColumnNames="id" />
+			</column>
+			<column name="lastUpdatedDate" type="TIMESTAMP"></column>
+			<column name="version" type="BIGINT"></column>
+			<column name="deletedDate" type="TIMESTAMP"></column>
+			
+			<column name="dateFormat" type="VARCHAR(100)"></column>
+			<column name="dateTimeFormat" type="VARCHAR(100)"></column>
+			<column name="locale" type="VARCHAR(10)"></column>
+			<column name="parent_id" type="BIGINT">
+				<constraints foreignKeyName="FK_accountProfile_parentid_account" referencedTableName="account" referencedColumnNames="id" />
+			</column>
+		</createTable>
+		<createTable tableName="address">
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="code" type="VARCHAR(50)">
+				<constraints unique="true"/>
+			</column>
+			<column name="name" type="VARCHAR(255)"></column>
+			<column name="createdBy_id" type="BIGINT">
+				<constraints foreignKeyName="FK_address_createdByid_account" referencedTableName="account" referencedColumnNames="id" />
+			</column>
+			<column name="createdDate" type="TIMESTAMP"></column>
+			<column name="lastUpdatedBy_id" type="BIGINT">
+				<constraints foreignKeyName="FK_address_lastUpdatedByid_account" referencedTableName="account" referencedColumnNames="id" />
+			</column>
+			<column name="lastUpdatedDate" type="TIMESTAMP"></column>
+			<column name="version" type="BIGINT"></column>
+			<column name="deletedDate" type="TIMESTAMP"></column>
+
+			<column name="country" type="VARCHAR(10)"></column>
+			<column name="city" type="VARCHAR(200)"></column>
+			<column name="state" type="VARCHAR(200)"></column>
+			<column name="addressLine" type="VARCHAR(200)"></column>
+			<column name="zipCode" type="VARCHAR(10)"></column>
+		</createTable>
+		<rollback>
+			<dropTable tableName="account"/>
+			<dropTable tableName="accountActivity"/>
+			<dropTable tableName="license"/>
+			<dropTable tableName="permission"/>
+			<dropTable tableName="role"/>
+			<dropTable tableName="accountPermission"/>
+			<dropTable tableName="rolePermission"/>
+			<dropTable tableName="address"/>
+			<dropTable tableName="accountProfile"/>
+		</rollback>
+	</changeSet>
+</databaseChangeLog> 

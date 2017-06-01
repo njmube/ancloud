@@ -10,6 +10,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.5.3.RELEASE</version>
+		<relativePath />
 	</parent>
 	<modules>
 		<module>ancloud-core</module>
@@ -86,6 +87,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
 	</dependencies>
 	<build>
 		<pluginManagement>
@@ -134,24 +139,24 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-    <profiles>
-	<profile>
-		<id>dev</id>
-		<activation>
-			<activeByDefault>true</activeByDefault>
-		</activation>
-		<properties>
-			<build.profile.id>dev</build.profile.id>
-			<log4j.loglevel>DEBUG</log4j.loglevel>
-			<spring.profiles.active>dev</spring.profiles.active>
-		</properties>
-	</profile>
-	<profile>
-		<id>prod</id>
-		<properties>
-			<log4j.loglevel>INFO</log4j.loglevel>
-			<spring.profiles.active>prod</spring.profiles.active>
-		</properties>
-	</profile>
-</profiles>	
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<build.profile.id>dev</build.profile.id>
+				<log4j.loglevel>DEBUG</log4j.loglevel>
+				<spring.profiles.active>dev</spring.profiles.active>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<log4j.loglevel>INFO</log4j.loglevel>
+				<spring.profiles.active>prod</spring.profiles.active>
+			</properties>
+		</profile>
+	</profiles>
 </project>
