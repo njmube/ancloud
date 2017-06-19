@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.ancloud.domain.account.AccountPermission;
 import org.ancloud.fw.service.BaseService;
-import org.ancloud.repository.BaseModelRepository;
+import org.ancloud.repository.BaseRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,7 +31,7 @@ public class AccountPermissionServiceImpl extends BaseService<AccountPermission>
 	}
 
 	@Override
-	public BaseModelRepository<AccountPermission> getRepository() {
+	public BaseRepository<AccountPermission> getRepository() {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -1,11 +1,11 @@
 package org.ancloud.repository.account;
 
 import org.ancloud.domain.account.Account;
-import org.ancloud.repository.BaseModelRepository;
+import org.ancloud.repository.BaseRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 
 @NoRepositoryBean
-public interface AccountBaseRepository<T extends Account> extends BaseModelRepository<T>{
+public interface AccountBaseRepository<T extends Account> extends BaseRepository<T>{
 
 	T findByUserName(String username);
 	

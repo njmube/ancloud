@@ -64,7 +64,7 @@ public class AccountController extends BaseController {
 		try{
 			account = accountService.findByIdAndAccountType(accountForm.getId(),accountForm.getAccountType());
 		} catch(BusinessException ex){
-			redirectAttributes.addFlashAttribute(SystemConstant.VIEW_MESSAGES, ResultMessages.error().add(ex.getMessage()));
+			redirectAttributes.addFlashAttribute(SystemConstant.BEAN_NAME_MESSAGES, ResultMessages.error().add(ex.getMessage()));
 			return "redirect:/admin/account/search";
 		}
 		model.addAttribute("account", mapper.map(account, AccountForm.class));
@@ -110,12 +110,12 @@ public class AccountController extends BaseController {
 				break;
 			}
 		} catch(Exception ex){
-			model.addAttribute(SystemConstant.VIEW_MESSAGES,
+			model.addAttribute(SystemConstant.BEAN_NAME_MESSAGES,
 					ResultMessages.error().add(ex.getMessage()));
 			ex.printStackTrace();
 			return "account/FrAccount";
 		}
-		redirectAttributes.addFlashAttribute(SystemConstant.VIEW_MESSAGES,ResultMessages.success().add("Registration's successfull"));
+		redirectAttributes.addFlashAttribute(SystemConstant.BEAN_NAME_MESSAGES,ResultMessages.success().add("Registration's successfull"));
 		return "redirect:/admin/account/search?sort=createdDate,desc";
 	}
 	
@@ -144,10 +144,10 @@ public class AccountController extends BaseController {
 			
 			}
 		} catch(BusinessException ex){
-			model.addAttribute(SystemConstant.VIEW_MESSAGES, ResultMessages.error().add(ex.getMessage()));
+			model.addAttribute(SystemConstant.BEAN_NAME_MESSAGES, ResultMessages.error().add(ex.getMessage()));
 			return "account/FmAccount";
 		}
-		redirectAttributes.addFlashAttribute(SystemConstant.VIEW_MESSAGES,ResultMessages.success().add("Modification''s successfull"));
+		redirectAttributes.addFlashAttribute(SystemConstant.BEAN_NAME_MESSAGES,ResultMessages.success().add("Modification''s successfull"));
 		return "redirect:/admin/account/search?sort=lastUpdatedDate,desc";
 	}
 	@RequestMapping(value={"/delete"}, method = {RequestMethod.POST,RequestMethod.GET})
@@ -156,10 +156,10 @@ public class AccountController extends BaseController {
 			Account account = mapper.map(accountMForm, Account.class);
 			accountService.delete(account);
 		} catch(BusinessException ex){
-			redirectAttributes.addFlashAttribute(SystemConstant.VIEW_MESSAGES,ResultMessages.error().add(ex.getMessage()));
+			redirectAttributes.addFlashAttribute(SystemConstant.BEAN_NAME_MESSAGES,ResultMessages.error().add(ex.getMessage()));
 			return "redirect:/admin/account/search";
 		}
-		redirectAttributes.addFlashAttribute(SystemConstant.VIEW_MESSAGES,ResultMessages.success().add("Deletion''s successfull"));
+		redirectAttributes.addFlashAttribute(SystemConstant.BEAN_NAME_MESSAGES,ResultMessages.success().add("Deletion''s successfull"));
 		return "redirect:/admin/account/search?sort=lastUpdatedDate,desc";
 	}
 	@RequestMapping(value={"","/approve"}, method = {RequestMethod.GET,RequestMethod.POST})
@@ -172,11 +172,11 @@ public class AccountController extends BaseController {
 				accountService.approveAccount(account,AccountStatus.Disabled);
 			}
 		} catch(Exception ex){
-			redirectAttributes.addFlashAttribute(SystemConstant.VIEW_MESSAGES,ResultMessages.error().add(ex.getMessage()));
+			redirectAttributes.addFlashAttribute(SystemConstant.BEAN_NAME_MESSAGES,ResultMessages.error().add(ex.getMessage()));
 			return "redirect:/admin/account/search";
 		}
 		
-		redirectAttributes.addFlashAttribute(SystemConstant.VIEW_MESSAGES,ResultMessages.success().add("Approval's successfull"));
+		redirectAttributes.addFlashAttribute(SystemConstant.BEAN_NAME_MESSAGES,ResultMessages.success().add("Approval's successfull"));
 		return "redirect:/admin/account/search";
 	}
 }

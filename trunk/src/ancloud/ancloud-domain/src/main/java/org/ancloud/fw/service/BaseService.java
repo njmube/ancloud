@@ -1,8 +1,13 @@
 package org.ancloud.fw.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
+
 import org.ancloud.domain.BaseModel;
 import org.ancloud.fw.core.exception.BusinessException;
-import org.ancloud.repository.BaseModelRepository;
+import org.ancloud.repository.BaseRepository;
 import org.joda.time.DateTime;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,7 +17,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public abstract class BaseService<T extends BaseModel> implements CrudService<T> {
 	
-	public abstract BaseModelRepository<T> getRepository();
+	@Inject
+	BaseRepository<T> repository;
+	
+	public BaseRepository<T> getRepository(){
+		return this.repository;
+	}
 	
 	@Override
 	public void checkConsistency(BaseModel entity, BaseModel existing) {
@@ -28,6 +38,9 @@ public abstract class BaseService<T extends BaseModel> implements CrudService<T>
 		if(existing==null){
 			throw new BusinessException("This entity didn't exist.");
 		}
+		if(existing.getDeletedDate()!=null){
+			throw new BusinessException("This entity was deleted.");
+		}
 		return existing;
 	}
 	
@@ -42,7 +55,12 @@ public abstract class BaseService<T extends BaseModel> implements CrudService<T>
 	}
 	
 	@Override
-	public void delete(Long id) {
+	public void delete(T baseModel) {
+		this.deleteById(baseModel.getId());
+	}
+	
+	@Override
+	public void deleteById(Long id) {
 		this.checkExistence(id);
 		this.getRepository().deleteById(id, DateTime.now());
 	}
@@ -54,5 +72,13 @@ public abstract class BaseService<T extends BaseModel> implements CrudService<T>
 			throw new BusinessException("This entity doesn't exist.");
 		}
 		return existing;
+	}
+	@Override
+	public List<T> register(List<T> entities) {
+		List<T> result = new ArrayList<T>();
+		for(T entity: entities){
+			result.add(this.register(entity));
+		}
+		return result;
 	}
 }
