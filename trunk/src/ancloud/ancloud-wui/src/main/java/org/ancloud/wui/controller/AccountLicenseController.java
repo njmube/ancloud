@@ -130,7 +130,7 @@ public class AccountLicenseController extends BaseController {
 	public String processDeletion(AccountLicenseMForm accountLicenseMForm,BindingResult bindingResult,RedirectAttributes redirectAttributes, Model model){
 		try{
 			AccountLicense accountLicense = mapper.map(accountLicenseMForm, AccountLicense.class);
-			accountLicenseService.delete(accountLicense.getId());
+			accountLicenseService.deleteById(accountLicense.getId());
 		} catch(BusinessException ex){
 			redirectAttributes.addFlashAttribute("messages",ResultMessages.error().add(ex.getMessage()));
 			return "redirect:/admin/account-license/search";
