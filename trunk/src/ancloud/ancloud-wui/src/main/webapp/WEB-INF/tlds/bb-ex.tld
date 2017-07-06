@@ -57,4 +57,12 @@
 		<name>messages</name>
 		<path>/WEB-INF/tags/bb-messages.tag</path>
 	</tag-file>
+	   <tag-file>
+        <name>searchInfo</name>
+        <path>/WEB-INF/tags/bb-searchInfo.tag</path>
+    </tag-file>
+    <tag-file>
+        <name>searchResults</name>
+        <path>/WEB-INF/tags/bb-searchResults.tag</path>
+    </tag-file>
 </taglib>

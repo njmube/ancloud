@@ -9,7 +9,7 @@ import org.springframework.data.jpa.domain.Specification;
 
 public interface CrudService<T> {
 
-	public T findById(Long id);
+public T findById(Long id);
 	
 	public T findByCode(String code);
 
@@ -19,7 +19,9 @@ public interface CrudService<T> {
 
 	public T modify(T entity);
 	
-	public void delete(Long id);
+	public void delete(T entity);
+	
+	public void deleteById(Long id);
 
 	public Page<T> findAllByCriteria(Specification<T> criteria, Pageable pageable);
 	

@@ -17,7 +17,7 @@ import org.ancloud.fw.core.util.DataTypeUtils;
 import org.ancloud.fw.core.util.GenerationUtil;
 import org.ancloud.fw.core.util.QRGenerator;
 import org.ancloud.fw.service.BaseService;
-import org.ancloud.repository.BaseModelRepository;
+import org.ancloud.repository.BaseRepository;
 import org.ancloud.repository.jpa.AccountLicenseRepository;
 import org.ancloud.repository.jpa.AccountRepository;
 import org.ancloud.service.authentication.UserDetailsImpl;
@@ -53,7 +53,7 @@ public class AccountLicenseServiceImpl extends BaseService<AccountLicense> imple
 	SessionService sessionService;
 	
 	@Override
-	public BaseModelRepository<AccountLicense> getRepository() {
+	public BaseRepository<AccountLicense> getRepository() {
 		return this.accountLicenseRepository;
 	}
 	

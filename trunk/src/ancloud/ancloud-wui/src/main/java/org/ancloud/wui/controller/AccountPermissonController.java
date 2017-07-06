@@ -100,7 +100,7 @@ public class AccountPermissonController extends BaseController {
 	public String processDeletion(AccountPermissionMForm accountPermissionMForm,BindingResult bindingResult,RedirectAttributes redirectAttributes, Model model){
 		try{
 			AccountPermission accountPermission = mapper.map(accountPermissionMForm, AccountPermission.class);
-			accountPermissionService.delete(accountPermission.getId());
+			accountPermissionService.deleteById(accountPermission.getId());
 		} catch(BusinessException ex){
 			redirectAttributes.addFlashAttribute("messages",ResultMessages.error().add(ex.getMessage()));
 			return "redirect:/admin/account-permission/search";
