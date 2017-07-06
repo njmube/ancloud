@@ -4,7 +4,7 @@ import javax.inject.Inject;
 
 import org.apache.commons.lang3.StringUtils;
 import org.ancloud.presentation.form.AccountForm;
-import org.ancloud.repository.account.AccountRepository;
+import org.ancloud.repository.jpa.AccountRepository;
 import org.springframework.validation.Errors;
 
 public class BaseAccountValidator {

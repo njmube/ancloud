@@ -1,4 +1,4 @@
-package org.ancloud.repository.account;
+package org.ancloud.repository.jpa;
 
 import org.ancloud.domain.account.AuthenticationAccountActivity;
 import org.springframework.data.domain.Page;

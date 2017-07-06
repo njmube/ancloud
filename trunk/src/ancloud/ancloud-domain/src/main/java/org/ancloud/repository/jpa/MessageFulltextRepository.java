@@ -1,4 +1,4 @@
-package org.ancloud.repository.account;
+package org.ancloud.repository.jpa;
 
 import java.util.List;
 

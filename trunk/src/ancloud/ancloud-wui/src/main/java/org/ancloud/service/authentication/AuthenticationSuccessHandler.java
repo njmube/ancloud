@@ -13,7 +13,7 @@ import org.ancloud.domain.account.Role;
 import org.ancloud.domain.constant.SessionConstant;
 import org.ancloud.fw.core.service.SessionService;
 import org.ancloud.fw.presentation.helper.HttpServletRequestHelpers;
-import org.ancloud.repository.account.AccountRepository;
+import org.ancloud.repository.jpa.AccountRepository;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.LocaleUtils;
 import org.springframework.security.core.Authentication;

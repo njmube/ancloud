@@ -29,6 +29,8 @@ application:
 server:
   port : 9000
 spring:
+  profiles:
+    active: ${project.buid.profile}
   redis:
     host : localhost
     #host : 192.168.50.253

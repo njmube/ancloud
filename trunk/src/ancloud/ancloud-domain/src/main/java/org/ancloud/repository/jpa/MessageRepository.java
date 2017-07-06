@@ -1,4 +1,4 @@
-package org.ancloud.repository.account;
+package org.ancloud.repository.jpa;
 
 import org.ancloud.domain.message.Message;
 import org.springframework.data.jpa.repository.JpaRepository;

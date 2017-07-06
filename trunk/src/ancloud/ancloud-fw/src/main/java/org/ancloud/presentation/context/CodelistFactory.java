@@ -6,7 +6,7 @@ import java.util.TreeMap;
 import javax.inject.Inject;
 
 import org.ancloud.domain.resource.Resource;
-import org.ancloud.repository.account.ResourceRepository;
+import org.ancloud.repository.jpa.ResourceRepository;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.stereotype.Component;
 

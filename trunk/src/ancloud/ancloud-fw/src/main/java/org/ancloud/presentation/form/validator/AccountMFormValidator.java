@@ -6,7 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.ancloud.fw.core.util.DataTypeUtils;
 import org.ancloud.presentation.form.AccountForm;
 import org.ancloud.presentation.form.AccountMForm;
-import org.ancloud.repository.account.AccountRepository;
+import org.ancloud.repository.jpa.AccountRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;

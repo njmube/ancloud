@@ -3,7 +3,7 @@ package org.ancloud.presentation.context;
 import javax.inject.Inject;
 
 import org.ancloud.domain.account.Account;
-import org.ancloud.repository.account.AccountRepository;
+import org.ancloud.repository.jpa.AccountRepository;
 import org.ancloud.service.authentication.UserDetailsImpl;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.core.Authentication;
