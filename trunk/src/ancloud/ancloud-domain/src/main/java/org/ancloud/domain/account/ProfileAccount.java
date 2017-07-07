@@ -3,35 +3,31 @@ package org.ancloud.domain.account;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
 import javax.persistence.PostLoad;
 import javax.persistence.Transient;
 
 import org.ancloud.domain.Address;
-import org.ancloud.domain.enums.MaritalStatus;
-import org.ancloud.domain.enums.SexStatus;
-import org.apache.commons.lang3.StringUtils;
+import org.ancloud.domain.account.enums.MaritalStatus;
+import org.ancloud.domain.account.enums.SexStatus;
 import org.joda.time.DateTime;
 import org.joda.time.Years;
 
 @MappedSuperclass
 public class ProfileAccount extends Account {
 
+	private static final long serialVersionUID = -4424899948512063878L;
+
 	private String title;
 
-	private String contactNumber;
-
 	private DateTime birthday;
-
-	private String firstName;
 	
-	private String lastName;
-
 	@Transient
 	private Integer age;
 
 	private String picturePath;
 
-	private Address address;
+	private String workAddress;
 
 	@Enumerated(EnumType.STRING)
 	private MaritalStatus maritalStatus = MaritalStatus.Single;
@@ -41,6 +37,14 @@ public class ProfileAccount extends Account {
 	private String nationality;
 
 	private String race;
+	
+	private String callingCode; 
+	
+	private String contactNumber;
+	
+	@OneToOne
+	private Address address;
+	
 
 	@Enumerated(EnumType.ORDINAL)
 	private SexStatus sex;
@@ -77,12 +81,20 @@ public class ProfileAccount extends Account {
 		this.nationality = nationality;
 	}
 
+	public String getWorkAddress() {
+		return workAddress;
+	}
+
+	public void setWorkAddress(String workAddress) {
+		this.workAddress = workAddress;
+	}
+
 	public Integer getAge() {
 		return age;
 	}
 
 	@PostLoad
-	private void postLoadSetAge() {
+	private void postLoadProfileAccount() {
 		if (this.getBirthday() != null) {
 			// Calendar birthdayCalendar = Calendar.getInstance();
 			// birthdayCalendar.setTimeInMillis(this.getBirthday().getTime());
@@ -93,6 +105,7 @@ public class ProfileAccount extends Account {
 			this.age = Years.yearsBetween(this.getBirthday(), now).getYears();
 		}
 	}
+	
 
 	public String getRace() {
 		return race;
@@ -118,34 +131,6 @@ public class ProfileAccount extends Account {
 		this.title = title;
 	}
 
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	
-	@PostLoad
-	public void postLoad() {
-		if(StringUtils.isBlank(super.getName())){
-			if(StringUtils.isNotBlank(this.firstName)
-					|| StringUtils.isNotBlank(this.lastName)) {
-				super.setName(this.firstName+" "+this.lastName);
-			} else {
-				super.setName(this.userName);
-			}
-		}
-	}
-	
 	public String getContactNumber() {
 		return contactNumber;
 	}
@@ -162,6 +147,14 @@ public class ProfileAccount extends Account {
 		this.birthday = birthday;
 	}
 
+	public String getCallingCode() {
+		return callingCode;
+	}
+
+	public void setCallingCode(String callingCode) {
+		this.callingCode = callingCode;
+	}
+	
 	public Address getAddress() {
 		return address;
 	}

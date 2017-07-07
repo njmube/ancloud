@@ -12,14 +12,13 @@ import javax.inject.Inject;
 import org.ancloud.domain.account.AccountLicense;
 import org.ancloud.domain.constant.SystemConstant;
 import org.ancloud.fw.core.exception.BusinessException;
-import org.ancloud.fw.core.service.SessionService;
 import org.ancloud.fw.core.util.DataTypeUtils;
-import org.ancloud.fw.core.util.GenerationUtil;
+import org.ancloud.fw.core.util.GenerationHelpers;
 import org.ancloud.fw.core.util.QRGenerator;
-import org.ancloud.fw.service.BaseService;
 import org.ancloud.repository.BaseRepository;
 import org.ancloud.repository.jpa.AccountLicenseRepository;
 import org.ancloud.repository.jpa.AccountRepository;
+import org.ancloud.service.BaseService;
 import org.ancloud.service.authentication.UserDetailsImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,19 +48,11 @@ public class AccountLicenseServiceImpl extends BaseService<AccountLicense> imple
 	@Inject
 	AccountService accountService;
 	
-	@Inject
-	SessionService sessionService;
-	
 	@Override
 	public BaseRepository<AccountLicense> getRepository() {
 		return this.accountLicenseRepository;
 	}
 	
-	@Override
-	public Object getAllSessions() {
-		return sessionService.getAllSessions();
-	}
-
 	@Override
 	public AccountLicense modify(AccountLicense accountLicense) {
 		return null;
@@ -88,7 +79,7 @@ public class AccountLicenseServiceImpl extends BaseService<AccountLicense> imple
 		return newLicense;
 	}
 	private String generateQrCode(AccountLicense accountLicense){
-		String qrFileName = GenerationUtil.generateCode(accountLicense.getAccount().getName())+"."+QRGenerator.FILETYPE_JPG;
+		String qrFileName = GenerationHelpers.generateCode(accountLicense.getAccount().getName())+"."+QRGenerator.FILETYPE_JPG;
 		Path qrFilePath = Paths.get(SystemConstant.PATH_QR_CODE
 									+File.separator
 									+qrFileName);

@@ -1,7 +1,7 @@
 package org.ancloud.presentation.form;
 
-import org.ancloud.domain.enums.MaritalStatus;
-import org.ancloud.domain.enums.SexStatus;
+import org.ancloud.domain.account.enums.MaritalStatus;
+import org.ancloud.domain.account.enums.SexStatus;
 
 public class ProfileAccountForm extends AccountForm{
 
@@ -15,9 +15,9 @@ public class ProfileAccountForm extends AccountForm{
 	
 	private String picturePath;
 	
-	private String address;
+	private String callingCode; 
 	
-	private String workAddress;
+	private String contactNumber;
 	
 	private MaritalStatus maritalStatus=MaritalStatus.Single;
 	
@@ -28,6 +28,16 @@ public class ProfileAccountForm extends AccountForm{
 	private String race;
 	
 	private SexStatus sex;
+	
+	private AddressForm address;
+
+	public AddressForm getAddress() {
+		return address;
+	}
+
+	public void setAddress(AddressForm address) {
+		this.address = address;
+	}
 
 	public String getPicturePath() {
 		return picturePath;
@@ -61,22 +71,6 @@ public class ProfileAccountForm extends AccountForm{
 		this.nationality = nationality;
 	}
 
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getWorkAddress() {
-		return workAddress;
-	}
-
-	public void setWorkAddress(String workAddress) {
-		this.workAddress = workAddress;
-	}
-	
 	public Integer getAge() {
 		return age;
 	}
@@ -111,5 +105,21 @@ public class ProfileAccountForm extends AccountForm{
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public String getCallingCode() {
+		return callingCode;
+	}
+
+	public void setCallingCode(String callingCode) {
+		this.callingCode = callingCode;
+	}
+
+	public String getContactNumber() {
+		return contactNumber;
+	}
+
+	public void setContactNumber(String contactNumber) {
+		this.contactNumber = contactNumber;
 	}
 }

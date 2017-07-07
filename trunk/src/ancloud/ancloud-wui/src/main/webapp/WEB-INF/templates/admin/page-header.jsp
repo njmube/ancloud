@@ -4,8 +4,8 @@
 	<a href="${basePath}/" class="logo"> 
 <%-- 		<span class="logo-mini"><img src="${imageResourcePath}/trek-mini-logo.png"/></span>  --%>
 <%-- 		<span class="logo-lg"><b><img src="${imageResourcePath}/trek-lg-logo.png"/></b></span> --%>
-		<span class="logo-mini">MTC</span> 
-		<span class="logo-lg"><b>Med</b>TECH</span>
+		<span class="logo-mini">AnCD</span> 
+		<span class="logo-lg"><b>An</b>Cloud</span>
 	</a>
 	<nav class="navbar navbar-static-top"
 		role="navigation">

@@ -2,8 +2,8 @@ package org.ancloud.boot.config;
 
 import javax.inject.Inject;
 
-import org.ancloud.fw.core.service.SessionService;
 import org.ancloud.presentation.service.RedisSessionService;
+import org.ancloud.presentation.service.SessionService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;

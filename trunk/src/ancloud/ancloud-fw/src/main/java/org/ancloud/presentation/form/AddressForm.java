@@ -8,7 +8,7 @@ public class AddressForm extends BaseForm {
 	private static final long serialVersionUID = 8746434495944926915L;
 	
 	@NotEmpty
-	protected String country;
+	protected String countryCode;
 	@NotEmpty
 	protected String city;
 	@NotEmpty
@@ -19,12 +19,12 @@ public class AddressForm extends BaseForm {
 	@NotEmpty
 	protected String zipCode;
 
-	public String getCountry() {
-		return country;
+	public String getCountryCode() {
+		return countryCode;
 	}
 
-	public void setCountry(String country) {
-		this.country = country;
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
 	}
 
 	public String getCity() {

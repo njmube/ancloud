@@ -34,11 +34,12 @@
 										value="${accountLicenseMForm.account.name}" 
 										type="text" 
 										class="bb-autocomplete form-control" 
-										data-source-path="${basePath }/autocomplete/account" 
+										data-source-path="/autocomplete/account" 
 										data-query-string-property="name"
 										data-display-properties="name"
 										data-submit-property="uid"
-										data-parameter='{"accountType":"MCLicensed"}' />
+										data-parameter='{}' />
+								<span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
 								<input name="account.id" value="${accountLicenseMForm.account.id}" type="hidden"></input>
 							</div>
 							<form:errors path="account.id"  cssClass="text-red col-md-12" />

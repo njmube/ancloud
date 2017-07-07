@@ -7,7 +7,7 @@ import javax.inject.Inject;
 
 import org.ancloud.domain.account.AccountProfile;
 import org.ancloud.domain.constant.SessionConstant;
-import org.ancloud.fw.core.service.SessionService;
+import org.ancloud.presentation.service.SessionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.BeanFactory;

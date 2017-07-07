@@ -22,6 +22,8 @@ import org.ancloud.domain.BaseModel;
 import org.ancloud.domain.account.enums.AccountStatus;
 import org.ancloud.domain.account.enums.AccountType;
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -30,14 +32,25 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "account")
 @Inheritance(strategy=InheritanceType.JOINED)
+@DynamicInsert
+@DynamicUpdate
 public class Account extends BaseModel {
 
-	protected String userName;
+	private static final long serialVersionUID = -2255091421647057444L;
+
+	private String userName;
 	
 	private String email;
 	
 	@JsonIgnore
 	private String password;
+	
+	@JsonIgnore
+	private String defaultPassword;
+	
+	private String firstName;
+	
+	private String lastName;
 	
 	@JsonIgnore
 	@Transient
@@ -218,8 +231,40 @@ public class Account extends BaseModel {
 		this.accountType = accountType;
 	}
 
-	
+	public String getFirstName() {
+		return firstName;
+	}
 
-	
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	@PostLoad
+	public void postLoad() {
+		if(StringUtils.isBlank(super.getName())){
+			if(StringUtils.isNotBlank(this.firstName)
+					|| StringUtils.isNotBlank(this.lastName)) {
+				super.setName(this.firstName+" "+this.lastName);
+			} else {
+				super.setName(this.userName);
+			}
+		}
+	}
+
+	public String getDefaultPassword() {
+		return defaultPassword;
+	}
+
+	public void setDefaultPassword(String defaultPassword) {
+		this.defaultPassword = defaultPassword;
+	}
 	
 }

@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-public class HomeController extends BaseController implements ErrorController{
+public class HomeController extends BaseController {
 	
 	@Inject
 	AccountService accountService;
@@ -38,10 +38,10 @@ public class HomeController extends BaseController implements ErrorController{
 		model.addAttribute("statusCode", response.getStatus());
 		return "home/error";
 	}
-	@Override
-	public String getErrorPath() {
-		return "/error";
-	}
+//	@Override
+//	public String getErrorPath() {
+//		return "/error";
+//	}
 	@RequestMapping(value="/login", method = RequestMethod.GET)
 	public String login(){
 		return "home/login";

@@ -2,9 +2,10 @@ package org.ancloud.presentation.form.validator;
 
 import javax.inject.Inject;
 
-import org.apache.commons.lang3.StringUtils;
+import org.ancloud.fw.core.util.DataTypeUtils;
 import org.ancloud.presentation.form.AccountForm;
 import org.ancloud.repository.jpa.AccountRepository;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.validation.Errors;
 
 public class BaseAccountValidator {
@@ -31,9 +32,17 @@ public class BaseAccountValidator {
 	}
 
 	protected void checkEmailRegistration(AccountForm account,Errors errors) {
-		if(StringUtils.isNotEmpty(account.getEmail()))
-		if(accountRepository.countByEmail(account.getEmail())>0){
-			errors.rejectValue("email",null,"This email already exists.");
+		if(StringUtils.isNotEmpty(account.getEmail())){
+			if(accountRepository.countByEmail(account.getEmail())>0){
+				errors.rejectValue("email",null,"This email already exists.");
+			}
+		}
+	}
+	
+	protected void checkReenterPassword(AccountForm accountForm, Errors errors){
+		if((StringUtils.isNotEmpty(accountForm.getPassword()) || StringUtils.isNotEmpty(accountForm.getReenterPassword())) 
+				& DataTypeUtils.notEqual(accountForm.getPassword(), accountForm.getReenterPassword())) {
+			errors.rejectValue("reenterPassword",null,"Confirm password must match with password.");
 		}
 	}
 }

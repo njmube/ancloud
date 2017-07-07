@@ -18,7 +18,6 @@
 		</div>
 	</tiles:putAttribute>
 	<tiles:putAttribute name="content-body">
-		
 		<div class="col-md-12">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
@@ -26,20 +25,21 @@
 					<span>General information</span>
 				</div>
 				<div class="panel-body">
-					<form:form modelAttribute="accountLicenseRForm" cssClass="form-horizontal bb-form" action="${basePath }/admin/account-license/register" method="POST">
+					<form:form modelAttribute="accountLicenseForm" cssClass="form-horizontal bb-form" action="${basePath }/admin/account-license/register" method="POST">
 						<div class="form-group ${status.error?'has-error':'' }">
 							<label for="account.id" class="col-md-2 col-xs-12">Account</label> 
 							<div class="input-group col-md-10 col-xs-12">
 								<input name="account.name" 
-										value="${accountLicenseRForm.account.name}" 
+										value="${accountLicenseForm.account.name}" 
 										type="text" 
 										class="bb-autocomplete form-control" 
-										data-source-path="${basePath }/autocomplete/account" 
+										data-source-path="/autocomplete/account" 
 										data-query-string-property="name"
 										data-display-properties="name"
 										data-submit-property="uid"
 										data-parameter='{}' />
-								<input name="account.id" value="${accountLicenseRForm.account.id}" type="hidden"></input>
+								<span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
+								<input name="account.id" value="${accountLicenseForm.account.id}" type="hidden"></input>
 							</div>
 							<form:errors path="account.id"  cssClass="text-red col-md-12" />
 						</div>
@@ -59,7 +59,7 @@
 		</div>
 		<div class="form-group btn-group col-md-12 bb-action-group-footer">
 			<div class="col-md-2">
-				<button type="submit" form="accountLicenseRForm" class="btn btn-primary bb-button">Save</button>
+				<button type="submit" form="accountLicenseForm" class="btn btn-primary bb-button">Save</button>
 			</div>
 			<div class="col-md-2"></div>
 			<div class="col-md-2"></div>

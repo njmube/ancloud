@@ -8,13 +8,12 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.ancloud.fw.core.service.SessionService;
 import org.ancloud.fw.presentation.helper.HttpServletRequestHelpers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.session.FindByIndexNameSessionRepository;
 import org.springframework.session.Session;
-import org.springframework.stereotype.Component;
 
 public class WebSessionService implements SessionService {
 	
@@ -86,5 +85,10 @@ public class WebSessionService implements SessionService {
 	public Map<String, ? extends Session> findByIndexNameAndIndexValue(String principalNameIndexName, String userName) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public Map<String,? extends Session> getSessionsByUserName(String userName) {
+		return this.findByIndexNameAndIndexValue(FindByIndexNameSessionRepository.PRINCIPAL_NAME_INDEX_NAME, userName);
 	}
 }

@@ -8,19 +8,18 @@ import org.ancloud.domain.account.AccountSearchCriteria;
 import org.ancloud.domain.account.enums.AccountStatus;
 import org.ancloud.domain.constant.SystemConstant;
 import org.ancloud.fw.core.exception.BusinessException;
-import org.ancloud.fw.core.service.SessionService;
 import org.ancloud.fw.presentation.BaseController;
 import org.ancloud.fw.presentation.message.ResultMessages;
 import org.ancloud.presentation.form.AccountForm;
-import org.ancloud.presentation.form.AccountMForm;
-import org.ancloud.presentation.form.AccountRForm;
-import org.ancloud.presentation.form.validator.AccountMFormValidator;
-import org.ancloud.presentation.form.validator.AccountRFormValidator;
+import org.ancloud.presentation.form.validator.AccountFormMValidator;
+import org.ancloud.presentation.form.validator.AccountFormRValidator;
+import org.ancloud.presentation.service.SessionService;
 import org.ancloud.service.account.AccountService;
 import org.ancloud.wui.form.AccountSearchForm;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,20 +36,20 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class AccountController extends BaseController {
 	
 	@Inject
-	AccountService accountService;
+	AccountService<Account> accountService;
 	
 	@Inject
 	SessionService sessionService;
 	
 	@Inject
-	AccountRFormValidator accountRFormValidator;
+	AccountFormRValidator accountRFormValidator;
 	
 	@Inject
-	AccountMFormValidator accountMFormValidator;
+	AccountFormMValidator accountFormValidator;
 	
-	@InitBinder(value={"accountMForm"})
-	public void initAccountMForm(WebDataBinder binder){
-		binder.addValidators(accountMFormValidator);
+	@InitBinder(value={"accountForm"})
+	public void initAccountForm(WebDataBinder binder){
+		binder.addValidators(accountFormValidator);
 	}
 	
 	@InitBinder(value={"accountRForm"})
@@ -75,7 +74,7 @@ public class AccountController extends BaseController {
 	public String displaySearch(AccountSearchForm accountSearchForm, Model model, @PageableDefault Pageable pageable){
 		AccountSearchCriteria criteria = mapper.map(accountSearchForm, AccountSearchCriteria.class);
 		Page<Account> page = accountService.findAllByCriteria(criteria, pageable);
-		model.addAttribute("page",page);
+		model.addAttribute(SystemConstant.BEAN_NAME_PAGING,page);
 		return "account/FsAccount";
 	}
 	
@@ -83,30 +82,34 @@ public class AccountController extends BaseController {
 	public String processSearch(AccountSearchForm accountSearchForm, Model model, @PageableDefault Pageable pageable){
 		AccountSearchCriteria criteria = mapper.map(accountSearchForm, AccountSearchCriteria.class);
 		Page<Account> page = accountService.findAllByCriteria(criteria, pageable);
-		model.addAttribute("page",page);
+		model.addAttribute(SystemConstant.BEAN_NAME_PAGING,page);
 		return "account/FsAccount";
 	} 
 	
+	@RequestMapping(value="/search-ajax", method = {RequestMethod.GET})
+	public ResponseEntity<?> processAjaxSearch(AccountSearchForm accountSearchForm, Model model, @PageableDefault Pageable pageable){
+		AccountSearchCriteria criteria = mapper.map(accountSearchForm, AccountSearchCriteria.class);
+		Page<Account> page = accountService.findAllByCriteria(criteria, pageable);
+		return ResponseEntity.ok(page);
+	} 
+	
 	@RequestMapping(value={"","/register"}, method = {RequestMethod.GET})
-	public String displayRegister(AccountRForm accountRForm, Model model, @PageableDefault Pageable pageable){
+	public String displayRegister(AccountForm accountForm, Model model){
 		
 		return "account/FrAccount";
 	}
 	
 	@RequestMapping(value={"/register"}, method = {RequestMethod.POST})
-	public String processRegister(@Valid AccountRForm accountRForm,BindingResult bindingResult, Model model,RedirectAttributes redirectAttributes, @PageableDefault Pageable pageable){
+	public String processRegister(@Valid AccountForm accountForm,BindingResult bindingResult, Model model,RedirectAttributes redirectAttributes, @PageableDefault Pageable pageable){
+		accountRFormValidator.validate(accountForm, bindingResult);
 		if(bindingResult.hasErrors()){
 			return "account/FrAccount";
 		}
 		try{
-			switch(accountRForm.getAccountType()){
-//			case Doctor:
-//				Doctor doctor = mapper.map(accountRForm, Doctor.class);
-//				accountService.<Doctor>registerNew(doctor);
-//				break;
+			switch(accountForm.getAccountType()){
 			default:
-				Account account = mapper.map(accountRForm, Account.class);
-				accountService.<Account>registerNew(account);
+				Account account = mapper.map(accountForm, Account.class);
+				accountService.register(account);
 				break;
 			}
 		} catch(Exception ex){
@@ -120,25 +123,22 @@ public class AccountController extends BaseController {
 	}
 	
 	@RequestMapping(value={"/modify"}, method = {RequestMethod.GET})
-	public String displayModify(AccountMForm accountMForm, Model model, @PageableDefault Pageable pageable){
-		Account account = accountService.findByIdAndAccountType(accountMForm.getId(),accountMForm.getAccountType());
-		model.addAttribute("accountMForm", mapper.map(account, AccountMForm.class));
+	public String displayModify(AccountForm accountForm, Model model, @PageableDefault Pageable pageable){
+		Account account = accountService.findByIdAndAccountType(accountForm.getId(),accountForm.getAccountType());
+		model.addAttribute("accountForm", mapper.map(account, AccountForm.class));
 		return "account/FmAccount";
 	}
 	
 	@RequestMapping(value={"/modify"}, method = {RequestMethod.POST})
-	public String processModify(@Valid AccountMForm accountMForm,BindingResult bindingResult,RedirectAttributes redirectAttributes, Model model, @PageableDefault Pageable pageable){
+	public String processModify(@Valid AccountForm accountForm,BindingResult bindingResult,RedirectAttributes redirectAttributes, Model model, @PageableDefault Pageable pageable){
+		this.accountFormValidator.validate(accountForm, bindingResult);
 		if(bindingResult.hasErrors()){
 			return "account/FmAccount";
 		}
 		try{
-			switch(accountMForm.getAccountType()){
-//			case Doctor:
-//				Doctor doctor = mapper.map(accountMForm, Doctor.class);
-//				accountService.<Doctor>modify(doctor);
-//				break;
+			switch(accountForm.getAccountType()){
 			default:
-				Account account = mapper.map(accountMForm, Account.class);
+				Account account = mapper.map(accountForm, Account.class);
 				accountService.modify(account);
 				break;
 			
@@ -151,9 +151,9 @@ public class AccountController extends BaseController {
 		return "redirect:/admin/account/search?sort=lastUpdatedDate,desc";
 	}
 	@RequestMapping(value={"/delete"}, method = {RequestMethod.POST,RequestMethod.GET})
-	public String processDeletion(AccountMForm accountMForm,BindingResult bindingResult,RedirectAttributes redirectAttributes, Model model){
+	public String processDeletion(AccountForm accountForm,BindingResult bindingResult,RedirectAttributes redirectAttributes, Model model){
 		try{
-			Account account = mapper.map(accountMForm, Account.class);
+			Account account = mapper.map(accountForm, Account.class);
 			accountService.delete(account);
 		} catch(BusinessException ex){
 			redirectAttributes.addFlashAttribute(SystemConstant.BEAN_NAME_MESSAGES,ResultMessages.error().add(ex.getMessage()));

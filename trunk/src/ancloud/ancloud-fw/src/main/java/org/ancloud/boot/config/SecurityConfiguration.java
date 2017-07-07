@@ -12,7 +12,9 @@ import org.ancloud.presentation.context.CustomErrorAttributes;
 import org.ancloud.presentation.service.SsePushService;
 import org.ancloud.presentation.service.SsePushServiceImpl;
 import org.ancloud.service.authentication.UserDetailsServiceImpl;
+import org.aspectj.weaver.ast.And;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.web.ErrorAttributes;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -21,13 +23,16 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.session.web.http.SessionRepositoryFilter;
 import org.springframework.web.filter.RequestContextFilter;
@@ -35,6 +40,7 @@ import org.springframework.web.filter.RequestContextFilter;
 @Configuration
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 @Order(90)
+@EnableJpaAuditing(auditorAwareRef="auditorProvider")
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
 	@Inject
@@ -45,7 +51,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
 	@Inject
 	PasswordEncoder passwordEncoder;
+	
+	@Inject
+	SavedRequestAwareAuthenticationSuccessHandler successHandler;
 
+	@Value("${ancloud.security.session.max}")
+	private int SESSION_MAX;
+	
+	
 	@Bean
 	protected UserDetailsService userDetailsService(){
 		return new UserDetailsServiceImpl();
@@ -63,7 +76,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http
+		http.sessionManagement()
+				.maximumSessions(SESSION_MAX)
+				.sessionRegistry(sessionRegistry)
+				.maxSessionsPreventsLogin(false)
+				.expiredUrl("/api/auth/expire")
+				.and()
+				.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+			.and()
 			.csrf().disable()
 			.exceptionHandling()
 			.and()
@@ -81,6 +101,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 				.httpBasic()
 			.and()
 				 .formLogin()
+				 .successHandler(successHandler)
 				 .loginPage("/login")
 				 .usernameParameter("userName")
 				 .passwordParameter("password")

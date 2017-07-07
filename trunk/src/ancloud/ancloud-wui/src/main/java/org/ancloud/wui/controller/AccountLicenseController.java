@@ -2,33 +2,26 @@ package org.ancloud.wui.controller;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.ancloud.domain.account.AccountLicense;
 import org.ancloud.domain.account.AccountLicenseSearchCriteria;
 import org.ancloud.domain.account.License;
+import org.ancloud.domain.constant.SystemConstant;
 import org.ancloud.fw.core.exception.BusinessException;
-import org.ancloud.fw.core.service.SessionService;
 import org.ancloud.fw.presentation.BaseController;
 import org.ancloud.fw.presentation.message.ResultMessages;
 import org.ancloud.presentation.form.AccountLicenseForm;
-import org.ancloud.presentation.form.AccountLicenseMForm;
-import org.ancloud.presentation.form.AccountLicenseRForm;
 import org.ancloud.presentation.form.AccountLicenseRFormValidator;
+import org.ancloud.presentation.service.SessionService;
 import org.ancloud.service.account.AccountLicenseService;
 import org.ancloud.wui.form.AccountLicenseSearchForm;
-import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -48,11 +41,6 @@ public class AccountLicenseController extends BaseController {
 	@Inject
 	AccountLicenseRFormValidator accountLicenseRFormValidator;
 	
-	@InitBinder(value={"accountLicenseRForm"})
-	public void initaccountForm(WebDataBinder binder){
-		binder.addValidators(accountLicenseRFormValidator);
-	}
-	
 	@RequestMapping(value={"/show-info"}, method = RequestMethod.GET)
 	public String showLicenseInfo(AccountLicenseForm licenseForm,Model model){
 		License license = null;
@@ -71,7 +59,7 @@ public class AccountLicenseController extends BaseController {
 	public String displaySearch(AccountLicenseSearchForm accountLicenseSearchForm, Model model, @PageableDefault Pageable pageable,HttpServletRequest req){
 		AccountLicenseSearchCriteria criteria = mapper.map(accountLicenseSearchForm, AccountLicenseSearchCriteria.class);
 		Page<AccountLicense> page = accountLicenseService.findAllByCriteria(criteria, pageable);
-		model.addAttribute("page",page);
+		model.addAttribute(SystemConstant.BEAN_NAME_PAGING,page);
 		return "account-license/FsAccountLicense";
 	}
 	
@@ -79,22 +67,23 @@ public class AccountLicenseController extends BaseController {
 	public String processSearch(AccountLicenseSearchForm accountLicenseSearchForm, Model model, @PageableDefault Pageable pageable){
 		AccountLicenseSearchCriteria criteria = mapper.map(accountLicenseSearchForm, AccountLicenseSearchCriteria.class);
 		Page<AccountLicense> page = accountLicenseService.findAllByCriteria(criteria, pageable);
-		model.addAttribute("page",page);
+		model.addAttribute(SystemConstant.BEAN_NAME_PAGING,page);
 		return "account-license/FsAccountLicense";
 	} 
 	
 	@RequestMapping(value={"/register"}, method = {RequestMethod.GET})
-	public String displayRegister(AccountLicenseRForm accountLicenseRForm, Model mode){
+	public String displayRegister(AccountLicenseForm accountLicenseForm, Model mode){
 		return "account-license/FrAccountLicense";
 	}
 	
 	@RequestMapping(value={"/register"}, method = {RequestMethod.POST})
-	public String processRegister(@Valid AccountLicenseRForm accountLicenseRForm,BindingResult bindingResult, Model model,RedirectAttributes redirectAttributes, @PageableDefault Pageable pageable){
+	public String processRegister(@Valid AccountLicenseForm accountLicenseForm,BindingResult bindingResult, Model model,RedirectAttributes redirectAttributes, @PageableDefault Pageable pageable){
+		accountLicenseRFormValidator.validate(accountLicenseForm, bindingResult);
 		if(bindingResult.hasErrors()){
 			return "account-license/FrAccountLicense";
 		}
 		try{
-			accountLicenseService.register(mapper.map(accountLicenseRForm, AccountLicense.class));
+			accountLicenseService.register(mapper.map(accountLicenseForm, AccountLicense.class));
 		} catch(Exception ex){
 			ex.printStackTrace();
 			model.addAttribute("messages",
@@ -106,19 +95,19 @@ public class AccountLicenseController extends BaseController {
 	}
 	
 	@RequestMapping(value={"/modify"}, method = {RequestMethod.GET})
-	public String displayModify(AccountLicenseMForm accountLicenseMForm, Model model, @PageableDefault Pageable pageable){
-		AccountLicense license = accountLicenseService.findById(accountLicenseMForm.getId());
-		model.addAttribute("accountLicenseMForm", mapper.map(license, AccountLicenseMForm.class));
+	public String displayModify(AccountLicenseForm accountLicenseForm, Model model, @PageableDefault Pageable pageable){
+		AccountLicense license = accountLicenseService.findById(accountLicenseForm.getId());
+		model.addAttribute("accountLicenseMForm", mapper.map(license, AccountLicenseForm.class));
 		return "account-license/FmAccountLicense";
 	}
 	
 	@RequestMapping(value={"/modify"}, method = {RequestMethod.POST})
-	public String processModify(@Valid AccountLicenseForm accountLicenseMForm,BindingResult bindingResult,RedirectAttributes redirectAttributes, Model model, @PageableDefault Pageable pageable){
+	public String processModify(@Valid AccountLicenseForm accountLicenseForm,BindingResult bindingResult,RedirectAttributes redirectAttributes, Model model, @PageableDefault Pageable pageable){
 		if(bindingResult.hasErrors()){
 			return "account-license/FmAccountLicense";
 		}
 		try{
-			accountLicenseService.modify(mapper.map(accountLicenseMForm, AccountLicense.class));
+			accountLicenseService.modify(mapper.map(accountLicenseForm, AccountLicense.class));
 		} catch(BusinessException ex){
 			model.addAttribute("messages", ResultMessages.error().add(ex.getMessage()));
 			return "account-license/FmAccountLicense";
@@ -127,10 +116,10 @@ public class AccountLicenseController extends BaseController {
 		return "redirect:/admin/license/search?sort=lastUpdatedDate,desc";
 	}
 	@RequestMapping(value={"/delete"}, method = {RequestMethod.POST,RequestMethod.GET})
-	public String processDeletion(AccountLicenseMForm accountLicenseMForm,BindingResult bindingResult,RedirectAttributes redirectAttributes, Model model){
+	public String processDeletion(AccountLicenseForm accountLicenseForm,BindingResult bindingResult,RedirectAttributes redirectAttributes, Model model){
 		try{
-			AccountLicense accountLicense = mapper.map(accountLicenseMForm, AccountLicense.class);
-			accountLicenseService.deleteById(accountLicense.getId());
+			AccountLicense accountLicense = mapper.map(accountLicenseForm, AccountLicense.class);
+			accountLicenseService.delete(accountLicense);
 		} catch(BusinessException ex){
 			redirectAttributes.addFlashAttribute("messages",ResultMessages.error().add(ex.getMessage()));
 			return "redirect:/admin/account-license/search";
@@ -139,8 +128,8 @@ public class AccountLicenseController extends BaseController {
 		return "redirect:/admin/account-license/search";
 	}
 	@RequestMapping(value={"/getQrCode"}, method = {RequestMethod.GET})
-	public String getQrCode(AccountLicenseRForm accountLicenseRForm, Model mode){
-		String file = accountLicenseService.getQrCodeFile(mapper.map(accountLicenseRForm, AccountLicense.class));
+	public String getQrCode(AccountLicenseForm accountLicenseForm, Model mode){
+		String file = accountLicenseService.getQrCodeFile(mapper.map(accountLicenseForm, AccountLicense.class));
 		return "redirect:/resources/qr/"+file;
 	}
 }

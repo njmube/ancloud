@@ -4,9 +4,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.TimeZone;
 
 import org.ancloud.domain.constant.SystemConstant;
 import org.ancloud.fw.presentation.i18n.InitializableMessageSource;
+import org.joda.time.DateTimeZone;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -28,10 +30,10 @@ public class ApplicationContextListener implements ApplicationListener<Applicati
 			try {
 				this.initializeSystemFiles();
 			} catch (IOException e) {
-				if(logger.isErrorEnabled()){
-					logger.error("Cannot initialize system files.",e);
-				}
+				logger.error("Cannot initialize system files.",e);
 			}
+			TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+			DateTimeZone.setDefault(DateTimeZone.UTC);
 		}
 	}
 

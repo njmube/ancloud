@@ -10,7 +10,7 @@
 <%@ attribute name="modelAttribute" rtexprvalue="true" required="true"%>
 
 <div class="col-md-12">
-	<div class="panel panel-primary">
+	<div class="panel panel-primary panel-search-result">
 		<div class="panel-heading">
 			<i class="fa fa-list"></i>
 			<span><bb-ex:message code="sc.common.00006"></bb-ex:message></span>

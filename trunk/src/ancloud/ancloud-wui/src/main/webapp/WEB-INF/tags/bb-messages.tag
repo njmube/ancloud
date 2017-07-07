@@ -4,7 +4,7 @@
 <%@ taglib uri="http://bluebird.org/tags/ex" prefix="bb-ex"%>
 <%@ taglib uri="http://bluebird.org/tags/core" prefix="bb"%>
 
-<%@ attribute name="messages" rtexprvalue="true" required="true" type="org.medtech.fw.presentation.message.ResultMessages"%>
+<%@ attribute name="messages" rtexprvalue="true" required="true" type="org.ancloud.fw.presentation.message.ResultMessages"%>
 
 <c:if test="${not empty messages}">
 	<c:choose>

@@ -54,8 +54,8 @@
 					<span>Account information</span>
 				</div>
 				<div class="panel-body">
-					<form:form modelAttribute="accountMForm" cssClass="form-horizontal bb-form" action="${basePath }/admin/account/modify" method="POST">
-						<spring:bind path="accountMForm.userName">
+					<form:form modelAttribute="accountForm" cssClass="form-horizontal bb-form" action="${basePath }/admin/account/modify" method="POST">
+						<spring:bind path="accountForm.userName">
 							<div class="form-group  ${status.error?'has-error':'' }">
 								<label for="userName " class="col-md-2">User name</label> 
 								<div class="input-group col-md-10">
@@ -67,7 +67,7 @@
 								<form:errors path="userName"  cssClass="help-block col-md-12" />
 							</div>
 						</spring:bind>
-						<spring:bind path="accountMForm.password">
+						<spring:bind path="accountForm.password">
 							<div class="form-group ${status.error?'has-error':'' }">
 								<label for="password" class="col-md-2">Password</label> 
 								<div class="input-group col-md-10">
@@ -77,7 +77,7 @@
 								<form:errors path="password"  cssClass="help-block col-md-12" />
 							</div>
 						</spring:bind>
-						<spring:bind path="accountMForm.reenterPassword">
+						<spring:bind path="accountForm.reenterPassword">
 							<div class="form-group ${status.error?'has-error':'' }">
 								<label for="reenterPassword" class="col-md-2">Confirm password</label> 
 								<div class="input-group col-md-10">
@@ -206,7 +206,7 @@
 		</div>
 		<div class="form-group btn-group col-md-12 bb-action-group-footer">
 			<div class="col-md-2">
-				<button type="submit" form="accountMForm" class="btn btn-primary bb-button">Save</button>
+				<button type="submit" form="accountForm" class="btn btn-primary bb-button">Save</button>
 			</div>
 			<div class="col-md-2"></div>
 			<div class="col-md-2"></div>

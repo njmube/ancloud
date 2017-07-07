@@ -3,36 +3,34 @@ package org.ancloud.fw.presentation.mapper;
 
 import java.util.Map;
 
+import org.joda.time.DateTime;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.FactoryBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.stereotype.Component;
 
 import ma.glasnost.orika.Converter;
 import ma.glasnost.orika.Filter;
 import ma.glasnost.orika.Mapper;
-import ma.glasnost.orika.MapperFacade;
-import ma.glasnost.orika.converter.builtin.EnumConverter;
+import ma.glasnost.orika.MapperFactory;
+import ma.glasnost.orika.converter.builtin.PassThroughConverter;
+import ma.glasnost.orika.impl.ConfigurableMapper;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
+import ma.glasnost.orika.impl.generator.EclipseJdtCompilerStrategy;
 
-public class BeanMapperContextAware implements FactoryBean<MapperFacade>,ApplicationContextAware {
+public class BeanMapperContextAware extends ConfigurableMapper implements ApplicationContextAware {
 
-	DefaultMapperFactory factory = new DefaultMapperFactory.Builder().build();
-	
+	private MapperFactory factory;
+
 	@Override
-	public MapperFacade getObject() throws Exception {
-		return factory.getMapperFacade();
+	protected void configureFactoryBuilder(final DefaultMapperFactory.Builder factoryBuilder) {
+		factoryBuilder.mapNulls(false);
+//		factoryBuilder.compilerStrategy(new EclipseJdtCompilerStrategy());
 	}
 
 	@Override
-	public Class<?> getObjectType() {
-		return MapperFacade.class;
-	}
-
-	@Override
-	public boolean isSingleton() {
-		return true;
+	protected void configure(final MapperFactory factory) {
+		this.factory = factory;
+		this.factory.getConverterFactory().registerConverter(new PassThroughConverter(DateTime.class));
 	}
 
 	@Override
@@ -42,7 +40,6 @@ public class BeanMapperContextAware implements FactoryBean<MapperFacade>,Applica
 
 	@SuppressWarnings("rawtypes")
 	private void addAllSpringBeans(final ApplicationContext applicationContext) {
-		
 		final Map<String, Converter> converters = applicationContext.getBeansOfType(Converter.class);
 		for (final Converter converter : converters.values()) {
 			addConverter(converter);
@@ -57,7 +54,6 @@ public class BeanMapperContextAware implements FactoryBean<MapperFacade>,Applica
 		for (final Filter filter : filters.values()) {
 			factory.registerFilter(filter);
 		}
-		this.addConverter(new EnumConverter());
 	}
 
 	public void addConverter(final Converter<?, ?> converter) {
@@ -72,6 +68,4 @@ public class BeanMapperContextAware implements FactoryBean<MapperFacade>,Applica
 				.customize((Mapper) mapper)
 				.register();
 	}
-
-
 }

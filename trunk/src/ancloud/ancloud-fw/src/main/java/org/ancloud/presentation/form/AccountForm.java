@@ -3,6 +3,8 @@ package org.ancloud.presentation.form;
 
 import org.ancloud.domain.account.enums.AccountStatus;
 import org.ancloud.domain.account.enums.AccountType;
+import org.ancloud.fw.presentation.validation.annotation.Alphanumeric;
+import org.ancloud.fw.presentation.validation.annotation.Email;
 import org.hibernate.validator.constraints.Length;
 import org.joda.time.DateTime;
 
@@ -12,12 +14,14 @@ public class AccountForm extends BaseForm {
 
 	private static final long serialVersionUID = -1900019761440463396L;
 
-	@Length(max=50)
+	@Length(max=128)
+	@Alphanumeric(message="Field 'userName' is not alphanumeric, can only contains [a-zA-Z0-9_]")
 	private String userName;
 	
 	private String title;
 	
-	@Length(max=200)
+	@Length(max=254)
+	@Email
 	private String email;
 	
 	private String contactNumber;
@@ -41,6 +45,7 @@ public class AccountForm extends BaseForm {
 	private AccountStatus accountStatus;
 	
 	private AccountType accountType;
+	
 	
 	@JsonIgnore
 	private AccountForm approver;
@@ -157,4 +162,5 @@ public class AccountForm extends BaseForm {
 	public void setIsApproval(int isApproval) {
 		this.isApproval = isApproval;
 	}
+
 }

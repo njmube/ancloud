@@ -3,7 +3,7 @@
 <tiles:insertDefinition name="admin">
 	<tiles:putAttribute name="content-header" >
 		<div class="col-md-6">
-			<h3>Permission <small>Modification</small></h3>
+			<h3>Account permission <small>Registration</small></h3>
 		</div>
 		<div class="form-group btn-group col-md-6 bb-action-group-footer">
 			<div class="col-md-2"></div>
@@ -26,40 +26,48 @@
 					<span>General information</span>
 				</div>
 				<div class="panel-body">
-					<form:form modelAttribute="accountPermissionMForm" cssClass="form-horizontal bb-form" action="${basePath }/admin/account-permission/register" method="POST">
+					<form:form modelAttribute="accountPermissionForm" cssClass="form-horizontal bb-form" action="${basePath }/admin/account-permission/register" method="POST">
 						<div class="form-group ${status.error?'has-error':'' }">
 							<label for="account.id" class="col-md-2 col-xs-12">Account</label> 
 							<div class="input-group col-md-10 col-xs-12">
 								<input name="account.name" 
-										value="${accountPermissionMForm.account.name}" 
+										value="${accountPermissionForm.account.name}" 
 										type="text" 
 										class="bb-autocomplete form-control" 
-										data-source-path="${basePath }/autocomplete/account" 
+										data-source-path="/autocomplete/account" 
 										data-query-string-property="name"
 										data-display-properties="name"
 										data-submit-property="uid"
-										data-parameter='{"accountType":"MCPermissiond"}' />
-								<input name="account.id" value="${accountPermissionMForm.account.id}" type="hidden"></input>
+										data-parameter='{}' />
+								<span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
+								<input name="account.id" value="${accountPermissionForm.account.id}" type="hidden"></input>
 							</div>
 							<form:errors path="account.id"  cssClass="text-red col-md-12" />
 						</div>
 						<div class="form-group ${status.error?'has-error':'' }">
-                            <label for="fromDate" class="col-md-2">Permission period</label> 
-                            <div class="input-group col-md-10">
-                                <form:input path="fromDate"  class="bb-datepicker form-control"/>
-                                <span class="input-group-addon">to</span>
-                                <form:input path="toDate"  class="bb-datepicker form-control"/>
-                            </div>
-                            <form:errors path="fromDate"  cssClass="text-red error col-md-12" />
-                            <form:errors path="toDate"  cssClass="text-red col-md-12" />
-                        </div>
+							<label for="permission.id" class="col-md-2 col-xs-12">Permission</label> 
+							<div class="input-group col-md-10 col-xs-12">
+								<input name="permission.code" 
+										value="${accountPermissionForm.permission.code}" 
+										type="text" 
+										class="bb-autocomplete form-control" 
+										data-source-path="/autocomplete/permission" 
+										data-query-string-property="code"
+										data-display-properties="code"
+										data-submit-property="uid"
+										data-parameter='{}' />
+								<span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
+								<input name="permission.id" value="${accountPermissionForm.permission.id}" type="hidden"></input>
+							</div>
+							<form:errors path="permission.id"  cssClass="text-red col-md-12" />
+						</div>
 					</form:form>
 				</div>
 			</div>
 		</div>
 		<div class="form-group btn-group col-md-12 bb-action-group-footer">
 			<div class="col-md-2">
-				<button type="submit" form="accountPermissionMForm" class="btn btn-primary bb-button">Save</button>
+				<button type="submit" form="accountPermissionForm" class="btn btn-primary bb-button">Save</button>
 			</div>
 			<div class="col-md-2"></div>
 			<div class="col-md-2"></div>

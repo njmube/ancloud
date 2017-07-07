@@ -1,11 +1,13 @@
 package org.ancloud.fw.core.util;
 
+import java.util.UUID;
+
 import org.apache.commons.lang3.RandomUtils;
 
-public class GenerationUtil {
+public class GenerationHelpers {
 	public static String generateCode(String prefix){
 		//TODO: prefix 29 code 50
-		return GenerationUtil.generateCode(prefix, 10000L);
+		return GenerationHelpers.generateCode(prefix, 10000L);
 	}
 	
 	public static String generateCode(String prefix,Long endExclusive){
@@ -14,5 +16,13 @@ public class GenerationUtil {
 		} else {
 			return System.currentTimeMillis() + "_" + RandomUtils.nextLong(0, endExclusive);
 		}
+	}
+	
+	public static String generateGUID(){
+		return UUID.randomUUID().toString();
+	}
+
+	public static String generateUserName() {
+		return UUID.randomUUID().toString();
 	}
 }

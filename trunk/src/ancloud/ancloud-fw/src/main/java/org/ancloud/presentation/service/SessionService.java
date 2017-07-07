@@ -1,4 +1,4 @@
-package org.ancloud.fw.core.service;
+package org.ancloud.presentation.service;
 
 import java.util.List;
 import java.util.Map;
@@ -16,6 +16,8 @@ public interface SessionService{
 	Map<Object, List<Object>> getAllSessions();
 
 	Map<String, ? extends Session> findByIndexNameAndIndexValue(String principalNameIndexName, String userName);
+	
+	public Map<String, ? extends Session> getSessionsByUserName(String userName);
 	
 	public String getUserAgent();
 }

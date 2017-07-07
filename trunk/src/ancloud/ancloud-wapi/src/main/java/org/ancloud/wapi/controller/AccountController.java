@@ -6,10 +6,10 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 
 import org.ancloud.domain.account.AccountLicense;
-import org.ancloud.fw.core.service.SessionService;
 import org.ancloud.fw.presentation.BaseController;
 import org.ancloud.fw.presentation.validation.ValidationResponseEntityBuilder;
 import org.ancloud.presentation.form.AccountLicenseForm;
+import org.ancloud.presentation.service.SessionService;
 import org.ancloud.service.account.AccountLicenseService;
 import org.ancloud.service.account.AccountService;
 import org.springframework.http.ResponseEntity;
@@ -35,13 +35,13 @@ public class AccountController extends BaseController {
 
 	@RequestMapping(value="get-sessions",method = {RequestMethod.GET})
 	public ResponseEntity<?> getSession(Principal principal) {
-		return ResponseEntity.ok(accountService.getSessionsByUserName(principal.getName()));
+		return ResponseEntity.ok(sessionService.getSessionsByUserName(principal.getName()));
 	}
 	
 	@RequestMapping(value="get-all-sessions",method = {RequestMethod.GET})
 	@PreAuthorize("hasRole('Administrator')")
 	public ResponseEntity<?> getAllSessions() {
-		return ResponseEntity.ok(licenseService.getAllSessions());
+		return ResponseEntity.ok(sessionService.getAllSessions());
 	}
 	
 	@RequestMapping(value="register-session",method = {RequestMethod.POST})

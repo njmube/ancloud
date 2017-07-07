@@ -1,64 +1,75 @@
 <groups xmlns="http://www.isdc.ro/wro">
-	<group name="front">
-		<css>/resources/plugin/font-awesome.css</css>
+    <group name="front">
+        <css>/resources/plugin/font-awesome.css</css>
         <css>/resources/plugin/bootstrap.css</css>
-		<css>/resources/plugin/magnific-popup.css</css>
+        <css>/resources/plugin/magnific-popup.css</css>
         <css>/resources/front/css/creative.css</css>
 
         <js>/resources/plugin/jquery.js</js>
+        <js>/resources/plugin/jquery-ui.js</js>
         <js>/resources/plugin/bootstrap.js</js>
         <js>/resources/plugin/jquery.easing.js</js>
         <js>/resources/plugin/scrollreveal.js</js>
         <js>/resources/plugin/magnific-popup.js</js>
-        <js>/resources/nimda/js/core/bluebird.js</js>
-        <js>/resources/nimda/js/core/bluebird.common.js</js>
-        <js>/resources/nimda/js/core/bluebird.ar.js</js>
         <js>/resources/front/js/creative.js</js>
-	</group>
+    </group>
+    <group name="admin">
+        <group-ref>plugin</group-ref>
+        <css>/resources/nimda/css/core/link.css</css>
+        <css>/resources/nimda/css/core/button.css</css>
+        <css>/resources/nimda/css/core/bluebird.css</css>
+        <css>/resources/nimda/css/core/navigation.css</css>
+        <css>/resources/nimda/css/core/sidebar.css</css>
+        <css>/resources/nimda/css/core/pagination.css</css>
+        <css>/resources/nimda/css/core/img.css</css>
+        <css>/resources/nimda/css/core/button.css</css>
+        <css>/resources/nimda/css/core/text.css</css>
+        <css>/resources/nimda/css/core/box.css</css>
+        <css>/resources/nimda/css/core/helpers.css</css>
+        <css>/resources/nimda/css/core/control-sidebar.css</css>
+        <css>/resources/nimda/css/skin/blue.css</css>
+        <css>/resources/nimda/css/app/bootstrap.bluebird.css</css>
+        <css>/resources/plugin/bootcards/css/bootcards-desktop.css</css>
+        <css>/resources/nimda/css/app/app-icons.css</css>
+        <css>/resources/nimda/css/app/app.css</css>
+        
+        <js>/resources/nimda/js/core/bluebird.js</js>
+        <js>/resources/nimda/js/core/bluebird.ar.js</js>
+        <js>/resources/nimda/js/core/bluebird.common.js</js>
+    </group>
 
-	<group name="admin">
-		<group-ref>plugin</group-ref>
-		<css>/resources/nimda/css/core/bluebird.css</css>
-		<css>/resources/nimda//css/core/bluebird.blue-light.css</css>
-		<css>/resources/nimda//css/app/bootstrap.bluebird.css</css>
-		
-		<js>/resources/nimda/js/core/bluebird.js</js>
-		<js>/resources/nimda/js/core/bluebird.ar.js</js>
-		<js>/resources/nimda/js/core/bluebird.common.js</js>
-		
-	</group>
-
-	<group name="plugin">
-		
-		<css>/resources/plugin/font-awesome.css</css>
-		<css>/resources/plugin/icons.css</css>
-		<css>/resources/plugin/bootstrap.css</css>
-		<css>/resources/plugin/bootstrap.submenu.css</css>
-		<css>/resources/plugin/daterangepicker.css</css>
-		<css>/resources/plugin/flag-icon.css</css>
-		<css>/resources/plugin/typeahead.css</css>
-		<css>/resources/plugin/select2.css</css>
-		<css>/resources/plugin/inputmask.css</css>
-		
-		<js>/resources/plugin/jquery.js</js>
-		<js>/resources/plugin/bootstrap.js</js>
-		<js>/resources/plugin/inputmask.js</js>
-		<js>/resources/plugin/moment.js</js>
-		<js>/resources/plugin/bootstrap.submenu.js</js>
-		<js>/resources/plugin/daterangepicker.js</js>
-		<js>/resources/plugin/jquery.slimscroll.js</js>
-		<js>/resources/plugin/fastclick.js</js>
-		<js>/resources/plugin/colResizable.js</js>
-		<js>/resources/plugin/handlebars.js</js>
-		<js>/resources/plugin/typeahead.bundle.js</js>
-		<js>/resources/plugin/select2.js</js>
-		<js>/resources/plugin/angular.js</js>
-		<js>/resources/plugin/angular-router.js</js>
-	</group>
-
-
-	
-
-
-
+    <group name="plugin">
+        <css>/resources/plugin/font-awesome.css</css>
+        <css>/resources/plugin/icons.css</css>
+        <css>/resources/plugin/bootstrap.css</css>
+        <css>/resources/plugin/bootstrap.submenu.css</css>
+        <css>/resources/plugin/daterangepicker.css</css>
+        <css>/resources/plugin/flag-icon.css</css>
+        <css>/resources/plugin/typeahead.css</css>
+        <css>/resources/plugin/select2.css</css>
+        <css>/resources/plugin/inputmask.css</css>
+        <css>/resources/plugin/nprogress.min.css</css>
+        <css>/resources/plugin/fullcalendar.css</css>
+        
+        <js>/resources/plugin/cookie.js</js>
+        <js>/resources/plugin/jquery.js</js>
+        <js>/resources/plugin/jquery-ui.js</js>
+        <js>/resources/plugin/bootstrap.js</js>
+        <js>/resources/plugin/inputmask.js</js>
+        <js>/resources/plugin/moment.js</js>
+        <js>/resources/plugin/fullcalendar.js</js>
+        <js>/resources/plugin/jquery.easing.js</js>
+        <js>/resources/plugin/bootstrap.submenu.js</js>
+        <js>/resources/plugin/daterangepicker.js</js>
+        <js>/resources/plugin/jquery.slimscroll.js</js>
+        <js>/resources/plugin/fastclick.js</js>
+        <js>/resources/plugin/colResizable.js</js>
+        <js>/resources/plugin/handlebars.js</js>
+        <js>/resources/plugin/typeahead.bundle.js</js>
+        <js>/resources/plugin/select2.js</js>
+        <js>/resources/plugin/nprogress.min.js</js>
+        <js>/resources/plugin/d3.js</js>
+        <js>/resources/plugin/chart.bundle.js</js>
+        <js>/resources/plugin/chart.util.js</js>
+    </group>
 </groups>

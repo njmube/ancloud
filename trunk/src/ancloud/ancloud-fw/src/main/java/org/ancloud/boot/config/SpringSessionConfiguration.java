@@ -1,6 +1,6 @@
 package org.ancloud.boot.config;
 
-import org.ancloud.fw.core.service.SessionService;
+import org.ancloud.presentation.service.SessionService;
 import org.ancloud.presentation.service.WebSessionService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.Order;

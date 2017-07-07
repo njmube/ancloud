@@ -6,13 +6,12 @@ import javax.validation.Valid;
 
 import org.ancloud.domain.account.AccountPermission;
 import org.ancloud.domain.account.AccountPermissionSearchCriteria;
+import org.ancloud.domain.constant.SystemConstant;
 import org.ancloud.fw.core.exception.BusinessException;
-import org.ancloud.fw.core.service.SessionService;
 import org.ancloud.fw.presentation.BaseController;
 import org.ancloud.fw.presentation.message.ResultMessages;
 import org.ancloud.presentation.form.AccountPermissionForm;
-import org.ancloud.presentation.form.AccountPermissionMForm;
-import org.ancloud.presentation.form.AccountPermissionRForm;
+import org.ancloud.presentation.service.SessionService;
 import org.ancloud.service.account.AccountPermissionService;
 import org.ancloud.wui.form.AccountPermissionSearchForm;
 import org.springframework.data.domain.Page;
@@ -41,7 +40,7 @@ public class AccountPermissonController extends BaseController {
 	public String displaySearch(AccountPermissionSearchForm accountPermissionSearchForm, Model model, @PageableDefault Pageable pageable,HttpServletRequest req){
 		AccountPermissionSearchCriteria criteria = mapper.map(accountPermissionSearchForm, AccountPermissionSearchCriteria.class);
 		Page<AccountPermission> page = accountPermissionService.findAllByCriteria(criteria, pageable);
-		model.addAttribute("page",page);
+		model.addAttribute(SystemConstant.BEAN_NAME_PAGING,page);
 		return "account-permission/FsAccountPermission";
 	}
 	
@@ -49,17 +48,17 @@ public class AccountPermissonController extends BaseController {
 	public String processSearch(AccountPermissionSearchForm accountPermissionSearchForm, Model model, @PageableDefault Pageable pageable){
 		AccountPermissionSearchCriteria criteria = mapper.map(accountPermissionSearchForm, AccountPermissionSearchCriteria.class);
 		Page<AccountPermission> page = accountPermissionService.findAllByCriteria(criteria, pageable);
-		model.addAttribute("page",page);
+		model.addAttribute(SystemConstant.BEAN_NAME_PAGING,page);
 		return "account-permission/FsAccountPermission";
 	} 
 	
 	@RequestMapping(value={"/register"}, method = {RequestMethod.GET})
-	public String displayRegister(AccountPermissionRForm accountPermissionRForm, Model mode){
+	public String displayRegister(AccountPermissionForm accountPermissionRForm, Model mode){
 		return "account-permission/FrAccountPermission";
 	}
 	
 	@RequestMapping(value={"/register"}, method = {RequestMethod.POST})
-	public String processRegister(@Valid AccountPermissionRForm accountPermissionRForm,BindingResult bindingResult, Model model,RedirectAttributes redirectAttributes, @PageableDefault Pageable pageable){
+	public String processRegister(@Valid AccountPermissionForm accountPermissionRForm,BindingResult bindingResult, Model model,RedirectAttributes redirectAttributes, @PageableDefault Pageable pageable){
 		if(bindingResult.hasErrors()){
 			return "account-permission/FrAccountPermission";
 		}
@@ -76,19 +75,19 @@ public class AccountPermissonController extends BaseController {
 	}
 	
 	@RequestMapping(value={"/modify"}, method = {RequestMethod.GET})
-	public String displayModify(AccountPermissionMForm accountPermissionMForm, Model model, @PageableDefault Pageable pageable){
+	public String displayModify(AccountPermissionForm accountPermissionMForm, Model model, @PageableDefault Pageable pageable){
 		AccountPermission permission = accountPermissionService.findById(accountPermissionMForm.getId());
-		model.addAttribute("permissionMForm", mapper.map(permission, AccountPermissionMForm.class));
+		model.addAttribute("permissionMForm", mapper.map(permission, AccountPermissionForm.class));
 		return "account-permission/FmAccountPermission";
 	}
 	
 	@RequestMapping(value={"/modify"}, method = {RequestMethod.POST})
-	public String processModify(@Valid AccountPermissionForm accountPermissionMForm,BindingResult bindingResult,RedirectAttributes redirectAttributes, Model model, @PageableDefault Pageable pageable){
+	public String processModify(@Valid AccountPermissionForm accountPermissionForm,BindingResult bindingResult,RedirectAttributes redirectAttributes, Model model, @PageableDefault Pageable pageable){
 		if(bindingResult.hasErrors()){
 			return "account-permission/FmAccountPermission";
 		}
 		try{
-			accountPermissionService.modify(mapper.map(accountPermissionMForm, AccountPermission.class));
+			accountPermissionService.modify(mapper.map(accountPermissionForm, AccountPermission.class));
 		} catch(BusinessException ex){
 			model.addAttribute("messages", ResultMessages.error().add(ex.getMessage()));
 			return "account-permission/FmAccountPermission";
@@ -97,10 +96,10 @@ public class AccountPermissonController extends BaseController {
 		return "redirect:/admin/permission/search?sort=lastUpdatedDate,desc";
 	}
 	@RequestMapping(value={"/delete"}, method = {RequestMethod.POST,RequestMethod.GET})
-	public String processDeletion(AccountPermissionMForm accountPermissionMForm,BindingResult bindingResult,RedirectAttributes redirectAttributes, Model model){
+	public String processDeletion(AccountPermissionForm accountPermissionForm,BindingResult bindingResult,RedirectAttributes redirectAttributes, Model model){
 		try{
-			AccountPermission accountPermission = mapper.map(accountPermissionMForm, AccountPermission.class);
-			accountPermissionService.deleteById(accountPermission.getId());
+			AccountPermission accountPermission = mapper.map(accountPermissionForm, AccountPermission.class);
+			accountPermissionService.delete(accountPermission);
 		} catch(BusinessException ex){
 			redirectAttributes.addFlashAttribute("messages",ResultMessages.error().add(ex.getMessage()));
 			return "redirect:/admin/account-permission/search";

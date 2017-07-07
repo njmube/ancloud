@@ -3,8 +3,8 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
+<%@ taglib uri="http://bluebird.org/tags/ex" prefix="bb-ex"%>
 <%@ attribute name="formName" rtexprvalue="true" required="true"%>
-<%@ attribute name="page" rtexprvalue="true" required="true" type="org.springframework.data.domain.Page" %>
 <%@ attribute name="sortProperty" rtexprvalue="true" required="true"%>
 <%@ attribute name="label" rtexprvalue="true" %>
 
@@ -12,7 +12,7 @@
 <a href="?page=${page.number }&sort=${empty direction?sortProperty.concat(',asc'):direction eq 'DESC'?'': sortProperty.concat(',desc')}">
 	<span>
 		<c:catch var="exception">
-			<spring:message code="${label}"></spring:message>
+			<bb-ex:message code="${label}"></bb-ex:message>
 		</c:catch>
 		<c:if test = "${exception != null}">
 			<c:out value="${label}"></c:out>

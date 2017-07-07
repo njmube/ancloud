@@ -47,16 +47,15 @@
 		</div>
 	</tiles:putAttribute>
 	<tiles:putAttribute name="content-body">
-		
 		<div class="col-md-12">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<i class="fa fa-info-circle"></i>
-					<span>Account information</span>
+					<span>General information</span>
 				</div>
 				<div class="panel-body">
-					<form:form modelAttribute="accountRForm" cssClass="form-horizontal bb-form" action="${basePath }/admin/account/register" method="POST">
-						<spring:bind path="accountRForm.userName">
+					<form:form modelAttribute="accountForm" cssClass="form-horizontal bb-form" action="${basePath }/admin/account/register" method="POST">
+						<spring:bind path="accountForm.userName">
 							<div class="form-group  ${status.error?'has-error':'' }">
 								<label for="userName " class="col-md-2">User name</label> 
 								<div class="input-group col-md-10">
@@ -66,7 +65,7 @@
 								<form:errors path="userName"  cssClass="help-block col-md-12" />
 							</div>
 						</spring:bind>
-						<spring:bind path="accountRForm.password">
+						<spring:bind path="accountForm.password">
 							<div class="form-group ${status.error?'has-error':'' }">
 								<label for="password" class="col-md-2">Password</label> 
 								<div class="input-group col-md-10">
@@ -76,7 +75,7 @@
 								<form:errors path="password"  cssClass="help-block col-md-12" />
 							</div>
 						</spring:bind>
-						<spring:bind path="accountRForm.reenterPassword">
+						<spring:bind path="accountForm.reenterPassword">
 							<div class="form-group ${status.error?'has-error':'' }">
 								<label for="reenterPassword" class="col-md-2">Confirm password</label> 
 								<div class="input-group col-md-10">
@@ -204,7 +203,7 @@
 		</div>
 		<div class="form-group btn-group col-md-12 bb-action-group-footer">
 			<div class="col-md-2">
-				<button type="submit" form="accountRForm" class="btn btn-primary bb-button">Register</button>
+				<button type="submit" form="accountForm" class="btn btn-primary bb-button">Register</button>
 			</div>
 			<div class="col-md-2"></div>
 			<div class="col-md-2"></div>

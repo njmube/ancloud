@@ -2,7 +2,7 @@ package org.ancloud.fw.presentation.controller.resolver;
 
 import javax.inject.Inject;
 
-import org.ancloud.fw.core.service.SessionService;
+import org.ancloud.presentation.service.SessionService;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;

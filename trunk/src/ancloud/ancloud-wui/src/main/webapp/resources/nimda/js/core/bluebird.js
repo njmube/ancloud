@@ -105,18 +105,21 @@
 		fix : function() {
 			// Get window height and the wrapper height
 			var neg = $('.main-header').outerHeight(true);
+			var footer_height = $('.content-footer').outerHeight(true);
+			//var content_height = $('.content-footer').outerHeight(true);
 			var window_height = $(window).outerHeight();
 			var sidebar_height = $(".sidebar").height();
 			// Set the min-height of the content and sidebar based on the
 			// the height of the document.
 			var contentMargin = parseInt($(".content").css("marginTop"))+parseInt($(".content").css("marginBottom"));
 			var contentHeaderFooterHeight = $(".content-wrapper .content-header").outerHeight() + $(".content-wrapper .content-footer").outerHeight();
+			var content_wrapper_viewport = window_height - neg;
 			if ($("body").hasClass("fixed")) {
-				$(".content-wrapper").css('min-height',window_height - neg);
+				$(".content-wrapper").css('min-height',content_wrapper_viewport);
 			} else {
 				var postSetWidth;
 				if (window_height >= sidebar_height) {
-					$(".content-wrapper").css('min-height', window_height - neg);
+					$(".content-wrapper").css('min-height',content_wrapper_viewport);
 					postSetWidth = window_height - neg;
 				} else {
 					$(".content-wrapper").css('min-height', sidebar_height);

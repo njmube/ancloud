@@ -1,0 +1,80 @@
+ancloud:
+  security:
+    session:
+      max: 1
+    token:
+      expiration: 604800
+      header: Authorization
+      secret: VEdiOCM5e1soNSFKZV1eVw==
+      
+# Spring boot configuration
+server:
+  compression:
+    enabled: true
+    mime-types: text/html,application/json
+    min-response-size: 120000
+  port: 9001
+flyway:
+  baseline-on-migrate: true
+  enabled: false
+  validate-on-migrate: true
+liquibase:
+  enabled: true
+  change-log: classpath:/db/changelog/db.changelog-master.xml
+security:
+  filter-order: 5
+spring:
+  datasource:
+#    url: jdbc:hsqldb:file:./db/ancloud
+    url: jdbc:mysql://localhost:3306/ancloud?useUnicode=yes&characterEncoding=UTF-8
+#    driver-class-name: org.hsqldb.jdbcDriver
+    driver-class-name: com.mysql.jdbc.Driver
+    username: ancloud
+    password: 0af3b424
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+        idleTimeout: 10000
+        maximumPoolSize: 96
+        minimumIdle: 10
+        connectionTimeout: 60000
+  jpa:
+    show-sql: false
+    hibernate:
+        ddl-auto: none
+        naming:
+            implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+            physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+        hibernate:
+#          dialect: org.hibernate.dialect.HSQLDialect
+          dialect: org.hibernate.dialect.MySQL5Dialect
+        jadira:
+          usertype:
+            autoRegisterUserTypes: true
+            databaseZone: UTC
+            javaZone: UTC
+# none, create, drop-and-create, drop
+        javax:
+          persistence:
+            schema-generation:
+              database:
+                action: none
+              scripts:
+                action: none
+                create-target: C:/create-script.sql 
+                drop-target: C:/drop-script.sql
+    open-in-view: true
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: false
+    serialization:
+      fail-on-empty-beans: false
+  main:
+    web-environment: true
+  mvc:
+    view:
+      prefix: /WEB-INF/views
+      suffix: .jsp
+  redis:
+    host: localhost
+    port: 6379
