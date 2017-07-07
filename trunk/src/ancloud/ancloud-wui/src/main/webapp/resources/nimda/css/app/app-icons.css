@@ -1,0 +1,54 @@
+.bb-foot {
+	background: url(../../../img/bb-icons/footprint.png) center center no-repeat;
+}
+.bb-foot-enabled {
+	background: url(../../../img/bb-icons/footprint_e.png) center center no-repeat;
+}
+.bb-diaper {
+	background: url(../../../img/bb-icons/diaper.png) center center no-repeat;
+}
+.bb-diaper-enabled {
+	background: url(../../../img/bb-icons/diaper_e.png) center center no-repeat;
+}
+.bb-heart {
+	background: url(../../../img/bb-icons/heart.png) center center no-repeat;
+}
+.bb-heart-enabled {
+	background: url(../../../img/bb-icons/heart_e.png) center center no-repeat;
+}
+
+.bb-dashboard {
+	background: url(../../../img/bb-icons/dashboard.png) center center no-repeat;
+}
+.bb-team {
+	background: url(../../../img/bb-icons/team.png) center center no-repeat;
+}
+.bb-hospital {
+	background: url(../../../img/bb-icons/hospital.png) center center no-repeat;
+}
+
+.bb {
+	background-size: 24px 24px;
+	background-repeat: no-repeat;
+    background-position: center center;  
+	display: inline-block;
+	vertical-align: middle;
+}
+.bb-16 {
+	background-size: 16px 16px;
+}
+.bb-24 {
+	background-size: 24px 24px;
+}
+.bb-32 {
+	background-size: 32px 32px;
+}
+.bb-64 {
+	background-size: 64px 64px;
+}
+.bb-96 {
+	background-size: 96px 96px;
+}
+.bb-128 {
+	background-size: 128px 128px;
+}

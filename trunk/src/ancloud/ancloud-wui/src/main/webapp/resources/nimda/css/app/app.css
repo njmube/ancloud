@@ -1,0 +1,7 @@
+#page-ward-front .patient-box.small-box > .inner {
+	padding : 10px;
+	height : 120px;
+}
+#page-ward-front .patient-box.small-box > .icon {  
+	top: 10px
+}

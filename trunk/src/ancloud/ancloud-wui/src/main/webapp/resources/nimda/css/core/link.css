@@ -1,0 +1,23 @@
+a:hover, 
+a:active, 
+a:focus {
+	outline: none;
+	text-decoration: none;
+	color: #72afd2;
+}
+
+.link-muted {
+	color: #7a869d;
+}
+
+.link-muted:hover, .link-muted:focus {
+	color: #606c84;
+}
+
+.link-black {
+	color: #666;
+}
+
+.link-black:hover, .link-black:focus {
+	color: #999;
+}

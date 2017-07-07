@@ -1,0 +1,36 @@
+.img-sm,
+.img-md,
+.img-lg,
+.box-comments .box-comment img,
+.user-block.user-block-sm img {
+    float: left;
+}
+.img-sm {
+    width: 30px !important;
+    height: 30px !important;
+}
+.img-sm + .img-push {
+    margin-left: 40px;
+}
+.img-md {
+    width: 60px;
+    height: 60px;
+}
+.img-md + .img-push {
+    margin-left: 70px;
+}
+.img-lg {
+    width: 100px;
+    height: 100px;
+}
+.img-lg + .img-push {
+    margin-left: 110px;
+}
+.img-bordered {
+    border: 3px solid #d2d6de;
+    padding: 3px;
+}
+.img-bordered-sm {
+    border: 2px solid #d2d6de;
+    padding: 2px;
+}
