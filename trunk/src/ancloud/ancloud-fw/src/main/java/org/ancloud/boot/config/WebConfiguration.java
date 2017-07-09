@@ -9,7 +9,7 @@ import javax.inject.Inject;
 import org.ancloud.fw.core.joda.DateTimeDeserializer;
 import org.ancloud.fw.core.joda.DateTimeSerializer;
 import org.ancloud.fw.presentation.i18n.CustomLocalValidatorFactoryBean;
-import org.ancloud.presentation.context.CodelistFactory;
+import org.ancloud.presentation.codelist.CodelistFactory;
 import org.joda.time.DateTime;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;

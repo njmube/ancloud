@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitter
 @Component
 public class SsePushServiceImpl implements SsePushService,ApplicationListener<SseEvent> {
 
-	private Logger logger = LoggerFactory.getLogger(SsePushServiceImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(SsePushServiceImpl.class);
 	
 	private List<ResponseBodyEmitter> emitters = new ArrayList<ResponseBodyEmitter>();
 	

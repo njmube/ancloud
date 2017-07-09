@@ -9,13 +9,14 @@ import org.ancloud.domain.account.AccountProfile;
 import org.ancloud.domain.constant.SessionConstant;
 import org.ancloud.fw.core.joda.DateTimeEditor;
 import org.ancloud.fw.presentation.helper.LocaleHelpers;
-import org.ancloud.presentation.context.Codelist;
+import org.ancloud.presentation.codelist.Codelist;
 import org.ancloud.presentation.service.SessionService;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -38,7 +39,7 @@ public class GlobalBindingInitializer extends ResponseEntityExceptionHandler {
 	public void binder(WebDataBinder binder) {
 		AccountProfile accountProfile = sessionService.get(SessionConstant.SESSION_CURRENT_ACCOUNT_PROFILE,AccountProfile.class);
 //		binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
-//		binder.registerCustomEditor(String.class, new StringTrimmerEditor(false));
+		binder.registerCustomEditor(String.class, new StringTrimmerEditor(false));
 		if(accountProfile != null){
 			binder.registerCustomEditor(Date.class, new CustomDateEditor(
 														new SimpleDateFormat(accountProfile.getDateFormat()),

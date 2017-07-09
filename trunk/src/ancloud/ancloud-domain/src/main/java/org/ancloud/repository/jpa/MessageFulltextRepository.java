@@ -19,6 +19,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class MessageFulltextRepository {
+	
 	@PersistenceContext
 	private EntityManager entityManager;
 
