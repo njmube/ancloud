@@ -1,0 +1,64 @@
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+	version="2.0">
+	<display-name>bb-ex</display-name>
+	<tlib-version>1.0</tlib-version>
+	<short-name>ancloud</short-name>
+	<uri>http://ancloud.org/tags/ex</uri>
+
+	<!-- Start list all tag for project -->
+	<!-- Start list all by tag-class -->
+<!-- 	<tag> -->
+<!--     <name>date</name> -->
+<!--     <tag-class>org.terasoluna.qp.app.tags.DateTag</tag-class> -->
+<!--     <body-content>empty</body-content> -->
+<!--     <attribute> -->
+<!--       <name>id</name> -->
+<!--       <required>false</required> -->
+<!--       <rtexprvalue>false</rtexprvalue> -->
+<!--     </attribute> -->
+<!--   </tag> -->
+	<!-- End list all by tag-class -->
+	
+	<!-- Start list all by tag-file -->
+	<tag-file>
+		<name>message</name>
+		<path>/WEB-INF/tags/bb-message.tag</path>
+	</tag-file>
+	<tag-file>
+		<name>navigationLink</name>
+		<path>/WEB-INF/tags/bb-navigationLink.tag</path>
+	</tag-file>
+	<tag-file>
+		<name>codelist-select</name>
+		<path>/WEB-INF/tags/bb-codelist-select.tag</path>
+	</tag-file>
+	<tag-file>
+		<name>action-bar</name>
+		<path>/WEB-INF/tags/bb-action-bar.tag</path>
+	</tag-file>
+	<tag-file>
+		<name>autocomplete</name>
+		<path>/WEB-INF/tags/bb-autocomplete.tag</path>
+	</tag-file>
+	<tag-file>
+		<name>formatDate</name>
+		<path>/WEB-INF/tags/bb-formatDate.tag</path>
+	</tag-file>
+	<tag-file>
+		<name>pagination</name>
+		<path>/WEB-INF/tags/bb-pagination.tag</path>
+	</tag-file>
+	<tag-file>
+		<name>sort</name>
+		<path>/WEB-INF/tags/bb-sort.tag</path>
+	</tag-file>
+	<tag-file>
+		<name>iSearchPanel</name>
+		<path>/WEB-INF/tags/bb-isearchpanel.tag</path>
+	</tag-file>
+	<tag-file>
+		<name>rSearchPanel</name>
+		<path>/WEB-INF/tags/bb-rsearchpanel.tag</path>
+	</tag-file>
+</taglib>
