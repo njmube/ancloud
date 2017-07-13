@@ -18,7 +18,7 @@ import org.ancloud.domain.account.enums.AccountType;
 import org.ancloud.domain.constant.SystemCodeConstant;
 import org.ancloud.domain.constant.SystemConstant;
 import org.ancloud.fw.core.exception.BusinessException;
-import org.ancloud.fw.core.util.GenerationHelpers;
+import org.ancloud.fw.core.helper.GenerationHelper;
 import org.ancloud.repository.jpa.AccountRepository;
 import org.ancloud.repository.jpa.AuthenticationAccountActivityRepository;
 import org.ancloud.repository.jpa.RoleRepository;
@@ -205,7 +205,7 @@ public abstract class BaseAccountService<T extends Account> extends BaseService<
 			account.setPassword(passwordEncoder.encode(account.getPassword()));
 		}
 		if(StringUtils.isEmpty(account.getUserName())){
-			account.setUserName(GenerationHelpers.generateUserName());
+			account.setUserName(GenerationHelper.generateUserName());
 		}
 		account.setAccountNonExpired(true);
 		account.setAccountNonLocked(true);

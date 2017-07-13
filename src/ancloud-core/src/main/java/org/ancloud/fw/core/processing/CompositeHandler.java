@@ -1,11 +1,19 @@
 package org.ancloud.fw.core.processing;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class CompositeHandler<T> implements Handlers<T>,Handler<T>{
 
+	Object mutex = new Object();
+			
 	List<Handler<T>> handlers = new ArrayList<Handler<T>>();
+	
+	@Override
+	public synchronized Iterator<Handler<T>> iterator() {
+		return handlers.iterator();
+	}
 
 	ProcessingStrategy<Handlers<T>,T> processingStrategy;
 	
@@ -20,12 +28,12 @@ public class CompositeHandler<T> implements Handlers<T>,Handler<T>{
 		}
 	}
 	
-	public void addHandler(Handler<T> handler){
+	public synchronized void addHandler(Handler<T> handler){
 		if(handler!=null){
 			this.handlers.add(handler);
 		}
 	}
-	public void removeHandler(Handler<T> handler) {
+	public synchronized void removeHandler(Handler<T> handler) {
 		if(handlers.contains(handler)){
 			handlers.remove(handler);
 		}
@@ -36,4 +44,6 @@ public class CompositeHandler<T> implements Handlers<T>,Handler<T>{
 	public void changeStrategy(ProcessingStrategy<Handlers<T>,T> processingStrategy){
 		this.processingStrategy = processingStrategy;
 	}
+
+	
 }

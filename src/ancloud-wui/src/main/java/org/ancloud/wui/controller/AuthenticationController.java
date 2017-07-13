@@ -11,7 +11,7 @@ import org.ancloud.domain.account.AccountProfile;
 import org.ancloud.domain.account.AuthenticationAccountActivity.AuthenticationType;
 import org.ancloud.domain.constant.SessionConstant;
 import org.ancloud.fw.core.exception.ErrorMessage;
-import org.ancloud.fw.core.util.ErrorHandlingUtils;
+import org.ancloud.fw.core.helper.ExceptionHelper;
 import org.ancloud.presentation.service.SessionService;
 import org.ancloud.service.account.AccountService;
 import org.ancloud.service.authentication.UserDetailsImpl;
@@ -46,7 +46,7 @@ public class AuthenticationController{
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	@ResponseBody
 	public ErrorMessage handleException(Exception ex){
-		return ErrorHandlingUtils.logException(logger,ex);
+		return ExceptionHelper.logException(logger,ex);
 	}
 	
 	@RequestMapping(method = {RequestMethod.GET})

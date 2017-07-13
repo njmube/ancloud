@@ -1,7 +1,7 @@
 package org.ancloud.presentation.form.validator;
 
 import org.apache.commons.lang3.StringUtils;
-import org.ancloud.fw.core.util.DataTypeUtils;
+import org.ancloud.fw.core.helper.DataTypeHelper;
 import org.ancloud.presentation.form.AccountForm;
 import org.ancloud.presentation.form.AccountRForm;
 import org.springframework.stereotype.Component;
@@ -22,7 +22,7 @@ public class AccountRFormValidator extends BaseAccountValidator implements Valid
 		if(target!=null){
 			AccountForm accountForm = (AccountForm)target;
 			if((StringUtils.isNotEmpty(accountForm.getPassword()) || StringUtils.isNotEmpty(accountForm.getReenterPassword())) 
-					& DataTypeUtils.notEqual(accountForm.getPassword(), accountForm.getReenterPassword())) {
+					& DataTypeHelper.notEqual(accountForm.getPassword(), accountForm.getReenterPassword())) {
 				errors.rejectValue("reenterPassword",null,"Confirm password must match with password.");
 			}
 			this.checkUserNameRegistration(accountForm,errors);

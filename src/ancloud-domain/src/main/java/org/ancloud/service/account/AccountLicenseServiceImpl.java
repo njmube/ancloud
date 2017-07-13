@@ -12,9 +12,9 @@ import javax.inject.Inject;
 import org.ancloud.domain.account.AccountLicense;
 import org.ancloud.domain.constant.SystemConstant;
 import org.ancloud.fw.core.exception.BusinessException;
-import org.ancloud.fw.core.util.DataTypeUtils;
-import org.ancloud.fw.core.util.GenerationHelpers;
-import org.ancloud.fw.core.util.QRGenerator;
+import org.ancloud.fw.core.helper.DataTypeHelper;
+import org.ancloud.fw.core.helper.GenerationHelper;
+import org.ancloud.fw.core.helper.QRGenerationHelper;
 import org.ancloud.repository.BaseRepository;
 import org.ancloud.repository.jpa.AccountLicenseRepository;
 import org.ancloud.repository.jpa.AccountRepository;
@@ -79,14 +79,14 @@ public class AccountLicenseServiceImpl extends BaseService<AccountLicense> imple
 		return newLicense;
 	}
 	private String generateQrCode(AccountLicense accountLicense){
-		String qrFileName = GenerationHelpers.generateCode(accountLicense.getAccount().getName())+"."+QRGenerator.FILETYPE_JPG;
+		String qrFileName = GenerationHelper.generateCode(accountLicense.getAccount().getName())+"."+QRGenerationHelper.FILETYPE_JPG;
 		Path qrFilePath = Paths.get(SystemConstant.PATH_QR_CODE
 									+File.separator
 									+qrFileName);
 		
 		if(!Files.exists(qrFilePath)){
 			try {
-				QRGenerator.instance.writeQrCodeFile(DataTypeUtils.toJson(accountLicense),QRGenerator.FILETYPE_JPG,qrFilePath);
+				QRGenerationHelper.instance.writeQrCodeFile(DataTypeHelper.toJson(accountLicense),QRGenerationHelper.FILETYPE_JPG,qrFilePath);
 			} catch (IOException e) {
 				logger.error("Cannot generate QR code file.",e);
 				throw new BusinessException("Cannot generate QR code file.");
