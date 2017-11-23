@@ -6,12 +6,7 @@
 	<artifactId>ancloud</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.3.RELEASE</version>
-		<relativePath />
-	</parent>
+	
 	<modules>
 		<module>ancloud-core</module>
 		<module>ancloud-fw</module>
@@ -29,9 +24,17 @@
 		<tomcat.version>8.5.11</tomcat.version>
 		<wro4j.version>1.8.0</wro4j.version>
 		<spring-cloud.version>Dalston.SR1</spring-cloud.version>
+		<querydsl.version>4.1.4</querydsl.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-dependencies</artifactId>
+					<version>1.5.3.RELEASE</version>
+					<type>pom</type>
+					<scope>import</scope>
+			</dependency>
 			<dependency>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>ancloud-core</artifactId>
@@ -70,6 +73,7 @@
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
+		
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>

@@ -57,21 +57,11 @@ public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticatio
 		Account account = sessionService.get(SessionConstant.SESSION_ACCOUNT,Account.class);
 		if(account !=null){
 			for(Role role :account.getRoles()){
-				switch(role.getCode()){
+				switch(role.getCode()) {
 				case "Administrator":
 					targetUrl = "/account/search";
 					break;
-				case "Doctor":
-					targetUrl = "/med/patient/search";
-					break;
-				case "Nurse":
-					targetUrl = "/med/patient/search";
-					break;
-				case "Patient":
-					targetUrl = "/med/patient/show-vital?patientId="+account.getId();
-					break;
-				}
-				if (StringUtils.hasText(targetUrl)) {
+				} if (StringUtils.hasText(targetUrl)) {
 					return targetUrl;
 				}
 			}
