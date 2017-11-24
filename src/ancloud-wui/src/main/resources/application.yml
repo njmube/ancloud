@@ -25,10 +25,10 @@ security:
   filter-order: 5
 spring:
   datasource:
-#    url: jdbc:hsqldb:file:./db/ancloud
-    url: jdbc:mysql://localhost:3306/ancloud?useUnicode=yes&characterEncoding=UTF-8
-#    driver-class-name: org.hsqldb.jdbcDriver
-    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:hsqldb:file:./tmp/db/ancloud
+#    url: jdbc:mysql://localhost:3306/ancloud?useUnicode=yes&characterEncoding=UTF-8
+    driver-class-name: org.hsqldb.jdbcDriver
+#    driver-class-name: com.mysql.jdbc.Driver
     username: ancloud
     password: 0af3b424
     type: com.zaxxer.hikari.HikariDataSource
@@ -46,8 +46,12 @@ spring:
             physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     properties:
         hibernate:
-#          dialect: org.hibernate.dialect.HSQLDialect
-          dialect: org.hibernate.dialect.MySQL5Dialect
+          dialect: org.hibernate.dialect.HSQLDialect
+#          dialect: org.hibernate.dialect.MySQL5Dialect
+          search:
+            default:
+              directory_provider: filesystem
+              indexBase: ./tmp/indexes/
         jadira:
           usertype:
             autoRegisterUserTypes: true
@@ -61,8 +65,8 @@ spring:
                 action: none
               scripts:
                 action: none
-                create-target: C:/create-script.sql 
-                drop-target: C:/drop-script.sql
+                create-target: ./tmp/create-script.sql 
+                drop-target: ./tmp/drop-script.sql
     open-in-view: true
   jackson:
     deserialization:

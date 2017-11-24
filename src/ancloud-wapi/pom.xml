@@ -63,22 +63,22 @@
 				<configuration>
 					<mainClass>org.ancloud.wapi.Application</mainClass>
 					<executable>true</executable>
-					<outputDirectory>../builds/ancloud-wapi/${project.version}/</outputDirectory>
-					<outputFile>../builds/ancloud-wapi/${project.version}/build-info.properties</outputFile>
+					<outputDirectory>../builds/ancloud-wapi/</outputDirectory>
+					<outputFile>../builds/ancloud-wapi/ancloud-wapi-${project.version}-${buildNumber}-build-info.properties</outputFile>
 					<additionalProperties>
 						<java.source>${java.version}</java.source>
 						<java.target>${java.version}</java.target>
 					</additionalProperties>
-					<finalName>ancloud-wapi</finalName>
+					<finalName>ancloud-wapi-${project.version}-${buildNumber}</finalName>
 				</configuration>
-				<executions>
+<!-- 				<executions>
 					<execution>
 						<goals>
 							<goal>repackage</goal>
 							<goal>build-info</goal>
 						</goals>
 					</execution>
-				</executions>
+				</executions> -->
 			</plugin>
 		</plugins>
 	</build>

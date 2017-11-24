@@ -33,13 +33,13 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/resources/img/**").addResourceLocations("/resources/img/")
+		registry.addResourceHandler("/resources/img/**").addResourceLocations("classpath:resources/img/")
 				.setCachePeriod(60 * 60 * 24 * 365);
-		registry.addResourceHandler("/resources/fonts/**").addResourceLocations("/resources/fonts/")
+		registry.addResourceHandler("/resources/fonts/**").addResourceLocations("classpath:resources/fonts/")
 				.setCachePeriod(60 * 60 * 24 * 365);
 		registry.addResourceHandler("/resources/qr/**").addResourceLocations("file:"+SystemConstant.PATH_QR_CODE+File.separator)
 		.setCachePeriod(60 * 60 * 24 * 365);
-		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+		registry.addResourceHandler("/resources/**").addResourceLocations("classpath:resources/");
 
 	}
 
@@ -52,7 +52,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public TilesConfigurer tilesConfigurer() {
 		final TilesConfigurer configurer = new TilesConfigurer();
-		configurer.setDefinitions(new String[] { "WEB-INF/tiles-definitions.xml" });
+		configurer.setDefinitions(new String[] { "classpath:WEB-INF/tiles-definitions.xml" });
 		configurer.setCheckRefresh(true);
 		return configurer;
 	}

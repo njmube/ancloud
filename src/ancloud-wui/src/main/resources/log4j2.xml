@@ -49,7 +49,7 @@
 		<Logger name="org.ancloud" level="DEBUG" />
 		<Logger name="org.hibernate.SQL" level="INFO" />
 		<Logger name="org.hibernate.type" level="INFO" />
-
+		<Logger name="org.springframework" level="DEBUG" />
 		<Root level="ERROR">
 			<AppenderRef ref="console" />
 			<AppenderRef ref="asyncAppFileAppender" />
