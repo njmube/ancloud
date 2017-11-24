@@ -3,69 +3,74 @@ package org.ancloud.fw.presentation.mapper;
 
 import java.util.Map;
 
-import org.joda.time.DateTime;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.FactoryBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
 
+import org.joda.time.DateTime;
 import ma.glasnost.orika.Converter;
 import ma.glasnost.orika.Filter;
 import ma.glasnost.orika.Mapper;
-import ma.glasnost.orika.MapperFactory;
+import ma.glasnost.orika.MapperFacade;
 import ma.glasnost.orika.converter.builtin.PassThroughConverter;
-import ma.glasnost.orika.impl.ConfigurableMapper;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
-import ma.glasnost.orika.impl.generator.EclipseJdtCompilerStrategy;
 
-public class BeanMapperContextAware extends ConfigurableMapper implements ApplicationContextAware {
+@Component
+public class BeanMapperContextAware implements ApplicationContextAware,FactoryBean<MapperFacade> {
 
-	private MapperFactory factory;
+    DefaultMapperFactory factory = new DefaultMapperFactory
+                                        .Builder()
+                                        .mapNulls(false)
+                                        .build();
 
-	@Override
-	protected void configureFactoryBuilder(final DefaultMapperFactory.Builder factoryBuilder) {
-		factoryBuilder.mapNulls(false);
-//		factoryBuilder.compilerStrategy(new EclipseJdtCompilerStrategy());
-	}
+    @Override
+    public void setApplicationContext(final ApplicationContext applicationContext) throws BeansException {
+        addAllSpringBeans(applicationContext);
+    }
 
-	@Override
-	protected void configure(final MapperFactory factory) {
-		this.factory = factory;
-		this.factory.getConverterFactory().registerConverter(new PassThroughConverter(DateTime.class));
-	}
+    @SuppressWarnings("rawtypes")
+    private void addAllSpringBeans(final ApplicationContext applicationContext) {
+        final Map<String, Converter> converters = applicationContext.getBeansOfType(Converter.class);
+        for (final Converter converter : converters.values()) {
+            addConverter(converter);
+        }
 
-	@Override
-	public void setApplicationContext(final ApplicationContext applicationContext) throws BeansException {
-		addAllSpringBeans(applicationContext);
-	}
+        final Map<String, Mapper> mappers = applicationContext.getBeansOfType(Mapper.class);
+        for (final Mapper mapper : mappers.values()) {
+            addMapper(mapper);
+        }
+        
+        final Map<String, Filter> filters = applicationContext.getBeansOfType(Filter.class);
+        for (final Filter filter : filters.values()) {
+            factory.registerFilter(filter);
+        }
+    }
 
-	@SuppressWarnings("rawtypes")
-	private void addAllSpringBeans(final ApplicationContext applicationContext) {
-		final Map<String, Converter> converters = applicationContext.getBeansOfType(Converter.class);
-		for (final Converter converter : converters.values()) {
-			addConverter(converter);
-		}
+    public void addConverter(final Converter<?, ?> converter) {
+        factory.getConverterFactory().registerConverter(converter);
+    }
 
-		final Map<String, Mapper> mappers = applicationContext.getBeansOfType(Mapper.class);
-		for (final Mapper mapper : mappers.values()) {
-			addMapper(mapper);
-		}
-		
-		final Map<String, Filter> filters = applicationContext.getBeansOfType(Filter.class);
-		for (final Filter filter : filters.values()) {
-			factory.registerFilter(filter);
-		}
-	}
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    public void addMapper(final Mapper<?, ?> mapper) {
+        factory.classMap(mapper.getAType(), mapper.getBType())
+                .mapNulls(true)
+                .byDefault()
+                .customize((Mapper) mapper)
+                .register();
+    }
 
-	public void addConverter(final Converter<?, ?> converter) {
-		factory.getConverterFactory().registerConverter(converter);
-	}
+    public MapperFacade getObject() throws Exception {
+        factory.getConverterFactory().registerConverter(new PassThroughConverter(DateTime.class));
+        return factory.getMapperFacade();
+    }
 
-	@SuppressWarnings({"unchecked", "rawtypes"})
-	public void addMapper(final Mapper<?, ?> mapper) {
-		factory.classMap(mapper.getAType(), mapper.getBType())
-				.mapNulls(true)
-				.byDefault()
-				.customize((Mapper) mapper)
-				.register();
-	}
+    public Class<?> getObjectType() {
+        return MapperFacade.class;
+    }
+
+    public boolean isSingleton() {
+        return true;
+    }
 }
