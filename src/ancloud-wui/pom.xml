@@ -3,6 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>ancloud-wui</artifactId>
+	<packaging>war</packaging>
 	<parent>
 		<groupId>org.ancloud</groupId>
 		<artifactId>ancloud</artifactId>
@@ -84,13 +85,13 @@
 					</execution>
 				</executions>
 				<configuration>
-                    <targetGroups>admin,front</targetGroups>
-                    <minimize>false</minimize>
-                    <destinationFolder>${basedir}/src/main/webapp/resources/</destinationFolder>
-                    <contextFolder>${basedir}/src/main/webapp/</contextFolder>
-                    <wroFile>${basedir}/src/main/webapp/WEB-INF/wro.xml</wroFile>
-                    <contextPath>/</contextPath>
-                </configuration>
+						<targetGroups>admin,front</targetGroups>
+						<minimize>false</minimize>
+						<destinationFolder>${basedir}/src/main/webapp/resources/</destinationFolder>
+						<contextFolder>${basedir}/src/main/webapp/</contextFolder>
+						<wroFile>${basedir}/src/main/webapp/WEB-INF/wro.xml</wroFile>
+						<contextPath>/</contextPath>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -98,22 +99,22 @@
 				<configuration>
 					<mainClass>org.ancloud.wui.Application</mainClass>
 					<executable>true</executable>
-					<outputDirectory>../builds/ancloud-wui/${project.version}/</outputDirectory>
-					<outputFile>../builds/ancloud-wui/${project.version}/build-info.properties</outputFile>
+					<outputDirectory>../builds/ancloud-wui/</outputDirectory>
+					<outputFile>../builds/ancloud-wui/ancloud-wui-${project.version}-${buildNumber}-build-info.properties</outputFile>
 					<additionalProperties>
 						<java.source>${java.version}</java.source>
 						<java.target>${java.version}</java.target>
 					</additionalProperties>
-					<finalName>ancloud-wui</finalName>
+					<finalName>ancloud-wui-${project.version}-${buildNumber}</finalName>
 				</configuration>
-				<executions>
+<!-- 				<executions>
 					<execution>
 						<goals>
 							<goal>build-info</goal>
 							<goal>repackage</goal>
 						</goals>
 					</execution>
-				</executions>
+				</executions> -->
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

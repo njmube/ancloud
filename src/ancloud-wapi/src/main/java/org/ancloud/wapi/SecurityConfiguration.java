@@ -1,4 +1,4 @@
-package org.ancloud.boot.config;
+package org.ancloud.wapi;
 
 import javax.inject.Inject;
 
@@ -32,10 +32,10 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.session.web.http.SessionRepositoryFilter;
 import org.springframework.web.filter.RequestContextFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Configuration
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
@@ -51,9 +51,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
 	@Inject
 	PasswordEncoder passwordEncoder;
-	
-	@Inject
-	SavedRequestAwareAuthenticationSuccessHandler successHandler;
 
 	@Value("${ancloud.security.session.max}")
 	private int SESSION_MAX;
@@ -100,14 +97,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 			.and()
 				.httpBasic()
 			.and()
-				 .formLogin()
-				 .successHandler(successHandler)
-				 .loginPage("/login")
-				 .usernameParameter("userName")
-				 .passwordParameter("password")
-			.and()
 			.addFilterBefore(traceServletRequestFilter(), BasicAuthenticationFilter.class)
 			.addFilterBefore(loginAttemptFilter(), BasicAuthenticationFilter.class);
+
 	}
 	
 	@Bean
