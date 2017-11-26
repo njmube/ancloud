@@ -17,32 +17,32 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 public class ServletFilterConfiguration extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.addFilterBefore(traceServletRequestFilter(), BasicAuthenticationFilter.class)
-			.addFilterBefore(loginAttemptFilter(), BasicAuthenticationFilter.class);
+//		http.addFilterBefore(traceServletRequestFilter(), BasicAuthenticationFilter.class)
+//			.addFilterBefore(loginAttemptFilter(), BasicAuthenticationFilter.class);
 	}
-	@Bean
-	public TraceHttpServletRequestFilter traceServletRequestFilter() {
-		TraceHttpServletRequestFilter filter = new TraceHttpServletRequestFilter();
-		return filter;
-	}
+//	@Bean
+//	public TraceHttpServletRequestFilter traceServletRequestFilter() {
+//		TraceHttpServletRequestFilter filter = new TraceHttpServletRequestFilter();
+//		return filter;
+//	}
 	
-	@Bean
-	public PrincipalMDCFilter principalMDCFilter() {
-		PrincipalMDCFilter filter = new PrincipalMDCFilter();
-		return filter;
-	}
-	
-	@Bean
-	public ClientAddressMDCFilter clientAddressMDCFilter() {
-		ClientAddressMDCFilter filter = new ClientAddressMDCFilter();
-		return filter;
-	}
-	
-	@Bean
-	public LoginAttemptFilter loginAttemptFilter() {
-		LoginAttemptFilter filter = new LoginAttemptFilter();
-		return filter;
-	}
+//	@Bean
+//	public PrincipalMDCFilter principalMDCFilter() {
+//		PrincipalMDCFilter filter = new PrincipalMDCFilter();
+//		return filter;
+//	}
+//	
+//	@Bean
+//	public ClientAddressMDCFilter clientAddressMDCFilter() {
+//		ClientAddressMDCFilter filter = new ClientAddressMDCFilter();
+//		return filter;
+//	}
+//	
+//	@Bean
+//	public LoginAttemptFilter loginAttemptFilter() {
+//		LoginAttemptFilter filter = new LoginAttemptFilter();
+//		return filter;
+//	}
 	
 	
 	

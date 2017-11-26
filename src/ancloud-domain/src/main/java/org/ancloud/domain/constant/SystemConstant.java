@@ -3,6 +3,7 @@ package org.ancloud.domain.constant;
 import java.io.File;
 
 public class SystemConstant {
+    public static final String APPLICATION_PROPERTIES = "APPLICATION_PROPERTIES";
 	public static final String PATH_HOME = System.getProperty("user.home") + File.separator + "medtech";
 	public static final String PATH_QR_CODE = PATH_HOME + File.separator + "qr";
 	

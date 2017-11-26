@@ -14,9 +14,12 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 public class LoginAttemptFilter extends OncePerRequestFilter {
 
-	@Inject
 	private LoginAttemptService loginAttemptService;
 
+	public LoginAttemptFilter(LoginAttemptService loginAttemptService) {
+	  this.loginAttemptService = loginAttemptService;
+	}
+	
 	@Override
 	protected final void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
 			FilterChain filterChain) throws ServletException, IOException {

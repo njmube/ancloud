@@ -19,6 +19,7 @@
 		<queueSize>10000</queueSize>
 		<appender-ref ref="COUNTER_FILE" />
 	</appender>
+  <logger name="org.ancloud.fw.presentation.tracking" level="TRACE" />
 	<logger name="org.ancloud" level="DEBUG"  />
 	<logger name="org.hibernate.hql" level="INFO" />
   <logger name="org.hibernate.SQL" level="INFO" />

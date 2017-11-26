@@ -20,9 +20,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Inject
 	AccountService accountService;
 	
-	@Inject
-	AccountRepository accountRepository;
-	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		return accountService.loadUserByUserName(username);

@@ -1,5 +1,7 @@
 package org.ancloud.service.account;
 
+import java.util.List;
+
 import org.ancloud.domain.account.Account;
 import org.ancloud.domain.account.AuthenticationAccountActivity.AuthenticationType;
 import org.ancloud.domain.account.enums.AccountStatus;
@@ -24,5 +26,7 @@ public interface AccountService<T extends Account> extends CrudService<T>{
 	UserDetailsImpl loadUserByUserName(String username);
 
 	UserDetailsImpl loadUserById(Long id);
+
+	List<Account> findAll();
 
 }

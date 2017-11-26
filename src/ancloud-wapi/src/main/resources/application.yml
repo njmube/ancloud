@@ -1,19 +1,4 @@
 application:
-  database:
-    #url: jdbc:mysql://localhost:3306/ancloud_cloud
-    url: jdbc:h2:file:./tmp/db/ancloud
-    userName: ancloud
-    password: 0af3b424
-    #driverClassName: com.mysql.jdbc.Driver
-    driverClassName: org.h2.Driver
-    #dialect: org.hibernate.dialect.MySQL5Dialect
-    dialect: org.hibernate.dialect.H2Dialect
-    showSql: true
-  cp:
-    maxActive: 96
-    maxIdle: 16
-    minIdle: 0
-    maxWaitMillis: 60000
   security:
     maxSession: 1
     sessionExpiredUrl: /api/auth/expire
@@ -28,7 +13,9 @@ application:
 ################### Spring boot Configuration ##########################
 server:
   port : 9000
-spring:
+  undertow:
+    io-threads: 4
+    worker-threads: 32
   profiles:
     active: ${project.buid.profile}
   redis:
@@ -45,7 +32,7 @@ spring:
     favicon:
       enabled: false
   datasource:
-    url: jdbc:hsqldb:file:./tmp/db/ancloud
+    url: jdbc:hsqldb:file:../tmp/db/ancloud
     driver-class-name: org.hsqldb.jdbcDriver
     #url: jdbc:mysql://localhost:3306/ancloud_cloud
     #driver-class-name: com.mysql.jdbc.Driver
@@ -68,6 +55,15 @@ spring:
         hibernate:
             dialect: org.hibernate.dialect.HSQLDialect
 #            dialect: org.hibernate.dialect.MySQL5Dialect
+        search:
+            default:
+              directory_provider: filesystem
+              indexBase: ../tmp/indexes/
+        jadira:
+          usertype:
+            autoRegisterUserTypes: true
+            databaseZone: UTC
+            javaZone: UTC
   jackson:
     deserialization:
       fail-on-unknown-properties: false
@@ -81,3 +77,14 @@ flyway:
     validate-on-migrate: true
 security:
   filter-order: 5
+  
+mybatis:
+    type-aliases-package: org.ancloud.domain
+    mapper-locations: classpath:mappers/*.xml
+    configuration:
+      default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
+      map-underscore-to-camel-case: true
+      default-fetch-size: 100
+      default-statement-timeout: 30
+      
+  

@@ -22,11 +22,6 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 public class CommonConfiguration {
 
 	@Bean
-	public BeanMapperContextAware beanMapper() {
-		return new BeanMapperContextAware();
-	}
-
-	@Bean
 	public SessionLocaleResolver localeResolver() {
 		SessionLocaleResolver localeResolver = new SessionLocaleResolver();
 		localeResolver.setDefaultLocale(LocaleHelpers.toLocale("en_US"));

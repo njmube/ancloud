@@ -11,6 +11,7 @@ import org.ancloud.presentation.context.AccountAuditorAware;
 import org.ancloud.presentation.context.CustomErrorAttributes;
 import org.ancloud.presentation.service.SsePushService;
 import org.ancloud.presentation.service.SsePushServiceImpl;
+import org.ancloud.service.account.LoginAttemptService;
 import org.ancloud.service.authentication.UserDetailsServiceImpl;
 import org.aspectj.weaver.ast.And;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,111 +43,125 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Order(90)
 @EnableJpaAuditing(auditorAwareRef="auditorProvider")
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
-	
-	@Inject
-	ApplicationProperties applicationProperties;
-	
-	@Inject
-	SessionRegistry sessionRegistry;
-	
-	@Inject
-	PasswordEncoder passwordEncoder;
+  
+  @Inject
+  ApplicationProperties applicationProperties;
+  
+  @Inject
+  SessionRegistry sessionRegistry;
+  
+  @Inject
+  PasswordEncoder passwordEncoder;
 
-	@Value("${ancloud.security.session.max}")
-	private int SESSION_MAX;
-	
-	
-	@Bean
-	protected UserDetailsService userDetailsService(){
-		return new UserDetailsServiceImpl();
-	}
-	
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//		 auth.inMemoryAuthentication()
-//		 .withUser("user")
-//		 .password("password")
-//		 .roles("USER");
-		auth.userDetailsService(userDetailsService())
-			.passwordEncoder(passwordEncoder);
-	}
-	
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.sessionManagement()
-				.maximumSessions(SESSION_MAX)
-				.sessionRegistry(sessionRegistry)
-				.maxSessionsPreventsLogin(false)
-				.expiredUrl("/api/auth/expire")
-				.and()
-				.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-			.and()
-			.csrf().disable()
-			.exceptionHandling()
-			.and()
-				.logout().permitAll().and().authorizeRequests()
-				.antMatchers("/"
-							,"/api/auth/check-license**/*"
-							,"/api/parent/register**"
-							,"/login"
-							,"/register"
-							,"/resources/**"
-							,"/jsMsgSource*")
-					.permitAll()
-				.anyRequest().authenticated()
-			.and()
-				.httpBasic()
-			.and()
-			.addFilterBefore(traceServletRequestFilter(), BasicAuthenticationFilter.class)
-			.addFilterBefore(loginAttemptFilter(), BasicAuthenticationFilter.class);
+  @Value("${application.security.maxSession}")
+  private int SESSION_MAX;
+  
+  
+  @Bean
+  protected UserDetailsService userDetailsService(){
+    return new UserDetailsServiceImpl();
+  }
+  
+  @Autowired
+  public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//     auth.inMemoryAuthentication()
+//     .withUser("user")
+//     .password("password")
+//     .roles("USER");
+    auth.userDetailsService(userDetailsService())
+      .passwordEncoder(passwordEncoder);
+  }
+  
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http.sessionManagement()
+        .maximumSessions(SESSION_MAX)
+        .sessionRegistry(sessionRegistry)
+        .maxSessionsPreventsLogin(false)
+        .expiredUrl("/api/auth/expire")
+        .and()
+        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+      .and()
+      .csrf().disable()
+      .exceptionHandling()
+      .and()
+        .logout().permitAll().and().authorizeRequests()
+        .antMatchers("/"
+              ,"/api/auth/check-license**/*"
+              ,"/api/parent/register**"
+              ,"/login"
+              ,"/register"
+              ,"/resources/**"
+              ,"/jsMsgSource*")
+          .permitAll()
+        .anyRequest().authenticated()
+      .and()
+        .httpBasic();
+//      .and()
+//      .addFilterBefore(traceServletRequestFilter(), BasicAuthenticationFilter.class)
+//      .addFilterBefore(loginAttemptFilter(), BasicAuthenticationFilter.class);
 
-	}
-	
-	@Bean
-	@Order(Ordered.HIGHEST_PRECEDENCE)
-	public TraceHttpServletRequestFilter traceServletRequestFilter() {
-		TraceHttpServletRequestFilter filter = new TraceHttpServletRequestFilter();
-		return filter;
-	}
-	
-	@Bean
-	public PrincipalMDCFilter principalMDCFilter() {
-		PrincipalMDCFilter filter = new PrincipalMDCFilter();
-		return filter;
-	}
-	
-	@Bean
-	public ClientAddressMDCFilter clientAddressMDCFilter() {
-		ClientAddressMDCFilter filter = new ClientAddressMDCFilter();
-		return filter;
-	}
-	
-	@Bean
-	@Order(4)
-	public LoginAttemptFilter loginAttemptFilter() {
-		LoginAttemptFilter filter = new LoginAttemptFilter();
-		return filter;
-	}
-
-	@Bean
-	AccountAuditorAware auditorProvider() {
-		return new AccountAuditorAware();
-	}
-	
-	@Bean
-	public ErrorAttributes errorAttributes() {
-		return new CustomErrorAttributes();
-	}
-	@Bean
-	@ConditionalOnMissingBean(RequestContextFilter.class)
-	public FilterRegistrationBean requestContextFilter(){
-		FilterRegistrationBean requestContextFilter = new FilterRegistrationBean();
-		requestContextFilter.setFilter(new RequestContextFilter());
-		requestContextFilter.setOrder(SessionRepositoryFilter.DEFAULT_ORDER+1);
-		return requestContextFilter;
-	}
-	@Bean
-	public SsePushService pushService(){
-		return new SsePushServiceImpl();
-	}
+  }
+  
+//  @Bean
+//  @Order(Ordered.HIGHEST_PRECEDENCE)
+//  public TraceHttpServletRequestFilter traceServletRequestFilter() {
+//    TraceHttpServletRequestFilter filter = new TraceHttpServletRequestFilter();
+//    return filter;
+//  }
+  
+  @Bean
+  public FilterRegistrationBean traceServletRequestFilter() {
+    FilterRegistrationBean filter = new FilterRegistrationBean(new TraceHttpServletRequestFilter());
+    filter.setOrder(Ordered.HIGHEST_PRECEDENCE);
+    return filter;
+  }
+  
+//  @Bean
+//  @Order(Ordered.HIGHEST_PRECEDENCE)
+//  public LoginAttemptFilter loginAttemptFilter(LoginAttemptService loginAttemptService) {
+//    LoginAttemptFilter filter = new LoginAttemptFilter(loginAttemptService);
+//    return filter;
+//  }
+  
+  @Bean
+  public FilterRegistrationBean loginAttemptFilter(LoginAttemptService loginAttemptService) {
+    FilterRegistrationBean filter = new FilterRegistrationBean(new LoginAttemptFilter(loginAttemptService));
+    filter.setOrder(Ordered.HIGHEST_PRECEDENCE+1);
+    return filter;
+  }
+  
+  @Bean
+  public PrincipalMDCFilter principalMDCFilter() {
+    PrincipalMDCFilter filter = new PrincipalMDCFilter();
+    return filter;
+  }
+  
+  @Bean
+  public ClientAddressMDCFilter clientAddressMDCFilter() {
+    ClientAddressMDCFilter filter = new ClientAddressMDCFilter();
+    return filter;
+  }
+  
+  @Bean
+  AccountAuditorAware auditorProvider() {
+    return new AccountAuditorAware();
+  }
+  
+  @Bean
+  public ErrorAttributes errorAttributes() {
+    return new CustomErrorAttributes();
+  }
+  @Bean
+  @ConditionalOnMissingBean(RequestContextFilter.class)
+  public FilterRegistrationBean requestContextFilter(){
+    FilterRegistrationBean requestContextFilter = new FilterRegistrationBean();
+    requestContextFilter.setFilter(new RequestContextFilter());
+    requestContextFilter.setOrder(SessionRepositoryFilter.DEFAULT_ORDER+1);
+    return requestContextFilter;
+  }
+  @Bean
+  public SsePushService pushService(){
+    return new SsePushServiceImpl();
+  }
 }

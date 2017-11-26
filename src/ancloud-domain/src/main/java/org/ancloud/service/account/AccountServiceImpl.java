@@ -1,5 +1,7 @@
 package org.ancloud.service.account;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.ancloud.domain.account.Account;
@@ -13,4 +15,9 @@ public class AccountServiceImpl extends BaseAccountService<Account> implements A
 	public BaseRepository<Account> getRepository() {
 		return this.accountRepository;
 	}
+
+  @Override
+  public List<Account> findAll() {
+    return this.getRepository().findAll();
+  }
 }

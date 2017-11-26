@@ -1,15 +1,19 @@
 package org.ancloud.wapi.controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
 
+import org.ancloud.domain.account.Account;
 import org.ancloud.domain.account.AccountLicense;
 import org.ancloud.fw.presentation.BaseController;
+import org.ancloud.fw.presentation.response.ResponseWrapper;
 import org.ancloud.fw.presentation.validation.ValidationResponseEntityBuilder;
 import org.ancloud.presentation.form.AccountLicenseForm;
 import org.ancloud.presentation.service.SessionService;
+import org.ancloud.repository.mappers.AccountMapper;
 import org.ancloud.service.account.AccountLicenseService;
 import org.ancloud.service.account.AccountService;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +35,10 @@ public class AccountController extends BaseController {
 	private AccountLicenseService licenseService;
 	
 	@Inject
-	AccountService accountService;
+	AccountService<Account> accountService;
+	
+	@Inject
+	AccountMapper accountMapper;
 
 	@RequestMapping(value="get-sessions",method = {RequestMethod.GET})
 	public ResponseEntity<?> getSession(Principal principal) {
@@ -39,18 +46,24 @@ public class AccountController extends BaseController {
 	}
 	
 	@RequestMapping(value="get-all-sessions",method = {RequestMethod.GET})
-	@PreAuthorize("hasRole('Administrator')")
+	@PreAuthorize("hasRole('administrator')")
 	public ResponseEntity<?> getAllSessions() {
 		return ResponseEntity.ok(sessionService.getAllSessions());
 	}
 	
 	@RequestMapping(value="register-session",method = {RequestMethod.POST})
-	@PreAuthorize("hasRole('Administrator')")
+	@PreAuthorize("hasRole('administrator')")
 	public ResponseEntity<?> registerSession(@RequestBody @Valid AccountLicenseForm licenseForm,BindingResult bindingResult) {
 		if(bindingResult.hasFieldErrors()){
 			return ValidationResponseEntityBuilder.build(logger,bindingResult.getAllErrors());
 		}
-		return ResponseEntity.ok(licenseService.register(mapper.map(licenseForm, AccountLicense.class)));
+		return ResponseWrapper.success(licenseService.register(mapper.map(licenseForm, AccountLicense.class)));
 	}
+	
+	@RequestMapping(value="get-accounts",method = {RequestMethod.GET})
+	@PreAuthorize("hasRole('administrator')")
+    public ResponseEntity<ResponseWrapper<List<Account>>> getAccounts() {
+        return ResponseWrapper.success(accountMapper.findAll());
+    }
 }
 	

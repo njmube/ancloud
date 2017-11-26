@@ -21,6 +21,10 @@ public class AccountAuditorAware implements AuditorAware<Account> {
 		if (authentication == null || !authentication.isAuthenticated()) {
 			return null;
 		}
-		return accountRepository.findOne(((UserDetailsImpl) authentication.getPrincipal()).getAccount().getId());
+		if(authentication.getPrincipal() instanceof UserDetailsImpl) {
+		  return accountRepository.findOne(((UserDetailsImpl) authentication.getPrincipal()).getAccount().getId());
+		} else {
+		  return accountRepository.findOne(1L);
+		}
 	}
 }
