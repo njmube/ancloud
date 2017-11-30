@@ -1,13 +1,65 @@
-spring:
-    application:
-        name: edge
-server:
-    port: 80
 zuul:
-    routes:
-        jsf:
-            path: /jsf/**
-            url: http://localhost:8080
+  routes:
+    jsf:
+      path: /jsf/**
+      url: http://localhost:8080
 ribbon:
     eureka:
         enabled: false
+        
+server:
+  port : 8888
+  undertow:
+    io-threads: 4
+    worker-threads: 32
+spring:
+  application:
+    name: edge
+  profiles:
+    active: ${project.buid.profile}
+  datasource:
+    url: jdbc:hsqldb:file:../tmp/db/ancloud
+    driver-class-name: org.hsqldb.jdbcDriver
+    #url: jdbc:mysql://localhost:3306/ancloud_cloud
+    #driver-class-name: com.mysql.jdbc.Driver
+    #username: ancloud
+    #password: 0af3b424
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+        idleTimeout: 10000
+        maximumPoolSize: 96
+        minimumIdle: 10
+        connectionTimeout: 60000
+  jpa:
+    show-sql: false
+    hibernate:
+        ddl-auto: none
+        naming:
+            implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+            physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+        hibernate:
+            dialect: org.hibernate.dialect.HSQLDialect
+#            dialect: org.hibernate.dialect.MySQL5Dialect
+        search:
+            default:
+              directory_provider: filesystem
+              indexBase: ../tmp/indexes/
+        jadira:
+          usertype:
+            autoRegisterUserTypes: true
+            databaseZone: UTC
+            javaZone: UTC
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: false
+    serialization:
+      fail-on-empty-beans: false
+liquibase:
+  enabled: true
+  change-log: classpath:/db/changelog/db.changelog-master.xml
+flyway:
+    enabled: false
+    validate-on-migrate: true
+security:
+  filter-order: 5

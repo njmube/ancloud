@@ -11,7 +11,9 @@ import org.ancloud.repository.jpa.ResourceRepository;
 import org.springframework.cloud.config.environment.Environment;
 import org.springframework.cloud.config.environment.PropertySource;
 import org.springframework.cloud.config.server.environment.EnvironmentRepository;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CustomEnvironmentRepository implements EnvironmentRepository {
 
   

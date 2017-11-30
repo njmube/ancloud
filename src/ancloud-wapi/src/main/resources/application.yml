@@ -16,6 +16,7 @@ server:
   undertow:
     io-threads: 4
     worker-threads: 32
+spring:
   profiles:
     active: ${project.buid.profile}
   redis:
